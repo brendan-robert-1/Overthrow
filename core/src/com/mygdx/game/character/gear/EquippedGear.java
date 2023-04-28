@@ -9,4 +9,6 @@ public class EquippedGear {
     public Feet feet;
     public Ring ring;
     public Earring earring;
+    public Weapon rightHandWeapon;
+    public Weapon leftHandWeapon;
 }

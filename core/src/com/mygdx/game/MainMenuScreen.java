@@ -24,8 +24,6 @@ public class MainMenuScreen extends ScreenAdapter {
     private AssetManager assetManager;
     private Skin skin;
 
-    private BitmapFontCache titleCache;
-
     public MainMenuScreen(AssetManager assetManager){
         this.assetManager = assetManager;
         skin = assetManager.get(Assets.SKIN);
