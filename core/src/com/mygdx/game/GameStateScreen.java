@@ -1,69 +1,134 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.ItemSlot;
-
 import java.util.stream.Stream;
 
 public class GameStateScreen extends OverthrowScreenAdapter {
-    private AssetManager assetManager;
 
     private Skin skin;
     private GameState gameState;
 
-    public GameStateScreen(AssetManager assetManager, GameState gameState) {
-        this.assetManager = assetManager;
+    public GameStateScreen(GameState gameState) {
         this.gameState = gameState;
-        skin = assetManager.get(Assets.SKIN);
+        skin = Assets.getAssetManager().get(Assets.SKIN);
     }
     @Override
     public void show() {
-        viewport = new ExtendViewport(1280, 720);
-        stage = new Stage(viewport);
-        Table characters = new Table();
-        stage.addActor(characters);
-        characters.setFillParent(true);
-        populateCharacterList(characters);
+       // stage.setDebugAll(true);
+        populateTopLeftBar();
+        populateTopRightBar();
+        populateInventory();
+        populateTeam();
+        populateEnemyTeam();
         Gdx.input.setInputProcessor(stage);
     }
 
-    private void populateCharacterList(Table table){
-        addButton(table, "Coin: " + gameState.coin());
-        addButton(table, "Inventory");
+    private void populateTopLeftBar(){
+        Table statusTable = new Table(skin);
+        statusTable.add(new TextButton("Options", skin));
+        statusTable.top().left();
+        statusTable.padLeft(20);
+        statusTable.padRight(20);
+        statusTable.padTop(10);
+        statusTable.setHeight(60);
+        statusTable.setFillParent(true);
+        stage.addActor(statusTable);
+    }
+    private void populateTopRightBar(){
+        Table statusTable = new Table(skin);
+        statusTable.add(new TextButton("Coins: " + gameState.coin(), skin));
+        statusTable.top().right();
+        statusTable.padLeft(20);
+        statusTable.padRight(20);
+        statusTable.padTop(10);
+        statusTable.setFillParent(true);
+        stage.addActor(statusTable);
+    }
+
+    private void populateInventory(){
+        Table table = new Table(skin);
+        table.bottom().right();
+        table.padLeft(20);
+        table.padRight(20);
+        table.padTop(10);
+        table.setHeight(60);
+
         for(Integer inventorySlot : gameState.inventory().getInventoryMap().keySet()){
             ItemSlot itemSlot = gameState.inventory().getInventoryMap().get(inventorySlot);
             addButton(table, itemSlot.name() + ": " + itemSlot.quantity());
         }
-        addButton(table, "Options",new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Options has been clicked.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new OptionsScreen(assetManager));
-            }
-        });
-        addButton(table, "Quit to main menu",new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Quit to main menu.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(assetManager));
-            }
-        });
         table.row();
+        table.setFillParent(true);
+        stage.addActor(table);
+    }
 
+    private void populateTeam(){
+        Table table = new Table(skin);
+        table.bottom().left();
+        table.padLeft(400);
+        table.padBottom(300);
+        Character firstCharacter = gameState.characterSlots().firstCharacter();
+        Character secondCharacter = gameState.characterSlots().secondCharacter();
+        Character thirdCharacter = gameState.characterSlots().thirdCharacter();
+        Character fourthCharacter = gameState.characterSlots().fourthCharacter();
+        addCharacterPanel(table, firstCharacter);
+        addCharacterPanel(table, secondCharacter);
+        addCharacterPanel(table, thirdCharacter);
+        addCharacterPanel(table, fourthCharacter);
+        table.row();
+        table.setFillParent(true);
+        stage.addActor(table);
+    }
+
+    private void populateEnemyTeam(){
+        Table table = new Table(skin);
+        table.bottom().right();
+        table.padRight(400);
+        table.padBottom(300);
+        Character firstCharacter = gameState.characterSlots().firstCharacter();
+        Character secondCharacter = gameState.characterSlots().secondCharacter();
+        Character thirdCharacter = gameState.characterSlots().thirdCharacter();
+        Character fourthCharacter = gameState.characterSlots().fourthCharacter();
+        addCharacterPanel(table, firstCharacter);
+        addCharacterPanel(table, secondCharacter);
+        addCharacterPanel(table, thirdCharacter);
+        addCharacterPanel(table, fourthCharacter);
+        table.row();
+        table.setFillParent(true);
+        stage.addActor(table);
+    }
+
+    private void addCharacterPanel(Table mainTable, Character character) {
+        Table table = new Table(skin);
+        if(character == null){
+            Label label = new Label("Empty slot.", skin);
+            table.add(label);
+            mainTable.add(table);
+            return;
+        }
+        Label label = new Label(character.characterType().toString(), skin);
+        Label hp = new Label("HP: " + character.hp(), skin);
+        TextButton equippedGear = new TextButton("Gear", skin);
+        TextButton ability1 = new TextButton(character.firstBasicAbility().name(), skin);
+        TextButton ability2 = new TextButton(character.secondBasicAbility().name(), skin);
+        TextButton ultimate = new TextButton(character.ultimateAbility().name(), skin);
+        table.add(label);
+        table.row();
+        table.add(hp);
+        table.row();
+        table.add(ability1);
+        table.row();
+        table.add(ability2);
+        table.row();
+        table.add(ultimate);
+        table.row();
+        table.add(equippedGear);
+        mainTable.add(table);
     }
 
     private void addButton(Table table, String name, ClickListener... listener){

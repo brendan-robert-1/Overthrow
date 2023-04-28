@@ -14,6 +14,7 @@ public class PlagueDoctorGenerator {
 
     public static Character generateStartingPlagueDoctor(){
         return new Character(
+                Character.CharacterType.PLAGUE_DOCTOR,
                 STARTING_HP,
                 new EquippedGear(),
                 STARTING_BASIC_ABILITY_1,

@@ -7,7 +7,9 @@ import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 
 import java.util.List;
 
-public record Character(int hp,
+public record Character(
+    CharacterType characterType,
+    int hp,
     EquippedGear equippedGear,
     Ability firstBasicAbility,
     Ability secondBasicAbility,

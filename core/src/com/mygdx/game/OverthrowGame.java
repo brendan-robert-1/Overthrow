@@ -23,6 +23,6 @@ public class OverthrowGame extends Game {
 		assets.loadAll();
 		assets.getAssetManager().finishLoading();
 
-		setScreen(new MainMenuScreen(assets.getAssetManager()));
+		setScreen(new MainMenuScreen());
 	}
 }

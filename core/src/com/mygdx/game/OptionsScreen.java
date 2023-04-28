@@ -14,15 +14,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.ArrayList;
 
 public class OptionsScreen extends ScreenAdapter {
-    private AssetManager assetManager;
     private Table characters;
     private Viewport viewport;
     private Skin skin;
     private Stage stage;
 
-    public OptionsScreen(AssetManager assetManager) {
-        this.assetManager = assetManager;
-        skin = assetManager.get(Assets.SKIN);
+    public OptionsScreen() {
+        skin = Assets.getAssetManager().get(Assets.SKIN);
     }
     @Override
     public void show() {
@@ -61,7 +59,7 @@ public class OptionsScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to main menu.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(assetManager));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
             }
         });
     }

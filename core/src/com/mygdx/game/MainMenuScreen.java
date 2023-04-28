@@ -18,22 +18,18 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class MainMenuScreen extends ScreenAdapter {
-    private Stage stage;
-    private Viewport viewport;
-    private AssetManager assetManager;
+public class MainMenuScreen extends OverthrowScreenAdapter {
+
+
     private Skin skin;
 
-    public MainMenuScreen(AssetManager assetManager){
-        this.assetManager = assetManager;
-        skin = assetManager.get(Assets.SKIN);
+    public MainMenuScreen(){
+        skin = Assets.getAssetManager().get(Assets.SKIN);
 
     }
 
     @Override
     public void show() {
-        viewport = new ExtendViewport(1280, 720);
-        stage = new Stage(viewport);
         Table table = new Table();
         stage.addActor(table);
         table.setFillParent(true); //Table is maxium size of stage
@@ -41,15 +37,12 @@ public class MainMenuScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage); //stage being used for button listening
     }
 
-
-
     private void addMainMenuButtons(Table table) {
-        addButton(table, "Overthrow");
         addButton(table, "New Run", new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("New run has been clicked... Good Luck!");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new NewRunScreen(assetManager));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new NewRunScreen());
             }
         });
         addButton(table, "Unlocks",new ClickListener(){
@@ -62,7 +55,7 @@ public class MainMenuScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Options has been clicked.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new OptionsScreen(assetManager));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new OptionsScreen());
             }
         });
         addButton(table, "Match History",new ClickListener(){
@@ -80,28 +73,11 @@ public class MainMenuScreen extends ScreenAdapter {
         });
     }
 
-
-
     private void addButton(Table table, String name, ClickListener listener){
         TextButton button = new TextButton(name, skin);
         button.addListener(listener);
         table.add(button).fillX().padBottom(10);
         table.row();
-    }
-
-    private void addButton(Table table, String name){
-        TextButton button = new TextButton(name, skin);
-        button.setTouchable(Touchable.disabled);
-        table.add(button).fillX().padBottom(10);
-        table.row();
-    }
-
-    @Override
-    public void render(float delta){
-        Gdx.gl.glClearColor(.1f,.1f, .15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
-        stage.draw();
     }
 
     @Override

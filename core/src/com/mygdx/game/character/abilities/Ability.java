@@ -1,3 +1,6 @@
 package com.mygdx.game.character.abilities;
 
-public class Ability {}
+public interface Ability{
+    String name();
+    String description();
+}

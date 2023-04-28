@@ -21,18 +21,15 @@ import com.mygdx.game.state.NewGameGenerator;
 import java.util.stream.Stream;
 
 public class NewRunScreen extends OverthrowScreenAdapter {
-    private AssetManager assetManager;
+
     private Table characters;
     private Skin skin;
 
-    public NewRunScreen(AssetManager assetManager) {
-        this.assetManager = assetManager;
-        skin = assetManager.get(Assets.SKIN);
+    public NewRunScreen() {
+        skin = Assets.getAssetManager().get(Assets.SKIN);
     }
     @Override
     public void show() {
-        viewport = new ExtendViewport(1280, 720);
-        stage = new Stage(viewport);
         characters = new Table();
         stage.addActor(characters);
         characters.setFillParent(true);
@@ -41,14 +38,13 @@ public class NewRunScreen extends OverthrowScreenAdapter {
     }
 
     private void populateCharacterList(Table characters){
-        addButton(characters, "Choose a Starting Character...");
         characters.row();
         addButton(characters, "Plague Doctor",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Knight has been selected.");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen(assetManager, NewGameGenerator.generateNewGame(Character.CharacterType.PLAGUE_DOCTOR))
+                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.PLAGUE_DOCTOR))
                 );
             }
         });
@@ -57,7 +53,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Knight has been selected.");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen(assetManager, NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT))
+                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT))
                 );
             }
         });
@@ -66,7 +62,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Inventor has been selected.");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen(assetManager, NewGameGenerator.generateNewGame(Character.CharacterType.INVENTOR))
+                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.INVENTOR))
                 );
             }
         });
@@ -75,7 +71,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Leper has been selected.");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen(assetManager, NewGameGenerator.generateNewGame(Character.CharacterType.LEPER))
+                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.LEPER))
                 );
             }
         });
@@ -83,7 +79,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to main menu.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(assetManager));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
             }
         });
     }

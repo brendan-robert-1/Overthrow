@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
@@ -13,6 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Overthrow");
 		config.setWindowedMode(1800,900);
+		config.setResizable(false);
 		new Lwjgl3Application(new OverthrowGame(), config);
 	}
 }

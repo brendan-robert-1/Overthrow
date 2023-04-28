@@ -13,10 +13,10 @@ public class NewGameGenerator {
     }
     private static CharacterSlots characterSlotsGenerator(Character.CharacterType characterType){
         return new CharacterSlots(
-                Character.generateNewCharacter(characterType),
                 null,
                 null,
-                null
+                null,
+                Character.generateNewCharacter(characterType)
         );
     }
 }
