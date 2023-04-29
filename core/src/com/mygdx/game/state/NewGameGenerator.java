@@ -4,11 +4,17 @@ import java.util.UUID;
 
 public class NewGameGenerator {
     public static GameState generateNewGame(Character.CharacterType characterType){
+        UUID seed = UUID.randomUUID();
+        GameNode outfitter = new GameNode(GameNode.NodeType.OUTFITTER);
+        MapGraph graph = MapGraph.buildNormalGameMap(seed, outfitter);
         return new GameState(
-                UUID.randomUUID(),
+                seed,
                 characterSlotsGenerator(characterType),
+                newEmptyEnemySlots(),
                 99,
-                new Inventory()
+                new Inventory(),
+                graph,
+                outfitter
         );
     }
     private static CharacterSlots characterSlotsGenerator(Character.CharacterType characterType){
@@ -18,6 +24,9 @@ public class NewGameGenerator {
                 null,
                 Character.generateNewCharacter(characterType)
         );
+    }
+    private static EnemySlots newEmptyEnemySlots(){
+        return new EnemySlots(null, null, null, null);
     }
 }
 

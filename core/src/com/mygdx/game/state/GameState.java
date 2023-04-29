@@ -5,6 +5,32 @@ import java.util.UUID;
 public record GameState (
     UUID runSeed,
     CharacterSlots characterSlots,
+    EnemySlots enemySlots,
     int coin,
-    Inventory inventory
-){}
+    Inventory inventory,
+    MapGraph mapGraph,
+    GameNode currentNode
+){
+    public GameState withCoin(int coinValue){
+        return new GameState(
+                runSeed,
+                characterSlots,
+                enemySlots,
+                coinValue,
+                inventory,
+                mapGraph,
+                currentNode
+        );
+    }
+    public GameState withCurrentNode(GameNode newCurrentNode){
+        return new GameState(
+                runSeed,
+                characterSlots,
+                enemySlots,
+                coin,
+                inventory,
+                mapGraph,
+                newCurrentNode
+        );
+    }
+}

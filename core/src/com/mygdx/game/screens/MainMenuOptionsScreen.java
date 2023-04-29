@@ -1,8 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,23 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Assets;
+import com.mygdx.game.OverthrowScreenAdapter;
 
-import java.util.ArrayList;
-
-public class OptionsScreen extends ScreenAdapter {
-    private Table characters;
-    private Viewport viewport;
-    private Skin skin;
-    private Stage stage;
-
-    public OptionsScreen() {
-        skin = Assets.getAssetManager().get(Assets.SKIN);
-    }
+public class MainMenuOptionsScreen extends OverthrowScreenAdapter {
     @Override
     public void show() {
-        viewport = new ExtendViewport(1280, 720);
-        stage = new Stage(viewport);
-        characters = new Table();
+        Table characters = new Table();
         stage.addActor(characters);
         characters.setFillParent(true);
         populateCharacterList(characters);
@@ -65,14 +53,14 @@ public class OptionsScreen extends ScreenAdapter {
     }
 
     private void addButton(Table table, String name, ClickListener listener){
-        TextButton button = new TextButton(name, skin);
+        TextButton button = new TextButton(name, Assets.skin());
         button.addListener(listener);
         table.add(button).fillX().padBottom(10);
         table.row();
     }
 
     private void addButton(Table table, String name){
-        TextButton button = new TextButton(name, skin);
+        TextButton button = new TextButton(name, Assets.skin());
         table.add(button).fillX().padBottom(10);
         table.row();
     }

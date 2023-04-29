@@ -20,8 +20,6 @@ public abstract class OverthrowScreenAdapter extends ScreenAdapter {
         stage.draw();
     }
 
-
-
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);

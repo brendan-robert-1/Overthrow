@@ -24,4 +24,8 @@ public class Assets {
     public static AssetManager getAssetManager() {
         return assetManager;
     }
+
+    public static Skin skin(){
+        return assetManager.get(SKIN);
+    }
 }
