@@ -8,13 +8,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.encounters.EnemyCharacter;
+import com.mygdx.game.encounters.fights.Fight;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
-public class FightScreen extends OverthrowScreenAdapter {
+public class FightScreen extends InGameEncounterScreen {
     private GameState gameState;
 
     public FightScreen(GameState gameState){
+        super(gameState);
         this.gameState = gameState;
     }
     @Override
@@ -50,11 +52,12 @@ public class FightScreen extends OverthrowScreenAdapter {
         table.bottom().right();
         table.padRight(400);
         table.padBottom(300);
-        table.setDebug(true);
-        EnemyCharacter firstEnemy = gameState.enemySlots().firstCharacter();
-        EnemyCharacter secondEnemy = gameState.enemySlots().secondCharacter();
-        EnemyCharacter thirdEnemy = gameState.enemySlots().thirdCharacter();
-        EnemyCharacter fourthEnemy = gameState.enemySlots().fourthCharacter();
+       // table.setDebug(true);
+        Fight fightNode = (Fight) gameState.currentNode();
+        EnemyCharacter firstEnemy = fightNode.startingUnits().firstCharacter();
+        EnemyCharacter secondEnemy = fightNode.startingUnits().secondCharacter();
+        EnemyCharacter thirdEnemy = fightNode.startingUnits().thirdCharacter();
+        EnemyCharacter fourthEnemy = fightNode.startingUnits().fourthCharacter();
         addEnemyPanel(table, firstEnemy);
         addEnemyPanel(table, secondEnemy);
         addEnemyPanel(table, thirdEnemy);

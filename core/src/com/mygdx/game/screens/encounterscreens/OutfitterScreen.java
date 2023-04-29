@@ -31,13 +31,15 @@ public class OutfitterScreen extends InGameEncounterScreen {
         stage.addActor(market);
         market.setFillParent(true);
         populateOutfitter(market);
-        populateInGameEncounterScreen();
         Gdx.input.setInputProcessor(stage);
     }
 
     private void populateOutfitter(Table table){
+        Label name = new Label("Outfitter", Assets.skin());
+        table.add(name).padBottom(40);
+        table.row();
         Label label = new Label("Select an item to begin you're run with", Assets.skin());
-        table.add(label);
+        table.add(label).padBottom(15);
         table.row();
         table.add(outfitterOption(new MinorHealthPot().one())).fillX().padBottom(10);
         table.row();

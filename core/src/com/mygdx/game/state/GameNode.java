@@ -1,17 +1,16 @@
 package com.mygdx.game.state;
 
-public class GameNode {
+import com.mygdx.game.encounters.OverthrowActs;
 
+public abstract class GameNode {
     private NodeType nodeType;
-    private GameNode(){}
+    private OverthrowActs.ActType actType;
     public GameNode(NodeType nodeType){
         this.nodeType = nodeType;
     }
+    public GameNode(){}
     public NodeType getNodeType() {
         return nodeType;
-    }
-    public static GameNode of(NodeType nodeType){
-        return new GameNode(nodeType);
     }
 
     public enum NodeType {

@@ -24,6 +24,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     public InGameEncounterScreen(GameState gameState){
         this.gameState = gameState;
         stage.addListener(escapeKeyboardListener());
+        populateInGameEncounterScreen();
     }
 
     private InputListener escapeKeyboardListener (){
@@ -76,10 +77,11 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private void populateInventory(){
         Table table = new Table(Assets.skin());
         table.bottom().right();
-        table.padLeft(20);
-        table.padRight(20);
-        table.padTop(10);
+        table.padLeft(25);
+        table.padRight(25);
+        table.padTop(25);
         table.setHeight(60);
+        table.padBottom(25);
         Label label = new Label("Inventory", Assets.skin());
         table.add(label);
         table.row();

@@ -5,7 +5,6 @@ import java.util.UUID;
 public record GameState (
     UUID runSeed,
     CharacterSlots characterSlots,
-    EnemySlots enemySlots,
     int coin,
     Inventory inventory,
     MapGraph mapGraph,
@@ -15,7 +14,6 @@ public record GameState (
         return new GameState(
                 runSeed,
                 characterSlots,
-                enemySlots,
                 coinValue,
                 inventory,
                 mapGraph,
@@ -26,7 +24,6 @@ public record GameState (
         return new GameState(
                 runSeed,
                 characterSlots,
-                enemySlots,
                 coin,
                 inventory,
                 mapGraph,

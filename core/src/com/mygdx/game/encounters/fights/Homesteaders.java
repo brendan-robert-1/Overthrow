@@ -18,20 +18,25 @@ import java.util.List;
 
 public class Homesteaders extends Fight {
 
-    private static final int DOG_STARTING_HP = 100;
+    private static final int DOG_STARTING_HP = 7;
     private static final Ability DOG_STARTING_BASIC_ABILITY_1 = new TossConcoction();
     private static final Ability DOG_STARTING_BASIC_ABILITY_2 = new Bloodlet();
     private static final Ability DOG_STARTING_ULT_ABILITY = new Miasma();
 
-    private static final int MOM_STARTING_HP = 100;
+    private static final int MOM_STARTING_HP = 20;
     private static final Ability MOM_STARTING_BASIC_ABILITY_1 = new TossConcoction();
     private static final Ability MOM_STARTING_BASIC_ABILITY_2 = new Bloodlet();
     private static final Ability MOM_STARTING_ULT_ABILITY = new Miasma();
 
-    private static final int DAD_STARTING_HP = 100;
+    private static final int DAD_STARTING_HP = 23;
     private static final Ability DAD_STARTING_BASIC_ABILITY_1 = new TossConcoction();
     private static final Ability DAD_STARTING_BASIC_ABILITY_2 = new Bloodlet();
     private static final Ability DAD_STARTING_ULT_ABILITY = new Miasma();
+
+
+    public Homesteaders(){
+        super(NodeType.FIGHT);
+    }
 
     @Override
     public List<OverthrowActs.ActType> actTypeEncounterable() {

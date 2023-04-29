@@ -1,16 +1,17 @@
 package com.mygdx.game.state;
 
+import com.mygdx.game.encounters.Outfitter;
+
 import java.util.UUID;
 
 public class NewGameGenerator {
     public static GameState generateNewGame(Character.CharacterType characterType){
         UUID seed = UUID.randomUUID();
-        GameNode outfitter = new GameNode(GameNode.NodeType.OUTFITTER);
+        Outfitter outfitter = new Outfitter();
         MapGraph graph = MapGraph.buildNormalGameMap(seed, outfitter);
         return new GameState(
                 seed,
                 characterSlotsGenerator(characterType),
-                newEmptyEnemySlots(),
                 99,
                 new Inventory(),
                 graph,
