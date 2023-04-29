@@ -20,7 +20,13 @@ public record EnemyCharacter (
     public enum EnemyType {
         HOMESTEADER_DAD,
         HOMESTEADER_MOM,
-        HOMESTEADER_DOG
+        HOMESTEADER_DOG,
+        TAX_MAN,
+        TAX_COLLECTOR,
+        MUTATED_CHICKEN,
+        MUTATED_COW,
+        MUTATED_PIG,
+        FRED
     }
 }
 

@@ -65,7 +65,19 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     }
     private void populateTopRightBar(){
         Table statusTable = new Table(Assets.skin());
-        statusTable.add(new TextButton("Coins: " + gameState.coin(), Assets.skin()));
+        TextButton map = new TextButton("Map", Assets.skin());
+        map.padLeft(7);
+        map.padRight(7);
+        map.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Map button pressed.");
+            }
+        });
+        statusTable.add(map).padRight(25);
+        TextButton coins = new TextButton("Coins: " + gameState.coin(), Assets.skin());
+        coins.setDisabled(true);
+        statusTable.add(coins);
         statusTable.top().right();
         statusTable.padLeft(25);
         statusTable.padRight(25);
@@ -108,5 +120,9 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
     protected GameState getGameState() {
         return gameState;
+    }
+
+    protected void redirectNextNode(){
+        ((Game) Gdx.app.getApplicationListener()).setScreen(new NextEncounterSelectionScreen(gameState));
     }
 }

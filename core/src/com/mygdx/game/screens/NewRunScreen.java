@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -25,6 +26,9 @@ public class NewRunScreen extends OverthrowScreenAdapter {
     }
 
     private void populateCharacterList(Table characters){
+        Label label = new Label("Select a starting character", Assets.skin());
+        characters.add(label).padBottom(20);
+        characters.row();
         characters.row();
         addButton(characters, "Plague Doctor",new ClickListener(){
             @Override
@@ -62,13 +66,23 @@ public class NewRunScreen extends OverthrowScreenAdapter {
                 );
             }
         });
-        addButton(characters, "Back to main menu...",new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Back to main menu.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
-            }
-        });
+        addBackToMainMenu(characters);
+
+    }
+
+    private void addBackToMainMenu(Table table){
+        TextButton button = new TextButton("Back to main menu...", Assets.skin());
+        button.addListener(
+                new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        System.out.println("Back to main menu.");
+                        ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
+                    }
+                }
+        );
+        table.add(button).fillX().padBottom(10).padTop(20);
+        table.row();
     }
 
     private void addButton(Table table, String name, ClickListener... listener){

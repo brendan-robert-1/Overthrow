@@ -63,8 +63,4 @@ public class OutfitterScreen extends InGameEncounterScreen {
         });
         return outfitterOption;
     }
-
-    private void redirectNextNode(){
-        ((Game) Gdx.app.getApplicationListener()).setScreen(new NextEncounterSelectionScreen(gameState));
-    }
 }
