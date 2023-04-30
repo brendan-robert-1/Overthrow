@@ -12,11 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.InGameOptionsScreen;
+import com.mygdx.game.screens.NextEncounterSelectionScreen;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.ItemSlot;
-
-import java.util.stream.Stream;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
@@ -91,7 +89,17 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     public void populateInGameEncounterScreen(){
         populateInventory();
         populateTopLeftBar();
+        populateFloorCount();
         populateTopRightBar();
+    }
+    private void populateFloorCount(){
+        Table table = new Table(Assets.skin());
+        table.top();
+        table.padTop(20);
+        Label floorLabel = new Label("Floor: " + gameState.currentFloor(), Assets.skin());
+        table.add(floorLabel);
+        table.setFillParent(true);
+        stage.addActor(table);
     }
 
     private void populateTopLeftBar(){
@@ -163,6 +171,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     }
 
     protected void redirectNextNode(){
+        gameState = gameState.withCurrentFloor(gameState.currentFloor() + 1);
         ((Game) Gdx.app.getApplicationListener()).setScreen(new NextEncounterSelectionScreen(gameState));
     }
 }

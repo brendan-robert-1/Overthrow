@@ -8,8 +8,8 @@ import com.mygdx.game.state.EnemySlots;
 import java.util.List;
 
 public abstract class Fight extends Encounter {
-    public Fight(NodeType nodeType) {
-        super(nodeType);
+    public Fight(NodeType nodeType, String displayName) {
+        super(nodeType, displayName);
     }
     public Fight() {
     }

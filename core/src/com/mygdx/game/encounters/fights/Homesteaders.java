@@ -32,7 +32,7 @@ public class Homesteaders extends Fight {
 
 
     public Homesteaders(){
-        super(NodeType.BASIC_FIGHT);
+        super(NodeType.BASIC_FIGHT, "Fight");
     }
 
     @Override

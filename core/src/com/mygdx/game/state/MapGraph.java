@@ -18,8 +18,6 @@ public class MapGraph {
         graph = buildGraphFrom(floorNumberToEncounters);
     }
 
-
-
     /**
      * Dumb and graphs all encounters to all next floor encounters, will need to trim method to only add edges on some
      * @param floorNumberToEncounters
@@ -37,8 +35,6 @@ public class MapGraph {
         return ImmutableGraph.copyOf(graph);
     }
 
-
-
     private void addEdgesFrom(List<GameNode> encounters, List<GameNode> nextFloorEncounters, MutableGraph<GameNode> graph) {
         for(GameNode encounter : encounters){
             for(GameNode nextFloorEncounter : nextFloorEncounters){
@@ -47,8 +43,6 @@ public class MapGraph {
         }
     }
 
-
-
     private List<GameNode> getNextFloorEncounters(Integer floorNumber, Map<Integer, List<GameNode>> floorNumberToEncounters) {
        if(floorNumber >= floorNumberToEncounters.size()){
            return null;
@@ -56,8 +50,6 @@ public class MapGraph {
            return floorNumberToEncounters.get(floorNumber + 1);
        }
     }
-
-
 
     public static MapGraph buildNormalGameMap(UUID seed, ActType actType){
         Map<Integer, List<GameNode>> floorNumberToEncounters = new HashMap<>();

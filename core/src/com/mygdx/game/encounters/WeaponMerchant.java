@@ -1,6 +1,6 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.ItemSlot;
+import com.mygdx.game.state.items.ItemSlot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class WeaponMerchant extends Encounter{
     private List<ItemSlot> wares = new ArrayList<>();
     public WeaponMerchant(){
-        super(NodeType.WEAPON_MERCHANT);
+        super(NodeType.WEAPON_MERCHANT, "Weapon Merchant");
     }
     @Override
     public String toString() {

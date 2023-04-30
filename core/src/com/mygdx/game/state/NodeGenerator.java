@@ -39,16 +39,16 @@ public class NodeGenerator {
     }
 
     private static GameNode generateRandomBattlefieldNode(ActType actType, int floorNumber){
-        return new Market();
+        return MarketFactory.generateRandomMarketFor(actType);
     }
     private static GameNode generateRandomSwampNode(ActType actType, int floorNumber){
-        return new Market();
+        return MarketFactory.generateRandomMarketFor(actType);
     }
     private static GameNode generateRandomMountainNode(ActType actType, int floorNumber){
-        return new Market();
+        return MarketFactory.generateRandomMarketFor(actType);
     }
     private static GameNode generateRandomPalaceNode(ActType actType, int floorNumber){
-        return new Market();
+        return  MarketFactory.generateRandomMarketFor(actType);
     }
 
 }

@@ -1,12 +1,9 @@
 package com.mygdx.game.state;
 
-import com.mygdx.game.items.Bandages;
-import com.mygdx.game.items.MinorHealthPot;
+import com.mygdx.game.state.items.ItemSlot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Inventory {
     private final List<ItemSlot> inventoryMap = startingInventory();

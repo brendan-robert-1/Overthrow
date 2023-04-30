@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.encounterscreens;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -10,13 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.screens.GameStateScreen;
+import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
 import java.util.List;
 import java.util.Set;
 
-public class NextEncounterSelectionScreen extends InGameEncounterScreen{
+public class NextEncounterSelectionScreen extends InGameEncounterScreen {
     public NextEncounterSelectionScreen(GameState gameState) {
         super(gameState);
     }
@@ -38,11 +39,11 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen{
         GameNode currentNode = getGameState().currentNode();
         Set<GameNode> nextEncounterOptions = getGameState().mapGraph().getGraph().successors(currentNode);
         for(GameNode encounter : nextEncounterOptions){
-            TextButton button = new TextButton(encounter.getNodeType().toString(), Assets.skin());
+            TextButton button = new TextButton(encounter.getDisplayName(), Assets.skin());
             button.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    System.out.println("Choose encounter: " + encounter.getNodeType());
+                    System.out.println("Choose encounter: " + encounter.getDisplayName());
                     GameState withNextEncounter = getGameState().withCurrentNode(encounter);
                     ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen(withNextEncounter));
                 }

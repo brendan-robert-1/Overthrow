@@ -1,6 +1,5 @@
 package com.mygdx.game.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -9,13 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.items.Bandages;
-import com.mygdx.game.items.ButcherKnife;
-import com.mygdx.game.items.HideShield;
-import com.mygdx.game.items.MinorHealthPot;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.ItemSlot;
 
 import java.util.Set;
 

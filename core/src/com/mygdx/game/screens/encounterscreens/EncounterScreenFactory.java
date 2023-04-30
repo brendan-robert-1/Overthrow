@@ -16,6 +16,7 @@ public class EncounterScreenFactory {
             case SAUNA -> {return new SaunaScreen(gameState);}
             case ABILITY_TRAINER -> {return new AbilityTrainerScreen(gameState);}
             case GEM_MERCHANT -> {return new GemMerchantScreen(gameState);}
+            case CHEST -> {return new ChestScreen(gameState);}
             default -> throw new IllegalStateException("Unexpected value: " + gameState.currentNode().getNodeType());
         }
     }

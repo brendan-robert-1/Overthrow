@@ -1,0 +1,115 @@
+{
+  "potentialArmor": [
+    {
+      "itemName": "hide_shield",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "leather_pants",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "miner_hat",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "leatherworker_gloves",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "snug_sandals",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "oversized_boots",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "5",
+      "priceMax": "8"
+    }
+  ],
+  "potentialConsumables": [
+    {
+      "itemName": "minor_health_pot",
+      "quantityMin": "2",
+      "quantityMax": "3",
+      "priceMin": "2",
+      "priceMax": "3"
+    },
+    {
+      "itemName": "minor_poison_resist_pot",
+      "quantityMin": "2",
+      "quantityMax": "3",
+      "priceMin": "2",
+      "priceMax": "3"
+    }
+  ],
+  "potentialWeapons": [
+    {
+      "itemName": "rusty_dagger",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "6",
+      "priceMax": "8"
+    },
+    {
+      "itemName": "freshman_spellcraft_notebook",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "8",
+      "priceMax": "10"
+    },
+    {
+      "itemName": "tattered_slingshot",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "4",
+      "priceMax": "8"
+    }
+  ],
+  "potentialGems": [
+    {
+      "itemName": "clouded_poison_resist_opal",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "12",
+      "priceMax": "14"
+    },
+    {
+      "itemName": "clouded_fire_damage_ruby",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "12",
+      "priceMax": "14"
+    },
+    {
+      "itemName": "clouded_poison_damage_jade",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "12",
+      "priceMax": "14"
+    },
+    {
+      "itemName": "clouded_speed_crystal",
+      "quantityMin": "1",
+      "quantityMax": "1",
+      "priceMin": "12",
+      "priceMax": "14"
+    }
+  ]
+}

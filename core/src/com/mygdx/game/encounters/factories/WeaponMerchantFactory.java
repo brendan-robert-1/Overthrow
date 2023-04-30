@@ -45,6 +45,6 @@ public class WeaponMerchantFactory {
 
 
     private static Encounter generateFarmQuestionMark(OverthrowActs.ActType actType) {
-        return new Market();
+        return QuestionMarkFactory.generateRandomQuestionMarkFor(actType);
     }
 }

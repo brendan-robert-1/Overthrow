@@ -7,14 +7,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
-import com.mygdx.game.OverthrowScreenAdapter;
+import com.mygdx.game.encounters.Market;
 import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.items.ItemSlot;
 
 public class MarketScreen extends InGameEncounterScreen {
     private GameState gameState;
+    private Market currentMarket;
     public MarketScreen(GameState gameState){
         super(gameState);
         this.gameState = gameState;
+        this.currentMarket = (Market) gameState.currentNode();
     }
 
     @Override
@@ -30,18 +33,12 @@ public class MarketScreen extends InGameEncounterScreen {
         Label label = new Label("Market", Assets.skin());
         table.add(label);
         table.row();
-        TextButton healthPot = new TextButton("Minor Health Potion", Assets.skin());
-        table.add(healthPot).fillX();
-        table.row();
-        TextButton hideShield = new TextButton("Hide Shield", Assets.skin());
-        table.add(hideShield).fillX();;
-        table.row();
-        TextButton bluntDagger = new TextButton("Blunt Dagger", Assets.skin());
-        table.add(bluntDagger).fillX();;
-        table.row();
-        TextButton leatherPants = new TextButton("Leather Pants", Assets.skin());
-        table.add(leatherPants).fillX();;
-        table.row();
+        for(ItemSlot offering : currentMarket.getWaresToPrice().keySet()){
+            int price = currentMarket.getWaresToPrice().get(offering);
+            TextButton healthPot = new TextButton(offering.name() + ": " + price + " coin(s)", Assets.skin());
+            table.add(healthPot).fillX();
+            table.row();
+        }
         TextButton proceed = new TextButton("Next Encounter ->", Assets.skin());
         proceed.addListener(new ClickListener(){
             @Override

@@ -17,7 +17,8 @@ public class NewGameGenerator {
                 99,
                 new Inventory(),
                 graph,
-                currentNode
+                currentNode,
+                0
         );
     }
     private static CharacterSlots characterSlotsGenerator(Character.CharacterType characterType){

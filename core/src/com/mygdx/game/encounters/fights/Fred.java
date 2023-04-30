@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Fred extends Fight{
     public Fred(){
-        super(NodeType.BOSS_FIGHT);
+        super(NodeType.BOSS_FIGHT, "Boss");
     }
     @Override
     public List<OverthrowActs.ActType> actTypeEncounterable() {

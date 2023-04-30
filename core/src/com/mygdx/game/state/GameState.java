@@ -8,7 +8,8 @@ public record GameState (
     int coin,
     Inventory inventory,
     MapGraph mapGraph,
-    GameNode currentNode
+    GameNode currentNode,
+    int currentFloor
 ){
     public GameState withCoin(int coinValue){
         return new GameState(
@@ -17,7 +18,8 @@ public record GameState (
                 coinValue,
                 inventory,
                 mapGraph,
-                currentNode
+                currentNode,
+                currentFloor
         );
     }
     public GameState withCurrentNode(GameNode newCurrentNode){
@@ -27,7 +29,19 @@ public record GameState (
                 coin,
                 inventory,
                 mapGraph,
-                newCurrentNode
+                newCurrentNode,
+                currentFloor
+        );
+    }
+    public GameState withCurrentFloor(int newCurrentFloor){
+        return new GameState(
+                runSeed,
+                characterSlots,
+                coin,
+                inventory,
+                mapGraph,
+                currentNode,
+                newCurrentFloor
         );
     }
 }

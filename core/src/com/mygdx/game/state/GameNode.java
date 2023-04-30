@@ -5,13 +5,31 @@ import com.mygdx.game.encounters.OverthrowActs;
 public abstract class GameNode {
     private NodeType nodeType;
     private OverthrowActs.ActType actType;
+    private String displayName;
 
-    public GameNode(NodeType nodeType){
+
+    public GameNode setDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+
+
+
+
+    public GameNode(NodeType nodeType, String displayName){
         this.nodeType = nodeType;
+        this.displayName = displayName;
     }
     public GameNode(){}
     public NodeType getNodeType() {
         return nodeType;
+    }
+
+
+
+    public String getDisplayName() {
+        return displayName;
     }
 
 

@@ -2,7 +2,7 @@ package com.mygdx.game.encounters;
 
 public class Chest extends Encounter{
     public Chest(){
-        super(NodeType.CHEST);
+        super(NodeType.CHEST, "Chest");
     }
     @Override
     public String toString() {
