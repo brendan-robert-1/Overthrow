@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.state.items.ItemSlotFactory;
+import com.mygdx.game.state.items.ItemType;
 
 public class OutfitterScreen extends InGameEncounterScreen {
     private GameState gameState;
@@ -37,13 +39,8 @@ public class OutfitterScreen extends InGameEncounterScreen {
         Label label = new Label("Select an item to begin you're run with", Assets.skin());
         table.add(label).padBottom(15);
         table.row();
-        table.add(outfitterOption(new MinorHealthPot().one())).fillX().padBottom(10);
+        table.add(outfitterOption(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT))).fillX().padBottom(10);
         table.row();
-        table.add(outfitterOption(new Bandages().of(2))).fillX().padBottom(10);
-        table.row();
-        table.add(outfitterOption(new HideShield().one())).fillX().padBottom(10);
-        table.row();
-        table.add(outfitterOption(new ButcherKnife().one())).fillX().padBottom(10);
         table.row();
         table.setFillParent(true);
     }

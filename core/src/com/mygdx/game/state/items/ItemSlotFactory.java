@@ -2,6 +2,7 @@ package com.mygdx.game.state.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
+import com.google.gson.Gson;
 import com.mygdx.game.state.shops.MarketOffering;
 
 import java.util.Map;
@@ -14,12 +15,20 @@ public class ItemSlotFactory {
 
     public static ItemSlot one(ItemType itemType){
         Item item =  items.getItems().get(itemType);
-        return null;
+        return new ItemSlot(item.getDisplayName(), item.getDescription(),1);
+    }
+    public static ItemSlot of(ItemType itemType, int quantity) {
+        Item item =  items.getItems().get(itemType);
+        return new ItemSlot(item.getDisplayName(), item.getDescription(),quantity);
     }
 
     private static Items loadItems(){
-        Json json = new Json();
+        Gson gson = new Gson();
         String jsonStr = Gdx.files.internal(ITEMS_FILE).readString();
-        return json.fromJson(Items.class, jsonStr);
+        return gson.fromJson(jsonStr, Items.class);
     }
+
+
+
+
 }

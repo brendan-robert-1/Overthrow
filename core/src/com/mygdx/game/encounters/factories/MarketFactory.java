@@ -3,7 +3,10 @@ package com.mygdx.game.encounters.factories;
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
+import com.mygdx.game.state.items.Item;
 import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.state.items.ItemSlotFactory;
+import com.mygdx.game.state.items.ItemType;
 import com.mygdx.game.state.shops.MarketOffering;
 import com.mygdx.game.state.shops.MarketOfferingFactory;
 import com.mygdx.game.state.shops.Offering;
@@ -134,8 +137,9 @@ public class MarketFactory {
 
 
 
-    private static ItemSlot buildItemFrom(Offering weapon1, int quantityWeapon1) {
-        ItemSlot item = new ItemSlot()
+    private static ItemSlot buildItemFrom(Offering offering, int quantity) {
+        ItemType itemType = ItemType.from(offering.getItemName());
+        return ItemSlotFactory.of(itemType, quantity);
     }
 
 

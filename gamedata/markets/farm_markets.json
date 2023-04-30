@@ -1,42 +1,42 @@
 {
   "potentialArmor": [
     {
-      "itemName": "hide_shield",
+      "itemName": "HIDE_SHIELD",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
       "priceMax": "8"
     },
     {
-      "itemName": "leather_pants",
+      "itemName": "LEATHER_PANTS",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
       "priceMax": "8"
     },
     {
-      "itemName": "miner_hat",
+      "itemName": "MINER_HAT",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
       "priceMax": "8"
     },
     {
-      "itemName": "leatherworker_gloves",
+      "itemName": "LEATHERWORKER_GLOVES",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
       "priceMax": "8"
     },
     {
-      "itemName": "snug_sandals",
+      "itemName": "SNUG_SANDALS",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
       "priceMax": "8"
     },
     {
-      "itemName": "oversized_boots",
+      "itemName": "OVERSIZED_BOOTS",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
@@ -45,14 +45,14 @@
   ],
   "potentialConsumables": [
     {
-      "itemName": "minor_health_pot",
+      "itemName": "MINOR_HEALTH_POT",
       "quantityMin": "2",
       "quantityMax": "3",
       "priceMin": "2",
       "priceMax": "3"
     },
     {
-      "itemName": "minor_poison_resist_pot",
+      "itemName": "MINOR_POISON_RESIST_POT",
       "quantityMin": "2",
       "quantityMax": "3",
       "priceMin": "2",
@@ -61,21 +61,21 @@
   ],
   "potentialWeapons": [
     {
-      "itemName": "rusty_dagger",
+      "itemName": "RUSTY_DAGGER",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "6",
       "priceMax": "8"
     },
     {
-      "itemName": "freshman_spellcraft_notebook",
+      "itemName": "FRESHMAN_SPELLCRAFT_NOTEBOOK",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "8",
       "priceMax": "10"
     },
     {
-      "itemName": "tattered_slingshot",
+      "itemName": "TATTERED_SLINGSHOT",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "4",
@@ -84,28 +84,28 @@
   ],
   "potentialGems": [
     {
-      "itemName": "clouded_poison_resist_opal",
+      "itemName": "CLOUDED_POISON_RESIST_OPAL",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "12",
       "priceMax": "14"
     },
     {
-      "itemName": "clouded_fire_damage_ruby",
+      "itemName": "CLOUDED_FIRE_DAMAGE_RUBY",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "12",
       "priceMax": "14"
     },
     {
-      "itemName": "clouded_poison_damage_jade",
+      "itemName": "CLOUDED_POISON_DAMAGE_JADE",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "12",
       "priceMax": "14"
     },
     {
-      "itemName": "clouded_speed_crystal",
+      "itemName": "CLOUDED_SPEED_CRYSTAL",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "12",
