@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 
@@ -49,7 +50,7 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
                 System.out.println("Match History has been clicked.");
             }
         });
-        addButton(table, "Quit",new ClickListener(){
+        addButton(table, "Quit to desktop",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Quit has been clicked. Thanks for playing!");
@@ -60,6 +61,8 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
 
     private void addButton(Table table, String name, ClickListener listener){
         TextButton button = new TextButton(name, Assets.skin());
+        button.padLeft(5);
+        button.getLabel().setAlignment(Align.left);
         button.addListener(listener);
         table.add(button).fillX().padBottom(10);
         table.row();

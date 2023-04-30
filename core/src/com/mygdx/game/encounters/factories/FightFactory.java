@@ -1,11 +1,22 @@
-package com.mygdx.game.encounters.fights;
+package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.OverthrowActs;
+import com.mygdx.game.encounters.fights.Fight;
+import com.mygdx.game.encounters.fights.Homesteaders;
 
-import java.util.Random;
+public class FightFactory {
+    public static Fight generateRandomFightFor(OverthrowActs.ActType actType){
+        switch(actType){
+            case FARMS -> {return generateFarmFight();}
+            case BATTLEFIELD -> { return generateBattlefieldFight();}
+            case SWAMP -> {return generateSwampFight();}
+            case MOUNTAIN -> {return generateMountainFight();}
+            case PALACE -> {return generatePalaceFight();}
+            default -> throw new IllegalStateException("Unexpected value: " + actType);
+        }
+    }
 
-public class BossFightFactory {
-    public static Fight generateRandomBossFightFor(OverthrowActs.ActType actType){
+    public static Fight generateRandomEliteFightFor(OverthrowActs.ActType actType) {
         switch(actType){
             case FARMS -> {return generateFarmFight();}
             case BATTLEFIELD -> { return generateBattlefieldFight();}
@@ -17,12 +28,7 @@ public class BossFightFactory {
     }
 
     private static Fight generateFarmFight(){
-        switch(new Random().nextInt(3)){
-            case 0 -> {return new TaxMan();}
-            case 1 -> {return new Fred();}
-            case 2 -> {return new MutatedLivestock();}
-            default -> throw new IllegalStateException("Unexpected value");
-        }
+        return new Homesteaders();
     }
     private static Fight generateBattlefieldFight(){
         return new Homesteaders();
@@ -37,4 +43,3 @@ public class BossFightFactory {
         return new Homesteaders();
     }
 }
-

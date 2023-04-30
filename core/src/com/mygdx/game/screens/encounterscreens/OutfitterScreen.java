@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.items.Bandages;
@@ -27,10 +28,12 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
     @Override
     public void show() {
-        Table market = new Table();
-        stage.addActor(market);
-        market.setFillParent(true);
-        populateOutfitter(market);
+        Table table = new Table();
+        table.right();
+        table.padRight(200);
+        stage.addActor(table);
+        table.setFillParent(true);
+        populateOutfitter(table);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -53,6 +56,7 @@ public class OutfitterScreen extends InGameEncounterScreen {
     }
     private TextButton outfitterOption(ItemSlot itemSlot){
         TextButton outfitterOption =  new TextButton(itemSlot.name()+": " + itemSlot.quantity(), Assets.skin());
+        outfitterOption.getLabel().setAlignment(Align.left);
         outfitterOption.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

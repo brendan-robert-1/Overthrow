@@ -23,6 +23,7 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen{
     @Override
     public void show() {
         Table table = new Table();
+        table.right().padRight(200);
         stage.addActor(table);
         table.setFillParent(true);
         populateEncounterOptions(table);

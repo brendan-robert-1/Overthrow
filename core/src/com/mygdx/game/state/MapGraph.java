@@ -6,11 +6,10 @@ import com.google.common.graph.MutableGraph;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs;
 import com.mygdx.game.encounters.WishingWell;
-import com.mygdx.game.encounters.fights.BossFightFactory;
-import com.mygdx.game.encounters.fights.FightFactory;
+import com.mygdx.game.encounters.factories.BossFightFactory;
+import com.mygdx.game.encounters.factories.FightFactory;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,7 +26,7 @@ public class MapGraph {
         return new MapGraph(ImmutableGraph.copyOf(graph));
     }
 
-    private static Set<GameNode> addSuccessors(MutableGraph<GameNode> graph, GameNode currentNode, int encountersOnFloor){
+    private static Set<GameNode> addSuccessors(MutableGraph<GameNode> graph, GameNode currentNode, int floorNumber){
         Set<GameNode> currentFloorEncounters = new HashSet<>();
         GameNode firstNode = FightFactory.generateRandomFightFor(OverthrowActs.ActType.FARMS);
         GameNode secondNode = new Market();
@@ -43,12 +42,15 @@ public class MapGraph {
         return currentFloorEncounters;
     }
 
+
+
     private static void addActBoss(MutableGraph<GameNode> graph, Set<GameNode> floorEncounters){
         GameNode actBoss = BossFightFactory.generateRandomBossFightFor(OverthrowActs.ActType.FARMS);
         for(GameNode encounter : floorEncounters){
             graph.putEdge(encounter, actBoss);
         }
     }
+
     public ImmutableGraph<GameNode> getGameMap() {
         return gameMap;
     }

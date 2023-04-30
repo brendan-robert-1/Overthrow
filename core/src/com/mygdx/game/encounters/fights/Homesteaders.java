@@ -5,11 +5,8 @@ import com.mygdx.game.character.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.EnemyCharacter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.Character;
-import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.EnemySlots;
 
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class Homesteaders extends Fight {
 
 
     public Homesteaders(){
-        super(NodeType.FIGHT);
+        super(NodeType.BASIC_FIGHT);
     }
 
     @Override

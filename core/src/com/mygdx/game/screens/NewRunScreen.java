@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.state.Character;
@@ -18,10 +19,13 @@ import java.util.stream.Stream;
 public class NewRunScreen extends OverthrowScreenAdapter {
     @Override
     public void show() {
-        Table characters = new Table();
-        stage.addActor(characters);
-        characters.setFillParent(true);
-        populateCharacterList(characters);
+        Table table = new Table();
+        table.bottom().left();
+        table.padLeft(70);
+        table.padBottom(70);
+        stage.addActor(table);
+        table.setFillParent(true);
+        populateCharacterList(table);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -72,6 +76,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
 
     private void addBackToMainMenu(Table table){
         TextButton button = new TextButton("Back to main menu...", Assets.skin());
+        button.getLabel().setAlignment(Align.left);
         button.addListener(
                 new ClickListener(){
                     @Override
@@ -87,14 +92,8 @@ public class NewRunScreen extends OverthrowScreenAdapter {
 
     private void addButton(Table table, String name, ClickListener... listener){
         TextButton button = new TextButton(name, Assets.skin());
+        button.getLabel().setAlignment(Align.left);
         Stream.of(listener).forEach(button::addListener);
-        table.add(button).fillX().padBottom(10);
-        table.row();
-    }
-
-    private void addButton(Table table, String name){
-        TextButton button = new TextButton(name, Assets.skin());
-        button.setTouchable(Touchable.disabled);
         table.add(button).fillX().padBottom(10);
         table.row();
     }

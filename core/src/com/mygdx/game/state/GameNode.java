@@ -15,7 +15,8 @@ public abstract class GameNode {
 
     public enum NodeType {
         OUTFITTER,
-        FIGHT,
+        BASIC_FIGHT,
+        ELITE_FIGHT,
         BOSS_FIGHT,
         MARKET,
         ARMOR_MERCHANT,
@@ -24,7 +25,8 @@ public abstract class GameNode {
         WISHING_WELL,
         SAUNA,
         ABILITY_TRAINER,
-        GEM_MERCHANT
+        GEM_MERCHANT,
+        QUESTION_MARK
     }
 
 }
