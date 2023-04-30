@@ -11,4 +11,9 @@ public class ArmorMerchant extends Encounter{
     public ArmorMerchant(){
         super(NodeType.ARMOR_MERCHANT);
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ArmorMerchant");
+        return sb.toString();
+    }
 }

@@ -51,5 +51,9 @@ public class Fred extends Fight{
                 new ArrayList<>()
         );
     }
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Fred");
+        return sb.toString();
+    }
 }

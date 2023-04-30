@@ -10,4 +10,9 @@ public class WeaponMerchant extends Encounter{
     public WeaponMerchant(){
         super(NodeType.WEAPON_MERCHANT);
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Weapon Merchant");
+        return sb.toString();
+    }
 }

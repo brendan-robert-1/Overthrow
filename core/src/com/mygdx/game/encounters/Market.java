@@ -10,4 +10,10 @@ public class Market extends Encounter{
     public Market(){
         super(NodeType.MARKET);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Market");
+        return sb.toString();
+    }
 }

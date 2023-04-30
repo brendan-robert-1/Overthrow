@@ -64,4 +64,9 @@ public class TaxMan extends Fight{
                 new ArrayList<>()
         );
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TaxMan");
+        return sb.toString();
+    }
 }

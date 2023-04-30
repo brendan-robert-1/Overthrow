@@ -82,5 +82,9 @@ public class MutatedLivestock extends Fight{
                 new ArrayList<>()
         );
     }
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MutatedLivestock");
+        return sb.toString();
+    }
 }

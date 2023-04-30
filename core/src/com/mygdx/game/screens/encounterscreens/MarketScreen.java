@@ -19,7 +19,7 @@ public class MarketScreen extends InGameEncounterScreen {
 
     @Override
     public void show() {
-        Table market = new Table();
+        Table market = new Table().right().padRight(200);
         stage.addActor(market);
         market.setFillParent(true);
         populateMarket(market);

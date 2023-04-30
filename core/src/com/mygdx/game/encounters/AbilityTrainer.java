@@ -11,4 +11,9 @@ public class AbilityTrainer extends Encounter{
     public AbilityTrainer(){
         super(NodeType.ABILITY_TRAINER);
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AbilityTrainer");
+        return sb.toString();
+    }
 }

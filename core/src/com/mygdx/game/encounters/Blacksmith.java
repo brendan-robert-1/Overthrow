@@ -9,4 +9,9 @@ public class Blacksmith extends Encounter{
     public Blacksmith(){
         super(NodeType.BLACKSMITH);
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Blacksmith");
+        return sb.toString();
+    }
 }

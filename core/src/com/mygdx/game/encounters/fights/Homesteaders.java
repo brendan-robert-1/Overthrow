@@ -83,4 +83,10 @@ public class Homesteaders extends Fight {
                 new ArrayList<>()
         );
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("HomeSteaders");
+        return sb.toString();
+    }
 }

@@ -13,6 +13,7 @@ import com.mygdx.game.screens.GameStateScreen;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
+import java.util.List;
 import java.util.Set;
 
 public class NextEncounterSelectionScreen extends InGameEncounterScreen{
@@ -35,7 +36,7 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen{
         table.row();
         table.add(label).padRight(18);
         GameNode currentNode = getGameState().currentNode();
-        Set<GameNode> nextEncounterOptions = getGameState().mapGraph().getGameMap().successors(currentNode);
+        Set<GameNode> nextEncounterOptions = getGameState().mapGraph().getGraph().successors(currentNode);
         for(GameNode encounter : nextEncounterOptions){
             TextButton button = new TextButton(encounter.getNodeType().toString(), Assets.skin());
             button.addListener(new ClickListener(){

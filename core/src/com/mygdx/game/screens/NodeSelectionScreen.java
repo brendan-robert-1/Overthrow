@@ -42,8 +42,7 @@ public class NodeSelectionScreen extends OverthrowScreenAdapter {
         table.setFillParent(true);
     }
     private void addFloors(Table table){
-        Set<GameNode> nextEncounters = gameState.mapGraph().getGameMap()
-                .successors(gameState.currentNode());
+        Set<GameNode> nextEncounters = gameState.mapGraph().getGraph().successors(gameState.currentNode());
         for(GameNode encounter : nextEncounters){
             addEncounterButton(encounter);
         }

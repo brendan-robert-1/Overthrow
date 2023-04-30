@@ -5,6 +5,7 @@ import com.mygdx.game.encounters.OverthrowActs;
 public abstract class GameNode {
     private NodeType nodeType;
     private OverthrowActs.ActType actType;
+
     public GameNode(NodeType nodeType){
         this.nodeType = nodeType;
     }
@@ -12,6 +13,8 @@ public abstract class GameNode {
     public NodeType getNodeType() {
         return nodeType;
     }
+
+
 
     public enum NodeType {
         OUTFITTER,
@@ -26,7 +29,8 @@ public abstract class GameNode {
         SAUNA,
         ABILITY_TRAINER,
         GEM_MERCHANT,
-        QUESTION_MARK
+        QUESTION_MARK,
+        CHEST
     }
 
 }

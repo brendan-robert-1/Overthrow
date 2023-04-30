@@ -10,4 +10,9 @@ public class GemMerchant extends Encounter{
     public GemMerchant(){
         super(NodeType.GEM_MERCHANT);
     }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Gem Merchant");
+        return sb.toString();
+    }
 }
