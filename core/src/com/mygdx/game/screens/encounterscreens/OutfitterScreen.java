@@ -2,9 +2,8 @@ package com.mygdx.game.screens.encounterscreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
@@ -12,6 +11,9 @@ import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
 import com.mygdx.game.state.items.ItemSlotFactory;
 import com.mygdx.game.state.items.ItemType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OutfitterScreen extends InGameEncounterScreen {
     private GameState gameState;
@@ -33,28 +35,28 @@ public class OutfitterScreen extends InGameEncounterScreen {
     }
 
     private void populateOutfitter(Table table){
-        Label name = new Label("Outfitter", Assets.skin());
-        table.add(name).padBottom(40);
-        table.row();
-        Label label = new Label("Select an item to begin you're run with", Assets.skin());
-        table.add(label).padBottom(15);
-        table.row();
-        table.add(outfitterOption(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT))).fillX().padBottom(10);
-        table.row();
-        table.row();
-        table.setFillParent(true);
-    }
-    private TextButton outfitterOption(ItemSlot itemSlot){
-        TextButton outfitterOption =  new TextButton(itemSlot.name()+": " + itemSlot.quantity(), Assets.skin());
-        outfitterOption.getLabel().setAlignment(Align.left);
-        outfitterOption.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Outfitting with: " + itemSlot.name());
-                gameState.inventory().getInventoryMap().add(itemSlot);
-                redirectNextNode();
+        List<ItemSlot> outfitterItems = buildOutfitterItems();
+        Dialog dialog = new Dialog("Outfitter", Assets.skin()){
+            {
+                text("Select an item to begin you're run with");
+                for(ItemSlot item : outfitterItems){
+                    button(item.name());
+                    row();
+                }
             }
-        });
-        return outfitterOption;
+            @Override
+            protected void result(Object object) {
+                super.result(object);
+            }
+        };
+       dialog.show(stage).right();
+    }
+
+    private List<ItemSlot> buildOutfitterItems() {
+        List<ItemSlot> outfitterList = new ArrayList<>();
+        outfitterList.add(ItemSlotFactory.one(ItemType.HIDE_SHIELD));
+        outfitterList.add(ItemSlotFactory.one(ItemType.RUSTY_DAGGER));
+        outfitterList.add(ItemSlotFactory.one(ItemType.FRESHMAN_SPELLCRAFT_NOTEBOOK));
+        return outfitterList;
     }
 }

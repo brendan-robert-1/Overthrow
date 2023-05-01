@@ -11,11 +11,11 @@ public class Assets {
 
     private static AssetManager assetManager  = new AssetManager();
     public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<>("uiskin.json", Skin.class, new SkinLoader.SkinParameter("uiskin.atlas"));
-    public static final AssetDescriptor<Texture> white = new AssetDescriptor<>("plain-white-background.jpg", Texture.class);
+  //  public static final AssetDescriptor<Texture> white = new AssetDescriptor<>("plain-white-background.jpg", Texture.class);
 
     public void loadAll(){
         assetManager.load(SKIN);
-        assetManager.load(white);
+      //  assetManager.load(white);
     }
 
 

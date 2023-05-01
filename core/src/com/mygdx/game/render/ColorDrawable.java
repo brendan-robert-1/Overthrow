@@ -22,7 +22,7 @@ public class ColorDrawable extends BaseDrawable {
         savedBatchColor.set(batch.getColor());
         batch.setColor(r, g, b, a);
         // Draw a white texture with the current batch colour
-        batch.draw((Texture) Assets.getAssetManager().get("plain-white-background.jpg"), x, y, width, height);
+
         batch.setColor(savedBatchColor);
     }
 }
