@@ -16,7 +16,6 @@ public class AbilityTrainerScreen extends InGameEncounterScreen {
 
     @Override
     public void show() {
-        // stage.setDebugAll(true);
         populateChestContents();
         Gdx.input.setInputProcessor(stage);
     }
@@ -40,7 +39,6 @@ public class AbilityTrainerScreen extends InGameEncounterScreen {
             }
         });
         table.add(proceed).padTop(25);
-        table.setFillParent(true);
-        stage.addActor(table);
+        populateEncounter(table);
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.state.GameState;
@@ -31,9 +32,10 @@ public class MarketScreen extends InGameEncounterScreen {
 
     private void populateMarket(Market market){
         Table table = new Table();
-        table.bottom().right();
-        table.padRight(200);
-        table.padBottom(300);
+        Label title = new Label("Market wares", Assets.skin());
+        title.setAlignment(Align.center);
+        table.add(title).colspan(3);
+        table.row();
         addShopOfferings(table, market.getShopOfferings());
         TextButton proceed = new TextButton("Next Encounter ->", Assets.skin());
         proceed.addListener(new ClickListener(){
@@ -43,11 +45,10 @@ public class MarketScreen extends InGameEncounterScreen {
                 redirectNextNode();
             }
         });
-        table.add(proceed).right().padRight(25);
         table.row();
-        table.setDebug(true);
-        table.setFillParent(true);
-        stage.addActor(table);
+        table.add(proceed).colspan(3).align(Align.right);
+     //   table.setDebug(true);
+        populateEncounter(table);
     }
 
 
@@ -57,7 +58,7 @@ public class MarketScreen extends InGameEncounterScreen {
         for(int i = 0; i < 3; i++){
             for(int j = 0; j <3; j++){
                 if(counter <= shopOfferings.size() -1){
-                    table.add(shopOfferingButton(shopOfferings.get(counter))).fillX();
+                    table.add(shopOfferingButton(shopOfferings.get(counter))).pad(5).fillX();
                 }else {
                     //table.add(new Label("_________", Assets.skin()));
                 }

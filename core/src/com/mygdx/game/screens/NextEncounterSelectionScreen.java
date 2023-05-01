@@ -23,8 +23,6 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
     public void show() {
         Table table = new Table();
         table.right().padRight(200);
-        stage.addActor(table);
-        table.setFillParent(true);
         populateEncounterOptions(table);
         Gdx.input.setInputProcessor(stage);
     }
@@ -47,5 +45,6 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
             });
             table.add(button).pad(10);
         }
+        populateEncounter(table);
     }
 }

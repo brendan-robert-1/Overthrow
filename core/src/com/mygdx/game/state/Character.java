@@ -8,6 +8,7 @@ import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 import java.util.List;
 
 public record Character(
+    String name,
     CharacterType characterType,
     int hp,
     EquippedGear equippedGear,

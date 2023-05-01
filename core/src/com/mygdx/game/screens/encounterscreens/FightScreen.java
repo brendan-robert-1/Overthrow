@@ -26,10 +26,6 @@ public class FightScreen extends InGameEncounterScreen {
 
     private void populateEnemyTeam(){
         Table table = new Table(Assets.skin());
-        table.bottom().right();
-        table.padRight(200);
-        table.padBottom(300);
-       // table.setDebug(true);
         Fight fightNode = (Fight) gameState.getCurrentNode();
         EnemyCharacter firstEnemy = fightNode.startingUnits().firstCharacter();
         EnemyCharacter secondEnemy = fightNode.startingUnits().secondCharacter();
@@ -47,10 +43,9 @@ public class FightScreen extends InGameEncounterScreen {
                 redirectNextNode();
             }
         });
-        table.add(proceed).padTop(25);
+        table.add(proceed);
         table.row();
-        table.setFillParent(true);
-        stage.addActor(table);
+        populateEncounter(table);
     }
 
 

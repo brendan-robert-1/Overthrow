@@ -3,7 +3,9 @@ package com.mygdx.game.screens.encounterscreens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
@@ -28,23 +30,23 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
     private void populateOutfitter(Outfitter outfitter){
         List<ItemSlot> outfitterItems = outfitter.buildOutfitterItems();
-        Dialog dialog = new Dialog("Outfitter", Assets.skin()){
-            {
-                text("Select an item to begin you're run with");
-                for(ItemSlot item : outfitterItems){
-                    button(item.getName(), item);
-                    row();
+        Table outfitterTable = new Table();
+        Label title = new Label("Choose an item to begin the run with", Assets.skin());
+        title.setAlignment(Align.center);
+        outfitterTable.add(title).colspan(outfitterItems.size()).fillX();
+        outfitterTable.row();
+        for(ItemSlot item : outfitterItems){
+            TextButton option = new TextButton(item.getName(), Assets.skin());
+            outfitterTable.add(option).fillX().pad(10);
+            option.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    addItemToInventory(item);
+                    redirectNextNode();
                 }
-            }
-            @Override
-            protected void result(Object object) {
-                ItemSlot chosenItem = (ItemSlot) object;
-                addItemToInventory(chosenItem);
-                redirectNextNode();
-                super.result(object);
-            }
-        };
-       dialog.show(stage);
+            });
+        }
+        populateEncounter(outfitterTable);
     }
 
     private void addItemToInventory(ItemSlot item){

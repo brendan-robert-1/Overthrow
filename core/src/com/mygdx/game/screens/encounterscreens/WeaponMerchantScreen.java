@@ -17,8 +17,6 @@ public class WeaponMerchantScreen extends InGameEncounterScreen {
     @Override
     public void show() {
         Table market = new Table().right().padRight(200);
-        stage.addActor(market);
-        market.setFillParent(true);
         populateMarket(market);
         Gdx.input.setInputProcessor(stage);
     }
@@ -49,6 +47,7 @@ public class WeaponMerchantScreen extends InGameEncounterScreen {
         });
         table.add(proceed).padTop(25);
         table.row();
+        populateEncounter(table);
     }
 }
 

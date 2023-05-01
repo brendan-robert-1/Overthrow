@@ -3,8 +3,10 @@ package com.mygdx.game.screens.encounterscreens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -17,63 +19,124 @@ import com.mygdx.game.screens.NextEncounterSelectionScreen;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
     private GameState gameState = GameState.getInstance();
+    private Table entireScreen;
+    private Table teamAndEncounter;
+    private Table encounter;
+    private Label coins;
 
     public InGameEncounterScreen(){
+        renderScreen();
+    }
+
+    public void renderScreen(){
         stage.addListener(escapeKeyboardListener());
-        populateInGameEncounterScreen();
-        populateTeam();
+        entireScreen = new Table();
+      //s entireScreen.setDebug(true);
+        entireScreen.setFillParent(true);
+        entireScreen.defaults().pad(10F);
+        populateTopBar(entireScreen);
+        populateTeamAndEncounter(entireScreen);
+        populateGearAndInventory(entireScreen);
+        stage.addActor(entireScreen);
     }
 
-    private void populateTeam(){
-        Table table = new Table(Assets.skin());
-        table.bottom().left();
-        table.padLeft(200);
-        table.padBottom(300);
-        Character firstCharacter = gameState.getCharacterSlots().firstCharacter();
-        Character secondCharacter = gameState.getCharacterSlots().secondCharacter();
-        Character thirdCharacter = gameState.getCharacterSlots().thirdCharacter();
-        Character fourthCharacter = gameState.getCharacterSlots().fourthCharacter();
-        addCharacterPanel(table, firstCharacter);
-        addCharacterPanel(table, secondCharacter);
-        addCharacterPanel(table, thirdCharacter);
-        addCharacterPanel(table, fourthCharacter);
-        table.row();
-        table.setFillParent(true);
-        stage.addActor(table);
+    private void populateTopBar(Table entireScreen){
+        Table topBar = new Table();
+        topBar.defaults().pad(10F);
+        coins = new Label("Coins: " + gameState.getCoin(), Assets.skin());
+        TextButton options = optionsButton();
+        topBar.add(options).expandX().left();
+        topBar.add(coins).expandX().right();
+        entireScreen.add(topBar).growX();
+        entireScreen.row();
+    }
+    private void populateTeamAndEncounter(Table entireScreen) {
+        teamAndEncounter = new Table();
+        Table team = new Table();
+        team.add(characterPanel(gameState.getCharacterSlots().firstCharacter())).expand().fillX();
+        team.add(characterPanel(gameState.getCharacterSlots().secondCharacter())).expand().fillX();
+        team.add(characterPanel(gameState.getCharacterSlots().thirdCharacter())).expand().fillX();
+        team.add(characterPanel(gameState.getCharacterSlots().fourthCharacter())).expand().fillX();
+        team.pack();
+        teamAndEncounter.add(team).expandX().fillX().bottom().padBottom(40);
+        encounter = new Table();
+        encounter.add( new Label("Choose an item to begin the run with", Assets.skin()));
+        teamAndEncounter.add(encounter);
+       // teamAndEncounter.setDebug(true);
+        entireScreen.add(teamAndEncounter).expand().fill();
+        entireScreen.row();
     }
 
-    private void addCharacterPanel(Table mainTable, Character character) {
-        Table table = new Table(Assets.skin());
+    public void populateEncounter(Table toPopulate){
+       teamAndEncounter.removeActor(encounter);
+       teamAndEncounter.add(toPopulate).expand();
+        System.out.println("replaced encounter");
+    }
+
+    private void populateGearAndInventory(Table entireScreen) {
+        Table gearAndInventory = new Table();
+        Table gear = new Table();
+        gear.defaults();
+        TextButton gearPanel =  new TextButton("Gear", Assets.skin());
+        gear.add(gearPanel).expandX().fillX().height(120);
+        Table inventory = new Table();
+        TextButton inventoryPanel =  new TextButton("Inventory", Assets.skin());
+        inventory.add(inventoryPanel).expandX().fillX().height(120);
+
+        gearAndInventory.add(gear).expand().fill();
+        gearAndInventory.add(inventory).expand().fill();
+        entireScreen.add(gearAndInventory).fillX().expandX().left();
+        entireScreen.row();
+    }
+    private TextButton optionsButton(){
+        TextButton options=  new TextButton("Options", Assets.skin());
+        options.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                openOptions();
+            }
+        });
+        return options;
+    }
+
+    private Table characterPanel(Character character) {
         if(character == null){
-            Label label = new Label("Empty slot.", Assets.skin());
-            table.add(label).pad(20);
-            mainTable.add(table);
-            return;
+            return emptyCharacterPanel();
         }
-        Label label = new Label(character.characterType().toString(), Assets.skin());
-        Label hp = new Label("HP: " + character.hp(), Assets.skin());
-        TextButton equippedGear = new TextButton("Gear", Assets.skin());
-        TextButton ability1 = new TextButton(character.firstBasicAbility().name(), Assets.skin());
-        TextButton ability2 = new TextButton(character.secondBasicAbility().name(), Assets.skin());
-        TextButton ultimate = new TextButton(character.ultimateAbility().name(), Assets.skin());
-        table.add(label);
-        table.row();
-        table.add(hp);
-        table.row();
-        table.add(ability1);
-        table.row();
-        table.add(ability2);
-        table.row();
-        table.add(ultimate);
-        table.row();
-        table.add(equippedGear);
-        mainTable.add(table);
+        Table characterPanel = new Table(Assets.skin());
+        characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
+        characterPanel.row();
+        characterPanel.add(new Image(Assets.PD_TEXTURE)).expand();
+        characterPanel.row();
+        Table abilityPanel = new Table();
+        abilityPanel.defaults().space(10F);
+        abilityPanel.add(new TextButton("Gear", Assets.skin())).expandX();
+        abilityPanel.add(new TextButton("AB1", Assets.skin())).expandX();
+        abilityPanel.add(new TextButton("AB2", Assets.skin())).expandX();
+        abilityPanel.add(new TextButton("ULT", Assets.skin())).expandX();
+        characterPanel.add(abilityPanel).expand();
+        Table weaponAbilityPanel = new Table();
+        weaponAbilityPanel.defaults().space(10F);
+        weaponAbilityPanel.add(new TextButton("W1-AB", Assets.skin())).expandX();
+        weaponAbilityPanel.add(new TextButton("W2-AB", Assets.skin())).expandX();
+        characterPanel.row();
+        characterPanel.add(weaponAbilityPanel).expand();
+     //  characterPanel.setDebug(true);
+        characterPanel.defaults().expandX();
+        return characterPanel;
+    }
+
+    private Table emptyCharacterPanel(){
+        Table empty = new Table();
+        empty.add(new Label("Empty slot.....", Assets.skin()));
+        return empty;
     }
 
 
@@ -88,16 +151,8 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             }
         };
     }
-
-    public void populateInGameEncounterScreen(){
-        populateInventory();
-        populateTopLeftBar();
-        populateFloorCount();
-        populateTopRightBar();
-    }
-
     public void updateCoins(){
-        populateTopRightBar();
+        coins.setText("Coins: " + gameState.getCoin());
     }
     private void populateFloorCount(){
         Table table = new Table(Assets.skin());
@@ -109,74 +164,6 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         stage.addActor(table);
     }
 
-    private void populateTopLeftBar(){
-        Table statusTable = new Table(Assets.skin());
-        TextButton options=  new TextButton("Options", Assets.skin());
-        options.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                openOptions();
-            }
-        });
-        statusTable.add(options);
-        statusTable.top().left();
-        statusTable.padLeft(25);
-        statusTable.padRight(25);
-        statusTable.padTop(25);
-        statusTable.setHeight(60);
-        statusTable.setFillParent(true);
-        stage.addActor(statusTable);
-    }
-
-    private void populateTopRightBar(){
-        Table statusTable = new Table(Assets.skin());
-        TextButton map = new TextButton("Map", Assets.skin());
-        map.padLeft(7);
-        map.padRight(7);
-        map.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Map button pressed.");
-            }
-        });
-        statusTable.add(map).padRight(10);
-        System.out.println("Displaying current coin: " + gameState.getCoin());
-        TextButton coins = new TextButton("Coins: " + gameState.getCoin(), Assets.skin());
-        coins.setDisabled(true);
-        statusTable.add(coins);
-        statusTable.top().right();
-        statusTable.padLeft(25);
-        statusTable.padRight(25);
-        statusTable.padTop(25);
-        statusTable.setFillParent(true);
-        stage.addActor(statusTable);
-    }
-
-    private void populateInventory() {
-        Table table = new Table(Assets.skin());
-        table.bottom().right();
-        table.padLeft(25);
-        table.padRight(25);
-        table.padTop(25);
-        table.setHeight(60);
-        table.padBottom(25);
-        TextButton gear = new TextButton("Gear", Assets.skin());
-        table.add(gear);
-        table.row();
-        TextButton inventory = new TextButton("Inventory", Assets.skin());
-        Table inventoryTable = new Table();
-        inventory.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                displayInventoryTable(inventoryTable);
-            }
-        });
-        table.add(inventory);
-        table.row();
-
-        table.setFillParent(true);
-        stage.addActor(table);
-    }
 
     private void displayInventoryTable(Table table){
         List<ItemSlot> inventory = gameState.getInventory().getInventoryList();
@@ -206,7 +193,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             table.row();
         }
         table.setFillParent(true);
-        table.setDebug(true);
+     //   table.setDebug(true);
         stage.addActor(table);
     }
 

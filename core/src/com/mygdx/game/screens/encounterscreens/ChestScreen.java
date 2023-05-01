@@ -34,7 +34,6 @@ public class ChestScreen extends InGameEncounterScreen{
             }
         });
         table.add(proceed).padTop(25);
-        table.setFillParent(true);
-        stage.addActor(table);
+        populateEncounter(table);
     }
 }

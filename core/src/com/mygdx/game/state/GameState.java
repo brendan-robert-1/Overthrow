@@ -58,6 +58,17 @@ public class GameState {
         return this;
     }
 
+    public void increaseCoinBy(int increaseBy){
+        this.coin = coin + increaseBy;
+    }
+
+    public void decreaseCoinBy(int decreaseCoinBy){
+        if(decreaseCoinBy > coin){
+            throw new IllegalArgumentException("cant have negative coin dummy");
+        }
+        this.coin = coin - decreaseCoinBy;
+    }
+
 
 
     public Inventory getInventory() {
