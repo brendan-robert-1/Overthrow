@@ -14,10 +14,7 @@ import com.mygdx.game.state.GameState;
 import java.util.Set;
 
 public class NodeSelectionScreen extends OverthrowScreenAdapter {
-    private GameState gameState;
-    public NodeSelectionScreen(GameState gameState){
-        this.gameState = gameState;
-    }
+    private GameState gameState = GameState.getInstance();
 
     @Override
     public void show() {
@@ -36,7 +33,7 @@ public class NodeSelectionScreen extends OverthrowScreenAdapter {
         table.setFillParent(true);
     }
     private void addFloors(Table table){
-        Set<GameNode> nextEncounters = gameState.mapGraph().getGraph().successors(gameState.currentNode());
+        Set<GameNode> nextEncounters = gameState.getMapGraph().getGraph().successors(gameState.getCurrentNode());
         for(GameNode encounter : nextEncounters){
             addEncounterButton(encounter);
         }
@@ -46,7 +43,6 @@ public class NodeSelectionScreen extends OverthrowScreenAdapter {
         outfitterOption.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                gameState.withCurrentNode(encounter);
                 redirectNextNode();
             }
         });

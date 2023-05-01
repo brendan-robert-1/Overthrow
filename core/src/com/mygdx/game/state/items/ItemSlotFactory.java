@@ -15,11 +15,11 @@ public class ItemSlotFactory {
 
     public static ItemSlot one(ItemType itemType){
         Item item =  items.getItems().get(itemType);
-        return new ItemSlot(item.getDisplayName(), item.getDescription(),1);
+        return new ItemSlot(item.getItemType(), item.getDisplayName(), item.getDescription(),1);
     }
     public static ItemSlot of(ItemType itemType, int quantity) {
         Item item =  items.getItems().get(itemType);
-        return new ItemSlot(item.getDisplayName(), item.getDescription(),quantity);
+        return new ItemSlot(item.getItemType(), item.getDisplayName(), item.getDescription(),quantity);
     }
 
     private static Items loadItems(){

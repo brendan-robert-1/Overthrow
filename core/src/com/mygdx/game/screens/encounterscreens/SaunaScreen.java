@@ -10,11 +10,7 @@ import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.state.GameState;
 
 public class SaunaScreen extends InGameEncounterScreen {
-    public SaunaScreen(GameState gameState) {
-        super(gameState);
-    }
-
-    @Override
+      @Override
     public void show() {
         // stage.setDebugAll(true);
         addSaunaOptions();

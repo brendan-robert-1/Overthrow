@@ -12,11 +12,7 @@ import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
 import com.mygdx.game.state.GameState;
 
 public class WishingWellScreen extends InGameEncounterScreen {
-    private GameState gameState;
-    public WishingWellScreen(GameState gameState) {
-        super(gameState);
-        this.gameState = gameState;
-    }
+    private GameState gameState = GameState.getInstance();
     @Override
     public void show() {
         Table market = new Table();

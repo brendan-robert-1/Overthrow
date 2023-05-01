@@ -18,10 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 public class NextEncounterSelectionScreen extends InGameEncounterScreen {
-    public NextEncounterSelectionScreen(GameState gameState) {
-        super(gameState);
-    }
-
+    private GameState gameState = GameState.getInstance();
     @Override
     public void show() {
         Table table = new Table();
@@ -36,16 +33,16 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
         Label label = new Label("Where to next?", Assets.skin());
         table.row();
         table.add(label).padRight(18);
-        GameNode currentNode = getGameState().currentNode();
-        Set<GameNode> nextEncounterOptions = getGameState().mapGraph().getGraph().successors(currentNode);
+        GameNode currentNode = getGameState().getCurrentNode();
+        Set<GameNode> nextEncounterOptions = getGameState().getMapGraph().getGraph().successors(currentNode);
         for(GameNode encounter : nextEncounterOptions){
             TextButton button = new TextButton(encounter.getDisplayName(), Assets.skin());
             button.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     System.out.println("Choose encounter: " + encounter.getDisplayName());
-                    GameState withNextEncounter = getGameState().withCurrentNode(encounter);
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen(withNextEncounter));
+                    GameState withNextEncounter = getGameState().setCurrentNode(encounter);
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
                 }
             });
             table.add(button).pad(10);

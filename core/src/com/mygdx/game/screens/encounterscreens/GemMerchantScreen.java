@@ -11,11 +11,7 @@ import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.state.GameState;
 
 public class GemMerchantScreen extends InGameEncounterScreen {
-    private GameState gameState;
-    public GemMerchantScreen(GameState gameState){
-        super(gameState);
-        this.gameState = gameState;
-    }
+    private GameState gameState = GameState.getInstance();
 
     @Override
     public void show() {

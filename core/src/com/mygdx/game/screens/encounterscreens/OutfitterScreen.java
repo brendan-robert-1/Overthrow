@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
+import com.mygdx.game.encounters.Outfitter;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
 import com.mygdx.game.state.items.ItemSlotFactory;
@@ -16,47 +17,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutfitterScreen extends InGameEncounterScreen {
-    private GameState gameState;
-
-    public OutfitterScreen(GameState gameState) {
-        super(gameState);
-        this.gameState = gameState;
-    }
+    private GameState gameState = GameState.getInstance();
 
     @Override
     public void show() {
-        Table table = new Table();
-        table.right();
-        table.padRight(200);
-        stage.addActor(table);
-        table.setFillParent(true);
-        populateOutfitter(table);
+        Outfitter outfitter = (Outfitter) gameState.getCurrentNode();
+        populateOutfitter(outfitter);
         Gdx.input.setInputProcessor(stage);
     }
 
-    private void populateOutfitter(Table table){
-        List<ItemSlot> outfitterItems = buildOutfitterItems();
+    private void populateOutfitter(Outfitter outfitter){
+        List<ItemSlot> outfitterItems = outfitter.buildOutfitterItems();
         Dialog dialog = new Dialog("Outfitter", Assets.skin()){
             {
                 text("Select an item to begin you're run with");
                 for(ItemSlot item : outfitterItems){
-                    button(item.name());
+                    button(item.getName(), item);
                     row();
                 }
             }
             @Override
             protected void result(Object object) {
+                ItemSlot chosenItem = (ItemSlot) object;
+                addItemToInventory(chosenItem);
+                redirectNextNode();
                 super.result(object);
             }
         };
-       dialog.show(stage).right();
+       dialog.show(stage);
     }
 
-    private List<ItemSlot> buildOutfitterItems() {
-        List<ItemSlot> outfitterList = new ArrayList<>();
-        outfitterList.add(ItemSlotFactory.one(ItemType.HIDE_SHIELD));
-        outfitterList.add(ItemSlotFactory.one(ItemType.RUSTY_DAGGER));
-        outfitterList.add(ItemSlotFactory.one(ItemType.FRESHMAN_SPELLCRAFT_NOTEBOOK));
-        return outfitterList;
+    private void addItemToInventory(ItemSlot item){
+        System.out.println("Adding chosen outfitter item to inventory: " + item.getName());
+        gameState.getInventory().addItem(item);
     }
+
+
 }

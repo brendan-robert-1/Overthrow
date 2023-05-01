@@ -9,19 +9,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.InGameOptionsScreen;
 import com.mygdx.game.screens.NextEncounterSelectionScreen;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.items.ItemSlot;
+
+import java.util.List;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
-    private GameState gameState;
+    private GameState gameState = GameState.getInstance();
 
-    public InGameEncounterScreen(GameState gameState){
-        this.gameState = gameState;
+    public InGameEncounterScreen(){
         stage.addListener(escapeKeyboardListener());
         populateInGameEncounterScreen();
         populateTeam();
@@ -32,10 +35,10 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         table.bottom().left();
         table.padLeft(200);
         table.padBottom(300);
-        Character firstCharacter = gameState.characterSlots().firstCharacter();
-        Character secondCharacter = gameState.characterSlots().secondCharacter();
-        Character thirdCharacter = gameState.characterSlots().thirdCharacter();
-        Character fourthCharacter = gameState.characterSlots().fourthCharacter();
+        Character firstCharacter = gameState.getCharacterSlots().firstCharacter();
+        Character secondCharacter = gameState.getCharacterSlots().secondCharacter();
+        Character thirdCharacter = gameState.getCharacterSlots().thirdCharacter();
+        Character fourthCharacter = gameState.getCharacterSlots().fourthCharacter();
         addCharacterPanel(table, firstCharacter);
         addCharacterPanel(table, secondCharacter);
         addCharacterPanel(table, thirdCharacter);
@@ -92,11 +95,15 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         populateFloorCount();
         populateTopRightBar();
     }
+
+    public void updateCoins(){
+        populateTopRightBar();
+    }
     private void populateFloorCount(){
         Table table = new Table(Assets.skin());
         table.top();
         table.padTop(20);
-        Label floorLabel = new Label("Floor: " + gameState.currentFloor(), Assets.skin());
+        Label floorLabel = new Label("Floor: " + gameState.getCurrentFloor(), Assets.skin());
         table.add(floorLabel);
         table.setFillParent(true);
         stage.addActor(table);
@@ -120,6 +127,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         statusTable.setFillParent(true);
         stage.addActor(statusTable);
     }
+
     private void populateTopRightBar(){
         Table statusTable = new Table(Assets.skin());
         TextButton map = new TextButton("Map", Assets.skin());
@@ -132,7 +140,8 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             }
         });
         statusTable.add(map).padRight(10);
-        TextButton coins = new TextButton("Coins: " + gameState.coin(), Assets.skin());
+        System.out.println("Displaying current coin: " + gameState.getCoin());
+        TextButton coins = new TextButton("Coins: " + gameState.getCoin(), Assets.skin());
         coins.setDisabled(true);
         statusTable.add(coins);
         statusTable.top().right();
@@ -151,17 +160,58 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         table.padTop(25);
         table.setHeight(60);
         table.padBottom(25);
-        TextButton inventory = new TextButton("Inventory", Assets.skin());
-        table.add(inventory).padRight(10);
         TextButton gear = new TextButton("Gear", Assets.skin());
         table.add(gear);
         table.row();
+        TextButton inventory = new TextButton("Inventory", Assets.skin());
+        Table inventoryTable = new Table();
+        inventory.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                displayInventoryTable(inventoryTable);
+            }
+        });
+        table.add(inventory);
+        table.row();
+
         table.setFillParent(true);
         stage.addActor(table);
     }
 
+    private void displayInventoryTable(Table table){
+        List<ItemSlot> inventory = gameState.getInventory().getInventoryList();
+        Label label = new Label("Inventory", Assets.skin());
+        label.setAlignment(Align.center);
+        table.add(label).colspan(9).fillX();
+        TextButton close = new TextButton("Close", Assets.skin());
+        close.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                table.remove();
+            }
+        });
+        table.add(close);
+        table.row();
+        int counter = 0;
+        for(int i = 0 ; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(counter <= inventory.size() - 1){
+                    Label item = new Label(inventory.get(counter).getName(), Assets.skin());
+                    table.add(item).fillX();
+                }else {
+                  table.add(new Label("_______", Assets.skin()));
+                }
+                counter++;
+            }
+            table.row();
+        }
+        table.setFillParent(true);
+        table.setDebug(true);
+        stage.addActor(table);
+    }
+
     private void openOptions(){
-        ((Game) Gdx.app.getApplicationListener()).setScreen(new InGameOptionsScreen(gameState));
+        ((Game) Gdx.app.getApplicationListener()).setScreen(new InGameOptionsScreen());
     }
 
 
@@ -171,7 +221,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     }
 
     protected void redirectNextNode(){
-        gameState = gameState.withCurrentFloor(gameState.currentFloor() + 1);
-        ((Game) Gdx.app.getApplicationListener()).setScreen(new NextEncounterSelectionScreen(gameState));
+        gameState.setCurrentFloor(gameState.getCurrentFloor() + 1);
+        ((Game) Gdx.app.getApplicationListener()).setScreen(new NextEncounterSelectionScreen());
     }
 }

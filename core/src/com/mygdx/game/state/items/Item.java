@@ -1,6 +1,7 @@
 package com.mygdx.game.state.items;
 
 public class Item {
+    private ItemType itemType;
     private String displayName;
     private String description;
 
@@ -27,6 +28,19 @@ public class Item {
 
     public Item setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+
+
+    public Item setItemType(ItemType itemType) {
+        this.itemType = itemType;
         return this;
     }
 }

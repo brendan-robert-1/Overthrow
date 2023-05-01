@@ -1,6 +1,6 @@
 package com.mygdx.game.state.shops;
 
-public class Offering {
+public class PotentialOffering {
     private String itemName;
     private int quantityMin;
     private int quantityMax;
@@ -15,7 +15,7 @@ public class Offering {
 
 
 
-    public Offering setItemName(String itemName) {
+    public PotentialOffering setItemName(String itemName) {
         this.itemName = itemName;
         return this;
     }
@@ -28,7 +28,7 @@ public class Offering {
 
 
 
-    public Offering setQuantityMin(int quantityMin) {
+    public PotentialOffering setQuantityMin(int quantityMin) {
         this.quantityMin = quantityMin;
         return this;
     }
@@ -41,7 +41,7 @@ public class Offering {
 
 
 
-    public Offering setQuantityMax(int quantityMax) {
+    public PotentialOffering setQuantityMax(int quantityMax) {
         this.quantityMax = quantityMax;
         return this;
     }
@@ -54,7 +54,7 @@ public class Offering {
 
 
 
-    public Offering setPriceMin(int priceMin) {
+    public PotentialOffering setPriceMin(int priceMin) {
         this.priceMin = priceMin;
         return this;
     }
@@ -67,7 +67,7 @@ public class Offering {
 
 
 
-    public Offering setPriceMax(int priceMax) {
+    public PotentialOffering setPriceMax(int priceMax) {
         this.priceMax = priceMax;
         return this;
     }

@@ -10,11 +10,6 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.state.GameState;
 
 public class ArmorMerchantScreen extends InGameEncounterScreen{
-    private GameState gameState;
-    public ArmorMerchantScreen(GameState gameState){
-        super(gameState);
-        this.gameState = gameState;
-    }
 
     @Override
     public void show() {

@@ -3,13 +3,12 @@ package com.mygdx.game.encounters.factories;
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
-import com.mygdx.game.state.items.Item;
 import com.mygdx.game.state.items.ItemSlot;
 import com.mygdx.game.state.items.ItemSlotFactory;
 import com.mygdx.game.state.items.ItemType;
 import com.mygdx.game.state.shops.MarketOffering;
 import com.mygdx.game.state.shops.MarketOfferingFactory;
-import com.mygdx.game.state.shops.Offering;
+import com.mygdx.game.state.shops.PotentialOffering;
 
 import java.util.HashMap;
 import java.util.List;
@@ -97,37 +96,37 @@ public class MarketFactory {
     //TODO add a remove from offerings once selected so no duplicates
     private static Map<ItemSlot, Integer> buildWaresFromPotential(MarketOffering marketOffering){
         Map<ItemSlot, Integer> wares = new HashMap<>();
-        Offering weapon1 = getRandomOffering(marketOffering.getPotentialWeapons());
+        PotentialOffering weapon1 = getRandomOffering(marketOffering.getPotentialWeapons());
         int priceWeapon1 = getRandomPrice(weapon1);
         int quantityWeapon1 = getRandomQuantity(weapon1);
         wares.put(buildItemFrom(weapon1, quantityWeapon1), priceWeapon1);
 
-        Offering weapon2= getRandomOffering(marketOffering.getPotentialWeapons());
+        PotentialOffering weapon2= getRandomOffering(marketOffering.getPotentialWeapons());
         int priceWeapon2 = getRandomPrice(weapon2);
         int quantityWeapon2 = getRandomQuantity(weapon2);
         wares.put(buildItemFrom(weapon2, quantityWeapon2), priceWeapon2);
 
-        Offering armor1= getRandomOffering(marketOffering.getPotentialArmor());
+        PotentialOffering armor1= getRandomOffering(marketOffering.getPotentialArmor());
         int priceArmor1 = getRandomPrice(armor1);
         int quantityArmor1 = getRandomQuantity(armor1);
         wares.put(buildItemFrom(armor1, quantityArmor1), priceArmor1);
 
-        Offering armor2= getRandomOffering(marketOffering.getPotentialArmor());
+        PotentialOffering armor2= getRandomOffering(marketOffering.getPotentialArmor());
         int priceArmor2 = getRandomPrice(armor2);
         int quantityArmor2 = getRandomQuantity(armor2);
         wares.put(buildItemFrom(armor2, quantityArmor2),priceArmor2);
 
-        Offering consumable1= getRandomOffering(marketOffering.getPotentialConsumables());
+        PotentialOffering consumable1= getRandomOffering(marketOffering.getPotentialConsumables());
         int priceConsumable1 = getRandomPrice(consumable1);
         int quantityConsumable1 = getRandomQuantity(consumable1);
         wares.put(buildItemFrom(consumable1, quantityConsumable1),priceConsumable1);
 
-        Offering consumable2= getRandomOffering(marketOffering.getPotentialConsumables());
+        PotentialOffering consumable2= getRandomOffering(marketOffering.getPotentialConsumables());
         int priceConsumable2 = getRandomPrice(consumable2);
         int quantityConsumable2 = getRandomQuantity(consumable2);
         wares.put(buildItemFrom(consumable2, quantityConsumable2),priceConsumable2);
 
-        Offering gem = getRandomOffering(marketOffering.getPotentialGems());
+        PotentialOffering gem = getRandomOffering(marketOffering.getPotentialGems());
         int priceGem = getRandomPrice(gem);
         int quantityGem = getRandomQuantity(gem);
         wares.put(buildItemFrom(gem, quantityGem),priceGem);
@@ -137,14 +136,14 @@ public class MarketFactory {
 
 
 
-    private static ItemSlot buildItemFrom(Offering offering, int quantity) {
-        ItemType itemType = ItemType.from(offering.getItemName());
+    private static ItemSlot buildItemFrom(PotentialOffering potentialOffering, int quantity) {
+        ItemType itemType = ItemType.from(potentialOffering.getItemName());
         return ItemSlotFactory.of(itemType, quantity);
     }
 
 
 
-    private static int getRandomQuantity(Offering gem) {
+    private static int getRandomQuantity(PotentialOffering gem) {
         int min = gem.getQuantityMin();
         int max = gem.getQuantityMax();
         if(min == max){
@@ -155,7 +154,7 @@ public class MarketFactory {
 
 
 
-    private static int getRandomPrice(Offering gem) {
+    private static int getRandomPrice(PotentialOffering gem) {
         int min = gem.getPriceMin();
         int max = gem.getPriceMax();
         if(min == max){
@@ -166,9 +165,9 @@ public class MarketFactory {
 
 
 
-    private static Offering getRandomOffering(List<Offering> offerings){
-        return offerings.get(
-                new Random().nextInt(offerings.size() - 1)
+    private static PotentialOffering getRandomOffering(List<PotentialOffering> potentialOfferings){
+        return potentialOfferings.get(
+                new Random().nextInt(potentialOfferings.size() - 1)
         );
     }
 }

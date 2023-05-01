@@ -15,12 +15,8 @@ import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
 public class FightScreen extends InGameEncounterScreen {
-    private GameState gameState;
+    private GameState gameState = GameState.getInstance();
 
-    public FightScreen(GameState gameState){
-        super(gameState);
-        this.gameState = gameState;
-    }
     @Override
     public void show() {
         // stage.setDebugAll(true);
@@ -34,7 +30,7 @@ public class FightScreen extends InGameEncounterScreen {
         table.padRight(200);
         table.padBottom(300);
        // table.setDebug(true);
-        Fight fightNode = (Fight) gameState.currentNode();
+        Fight fightNode = (Fight) gameState.getCurrentNode();
         EnemyCharacter firstEnemy = fightNode.startingUnits().firstCharacter();
         EnemyCharacter secondEnemy = fightNode.startingUnits().secondCharacter();
         EnemyCharacter thirdEnemy = fightNode.startingUnits().thirdCharacter();

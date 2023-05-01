@@ -3,62 +3,62 @@ package com.mygdx.game.state.shops;
 import java.util.List;
 
 public class MarketOffering {
-    private List<Offering> potentialArmor;
+    private List<PotentialOffering> potentialArmor;
 
 
 
-    public List<Offering> getPotentialWeapons() {
+    public List<PotentialOffering> getPotentialWeapons() {
         return potentialWeapons;
     }
 
 
 
-    public MarketOffering setPotentialWeapons(List<Offering> potentialWeapons) {
+    public MarketOffering setPotentialWeapons(List<PotentialOffering> potentialWeapons) {
         this.potentialWeapons = potentialWeapons;
         return this;
     }
 
 
 
-    public List<Offering> getPotentialConsumables() {
+    public List<PotentialOffering> getPotentialConsumables() {
         return potentialConsumables;
     }
 
 
 
-    public MarketOffering setPotentialConsumables(List<Offering> potentialConsumables) {
+    public MarketOffering setPotentialConsumables(List<PotentialOffering> potentialConsumables) {
         this.potentialConsumables = potentialConsumables;
         return this;
     }
 
 
 
-    public List<Offering> getPotentialGems() {
+    public List<PotentialOffering> getPotentialGems() {
         return potentialGems;
     }
 
 
 
-    public MarketOffering setPotentialGems(List<Offering> potentialGems) {
+    public MarketOffering setPotentialGems(List<PotentialOffering> potentialGems) {
         this.potentialGems = potentialGems;
         return this;
     }
 
 
 
-    private List<Offering> potentialWeapons;
-    private List<Offering> potentialConsumables;
-    private List<Offering> potentialGems;
+    private List<PotentialOffering> potentialWeapons;
+    private List<PotentialOffering> potentialConsumables;
+    private List<PotentialOffering> potentialGems;
 
 
 
-    public List<Offering> getPotentialArmor() {
+    public List<PotentialOffering> getPotentialArmor() {
         return potentialArmor;
     }
 
 
 
-    public MarketOffering setPotentialArmor(List<Offering> potentialArmor) {
+    public MarketOffering setPotentialArmor(List<PotentialOffering> potentialArmor) {
         this.potentialArmor = potentialArmor;
         return this;
     }

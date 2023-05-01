@@ -8,7 +8,7 @@ import java.util.List;
 public class Inventory {
     private final List<ItemSlot> inventoryMap = startingInventory();
 
-    public List<ItemSlot> getInventoryMap() {
+    public List<ItemSlot> getInventoryList() {
         return inventoryMap;
     }
 

@@ -1,62 +1,77 @@
 {
   "items": {
     "HIDE_SHIELD": {
+      "itemType": "HIDE_SHIELD",
       "displayName": "Hide Shield",
       "description": "Hide Shield"
     },
     "LEATHER_PANTS": {
+      "itemType": "LEATHER_PANTS",
       "displayName": "Leather Pants",
       "description": "Leather Pants"
     },
     "MINER_HAT": {
+      "itemType": "MINER_HAT",
       "displayName": "Miner Hat",
       "description": "Miner Hat"
     },
     "LEATHERWORKER_GLOVES": {
+      "itemType": "LEATHERWORKER_GLOVES",
       "displayName": "Leatherworker Gloves",
       "description": "Leatherworker Gloves"
     },
     "SNUG_SANDALS": {
+      "itemType": "SNUG_SANDALS",
       "displayName": "Snug Sandals",
       "description": "Snug Sandals"
     },
     "OVERSIZED_BOOTS": {
+      "itemType": "OVERSIZED_BOOTS",
       "displayName": "Oversized Boots",
       "description": "Oversized Boots"
     },
     "MINOR_HEALTH_POT": {
+      "itemType": "MINOR_HEALTH_POT",
       "displayName": "Minor Health Pot",
       "description": "Minor Health Pot"
     },
     "MINOR_POISON_RESIST_POT": {
+      "itemType": "MINOR_POISON_RESIST_POT",
       "displayName": "Minor Poison Resist Pot",
       "description": "Minor Poison Resist Pot"
     },
     "RUSTY_DAGGER": {
+      "itemType": "RUSTY_DAGGER",
       "displayName": "Rusty Dagger",
       "description": "Rusty Dagger"
     },
     "FRESHMAN_SPELLCRAFT_NOTEBOOK": {
+      "itemType": "FRESHMAN_SPELLCRAFT_NOTEBOOK",
       "displayName": "Freshman Spellcraft Notebook",
       "description": "Freshman Spellcraft Notebook"
     },
     "TATTERED_SLINGSHOT": {
+      "itemType": "TATTERED_SLINGSHOT",
       "displayName": "Tattered Slingshot",
       "description": "Tattered Slingshot"
     },
     "CLOUDED_POISON_RESIST_OPAL": {
+      "itemType": "CLOUDED_POISON_RESIST_OPAL",
       "displayName": "Clouded Poison Resist Opal",
       "description": "Clouded Poison Resist Opal"
     },
     "CLOUDED_POISON_DAMAGE_JADE": {
+      "itemType": "CLOUDED_POISON_DAMAGE_JADE",
       "displayName": "Clouded Poison Damage Jade",
       "description": "Clouded Poison Damage Jade"
     },
     "CLOUDED_FIRE_DAMAGE_RUBY": {
+      "itemType": "CLOUDED_FIRE_DAMAGE_RUBY",
       "displayName": "Clouded Fire Damage Ruby",
       "description": "Clouded Fire Damage Ruby"
     },
     "CLOUDED_SPEED_CRYSTAL": {
+      "itemType": "CLOUDED_SPEED_CRYSTAL",
       "displayName": "Clouded Speed Crystal",
       "description": "Clouded Speed Crystal"
     }

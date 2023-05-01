@@ -10,11 +10,6 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.state.GameState;
 
 public class ChestScreen extends InGameEncounterScreen{
-    private GameState gameState;
-    public ChestScreen(GameState gameState) {
-        super(gameState);
-        this.gameState = gameState;
-    }
     @Override
     public void show() {
         // stage.setDebugAll(true);

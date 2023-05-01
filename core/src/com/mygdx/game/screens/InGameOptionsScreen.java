@@ -15,18 +15,7 @@ import com.mygdx.game.state.GameState;
 
 public class InGameOptionsScreen extends OverthrowScreenAdapter {
 
-    private GameState gameState;
-
-    public GameState gameState(){
-        return gameState;
-    }
-
-
-
-    public InGameOptionsScreen(GameState gameState) {
-        this.gameState = gameState;
-    }
-
+    private GameState gameState = GameState.getInstance();
 
 
     @Override
@@ -58,24 +47,19 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to game.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen(gameState));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
             }
         });
         addButton(table, "Quit to main menu...", new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to game.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new AreYouSureScreen(gameState));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new AreYouSureScreen());
             }
         });
     }
 
     private class AreYouSureScreen extends OverthrowScreenAdapter{
-        private GameState gameState;
-        public AreYouSureScreen(GameState gameState) {
-            this.gameState = gameState;
-        }
-
         @Override
         public void show() {
             Table table = new Table();
@@ -90,7 +74,7 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     System.out.println("Return to game.");
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen(gameState));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
                 }
             });
             addButton(table, "Quit to main menu", new ClickListener() {
@@ -108,7 +92,7 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if(keycode == Input.Keys.ESCAPE){
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen(gameState));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
                 }
                 return super.keyDown(event, Input.Keys.ESCAPE);
             }

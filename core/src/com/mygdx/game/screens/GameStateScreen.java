@@ -8,10 +8,6 @@ import com.mygdx.game.screens.encounterscreens.EncounterScreenFactory;
 import com.mygdx.game.state.GameState;
 
 public class GameStateScreen extends InGameEncounterScreen {
-    public GameStateScreen(GameState gameState) {
-        super(gameState);
-
-    }
 
     @Override
     public void show() {

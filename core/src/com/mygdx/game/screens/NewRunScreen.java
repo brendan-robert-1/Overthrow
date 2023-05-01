@@ -38,17 +38,17 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Plague Doctor has been selected.");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.PLAGUE_DOCTOR))
-                );
+                NewGameGenerator.generateNewGame(Character.CharacterType.PLAGUE_DOCTOR);
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen( ));
             }
         });
         addButton(characters, "Knight",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Knight has been selected.");
+                NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT);
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT))
+                        new GameStateScreen( )
                 );
             }
         });
@@ -56,8 +56,9 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Inventor has been selected.");
+                NewGameGenerator.generateNewGame(Character.CharacterType.INVENTOR);
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.INVENTOR))
+                        new GameStateScreen()
                 );
             }
         });
@@ -65,8 +66,9 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Leper has been selected.");
+                NewGameGenerator.generateNewGame(Character.CharacterType.LEPER);
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( NewGameGenerator.generateNewGame(Character.CharacterType.LEPER))
+                        new GameStateScreen( )
                 );
             }
         });

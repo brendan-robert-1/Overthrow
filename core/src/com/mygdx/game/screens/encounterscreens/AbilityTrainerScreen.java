@@ -11,15 +11,7 @@ import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.state.GameState;
 
 public class AbilityTrainerScreen extends InGameEncounterScreen {
-    private GameState gameState;
-
-
-
-    public AbilityTrainerScreen(GameState gameState) {
-        super(gameState);
-        this.gameState = gameState;
-    }
-
+    private GameState gameState = GameState.getInstance();
 
 
     @Override
