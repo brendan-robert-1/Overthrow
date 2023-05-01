@@ -11,26 +11,39 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
 
-    private static AssetManager assetManager  = new AssetManager();
+    private AssetManager assetManager;
     public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<>("uiskin.json", Skin.class, new SkinLoader.SkinParameter("uiskin.atlas"));
-    public static final AssetDescriptor<Texture> PLAGUE_DOCTOR = new AssetDescriptor<>("pd.jpg", Texture.class);
-    public static Texture PD_TEXTURE;
+
+
+    private static Assets instance;
+    private Assets(){
+        assetManager = new AssetManager();
+        loadAll();
+    }
+    public static Assets getInstance(){
+        if(instance == null){
+            instance = new Assets();
+        }
+        return instance;
+    }
 
     public void loadAll(){
         assetManager.load(SKIN);
-        assetManager.load(PLAGUE_DOCTOR);
-        PD_TEXTURE = new Texture(Gdx.files.internal("pd.jpg"));
-      //  assetManager.load(white);
+        assetManager.load("pd.jpg", Texture.class);
+        assetManager.load("MINOR_HEALTH_POT_64.png", Texture.class);
+        assetManager.load("MINOR_POISON_RESIST_POT_64.png", Texture.class);
+        assetManager.load("HIDE_SHIELD_64.png", Texture.class);
+        assetManager.finishLoading();
     }
 
 
 
 
     public static AssetManager getAssetManager() {
-        return assetManager;
+        return instance.getInstance().assetManager;
     }
 
     public static Skin skin(){
-        return assetManager.get(SKIN);
+        return instance.getInstance().assetManager.get(SKIN);
     }
 }

@@ -21,8 +21,8 @@ public class Outfitter extends Encounter{
     public List<ItemSlot> buildOutfitterItems() {
         List<ItemSlot> outfitterList = new ArrayList<>();
         outfitterList.add(ItemSlotFactory.one(ItemType.HIDE_SHIELD));
-        outfitterList.add(ItemSlotFactory.one(ItemType.RUSTY_DAGGER));
-        outfitterList.add(ItemSlotFactory.one(ItemType.FRESHMAN_SPELLCRAFT_NOTEBOOK));
+        outfitterList.add(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT));
+        outfitterList.add(ItemSlotFactory.one(ItemType.MINOR_POISON_RESIST_POT));
         return outfitterList;
     }
 }

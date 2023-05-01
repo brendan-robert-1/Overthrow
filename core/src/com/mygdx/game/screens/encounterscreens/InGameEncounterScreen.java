@@ -113,7 +113,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.PD_TEXTURE)).expand();
+        characterPanel.add(new Image(Assets.getAssetManager().get("pd.jpg", Texture.class))).expand();
         characterPanel.row();
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);

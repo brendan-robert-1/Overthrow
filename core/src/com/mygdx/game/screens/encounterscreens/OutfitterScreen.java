@@ -1,12 +1,13 @@
 package com.mygdx.game.screens.encounterscreens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
@@ -36,7 +37,9 @@ public class OutfitterScreen extends InGameEncounterScreen {
         outfitterTable.add(title).colspan(outfitterItems.size()).fillX();
         outfitterTable.row();
         for(ItemSlot item : outfitterItems){
-            TextButton option = new TextButton(item.getName(), Assets.skin());
+           TextureRegion region = new TextureRegion(Assets.getAssetManager().get(item.getItemType().toString() + "_64.png", Texture.class)); //TODO turn into item -> texture resolver
+           TextureRegionDrawable drawable = new TextureRegionDrawable(region);
+           ImageButton option = new ImageButton(drawable);
             outfitterTable.add(option).fillX().pad(10);
             option.addListener(new ClickListener(){
                 @Override
