@@ -3,11 +3,17 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
@@ -16,11 +22,18 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
 
     @Override
     public void show() {
+        setCursor();
         Table table = new Table();
         stage.addActor(table);
         table.setFillParent(true); //Table is maxium size of stage
         addMainMenuButtons(table);
         Gdx.input.setInputProcessor(stage); //stage being used for button listening
+    }
+
+    private void setCursor(){
+        Pixmap pm = new Pixmap(Gdx.files.internal("cursor.png"));
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
+        pm.dispose();
     }
 
     private void addMainMenuButtons(Table table) {

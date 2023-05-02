@@ -22,7 +22,7 @@ public class Outfitter extends Encounter{
         List<ItemSlot> outfitterList = new ArrayList<>();
         outfitterList.add(ItemSlotFactory.one(ItemType.HIDE_SHIELD));
         outfitterList.add(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT));
-        outfitterList.add(ItemSlotFactory.one(ItemType.MINOR_POISON_RESIST_POT));
+        outfitterList.add(ItemSlotFactory.one(ItemType.RUSTY_DAGGER));
         return outfitterList;
     }
 }

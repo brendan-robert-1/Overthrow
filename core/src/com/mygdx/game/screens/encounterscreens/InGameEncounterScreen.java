@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -11,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
@@ -29,6 +33,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private Table entireScreen;
     private Table teamAndEncounter;
     private Table encounter;
+    public Table hoverMenu = new Table();
     private Label coins;
 
     public InGameEncounterScreen(){
@@ -37,8 +42,10 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
     public void renderScreen(){
         stage.addListener(escapeKeyboardListener());
-        entireScreen = new Table();
-      //s entireScreen.setDebug(true);
+        Texture background = Assets.getAssetManager().get("farms.png");
+        TextureRegionDrawable trd = new TextureRegionDrawable(background);
+        entireScreen = new Table(Assets.skin());
+        entireScreen.setBackground(trd);
         entireScreen.setFillParent(true);
         entireScreen.defaults().pad(10F);
         populateTopBar(entireScreen);
@@ -60,16 +67,15 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private void populateTeamAndEncounter(Table entireScreen) {
         teamAndEncounter = new Table();
         Table team = new Table();
-        team.add(characterPanel(gameState.getCharacterSlots().firstCharacter())).expand().fillX();
-        team.add(characterPanel(gameState.getCharacterSlots().secondCharacter())).expand().fillX();
-        team.add(characterPanel(gameState.getCharacterSlots().thirdCharacter())).expand().fillX();
-        team.add(characterPanel(gameState.getCharacterSlots().fourthCharacter())).expand().fillX();
+        team.add(characterPanel(gameState.getCharacterSlots().firstCharacter())).expand().fill();
+        team.add(characterPanel(gameState.getCharacterSlots().secondCharacter())).expand().fill();
+        team.add(characterPanel(gameState.getCharacterSlots().thirdCharacter())).expand().fill();
+        team.add(characterPanel(gameState.getCharacterSlots().fourthCharacter())).expand().fill();
         team.pack();
         teamAndEncounter.add(team).expandX().fillX().bottom().padBottom(40);
         encounter = new Table();
         encounter.add( new Label("Choose an item to begin the run with", Assets.skin()));
         teamAndEncounter.add(encounter);
-       // teamAndEncounter.setDebug(true);
         entireScreen.add(teamAndEncounter).expand().fill();
         entireScreen.row();
     }
@@ -113,7 +119,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.getAssetManager().get("pd.jpg", Texture.class))).expand();
+        characterPanel.add(new Image(Assets.getAssetManager().get("plague_doctor.png", Texture.class))).expand();
         characterPanel.row();
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);
@@ -127,14 +133,14 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         weaponAbilityPanel.add(new TextButton("W1-AB", Assets.skin())).expandX();
         weaponAbilityPanel.add(new TextButton("W2-AB", Assets.skin())).expandX();
         characterPanel.row();
-        characterPanel.add(weaponAbilityPanel).expand();
-     //  characterPanel.setDebug(true);
+        characterPanel.add(weaponAbilityPanel).padBottom(10).expand();
         characterPanel.defaults().expandX();
         return characterPanel;
     }
 
     private Table emptyCharacterPanel(){
-        Table empty = new Table();
+        Table empty = new Table(Assets.skin());
+        empty.defaults().expand().fill();
         empty.add(new Label("Empty slot.....", Assets.skin()));
         return empty;
     }
