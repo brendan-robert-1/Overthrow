@@ -27,7 +27,6 @@ public class MarketScreen extends InGameEncounterScreen {
     public void show() {
         Market market = (Market) gameState.getCurrentNode();
         populateMarket(market);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateMarket(Market market){

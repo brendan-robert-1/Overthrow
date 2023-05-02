@@ -15,7 +15,6 @@ public class SaunaScreen extends InGameEncounterScreen {
       @Override
     public void show() {
         addSaunaOptions();
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void addSaunaOptions(){

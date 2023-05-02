@@ -19,7 +19,6 @@ public class GemMerchantScreen extends InGameEncounterScreen {
         stage.addActor(market);
         market.setFillParent(true);
         populateMarket(market);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateMarket(Table table){

@@ -21,7 +21,6 @@ public class FightScreen extends InGameEncounterScreen {
     public void show() {
         // stage.setDebugAll(true);
         populateEnemyTeam();
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateEnemyTeam(){

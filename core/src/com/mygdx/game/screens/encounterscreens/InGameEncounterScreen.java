@@ -1,8 +1,6 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
+import com.mygdx.game.screens.HoverBox;
 import com.mygdx.game.screens.InGameOptionsScreen;
 import com.mygdx.game.screens.NextEncounterSelectionScreen;
 import com.mygdx.game.state.Character;
@@ -35,6 +34,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private Table encounter;
     public Table hoverMenu = new Table();
     private Label coins;
+    private HoverBox hoverBox = new HoverBox();
 
     public InGameEncounterScreen(){
         renderScreen();
@@ -52,6 +52,73 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         populateTeamAndEncounter(entireScreen);
         populateGearAndInventory(entireScreen);
         stage.addActor(entireScreen);
+
+
+        stage.addActor(hoverBox);
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(new InputProcessor() {
+            @Override
+            public boolean keyDown(int keycode) {
+                if (keycode == Input.Keys.NUM_1) {
+                    System.out.println("key pressed");
+                    hoverBox.setVisible(!hoverBox.isVisible());
+                    return true;
+                }
+
+                return false;
+            }
+
+
+
+            @Override
+            public boolean keyUp(int keycode) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean keyTyped(char character) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                return false;
+            }
+
+
+
+            @Override
+            public boolean scrolled(float amountX, float amountY) {
+                return false;
+            }
+        });
+        multiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     private void populateTopBar(Table entireScreen){

@@ -23,7 +23,6 @@ public class WishingWellScreen extends InGameEncounterScreen {
         Table market = new Table();
         market.right().padRight(200);
         populateMarket(market);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateMarket(Table table){

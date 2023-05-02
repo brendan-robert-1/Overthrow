@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
 import com.mygdx.game.screens.HoverBox;
+import com.mygdx.game.screens.HoverClickListener;
 import com.mygdx.game.screens.ItemImageButton;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
@@ -31,7 +32,6 @@ public class OutfitterScreen extends InGameEncounterScreen {
     public void show() {
         Outfitter outfitter = (Outfitter) gameState.getCurrentNode();
         populateOutfitter(outfitter);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateOutfitter(Outfitter outfitter){
@@ -58,45 +58,7 @@ public class OutfitterScreen extends InGameEncounterScreen {
         Texture itemSprite = Assets.getAssetManager().get(item.getItemType().toString() + "_64.png", Texture.class);
         TextureRegionDrawable drawable = new TextureRegionDrawable(itemSprite);
         ImageButton imageButton = new ImageButton(drawable);
-
-
-        InputListener mouseMoved = new InputListener(){
-            @Override
-            public boolean mouseMoved(InputEvent event, float x, float y) {
-                System.out.println(event.getStageX()+ ", " + event.getStageY());
-                hoverMenu.remove();
-                hoverMenu.setFillParent(true);
-                hoverMenu = new Table();
-                stage.addActor(hoverMenu);
-                hoverMenu.add(new HoverBox(event.getStageX(), event.getStageY(), "Hello", "Hello"));
-                return super.mouseMoved(event, x, y);
-            }
-        };
-
-        imageButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                addItemToInventory(item);
-                redirectNextNode();
-            }
-
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                stage.addListener(mouseMoved);
-                System.out.println("Considering " + item.getName());
-                super.enter(event, x, y, pointer, fromActor);
-            }
-
-
-
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                System.out.println("Stopped Considering " + item.getName());
-                hoverMenu.remove();
-                stage.removeListener(mouseMoved);
-                super.exit(event, x, y, pointer, toActor);
-            }
-        });
+        imageButton.addListener(new HoverClickListener(stage, new HoverBox()));
         return imageButton;
     }
 

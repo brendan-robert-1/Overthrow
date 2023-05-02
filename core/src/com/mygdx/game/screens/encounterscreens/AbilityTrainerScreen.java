@@ -17,7 +17,6 @@ public class AbilityTrainerScreen extends InGameEncounterScreen {
     @Override
     public void show() {
         populateChestContents();
-        Gdx.input.setInputProcessor(stage);
     }
 
 

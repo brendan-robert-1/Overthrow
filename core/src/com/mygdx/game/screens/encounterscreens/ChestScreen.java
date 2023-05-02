@@ -14,7 +14,6 @@ public class ChestScreen extends InGameEncounterScreen{
     public void show() {
         // stage.setDebugAll(true);
         populateChestContents();
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateChestContents(){

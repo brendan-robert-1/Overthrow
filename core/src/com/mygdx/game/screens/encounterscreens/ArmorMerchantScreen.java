@@ -15,7 +15,6 @@ public class ArmorMerchantScreen extends InGameEncounterScreen{
     public void show() {
         Table market = new Table().right().padRight(200);
         populateMarket(market);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateMarket(Table table){

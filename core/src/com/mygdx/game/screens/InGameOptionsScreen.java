@@ -25,7 +25,6 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
         characters.setFillParent(true);
         populateCharacterList(characters);
         stage.addListener(escapeKeyboardListener());
-        Gdx.input.setInputProcessor(stage);
     }
 
 
@@ -67,7 +66,6 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
             table.setFillParent(true);
             populateAreYouSure(table);
             stage.addListener(escapeKeyboardListener());
-            Gdx.input.setInputProcessor(stage);
         }
         private void populateAreYouSure(Table table){
             addButton(table, "Return to game", new ClickListener() {

@@ -22,7 +22,6 @@ public class NodeSelectionScreen extends OverthrowScreenAdapter {
         stage.addActor(market);
         market.setFillParent(true);
         populateOutfitter(market);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateOutfitter(Table table){

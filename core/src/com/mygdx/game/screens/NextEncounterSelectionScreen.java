@@ -24,7 +24,6 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
         Table table = new Table();
         table.right().padRight(200);
         populateEncounterOptions(table);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateEncounterOptions(Table table){
