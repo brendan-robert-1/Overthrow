@@ -5,8 +5,10 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.state.CharacterSlots;
 import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.encounters.state.Inventory;
 import com.mygdx.game.encounters.state.gear.EquippedGear;
 import com.mygdx.game.encounters.state.Character;
+import com.mygdx.game.encounters.state.items.ItemSlot;
 
 public class InventoryTable extends Table {
 
@@ -29,7 +31,7 @@ public class InventoryTable extends Table {
         Table table2 = new Table();
         table2.setName("inventoryPanel");
         table2.setBackground(Assets.skin().getDrawable("button-down"));
-        table1.add(table2).padBottom(25.0f).grow().align(Align.top);
+        table1.add(inventoryPanel()).padBottom(25.0f).padTop(10).grow().align(Align.top);
 
         table1.row();
         table2 = new Table();
@@ -61,7 +63,13 @@ public class InventoryTable extends Table {
 
     private Window inventoryPanel(){
         Window inventoryPanel = new Window("Inventory", Assets.skin());
-
+        Inventory inventory = GameState.getInstance().getInventory();
+        Table layoutTable = new Table();
+        for(ItemSlot item : inventory.getInventoryList()){
+            TextButton button = new InventoryButton(item.getName() + "(" + item.getQuantity() + ")");
+            layoutTable.add(button);
+        }
+        inventoryPanel.add(layoutTable).expand().top().left();
         return inventoryPanel;
     }
 

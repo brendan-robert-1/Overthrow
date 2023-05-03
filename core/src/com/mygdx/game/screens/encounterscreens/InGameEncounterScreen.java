@@ -7,15 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.*;
 import com.mygdx.game.screens.widgets.AbilityButton;
-import com.mygdx.game.screens.widgets.HoverBox;
+import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.widgets.InventoryTable;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.encounters.state.Character;
 import com.mygdx.game.encounters.state.GameState;
+
+import java.util.Arrays;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
@@ -26,6 +29,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private InventoryTable inventoryTable;
     private PixelProTextButton coins;
     private InputListener escapeKeyboardListener;
+
 
     public InGameEncounterScreen(){
         renderScreen();
@@ -116,7 +120,20 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
         characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.characterType())))).expand();
-        characterPanel.addListener(new HoverClickListener(stage, new HoverBox()));
+        InspectBox characterInspectBox = new InspectBox("character stats");
+        Table listOfStats = new Table();
+        Label hp = new Label("hp: " + character.hp(), Assets.skin());
+        Label armor = new Label("armor: " + character.hp(), Assets.skin());
+        Label mr = new Label("magic resistance: " + character.hp(), Assets.skin());
+        Label pd = new Label("physical damage: " + character.hp(), Assets.skin());
+        Label md = new Label("magic damage: " + character.hp(), Assets.skin());
+        listOfStats.add(hp).pad(7); listOfStats.row();
+        listOfStats.add(armor).pad(7); listOfStats.row();
+        listOfStats.add(mr).pad(7); listOfStats.row();
+        listOfStats.add(pd).pad(7); listOfStats.row();
+        listOfStats.add(md).pad(7); listOfStats.row();
+        characterInspectBox.add(listOfStats);
+        characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
 
         Table abilityPanels = new Table();
@@ -167,6 +184,8 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             }
         };
     }
+
+
 
     private InputListener inventoryKeyboardListener(){
         return new InputListener(){
