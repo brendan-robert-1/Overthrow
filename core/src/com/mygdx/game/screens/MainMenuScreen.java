@@ -31,9 +31,9 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
     }
 
     private void setCursor(){
-        Pixmap pm = new Pixmap(Gdx.files.internal("cursor.png"));
-        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
-        pm.dispose();
+//        Pixmap pm = new Pixmap(Gdx.files.internal("cursor.png"));
+//        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
+//        pm.dispose();
     }
 
     private void addMainMenuButtons(Table table) {
@@ -73,8 +73,7 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
     }
 
     private void addButton(Table table, String name, ClickListener listener){
-        TextButton button = new TextButton(name, Assets.skin());
-        button.padLeft(5);
+        PixelProTextButton button = new PixelProTextButton(name, Assets.skin());
         button.getLabel().setAlignment(Align.left);
         button.addListener(listener);
         table.add(button).fillX().padBottom(10);

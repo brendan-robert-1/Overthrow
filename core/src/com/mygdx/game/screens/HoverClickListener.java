@@ -22,9 +22,7 @@ public class HoverClickListener extends ClickListener {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-
             stage.addActor(hoverBox);
-            hoverBox.setPosition(Gdx.graphics.getWidth()/2 - hoverBox.getWidth()/2, Gdx.graphics.getHeight()/2 - hoverBox.getHeight()/2);
             stage.addListener(mouseMoved);
             System.out.println("Entering object..");
             super.enter(event, x, y, pointer, fromActor);
@@ -35,7 +33,7 @@ public class HoverClickListener extends ClickListener {
         @Override
         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
             System.out.println("Leaving object");
-           // hoverBox.setVisible(false);
+            hoverBox.setVisible(false);
             stage.removeListener(mouseMoved);
             super.exit(event, x, y, pointer, toActor);
         }
@@ -44,6 +42,8 @@ public class HoverClickListener extends ClickListener {
             return new InputListener(){
                 @Override
                 public boolean mouseMoved(InputEvent event, float x, float y) {
+                    hoverBox.setVisible(true);
+                    hoverBox.setPosition(event.getStageX()+ 10, event.getStageY() + 10);
                     return super.mouseMoved(event, x, y);
                 }
             };

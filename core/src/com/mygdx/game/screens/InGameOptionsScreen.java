@@ -101,6 +101,7 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
 
     private void addButton(Table table, String name, ClickListener listener) {
         TextButton button = new TextButton(name, Assets.skin());
+        button.pad(20);
         button.addListener(listener);
         table.add(button).fillX().padBottom(10);
         table.row();

@@ -5,10 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
@@ -16,9 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.screens.HoverBox;
-import com.mygdx.game.screens.InGameOptionsScreen;
-import com.mygdx.game.screens.NextEncounterSelectionScreen;
+import com.mygdx.game.screens.*;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
@@ -33,8 +28,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private Table teamAndEncounter;
     private Table encounter;
     public Table hoverMenu = new Table();
-    private Label coins;
-    private HoverBox hoverBox = new HoverBox();
+    private PixelProTextButton coins;
 
     public InGameEncounterScreen(){
         renderScreen();
@@ -42,93 +36,31 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
     public void renderScreen(){
         stage.addListener(escapeKeyboardListener());
-        Texture background = Assets.getAssetManager().get("farms.png");
-        TextureRegionDrawable trd = new TextureRegionDrawable(background);
+        TextureRegionDrawable trd = new TextureRegionDrawable(Assets.skin().getRegion("farms"));
         entireScreen = new Table(Assets.skin());
         entireScreen.setBackground(trd);
         entireScreen.setFillParent(true);
-        entireScreen.defaults().pad(10F);
         populateTopBar(entireScreen);
         populateTeamAndEncounter(entireScreen);
-        populateGearAndInventory(entireScreen);
+      //  populateGearAndInventory(entireScreen);
         stage.addActor(entireScreen);
 
 
-        stage.addActor(hoverBox);
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(new InputProcessor() {
-            @Override
-            public boolean keyDown(int keycode) {
-                if (keycode == Input.Keys.NUM_1) {
-                    System.out.println("key pressed");
-                    hoverBox.setVisible(!hoverBox.isVisible());
-                    return true;
-                }
-
-                return false;
-            }
-
-
-
-            @Override
-            public boolean keyUp(int keycode) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-
-
-            @Override
-            public boolean scrolled(float amountX, float amountY) {
-                return false;
-            }
-        });
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
     private void populateTopBar(Table entireScreen){
-        Table topBar = new Table();
-        topBar.defaults().pad(10F);
-        coins = new Label("Coins: " + gameState.getCoin(), Assets.skin());
-        TextButton options = optionsButton();
-        topBar.add(options).expandX().left();
-        topBar.add(coins).expandX().right();
-        entireScreen.add(topBar).growX();
+        Window window = new Window("",Assets.skin(), "top-bar");
+        coins = new PixelProTextButton("Coins: " + gameState.getCoin(), Assets.skin(), "top-bar");
+        coins.padTop(30);
+        PixelProTextButton options = new PixelProTextButton("Options", Assets.skin(), "top-bar");
+        options.addListener(optionClickListener());
+        options.padTop(30);
+        window.add(options).expandX().left();
+        window.add(coins).expandX().right();
+        entireScreen.add(window).growX();
         entireScreen.row();
     }
     private void populateTeamAndEncounter(Table entireScreen) {
@@ -168,15 +100,13 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         entireScreen.add(gearAndInventory).fillX().expandX().left();
         entireScreen.row();
     }
-    private TextButton optionsButton(){
-        TextButton options=  new TextButton("Options", Assets.skin());
-        options.addListener(new ClickListener() {
+    private ClickListener optionClickListener(){
+        return new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 openOptions();
             }
-        });
-        return options;
+        };
     }
 
     private Table characterPanel(Character character) {
@@ -186,7 +116,8 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.getAssetManager().get("plague_doctor.png", Texture.class))).expand();
+        characterPanel.add(new Image(Assets.skin().getRegion("plague_doctor1"))).expand();
+        characterPanel.addListener(new HoverClickListener(stage, new HoverBox()));
         characterPanel.row();
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);

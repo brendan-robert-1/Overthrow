@@ -2,13 +2,17 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.state.Character;
@@ -30,7 +34,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
     }
 
     private void populateCharacterList(Table characters){
-        Label label = new Label("Select a starting character", Assets.skin());
+        Label label = new Label("Select a starting character", Assets.skin(), "title");
         characters.add(label).padBottom(20);
         characters.row();
         characters.row();
@@ -77,7 +81,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
     }
 
     private void addBackToMainMenu(Table table){
-        TextButton button = new TextButton("Back to main menu...", Assets.skin());
+        PixelProTextButton button = new PixelProTextButton("Back to main menu...", Assets.skin());
         button.getLabel().setAlignment(Align.left);
         button.addListener(
                 new ClickListener(){
@@ -93,7 +97,7 @@ public class NewRunScreen extends OverthrowScreenAdapter {
     }
 
     private void addButton(Table table, String name, ClickListener... listener){
-        TextButton button = new TextButton(name, Assets.skin());
+        PixelProTextButton button = new PixelProTextButton(name, Assets.skin());
         button.getLabel().setAlignment(Align.left);
         Stream.of(listener).forEach(button::addListener);
         table.add(button).fillX().padBottom(10);

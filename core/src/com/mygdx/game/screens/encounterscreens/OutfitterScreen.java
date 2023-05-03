@@ -1,6 +1,7 @@
 package com.mygdx.game.screens.encounterscreens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -41,10 +42,6 @@ public class OutfitterScreen extends InGameEncounterScreen {
         title.setAlignment(Align.center);
         outfitterTable.add(title).colspan(outfitterItems.size()).fillX();
         outfitterTable.row();
-
-        NinePatch ninePatch = new NinePatch(Assets.getAssetManager().get("slot_9patch.png", Texture.class), 5, 5, 5, 5);
-        NinePatchDrawable background = new NinePatchDrawable(ninePatch);
-
         for(ItemSlot item : outfitterItems) {
             ImageButton outfitterOptionButton = getOutfitterOptionButton(item);
             outfitterTable.add(outfitterOptionButton).fillX().pad(10);
@@ -55,9 +52,11 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
 
     private ImageButton getOutfitterOptionButton(ItemSlot item) {
-        Texture itemSprite = Assets.getAssetManager().get(item.getItemType().toString() + "_64.png", Texture.class);
-        TextureRegionDrawable drawable = new TextureRegionDrawable(itemSprite);
-        ImageButton imageButton = new ImageButton(drawable);
+        TextureRegionDrawable drawable = new TextureRegionDrawable(Assets.skin().getRegion(item.getItemType().toString()));
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.up = drawable;
+
+        ImageButton imageButton = new ImageButton(style);
         imageButton.addListener(new HoverClickListener(stage, new HoverBox()));
         return imageButton;
     }
