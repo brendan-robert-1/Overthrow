@@ -147,9 +147,9 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         weaponAbilityPanel.defaults().space(10F);
         weaponAbilityPanel.add(new AbilityButton("W1-AB")).space(10);
         weaponAbilityPanel.add(new AbilityButton("W2-AB")).space(10);
-        abilityPanels.add(abilityPanel);
+        abilityPanels.add(abilityPanel).pad(7);
         abilityPanels.row();
-        abilityPanels.add(weaponAbilityPanel);
+        abilityPanels.add(weaponAbilityPanel).pad(7);
         characterPanel.add(abilityPanels);
         characterPanel.defaults().expandX();
         return characterPanel;

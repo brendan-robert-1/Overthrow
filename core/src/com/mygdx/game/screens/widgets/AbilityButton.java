@@ -8,7 +8,7 @@ public class AbilityButton extends TextButton {
     private Skin skin;
 
     public AbilityButton(String text){
-        super(text, Assets.skin());
+        super(text, Assets.skin(), "small");
         this.skin = Assets.skin();
     }
     public AbilityButton(String text, Skin skin) {
