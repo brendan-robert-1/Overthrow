@@ -38,13 +38,13 @@ public class OutfitterScreen extends InGameEncounterScreen {
     private void populateOutfitter(Outfitter outfitter){
         List<ItemSlot> outfitterItems = outfitter.buildOutfitterItems();
         Table outfitterTable = new Table();
-        Label title = new Label("Choose an item to begin the run with", Assets.skin());
+        Label title = new Label("Choose an item to begin the run with", Assets.skin(), "title");
         title.setAlignment(Align.center);
-        outfitterTable.add(title).colspan(outfitterItems.size()).fillX();
+        outfitterTable.add(title).colspan(outfitterItems.size());
         outfitterTable.row();
         for(ItemSlot item : outfitterItems) {
             ImageButton outfitterOptionButton = getOutfitterOptionButton(item);
-            outfitterTable.add(outfitterOptionButton).fillX().pad(10);
+            outfitterTable.add(outfitterOptionButton).pad(10);
         }
         populateEncounter(outfitterTable);
     }
@@ -58,6 +58,13 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
         ImageButton imageButton = new ImageButton(style);
         imageButton.addListener(new HoverClickListener(stage, new HoverBox()));
+        imageButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                addItemToInventory(item);
+                redirectNextNode();
+            }
+        });
         return imageButton;
     }
 

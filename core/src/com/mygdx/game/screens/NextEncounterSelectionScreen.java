@@ -27,13 +27,15 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
     }
 
     private void populateEncounterOptions(Table table){
-        Label label = new Label("Where to next?", Assets.skin());
+        Label label = new Label("Where to next?", Assets.skin(), "title");
         table.row();
         table.add(label).padRight(18);
         GameNode currentNode = getGameState().getCurrentNode();
         Set<GameNode> nextEncounterOptions = getGameState().getMapGraph().getGraph().successors(currentNode);
         for(GameNode encounter : nextEncounterOptions){
             TextButton button = new TextButton(encounter.getDisplayName(), Assets.skin());
+            button.pad(25);
+
             button.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {

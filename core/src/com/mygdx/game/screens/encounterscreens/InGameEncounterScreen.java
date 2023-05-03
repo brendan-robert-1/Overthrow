@@ -27,7 +27,6 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private Table entireScreen;
     private Table teamAndEncounter;
     private Table encounter;
-    public Table hoverMenu = new Table();
     private PixelProTextButton coins;
 
     public InGameEncounterScreen(){
@@ -43,11 +42,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         populateTopBar(entireScreen);
         populateTeamAndEncounter(entireScreen);
         stage.addActor(entireScreen);
-
-
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(stage);
-        Gdx.input.setInputProcessor(multiplexer);
+        Gdx.input.setInputProcessor(stage);
     }
 
     private void populateTopBar(Table entireScreen){
@@ -84,21 +79,6 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         System.out.println("replaced encounter");
     }
 
-    private void populateGearAndInventory(Table entireScreen) {
-        Table gearAndInventory = new Table();
-        Table gear = new Table();
-        gear.defaults();
-        TextButton gearPanel =  new TextButton("Gear", Assets.skin());
-        gear.add(gearPanel).expandX().fillX().height(120);
-        Table inventory = new Table();
-        TextButton inventoryPanel =  new TextButton("Inventory", Assets.skin());
-        inventory.add(inventoryPanel).expandX().fillX().height(120);
-
-        gearAndInventory.add(gear).expand().fill();
-        gearAndInventory.add(inventory).expand().fill();
-        entireScreen.add(gearAndInventory).fillX().expandX().left();
-        entireScreen.row();
-    }
     private ClickListener optionClickListener(){
         return new ClickListener() {
             @Override
@@ -113,7 +93,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             return emptyCharacterPanel();
         }
         Table characterPanel = new Table(Assets.skin());
-        characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
+        characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
         characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.characterType())))).expand();
         characterPanel.addListener(new HoverClickListener(stage, new HoverBox()));
@@ -121,7 +101,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);
        // abilityPanel.add(new TextButton("Gear", Assets.skin())).expandX();
-        abilityPanel.add(new AbilityPortraitImageButton());
+      // abilityPanel.add(new AbilityPortraitImageButton());
         abilityPanel.add(new TextButton("AB1", Assets.skin())).expandX();
         abilityPanel.add(new TextButton("AB2", Assets.skin())).expandX();
         abilityPanel.add(new TextButton("ULT", Assets.skin())).expandX();

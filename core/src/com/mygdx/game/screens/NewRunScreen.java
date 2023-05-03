@@ -43,41 +43,41 @@ public class NewRunScreen extends OverthrowScreenAdapter {
         addButton(characters, "Plague Doctor",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Plague Doctor has been selected.");
+                System.out.println("Knight has been selected.");
+                CharacterSplash splash = new CharacterSplash(Character.CharacterType.PLAGUE_DOCTOR);
                 NewGameGenerator.generateNewGame(Character.CharacterType.PLAGUE_DOCTOR);
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen( ));
+                stage.addActor(splash);
+                stage.addActor(proceedTable());
             }
         });
         addButton(characters, "Knight",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Knight has been selected.");
-               CharacterSplash splash = new CharacterSplash(Character.CharacterType.KNIGHT);
+                CharacterSplash splash = new CharacterSplash(Character.CharacterType.KNIGHT);
+                NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT);
                 stage.addActor(splash);
                 stage.addActor(proceedTable());
-
-               // NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT);
-                //((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
             }
         });
         addButton(characters, "Inventor",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Inventor has been selected.");
+                CharacterSplash splash = new CharacterSplash(Character.CharacterType.INVENTOR);
                 NewGameGenerator.generateNewGame(Character.CharacterType.INVENTOR);
-                ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen()
-                );
+                stage.addActor(splash);
+                stage.addActor(proceedTable());
             }
         });
         addButton(characters, "Leper",new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Leper has been selected.");
+                CharacterSplash splash = new CharacterSplash(Character.CharacterType.LEPER);
                 NewGameGenerator.generateNewGame(Character.CharacterType.LEPER);
-                ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( )
-                );
+                stage.addActor(splash);
+                stage.addActor(proceedTable());
             }
         });
         addBackToMainMenu(characters);
@@ -90,6 +90,14 @@ public class NewRunScreen extends OverthrowScreenAdapter {
         proceedTable.padBottom(70);
         proceedTable.setFillParent(true);
         ProceedButton button = new ProceedButton();
+        button.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(
+                        new GameStateScreen( )
+                );
+            }
+        });
         button.getLabel().setAlignment(Align.left);
         proceedTable.add(button);
         return proceedTable;

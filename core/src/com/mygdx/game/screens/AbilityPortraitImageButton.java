@@ -12,9 +12,9 @@ public class AbilityPortraitImageButton extends ImageButton {
     public AbilityPortraitImageButton(){
         super(Assets.skin());
         TextureRegionDrawable background = new TextureRegionDrawable(Assets.skin().getRegion("ability-portrait"));
-        Drawable up = Assets.skin().getDrawable("MINOR_HEALTH_POT");
+        //Drawable up = Assets.skin().getDrawable("MINOR_HEALTH_POT");
         ImageButtonStyle style = this.getStyle();
         this.setBackground(background);
-        style.up = up;
+        //style.up = up;
     }
 }
