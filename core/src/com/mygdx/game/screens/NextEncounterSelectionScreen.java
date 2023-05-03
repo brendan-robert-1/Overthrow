@@ -8,13 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.Encounter;
-import com.mygdx.game.screens.GameStateScreen;
 import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
-import com.mygdx.game.state.GameNode;
-import com.mygdx.game.state.GameState;
+import com.mygdx.game.encounters.state.GameNode;
+import com.mygdx.game.encounters.state.GameState;
 
-import java.util.List;
 import java.util.Set;
 
 public class NextEncounterSelectionScreen extends InGameEncounterScreen {

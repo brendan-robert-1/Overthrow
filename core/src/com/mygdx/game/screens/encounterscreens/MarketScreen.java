@@ -1,53 +1,56 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Market;
-import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.shops.ShopOffering;
+import com.mygdx.game.screens.widgets.MarketTable;
+import com.mygdx.game.screens.widgets.PixelProTextButton;
+import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.encounters.state.shops.ShopOffering;
 
 import java.util.List;
 
 public class MarketScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
-    private Market currentMarket;
+    private Market market;
     public MarketScreen(){
-        this.currentMarket = (Market) gameState.getCurrentNode();
+        this.market = (Market) gameState.getCurrentNode();
     }
 
     @Override
     public void show() {
-        Market market = (Market) gameState.getCurrentNode();
-        populateMarket(market);
+        populateMarket();
     }
 
-    private void populateMarket(Market market){
+    private void populateMarket(){
         Table table = new Table();
-        Label title = new Label("Market wares", Assets.skin());
-        title.setAlignment(Align.center);
-        table.add(title).colspan(3);
-        table.row();
-        addShopOfferings(table, market.getShopOfferings());
-        TextButton proceed = new TextButton("Next Encounter ->", Assets.skin());
-        proceed.addListener(new ClickListener(){
+        PixelProTextButton viewWares = new PixelProTextButton("View Wares");
+        PixelProTextButton nextEncounter = new PixelProTextButton("Next Encounter");
+
+        viewWares.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Proceeding to next encounter...");
+                displayMarket();
+            }
+        });
+        nextEncounter.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
                 redirectNextNode();
             }
         });
-        table.row();
-        table.add(proceed).colspan(3).align(Align.right);
-     //   table.setDebug(true);
+        table.add(viewWares);
+        table.add(nextEncounter);
         populateEncounter(table);
+    }
+
+    private void displayMarket(){
+        MarketTable marketTable = new MarketTable(market);
+        marketTable.setFillParent(true);
+        stage.addActor(marketTable);
     }
 
 

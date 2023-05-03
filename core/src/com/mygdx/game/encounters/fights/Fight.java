@@ -2,8 +2,7 @@ package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.CharacterSlots;
-import com.mygdx.game.state.EnemySlots;
+import com.mygdx.game.encounters.state.EnemySlots;
 
 import java.util.List;
 

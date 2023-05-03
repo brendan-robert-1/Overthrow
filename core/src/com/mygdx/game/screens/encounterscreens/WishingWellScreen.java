@@ -1,7 +1,5 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -11,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.WishingWell;
-import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
-import com.mygdx.game.state.GameState;
+import com.mygdx.game.encounters.state.GameState;
 
 public class WishingWellScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
@@ -22,13 +19,13 @@ public class WishingWellScreen extends InGameEncounterScreen {
         wishingWell = (WishingWell) gameState.getCurrentNode();
         Table market = new Table();
         market.right().padRight(200);
-        populateMarket(market);
+        populateWishEncounter(market);
     }
 
-    private void populateMarket(Table table){
+    private void populateWishEncounter(Table table){
         Label label = new Label("Wishing Well", Assets.skin(), "title");
         label.setAlignment(Align.center);
-        table.add(label).colspan(2);
+        table.add(label).colspan(2).spaceBottom(10);
         table.row();
         int percentChance = 50;
         Label chance = new Label(percentChance + "% chance the well is in your favor", Assets.skin(), "title");

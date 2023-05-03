@@ -1,8 +1,8 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
-import com.mygdx.game.state.items.ItemType;
+import com.mygdx.game.encounters.state.items.ItemSlot;
+import com.mygdx.game.encounters.state.items.ItemSlotFactory;
+import com.mygdx.game.encounters.state.items.ItemType;
 
 import java.util.ArrayList;
 import java.util.List;

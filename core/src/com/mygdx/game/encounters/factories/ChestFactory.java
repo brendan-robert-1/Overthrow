@@ -2,9 +2,7 @@ package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.Chest;
 import com.mygdx.game.encounters.Encounter;
-import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.GameNode;
 
 public class ChestFactory {
     public static Encounter generateMidActChestFor(OverthrowActs.ActType actType) {

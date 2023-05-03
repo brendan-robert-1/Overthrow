@@ -2,7 +2,7 @@ package com.mygdx.game.encounters.chancetables;
 
 import java.util.*;
 import java.util.stream.IntStream;
-import com.mygdx.game.state.GameNode.NodeType;
+import com.mygdx.game.encounters.state.GameNode.NodeType;
 //TODO import from json
 public class FarmsEncounterChanceTable {
     private Map<Integer, Map<Integer,NodeType>> floorNumberToSlots = new HashMap<>();

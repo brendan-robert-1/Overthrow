@@ -1,16 +1,12 @@
 package com.mygdx.game.screens.encounterscreens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Assets;
-import com.mygdx.game.state.Character.CharacterType;
+import com.mygdx.game.encounters.state.Character.CharacterType;
 
 public class CharacterSplash extends Image {
+
 
     public CharacterSplash(CharacterType characterType){
         super(Assets.skin(),characterType.toString().toLowerCase() + "-splash");

@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
 import com.mygdx.game.screens.encounterscreens.EncounterScreenFactory;
-import com.mygdx.game.state.GameState;
 
 public class GameStateScreen extends InGameEncounterScreen {
 

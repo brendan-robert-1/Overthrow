@@ -1,29 +1,17 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
-import com.mygdx.game.screens.HoverBox;
+import com.mygdx.game.screens.widgets.HoverBox;
 import com.mygdx.game.screens.HoverClickListener;
-import com.mygdx.game.screens.ItemImageButton;
-import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
-import com.mygdx.game.state.items.ItemType;
+import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.encounters.state.items.ItemSlot;
 
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutfitterScreen extends InGameEncounterScreen {

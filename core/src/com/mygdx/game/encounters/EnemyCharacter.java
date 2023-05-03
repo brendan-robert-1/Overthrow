@@ -2,9 +2,7 @@ package com.mygdx.game.encounters;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
-import com.mygdx.game.character.gear.EquippedGear;
-import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
-import com.mygdx.game.state.FightUnit;
+import com.mygdx.game.encounters.state.gear.EquippedGear;
 
 import java.util.List;
 

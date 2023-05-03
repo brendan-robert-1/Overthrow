@@ -1,8 +1,8 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.character.gear.EquippedGear;
-import com.mygdx.game.state.Character;
+import com.mygdx.game.encounters.state.gear.EquippedGear;
+import com.mygdx.game.encounters.state.Character;
 
 import java.util.ArrayList;
 

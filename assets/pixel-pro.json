@@ -1,13 +1,13 @@
 {
 com.badlogic.gdx.graphics.g2d.BitmapFont: {
-	pixel-pro-medium: {
-		file: pixel-pro-medium.fnt
+	pixel-pro: {
+		file: pixel-pro.fnt
 		scaledSize: -1
 		markupEnabled: false
 		flip: false
 	}
-	white-paragraph: {
-		file: pixel-pro.fnt
+	pixel-pro-medium: {
+		file: pixel-pro-medium.fnt
 		scaledSize: -1
 		markupEnabled: false
 		flip: false
@@ -92,7 +92,7 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: {
 		checkboxOn: checkbox-on
 		checkboxOff: checkbox
-		font: white-paragraph
+		font: pixel-pro
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
@@ -111,7 +111,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {
-		font: white-paragraph
+		font: pixel-pro
 		up: button-up
 		down: button-down
 		over: button-over
@@ -119,7 +119,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
-		font: pixel-pro-medium
+		font: pixel-pro
 		fontColor: window_text
 	}
 	title: {
@@ -129,10 +129,10 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
-		font: white-paragraph
-		fontColorSelected: white
+		font: pixel-pro
+		fontColorSelected: window_text
 		fontColorUnselected: window_text
-		selection: selection
+		selection: list
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
@@ -156,7 +156,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
-		font: white-paragraph
+		font: pixel-pro
 		fontColor: window_text
 		scrollStyle: default
 		listStyle: default
@@ -182,23 +182,30 @@ com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
-		font: white-paragraph
+		font: pixel-pro
 		fontColor: window_text
-		up: button-over
+		up: button-up
 		down: button-down
 		over: button-over
 	}
 	top-bar: {
-		font: white-paragraph
+		font: pixel-pro
 		fontColor: window_text
 		up: top-bar-button-up
 		down: top-bar-button-down
 		over: top-bar-button-over
 	}
+	small: {
+		font: pixel-pro
+		fontColor: window_text
+		up: inventory-button-up
+		down: inventory-button-up
+		over: inventory-button-up
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
-		font: white-paragraph
+		font: pixel-pro
 		fontColor: window_text
 		background: textfield
 		cursor: cursor
@@ -226,11 +233,11 @@ com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
 		background: window
-		titleFont: white-paragraph
+		titleFont: pixel-pro-medium
 	}
 	top-bar: {
 		background: top-bar
-		titleFont: white-paragraph
+		titleFont: pixel-pro-medium
 	}
 }
 }
