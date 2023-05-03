@@ -42,7 +42,6 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         entireScreen.setFillParent(true);
         populateTopBar(entireScreen);
         populateTeamAndEncounter(entireScreen);
-      //  populateGearAndInventory(entireScreen);
         stage.addActor(entireScreen);
 
 
@@ -116,12 +115,13 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin())).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.skin().getRegion("plague_doctor1"))).expand();
+        characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.characterType())))).expand();
         characterPanel.addListener(new HoverClickListener(stage, new HoverBox()));
         characterPanel.row();
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);
-        abilityPanel.add(new TextButton("Gear", Assets.skin())).expandX();
+       // abilityPanel.add(new TextButton("Gear", Assets.skin())).expandX();
+        abilityPanel.add(new AbilityPortraitImageButton());
         abilityPanel.add(new TextButton("AB1", Assets.skin())).expandX();
         abilityPanel.add(new TextButton("AB2", Assets.skin())).expandX();
         abilityPanel.add(new TextButton("ULT", Assets.skin())).expandX();
@@ -134,6 +134,16 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         characterPanel.add(weaponAbilityPanel).padBottom(10).expand();
         characterPanel.defaults().expandX();
         return characterPanel;
+    }
+    
+    private String imageFrom(Character.CharacterType characterType){
+        switch(characterType){
+            case PLAGUE_DOCTOR -> { return "plauge_doctor1";}
+            case LEPER -> { return "plauge_doctor1";}
+            case INVENTOR -> { return "plauge_doctor1";}
+            case KNIGHT -> { return "knight";}
+            default -> throw new IllegalStateException("Unexpected value: " + characterType);
+        }
     }
 
     private Table emptyCharacterPanel(){

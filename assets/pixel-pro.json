@@ -191,9 +191,9 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	top-bar: {
 		font: white-paragraph
 		fontColor: window_text
-		up: top-bar
-		down: top-bar
-		over: top-bar
+		up: top-bar-button-up
+		down: top-bar-button-down
+		over: top-bar-button-over
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {

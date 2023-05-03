@@ -3,6 +3,7 @@ package com.mygdx.game.state;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.gear.EquippedGear;
+import com.mygdx.game.character.knight.KnightGenerator;
 import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public record Character(
             case PLAGUE_DOCTOR -> { return PlagueDoctorGenerator.generateStartingPlagueDoctor(); }
             case LEPER -> {return PlagueDoctorGenerator.generateStartingPlagueDoctor();}
             case INVENTOR -> {return PlagueDoctorGenerator.generateStartingPlagueDoctor();}
-            case KNIGHT -> {return PlagueDoctorGenerator.generateStartingPlagueDoctor();}
+            case KNIGHT -> {return KnightGenerator.generateStartingPlagueDoctor();}
             default -> throw new IllegalStateException("Unexpected value: " + characterType);
         }
     }

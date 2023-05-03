@@ -6,24 +6,26 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
+import com.mygdx.game.screens.encounterscreens.CharacterSplash;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.NewGameGenerator;
 
 import java.util.stream.Stream;
 
 public class NewRunScreen extends OverthrowScreenAdapter {
+
     @Override
     public void show() {
+        TextureRegionDrawable trd = new TextureRegionDrawable(Assets.skin().getRegion("splash"));
         Table table = new Table();
+        table.setBackground(trd);
         table.bottom().left();
         table.padLeft(70);
         table.padBottom(70);
@@ -50,10 +52,12 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Knight has been selected.");
-                NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT);
-                ((Game) Gdx.app.getApplicationListener()).setScreen(
-                        new GameStateScreen( )
-                );
+               CharacterSplash splash = new CharacterSplash(Character.CharacterType.KNIGHT);
+                stage.addActor(splash);
+                stage.addActor(proceedTable());
+
+               // NewGameGenerator.generateNewGame(Character.CharacterType.KNIGHT);
+                //((Game) Gdx.app.getApplicationListener()).setScreen(new GameStateScreen());
             }
         });
         addButton(characters, "Inventor",new ClickListener(){
@@ -77,7 +81,18 @@ public class NewRunScreen extends OverthrowScreenAdapter {
             }
         });
         addBackToMainMenu(characters);
+    }
 
+    private Table proceedTable(){
+        Table proceedTable = new Table();
+        proceedTable.bottom().right();
+        proceedTable.padRight(70);
+        proceedTable.padBottom(70);
+        proceedTable.setFillParent(true);
+        ProceedButton button = new ProceedButton();
+        button.getLabel().setAlignment(Align.left);
+        proceedTable.add(button);
+        return proceedTable;
     }
 
     private void addBackToMainMenu(Table table){
