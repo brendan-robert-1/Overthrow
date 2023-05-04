@@ -12,7 +12,7 @@ import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.*;
 import com.mygdx.game.screens.widgets.AbilityButton;
 import com.mygdx.game.screens.widgets.InspectBox;
-import com.mygdx.game.screens.widgets.InventoryTable;
+import com.mygdx.game.screens.widgets.InventoryUi;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
@@ -23,7 +23,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
     private Table entireScreen;
     private Table team;
     private Table encounter;
-    private InventoryTable inventoryTable;
+    private InventoryUi inventoryUi;
     private PixelProTextButton coins;
     private InputListener escapeKeyboardListener;
 
@@ -40,26 +40,32 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         entireScreen = new Table(Assets.skin());
         entireScreen.setBackground(trd);
         entireScreen.setFillParent(true);
-        inventoryTable = new InventoryTable();
+
+        inventoryUi = new InventoryUi();
+        inventoryUi.setMovable(false);
+        inventoryUi.setVisible(false);
+        inventoryUi.setPosition(Gdx.graphics.getWidth()/2 - inventoryUi.getWidth()/2, Gdx.graphics.getHeight()/2 - inventoryUi.getHeight()/2);
+
         encounter = new Table();
-        inventoryTable.setFillParent(true);
         encounter.setFillParent(true);
         populateTopBar(entireScreen);
         populateTeam(entireScreen);
+
         stage.addActor(entireScreen);
         stage.addActor(encounter);
-        stage.addActor(inventoryTable);
+        stage.addActor(inventoryUi);
         Gdx.input.setInputProcessor(stage);
     }
 
     private void populateTopBar(Table entireScreen){
         Window window = new Window("",Assets.skin(), "top-bar");
         coins = new PixelProTextButton("Coins: " + gameState.getCoin(), Assets.skin(), "top-bar");
+        coins.setDisabled(true);
         PixelProTextButton inventory = new PixelProTextButton("Inventory", Assets.skin(), "top-bar");
         inventory.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                inventoryTable.setVisible(!inventoryTable.isVisible());
+                inventoryUi.setVisible(!inventoryUi.isVisible());
             }
         });
         inventory.padTop(30);
@@ -189,7 +195,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if(keycode == Input.Keys.I){
-                    inventoryTable.setVisible(!inventoryTable.isVisible());
+                    inventoryUi.setVisible(!inventoryUi.isVisible());
                 }
                 return super.keyDown(event, Input.Keys.I);
             }

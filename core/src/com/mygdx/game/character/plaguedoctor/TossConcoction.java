@@ -37,6 +37,6 @@ public class TossConcoction implements Ability {
     @Override
     public void execute(Character target, Character source) {
         System.out.println(source.getName() + " is executing toss concoction onto: " + target.getName());
-        target.decreaseHpBy(5);
+        target.decreaseHpBy(15);
     }
 }
