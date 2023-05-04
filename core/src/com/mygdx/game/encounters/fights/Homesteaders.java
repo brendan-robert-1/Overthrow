@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
@@ -94,8 +94,8 @@ public class Homesteaders extends Fight {
     }
 
 
-    private BaseStats dogBaseStats(){
-        return new BaseStats(
+    private Stats dogBaseStats(){
+        return new Stats(
           20,
           20,
           20,
@@ -104,8 +104,8 @@ public class Homesteaders extends Fight {
         );
     }
 
-    private BaseStats momBaseStats(){
-        return new BaseStats(
+    private Stats momBaseStats(){
+        return new Stats(
                 20,
                 20,
                 20,
@@ -114,8 +114,8 @@ public class Homesteaders extends Fight {
         );
     }
 
-    private BaseStats dadBaseStats(){
-        return new BaseStats(
+    private Stats dadBaseStats(){
+        return new Stats(
                 20,
                 20,
                 20,

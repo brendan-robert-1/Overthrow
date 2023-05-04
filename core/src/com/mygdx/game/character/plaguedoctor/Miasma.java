@@ -32,7 +32,7 @@ public class Miasma implements Ability {
     }
 
     @Override
-    public void execute(Character target){
+    public void execute(Character target, Character source){
         System.out.println("Executing bloodlust onto: " + target.getName());
     }
 }

@@ -38,27 +38,42 @@ public class CombatProcessor {
 
     private void processTurn(){
         Character activeCharacter = calculateActiveTurn();
+        //System.out.println("Fastest character is " + activeCharacter.getName() + " with CT of: " + activeCharacter.getChargeTime());
         if(isFriendlyTurn(activeCharacter)){
             processFriendlyTurn(activeCharacter);
         } else {
             processFoeTurn(activeCharacter);
         }
+        increaseChargeTimeExcept(activeCharacter);
     }
+
+
+
+    private void increaseChargeTimeExcept(Character activeCharacter) {
+        characterSlots.asList().stream()
+                .filter(Objects::nonNull)
+                .filter(c -> !c.equals(activeCharacter))
+                .forEach(c -> c.increaseChargeTimeBy(CT_THRESHOLD));
+        enemySlots.asList().stream()
+                .filter(Objects::nonNull)
+                .filter(c -> !c.equals(activeCharacter))
+                .forEach(c -> c.increaseChargeTimeBy(CT_THRESHOLD));
+    }
+
+
 
     //TODO find out how to get ability from UI
     private void processFriendlyTurn(Character activeCharacter){
         Ability ability = activeCharacter.getFirstBasicAbility();
         Character target = findTargetFor(ability, true);
-        execute(ability, target);
+        ability.execute(target, activeCharacter);
     }
 
     private void processFoeTurn(Character activeCharacter){
         Ability ability = activeCharacter.getFirstBasicAbility(); //TODO pick random
         Character target = findTargetFor(ability, false);
-        execute(ability, target);
+        ability.execute(target, activeCharacter);
     }
-
-
 
     private Character findTargetFor(Ability ability, boolean isFriendly) {
         if(ability.offensiveTargetable()){
@@ -66,10 +81,6 @@ public class CombatProcessor {
         } else {
             return findFriendlyTarget(isFriendly); //TODO implement filter if non self targettable and no targets cast flail (3-5 damage to first character)
         }
-    }
-
-    private void execute(Ability ability, Character target){
-        System.out.println("Executing: " + ability.name() + " onto: " + target.getName());
     }
 
     private Character findOffensiveTarget(boolean isFriendly) {
@@ -88,8 +99,6 @@ public class CombatProcessor {
             return enemySlots.asList().stream().filter(Objects::nonNull).findFirst().get();
         }
     }
-
-
 
     private boolean isFriendlyTurn(Character activeCharacter){
         if(characterSlots.asList().contains(activeCharacter)){
@@ -120,6 +129,7 @@ public class CombatProcessor {
         if(fastestEnemy.compareTo(fastestCharacter) < 0){
             return fastestCharacter;
         }
+
         return fastestEnemy;
     }
 
@@ -151,6 +161,7 @@ public class CombatProcessor {
         itemRewards.add(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT));
         rewards.setItemRewards(itemRewards);
         rewards.setCoins(18);
+        System.out.println("Fight complete! Rewarding 18 coins, leather pants, and a minor health pot.");
         return rewards;
     }
 
@@ -159,14 +170,10 @@ public class CombatProcessor {
     private void setStartingChargeTime() {
         characterSlots.asList().stream()
                 .filter(Objects::nonNull)
-                .forEach(c -> {
-                    c.setChargeTime(c.getBaseStats().getSpeed());
-                });
+                .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
         enemySlots.asList().stream()
                 .filter(Objects::nonNull)
-                .forEach(c -> {
-                    c.setChargeTime(c.getBaseStats().getSpeed());
-                });
+                .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
     }
     private void resetChargeTime() {
         characterSlots.asList().stream()

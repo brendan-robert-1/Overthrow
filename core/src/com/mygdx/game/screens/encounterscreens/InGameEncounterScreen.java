@@ -120,10 +120,10 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         InspectBox characterInspectBox = new InspectBox("character stats");
         Table listOfStats = new Table();
         Label hp = new Label("hp: " + character.getHp(), Assets.skin());
-        Label armor = new Label("armor: " + character.getBaseStats().getArmor(), Assets.skin());
-        Label mr = new Label("magic resistance: " + character.getBaseStats().getMagicResistance(), Assets.skin());
-        Label pd = new Label("physical damage: " + character.getBaseStats().getPhysicalDamage(), Assets.skin());
-        Label md = new Label("magic damage: " + character.getBaseStats().getMagicalDamage(), Assets.skin());
+        Label armor = new Label("armor: " + character.getStats().getArmor(), Assets.skin());
+        Label mr = new Label("magic resistance: " + character.getStats().getMagicResistance(), Assets.skin());
+        Label pd = new Label("physical damage: " + character.getStats().getPhysicalDamage(), Assets.skin());
+        Label md = new Label("magic damage: " + character.getStats().getMagicalDamage(), Assets.skin());
         listOfStats.add(hp).pad(7); listOfStats.row();
         listOfStats.add(armor).pad(7); listOfStats.row();
         listOfStats.add(mr).pad(7); listOfStats.row();

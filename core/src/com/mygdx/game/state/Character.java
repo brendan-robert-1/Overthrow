@@ -18,18 +18,14 @@ public class Character implements Comparable<Character>{
     private Ability secondBasicAbility;
     private Ability ultimateAbility;
     private List<Buff> buffs;
-    private BaseStats baseStats;
-
-
-
-
-
+    private final Stats baseStats;
+    private Stats inCombatStatModifiers = new Stats();
     private int chargeTime;
 
 
 
     public Character(String name, CharacterType characterType, int hp, EquippedGear equippedGear, Ability firstBasicAbility, Ability secondBasicAbility,
-                     Ability ultimateAbility, List<Buff> buffs, BaseStats baseStats, int chargeTime) {
+                     Ability ultimateAbility, List<Buff> buffs, Stats baseStats, int chargeTime) {
         this.name = name;
         this.characterType = characterType;
         this.hp = hp;
@@ -48,8 +44,6 @@ public class Character implements Comparable<Character>{
     public int compareTo(Character o) {
         return Integer.compare(chargeTime, o.chargeTime);
     }
-
-
 
     public enum CharacterType {
         PLAGUE_DOCTOR, LEPER, INVENTOR, KNIGHT,
@@ -191,19 +185,15 @@ public class Character implements Comparable<Character>{
         return this;
     }
 
-
-
-    public BaseStats getBaseStats() {
-        return baseStats;
+    public Stats getStats(){
+        return new Stats(
+                baseStats.getArmor() + inCombatStatModifiers.getArmor(),
+                baseStats.getMagicResistance() + inCombatStatModifiers.getMagicResistance(),
+                baseStats.getPhysicalDamage() + inCombatStatModifiers.getPhysicalDamage(),
+                baseStats.getMagicalDamage() + inCombatStatModifiers.getMagicalDamage(),
+                baseStats.getSpeed() + inCombatStatModifiers.getSpeed()
+        );
     }
-
-
-
-    public Character setBaseStats(BaseStats baseStats) {
-        this.baseStats = baseStats;
-        return this;
-    }
-
 
 
     public int getChargeTime() {
@@ -222,6 +212,27 @@ public class Character implements Comparable<Character>{
     public Character setChargeTime(int chargeTime) {
         this.chargeTime = chargeTime;
         return this;
+    }
+
+    public Stats getInCombatStatModifiers() {
+        return inCombatStatModifiers;
+    }
+
+    public void increaseHpBy(int increase){
+        this.setHp(hp + increase);
+    }
+
+    public void decreaseHpBy(int decreaseBy){
+        this.setHp(hp - decreaseBy);
+    }
+
+    public Character setInCombatStatModifiers(Stats inCombatStatModifiers) {
+        this.inCombatStatModifiers = inCombatStatModifiers;
+        return this;
+    }
+
+    public void increaseChargeTimeBy(int increaseBy){
+        this.chargeTime+=increaseBy;
     }
 
 

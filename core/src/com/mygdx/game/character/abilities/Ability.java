@@ -5,5 +5,5 @@ public interface Ability{
     String description();
     boolean offensiveTargetable();
     boolean selfTargetable();
-    void execute(Character target);
+    void execute(Character target, Character source);
 }

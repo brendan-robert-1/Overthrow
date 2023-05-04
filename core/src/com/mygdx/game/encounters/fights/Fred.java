@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
@@ -58,8 +58,8 @@ public class Fred extends Fight{
 
 
 
-    private BaseStats baseStats() {
-        return new BaseStats(
+    private Stats baseStats() {
+        return new Stats(
                 50,
                 50,
                 50,

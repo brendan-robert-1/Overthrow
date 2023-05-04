@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
@@ -93,8 +93,8 @@ public class MutatedLivestock extends Fight{
         );
     }
 
-    private BaseStats cowBaseStats(){
-        return new BaseStats(
+    private Stats cowBaseStats(){
+        return new Stats(
                 20,
                 20,
                 20,
@@ -102,8 +102,8 @@ public class MutatedLivestock extends Fight{
                 20
         );
     }
-    private BaseStats chickenBaseStats(){
-        return new BaseStats(
+    private Stats chickenBaseStats(){
+        return new Stats(
                 20,
                 20,
                 20,
@@ -111,8 +111,8 @@ public class MutatedLivestock extends Fight{
                 20
         );
     }
-    private BaseStats pigBaseStats(){
-        return new BaseStats(
+    private Stats pigBaseStats(){
+        return new Stats(
                 20,
                 20,
                 20,

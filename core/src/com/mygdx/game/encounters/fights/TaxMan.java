@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
@@ -78,8 +78,8 @@ public class TaxMan extends Fight{
 
 
 
-    private BaseStats collectorBaseStats() {
-        return new BaseStats(
+    private Stats collectorBaseStats() {
+        return new Stats(
                 20,
                 20,
                 20,
@@ -89,8 +89,8 @@ public class TaxMan extends Fight{
     }
 
 
-    private BaseStats taxmanBaseStats() {
-        return new BaseStats(
+    private Stats taxmanBaseStats() {
+        return new Stats(
                 20,
                 20,
                 20,

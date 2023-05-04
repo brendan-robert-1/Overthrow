@@ -1,19 +1,23 @@
 package com.mygdx.game.state;
 
-public class BaseStats {
+public class Stats {
 
-    private int armor;
-    private int magicResistance;
-    private int physicalDamage;
-    private int magicalDamage;
-    private int speed;
+    private int armor = 0;
+    private int magicResistance = 0;
+    private int physicalDamage = 0;
+    private int magicalDamage = 0;
+    private int speed = 0;
 
-    public BaseStats(int armor, int magicResistance, int physicalDamage, int magicalDamage, int speed){
+    public Stats(int armor, int magicResistance, int physicalDamage, int magicalDamage, int speed){
         this.armor = armor;
         this.magicResistance = magicResistance;
         this.magicalDamage = magicalDamage;
         this.physicalDamage = physicalDamage;
         this.speed = speed;
+    }
+
+    public Stats(){
+
     }
 
 
