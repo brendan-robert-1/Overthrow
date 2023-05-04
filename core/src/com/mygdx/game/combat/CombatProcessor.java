@@ -2,11 +2,13 @@ package com.mygdx.game.combat;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.encounters.fights.Fight;
-import com.mygdx.game.screens.state.*;
-import com.mygdx.game.screens.state.Character;
-import com.mygdx.game.screens.state.items.ItemSlot;
-import com.mygdx.game.screens.state.items.ItemSlotFactory;
-import com.mygdx.game.screens.state.items.ItemType;
+import com.mygdx.game.state.Character;
+import com.mygdx.game.state.CharacterSlots;
+import com.mygdx.game.state.EnemySlots;
+import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.state.items.ItemSlotFactory;
+import com.mygdx.game.state.items.ItemType;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -47,11 +49,13 @@ public class CombatProcessor {
     private void processFriendlyTurn(Character activeCharacter){
         Ability ability = activeCharacter.getFirstBasicAbility();
         Character target = findTargetFor(ability, true);
+        execute(ability, target);
     }
 
     private void processFoeTurn(Character activeCharacter){
         Ability ability = activeCharacter.getFirstBasicAbility(); //TODO pick random
         Character target = findTargetFor(ability, false);
+        execute(ability, target);
     }
 
 
@@ -64,13 +68,25 @@ public class CombatProcessor {
         }
     }
 
+    private void execute(Ability ability, Character target){
+        System.out.println("Executing: " + ability.name() + " onto: " + target.getName());
+    }
 
     private Character findOffensiveTarget(boolean isFriendly) {
-        return null;
+        if(isFriendly){
+            return enemySlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+        } else {
+            return characterSlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+        }
     }
 
 
     private Character findFriendlyTarget(boolean isFriendly) {
+        if(isFriendly){
+            return characterSlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+        } else {
+            return enemySlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+        }
     }
 
 
@@ -101,7 +117,7 @@ public class CombatProcessor {
                 .filter(Objects::nonNull)
                 .max(Comparator.comparing(Character::getChargeTime))
                 .get();
-        if(fastestEnemy.compareTo(fastestCharacter) > 0){
+        if(fastestEnemy.compareTo(fastestCharacter) < 0){
             return fastestCharacter;
         }
         return fastestEnemy;
@@ -142,6 +158,11 @@ public class CombatProcessor {
 
     private void setStartingChargeTime() {
         characterSlots.asList().stream()
+                .filter(Objects::nonNull)
+                .forEach(c -> {
+                    c.setChargeTime(c.getBaseStats().getSpeed());
+                });
+        enemySlots.asList().stream()
                 .filter(Objects::nonNull)
                 .forEach(c -> {
                     c.setChargeTime(c.getBaseStats().getSpeed());

@@ -8,8 +8,8 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.screens.widgets.MarketTable;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
-import com.mygdx.game.screens.state.GameState;
-import com.mygdx.game.screens.state.shops.ShopOffering;
+import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.shops.ShopOffering;
 
 import java.util.List;
 

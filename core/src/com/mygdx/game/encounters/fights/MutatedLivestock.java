@@ -1,14 +1,14 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.screens.state.BaseStats;
-import com.mygdx.game.screens.state.Character;
-import com.mygdx.game.screens.state.gear.EquippedGear;
+import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.Character;
+import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.screens.state.EnemySlots;
+import com.mygdx.game.state.EnemySlots;
 
 import java.util.ArrayList;
 import java.util.Arrays;

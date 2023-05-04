@@ -3,12 +3,12 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.state.CharacterSlots;
-import com.mygdx.game.screens.state.GameState;
-import com.mygdx.game.screens.state.Inventory;
-import com.mygdx.game.screens.state.gear.EquippedGear;
-import com.mygdx.game.screens.state.Character;
-import com.mygdx.game.screens.state.items.ItemSlot;
+import com.mygdx.game.state.CharacterSlots;
+import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.Inventory;
+import com.mygdx.game.state.gear.EquippedGear;
+import com.mygdx.game.state.Character;
+import com.mygdx.game.state.items.ItemSlot;
 
 public class InventoryTable extends Table {
 

@@ -1,6 +1,7 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.state.Character;
 
 public class Bloodlet implements Ability {
 
@@ -28,6 +29,13 @@ public class Bloodlet implements Ability {
     @Override
     public boolean selfTargetable() {
         return true;
+    }
+
+
+
+    @Override
+    public void execute(Character target) {
+        System.out.println("Executing bloodlust onto: " + target.getName());
     }
 }
 

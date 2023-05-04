@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.WishingWell;
-import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.state.GameState;
 
 public class WishingWellScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();

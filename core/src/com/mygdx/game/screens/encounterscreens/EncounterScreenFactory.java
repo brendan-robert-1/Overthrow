@@ -1,7 +1,7 @@
 package com.mygdx.game.screens.encounterscreens;
 
 import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.state.GameState;
 
 public class EncounterScreenFactory {
     public static OverthrowScreenAdapter getScreenFor(GameState gameState){

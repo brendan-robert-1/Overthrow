@@ -1,12 +1,12 @@
 package com.mygdx.game.character.knight;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.screens.state.BaseStats;
-import com.mygdx.game.screens.state.gear.EquippedGear;
+import com.mygdx.game.state.BaseStats;
+import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.state.Character;
 
 import java.util.ArrayList;
 

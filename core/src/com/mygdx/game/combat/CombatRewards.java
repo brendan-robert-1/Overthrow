@@ -1,6 +1,6 @@
 package com.mygdx.game.combat;
 
-import com.mygdx.game.screens.state.items.ItemSlot;
+import com.mygdx.game.state.items.ItemSlot;
 
 import java.util.List;
 

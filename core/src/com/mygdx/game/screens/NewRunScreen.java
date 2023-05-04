@@ -12,8 +12,8 @@ import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.encounterscreens.CharacterSplash;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.screens.widgets.ProceedButton;
-import com.mygdx.game.screens.state.Character.CharacterType;
-import com.mygdx.game.screens.state.NewGameGenerator;
+import com.mygdx.game.state.Character.CharacterType;
+import com.mygdx.game.state.NewGameGenerator;
 
 import java.util.stream.Stream;
 

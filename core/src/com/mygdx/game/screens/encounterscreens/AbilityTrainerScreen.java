@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.state.GameState;
 
 public class AbilityTrainerScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();

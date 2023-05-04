@@ -2,13 +2,13 @@ package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
-import com.mygdx.game.screens.state.GameNode.NodeType;
+import com.mygdx.game.state.GameNode.NodeType;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static com.mygdx.game.screens.state.GameNode.NodeType.*;
+import static com.mygdx.game.state.GameNode.NodeType.*;
 
 public class QuestionMarkFactory {
 

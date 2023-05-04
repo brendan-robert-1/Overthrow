@@ -10,8 +10,8 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.HoverClickListener;
-import com.mygdx.game.screens.state.GameState;
-import com.mygdx.game.screens.state.items.ItemSlot;
+import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.items.ItemSlot;
 
 import java.util.List;
 

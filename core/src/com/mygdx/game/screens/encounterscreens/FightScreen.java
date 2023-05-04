@@ -8,8 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 import com.mygdx.game.combat.CombatProcessor;
 import com.mygdx.game.encounters.fights.Fight;
-import com.mygdx.game.screens.state.GameState;
-import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.state.GameState;
+import com.mygdx.game.state.Character;
 
 public class FightScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();

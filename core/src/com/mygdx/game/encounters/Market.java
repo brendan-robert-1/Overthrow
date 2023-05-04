@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.screens.state.items.ItemSlot;
-import com.mygdx.game.screens.state.shops.ShopOffering;
+import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.state.shops.ShopOffering;
 
 import java.util.ArrayList;
 import java.util.List;

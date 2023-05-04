@@ -14,8 +14,8 @@ import com.mygdx.game.screens.widgets.AbilityButton;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.widgets.InventoryTable;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
-import com.mygdx.game.screens.state.Character;
-import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.state.Character;
+import com.mygdx.game.state.GameState;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
