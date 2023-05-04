@@ -1,6 +1,6 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.encounters.state.items.ItemSlot;
+import com.mygdx.game.screens.state.items.ItemSlot;
 
 import java.util.ArrayList;
 import java.util.List;

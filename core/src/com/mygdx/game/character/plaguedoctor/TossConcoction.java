@@ -15,4 +15,18 @@ public class TossConcoction implements Ability {
     public String description() {
         return "AOE debuffing attack";
     }
+
+
+
+    @Override
+    public boolean offensiveTargetable() {
+        return true;
+    }
+
+
+
+    @Override
+    public boolean selfTargetable() {
+        return false;
+    }
 }

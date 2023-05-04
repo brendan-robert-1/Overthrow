@@ -1,6 +1,5 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -11,8 +10,8 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.HoverClickListener;
-import com.mygdx.game.encounters.state.GameState;
-import com.mygdx.game.encounters.state.items.ItemSlot;
+import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.screens.state.items.ItemSlot;
 
 import java.util.List;
 

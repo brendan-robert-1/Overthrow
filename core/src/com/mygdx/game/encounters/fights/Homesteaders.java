@@ -1,14 +1,14 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.BaseStats;
+import com.mygdx.game.screens.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.encounters.EnemyCharacter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.state.EnemySlots;
-
+import com.mygdx.game.screens.state.EnemySlots;
+import com.mygdx.game.screens.state.Character;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,37 +50,77 @@ public class Homesteaders extends Fight {
             );
         }
 
-    private EnemyCharacter generateHomeSteaderDog(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.HOMESTEADER_DOG,
+    private Character generateHomeSteaderDog(){
+        return new Character(
+                "Dog",
+                Character.CharacterType.HOMESTEADER_DOG,
                 DOG_STARTING_HP,
                 new EquippedGear(),
                 DOG_STARTING_BASIC_ABILITY_1,
                 DOG_STARTING_BASIC_ABILITY_2,
                 DOG_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                dogBaseStats(),
+                0
         );
     }
-    private EnemyCharacter generateHomeSteaderMom(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.HOMESTEADER_MOM,
+    private Character generateHomeSteaderMom(){
+        return new Character(
+                "Homesteader",
+                Character.CharacterType.HOMESTEADER_MOM,
                 MOM_STARTING_HP,
                 new EquippedGear(),
                 MOM_STARTING_BASIC_ABILITY_1,
                 MOM_STARTING_BASIC_ABILITY_2,
                 MOM_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                momBaseStats(),
+                0
         );
     }
-    private EnemyCharacter generateHomeSteaderDad(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.HOMESTEADER_DAD,
+    private Character generateHomeSteaderDad(){
+        return new Character(
+                "Homesteader",
+                Character.CharacterType.HOMESTEADER_DAD,
                 DAD_STARTING_HP,
                 new EquippedGear(),
                 DAD_STARTING_BASIC_ABILITY_1,
                 DAD_STARTING_BASIC_ABILITY_2,
                 DAD_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                dogBaseStats(),
+                0
+        );
+    }
+
+
+    private BaseStats dogBaseStats(){
+        return new BaseStats(
+          20,
+          20,
+          20,
+          20,
+          20
+        );
+    }
+
+    private BaseStats momBaseStats(){
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
+        );
+    }
+
+    private BaseStats dadBaseStats(){
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
         );
     }
 

@@ -15,5 +15,19 @@ public class Bloodlet implements Ability {
     public String description() {
         return "Minor hp damage, 3 turns of debuff removal from target.";
     }
+
+
+
+    @Override
+    public boolean offensiveTargetable() {
+        return false;
+    }
+
+
+
+    @Override
+    public boolean selfTargetable() {
+        return true;
+    }
 }
 

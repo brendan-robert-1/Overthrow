@@ -1,8 +1,9 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
-import com.mygdx.game.encounters.state.Character;
+import com.mygdx.game.screens.state.BaseStats;
+import com.mygdx.game.screens.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.Character;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,19 @@ public class PlagueDoctorGenerator {
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                baseStats(),
+                0
+        );
+    }
+
+    private static BaseStats baseStats(){
+        return new BaseStats(
+                50,
+                50,
+                50,
+                50,
+                50
         );
     }
 }

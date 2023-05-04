@@ -3,7 +3,7 @@ package com.mygdx.game.screens.encounterscreens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.state.Character.CharacterType;
+import com.mygdx.game.screens.state.Character.CharacterType;
 
 public class CharacterSplash extends Image {
 

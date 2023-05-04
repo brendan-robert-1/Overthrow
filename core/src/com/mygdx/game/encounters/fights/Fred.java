@@ -1,13 +1,15 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.BaseStats;
+import com.mygdx.game.screens.state.CharacterSlots;
+import com.mygdx.game.screens.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.encounters.EnemyCharacter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.state.EnemySlots;
+import com.mygdx.game.screens.state.EnemySlots;
+import com.mygdx.game.screens.state.Character;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,17 +42,35 @@ public class Fred extends Fight{
         );
     }
 
-    private EnemyCharacter generateFred(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.FRED,
+    private Character generateFred(){
+        return new Character(
+                "Fred",
+                Character.CharacterType.FRED,
                 FRED_STARTING_HP,
                 new EquippedGear(),
                 FRED_STARTING_BASIC_ABILITY_1,
                 FRED_STARTING_BASIC_ABILITY_2,
                 FRED_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                baseStats(),
+                0
         );
     }
+
+
+
+    private BaseStats baseStats() {
+        return new BaseStats(
+                50,
+                50,
+                50,
+                50,
+                50
+        );
+    }
+
+
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Fred");

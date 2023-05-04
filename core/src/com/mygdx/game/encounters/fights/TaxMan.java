@@ -1,14 +1,15 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.BaseStats;
+import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.screens.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.encounters.EnemyCharacter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.state.EnemySlots;
-
+import com.mygdx.game.screens.state.EnemySlots;
+import com.mygdx.game.screens.state.Character;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,28 +43,65 @@ public class TaxMan extends Fight{
         );
     }
 
-    private EnemyCharacter generateTaxMan(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.TAX_MAN,
+    private Character generateTaxMan(){
+        return new Character(
+                "Tax Man",
+                Character.CharacterType.TAX_MAN,
                 TAX_MAN_STARTING_HP,
                 new EquippedGear(),
                 TAX_MAN_STARTING_BASIC_ABILITY_1,
                 TAX_MAN_STARTING_BASIC_ABILITY_2,
                 TAX_MAN_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                taxmanBaseStats(),
+                0
         );
     }
-    private EnemyCharacter generateTaxCollector(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.TAX_COLLECTOR,
+
+
+
+
+    private Character generateTaxCollector(){
+        return new Character(
+                "Tax Collector",
+                Character.CharacterType.TAX_COLLECTOR,
                 TAX_COLLECTOR_STARTING_HP,
                 new EquippedGear(),
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_1,
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_2,
                 TAX_COLLECTOR_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                collectorBaseStats(),
+                0
         );
     }
+
+
+
+    private BaseStats collectorBaseStats() {
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
+        );
+    }
+
+
+    private BaseStats taxmanBaseStats() {
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
+        );
+    }
+
+
+
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("TaxMan");

@@ -3,12 +3,12 @@ package com.mygdx.game.encounters.factories;
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
-import com.mygdx.game.encounters.state.items.ItemSlot;
-import com.mygdx.game.encounters.state.items.ItemSlotFactory;
-import com.mygdx.game.encounters.state.items.ItemType;
-import com.mygdx.game.encounters.state.shops.MarketOffering;
-import com.mygdx.game.encounters.state.shops.MarketOfferingFactory;
-import com.mygdx.game.encounters.state.shops.PotentialOffering;
+import com.mygdx.game.screens.state.items.ItemSlot;
+import com.mygdx.game.screens.state.items.ItemSlotFactory;
+import com.mygdx.game.screens.state.items.ItemType;
+import com.mygdx.game.screens.state.shops.MarketOffering;
+import com.mygdx.game.screens.state.shops.MarketOfferingFactory;
+import com.mygdx.game.screens.state.shops.PotentialOffering;
 
 import java.util.HashMap;
 import java.util.List;

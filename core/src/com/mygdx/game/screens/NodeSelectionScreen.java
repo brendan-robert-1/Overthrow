@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.encounters.state.GameNode;
-import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.screens.state.GameNode;
+import com.mygdx.game.screens.state.GameState;
 
 import java.util.Set;
 

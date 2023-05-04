@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
 import com.mygdx.game.screens.*;
@@ -15,10 +14,8 @@ import com.mygdx.game.screens.widgets.AbilityButton;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.widgets.InventoryTable;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
-import com.mygdx.game.encounters.state.Character;
-import com.mygdx.game.encounters.state.GameState;
-
-import java.util.Arrays;
+import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.screens.state.GameState;
 
 public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
 
@@ -117,16 +114,16 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
             return emptyCharacterPanel();
         }
         Table characterPanel = new Table(Assets.skin());
-        characterPanel.add(new Label(character.name() + "        hp: " + character.hp(), Assets.skin(), "title")).expandX();
+        characterPanel.add(new Label(character.getName() + "        hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.characterType())))).expand();
+        characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.getCharacterType())))).expand();
         InspectBox characterInspectBox = new InspectBox("character stats");
         Table listOfStats = new Table();
-        Label hp = new Label("hp: " + character.hp(), Assets.skin());
-        Label armor = new Label("armor: " + character.hp(), Assets.skin());
-        Label mr = new Label("magic resistance: " + character.hp(), Assets.skin());
-        Label pd = new Label("physical damage: " + character.hp(), Assets.skin());
-        Label md = new Label("magic damage: " + character.hp(), Assets.skin());
+        Label hp = new Label("hp: " + character.getHp(), Assets.skin());
+        Label armor = new Label("armor: " + character.getBaseStats().getArmor(), Assets.skin());
+        Label mr = new Label("magic resistance: " + character.getBaseStats().getMagicResistance(), Assets.skin());
+        Label pd = new Label("physical damage: " + character.getBaseStats().getPhysicalDamage(), Assets.skin());
+        Label md = new Label("magic damage: " + character.getBaseStats().getMagicalDamage(), Assets.skin());
         listOfStats.add(hp).pad(7); listOfStats.row();
         listOfStats.add(armor).pad(7); listOfStats.row();
         listOfStats.add(mr).pad(7); listOfStats.row();

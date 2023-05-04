@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.screens.state.GameState;
 
 public class WeaponMerchantScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();

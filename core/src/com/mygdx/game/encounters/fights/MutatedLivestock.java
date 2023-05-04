@@ -1,13 +1,14 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.BaseStats;
+import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.screens.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
-import com.mygdx.game.encounters.EnemyCharacter;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.state.EnemySlots;
+import com.mygdx.game.screens.state.EnemySlots;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,37 +50,74 @@ public class MutatedLivestock extends Fight{
         );
     }
 
-    private EnemyCharacter generateChicken(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.MUTATED_CHICKEN,
+    private Character generateChicken(){
+        return new Character(
+                "Chicken",
+                Character.CharacterType.MUTATED_CHICKEN,
                 MUTATED_COW_STARTING_HP,
                 new EquippedGear(),
                 MUTATED_COW_STARTING_BASIC_ABILITY_1,
                 MUTATED_COW_STARTING_BASIC_ABILITY_2,
                 MUTATED_COW_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                chickenBaseStats(),
+                0
         );
     }
-    private EnemyCharacter generatePig(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.MUTATED_PIG,
+    private Character generatePig(){
+        return new Character(
+                "Pig",
+                Character.CharacterType.MUTATED_PIG,
                 MUTATED_CHICKEN_STARTING_HP,
                 new EquippedGear(),
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_1,
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_2,
                 MUTATED_CHICKEN_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                pigBaseStats(),
+                0
         );
     }
-    private EnemyCharacter generateCow(){
-        return new EnemyCharacter(
-                EnemyCharacter.EnemyType.MUTATED_COW,
+    private Character generateCow(){
+        return new Character(
+                "Cow",
+                Character.CharacterType.MUTATED_COW,
                 MUTATED_PIG_STARTING_HP,
                 new EquippedGear(),
                 MUTATED_PIG_STARTING_BASIC_ABILITY_1,
                 MUTATED_PIG_STARTING_BASIC_ABILITY_2,
                 MUTATED_PIG_STARTING_ULT_ABILITY,
-                new ArrayList<>()
+                new ArrayList<>(),
+                cowBaseStats(),
+                0
+        );
+    }
+
+    private BaseStats cowBaseStats(){
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
+        );
+    }
+    private BaseStats chickenBaseStats(){
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
+        );
+    }
+    private BaseStats pigBaseStats(){
+        return new BaseStats(
+                20,
+                20,
+                20,
+                20,
+                20
         );
     }
     @Override

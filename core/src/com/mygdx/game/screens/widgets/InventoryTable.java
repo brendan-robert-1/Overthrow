@@ -3,12 +3,12 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.state.CharacterSlots;
-import com.mygdx.game.encounters.state.GameState;
-import com.mygdx.game.encounters.state.Inventory;
-import com.mygdx.game.encounters.state.gear.EquippedGear;
-import com.mygdx.game.encounters.state.Character;
-import com.mygdx.game.encounters.state.items.ItemSlot;
+import com.mygdx.game.screens.state.CharacterSlots;
+import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.screens.state.Inventory;
+import com.mygdx.game.screens.state.gear.EquippedGear;
+import com.mygdx.game.screens.state.Character;
+import com.mygdx.game.screens.state.items.ItemSlot;
 
 public class InventoryTable extends Table {
 
@@ -63,6 +63,7 @@ public class InventoryTable extends Table {
 
     private Window inventoryPanel(){
         Window inventoryPanel = new Window("Inventory", Assets.skin());
+        //inventoryPanel.setModal(true);
         Inventory inventory = GameState.getInstance().getInventory();
         Table layoutTable = new Table();
         for(ItemSlot item : inventory.getInventoryList()){
@@ -70,6 +71,7 @@ public class InventoryTable extends Table {
             layoutTable.add(button);
         }
         inventoryPanel.add(layoutTable).expand().top().left();
+        inventoryPanel.pack();
         return inventoryPanel;
     }
 
@@ -78,7 +80,7 @@ public class InventoryTable extends Table {
             return null;
         } else {
             Table gearPanelTable = new Table();
-            EquippedGear gear = character.equippedGear();
+            EquippedGear gear = character.getEquippedGear();
             InventoryButton helmet = new InventoryButton("Helmet: " + gear.helmet);
             TextButton necklace = new InventoryButton("Necklace: " + gear.necklace);
             TextButton chestplate = new InventoryButton("Chestplate: " + gear.chestplate);
@@ -106,7 +108,7 @@ public class InventoryTable extends Table {
             gearPanelTable.row();
             gearPanelTable.add(leftHandWeapon).expand().growX().space(10);
             gearPanelTable.row();
-            Window entireGearPanelWindow = new Window(character.name() + "  hp: " + character.hp(), Assets.skin());
+            Window entireGearPanelWindow = new Window(character.getName() + "  hp: " + character.getHp(), Assets.skin());
             entireGearPanelWindow.add(gearPanelTable).pad(15);
             return entireGearPanelWindow;
         }

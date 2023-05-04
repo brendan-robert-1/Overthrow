@@ -6,26 +6,32 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.EnemyCharacter;
+import com.mygdx.game.combat.CombatProcessor;
 import com.mygdx.game.encounters.fights.Fight;
-import com.mygdx.game.encounters.state.GameState;
+import com.mygdx.game.screens.state.GameState;
+import com.mygdx.game.screens.state.Character;
 
 public class FightScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
+    private CombatProcessor combatProcessor;
 
     @Override
     public void show() {
-        // stage.setDebugAll(true);
         populateEnemyTeam();
+        Fight fight = (Fight) gameState.getCurrentNode();
+        combatProcessor = new CombatProcessor();
+        combatProcessor.processCombat(fight);
     }
+
+
 
     private void populateEnemyTeam(){
         Table table = new Table(Assets.skin());
         Fight fightNode = (Fight) gameState.getCurrentNode();
-        EnemyCharacter firstEnemy = fightNode.startingUnits().firstCharacter();
-        EnemyCharacter secondEnemy = fightNode.startingUnits().secondCharacter();
-        EnemyCharacter thirdEnemy = fightNode.startingUnits().thirdCharacter();
-        EnemyCharacter fourthEnemy = fightNode.startingUnits().fourthCharacter();
+        Character firstEnemy = fightNode.startingUnits().firstCharacter();
+        Character secondEnemy = fightNode.startingUnits().secondCharacter();
+        Character thirdEnemy = fightNode.startingUnits().thirdCharacter();
+        Character fourthEnemy = fightNode.startingUnits().fourthCharacter();
         addEnemyPanel(table, firstEnemy);
         addEnemyPanel(table, secondEnemy);
         addEnemyPanel(table, thirdEnemy);
@@ -44,7 +50,7 @@ public class FightScreen extends InGameEncounterScreen {
     }
 
 
-    private void addEnemyPanel(Table mainTable, EnemyCharacter character) {
+    private void addEnemyPanel(Table mainTable, Character character) {
         Table table = new Table(Assets.skin());
         if(character == null){
             Label label = new Label("Empty slot.", Assets.skin());
@@ -52,23 +58,11 @@ public class FightScreen extends InGameEncounterScreen {
             mainTable.add(table);
             return;
         }
-        Label label = new Label(character.characterType().toString(), Assets.skin());
-        Label hp = new Label("HP: " + character.hp(), Assets.skin());
-        TextButton equippedGear = new TextButton("Gear", Assets.skin());
-        TextButton ability1 = new TextButton(character.firstBasicAbility().name(), Assets.skin());
-        TextButton ability2 = new TextButton(character.secondBasicAbility().name(), Assets.skin());
-        TextButton ultimate = new TextButton(character.ultimateAbility().name(), Assets.skin());
+        Label label = new Label(character.getCharacterType().toString(), Assets.skin());
+        Label hp = new Label("HP: " + character.getHp(), Assets.skin());
         table.add(label);
         table.row();
         table.add(hp);
-        table.row();
-        table.add(ability1);
-        table.row();
-        table.add(ability2);
-        table.row();
-        table.add(ultimate);
-        table.row();
-        table.add(equippedGear);
         mainTable.add(table);
     }
 }
