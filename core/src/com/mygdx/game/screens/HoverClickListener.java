@@ -13,6 +13,10 @@ public class HoverClickListener extends ClickListener {
     private Stage stage;
     private InspectBox inspectBox;
 
+    public HoverClickListener(Stage stage, String title, String description){
+        this(stage, new InspectBox(title, description));
+    }
+
     public HoverClickListener(Stage stage, InspectBox toDisplay){
         this.stage = stage;
         this.inspectBox = toDisplay;
@@ -35,7 +39,6 @@ public class HoverClickListener extends ClickListener {
                 inspectBox.setVisible(false);
                 stage.removeListener(mouseMoved);
             }
-
             super.exit(event, x, y, pointer, toActor);
         }
 

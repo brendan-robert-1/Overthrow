@@ -97,7 +97,6 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	default: {
-		imageUp: MINOR_HEALTH_POT
 		up: button-up
 		down: button-down
 		over: button-over

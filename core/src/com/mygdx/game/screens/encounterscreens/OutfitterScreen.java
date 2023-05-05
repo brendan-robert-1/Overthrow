@@ -1,23 +1,27 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Outfitter;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.HoverClickListener;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.ItemSlot;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 
 public class OutfitterScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
-
+    private Skin skin = Assets.skin();
     @Override
     public void show() {
         Outfitter outfitter = (Outfitter) gameState.getCurrentNode();
@@ -26,50 +30,52 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
     private void populateOutfitter(Outfitter outfitter){
         List<ItemSlot> outfitterItems = outfitter.buildOutfitterItems();
-        Table outfitterTable = new Table();
-        Label title = new Label("Choose an item to begin the run with", Assets.skin(), "title");
-        title.setAlignment(Align.center);
-        outfitterTable.add(title).colspan(outfitterItems.size());
-        outfitterTable.row();
-        for(ItemSlot item : outfitterItems) {
-            Table outfitterOptionButton = getOutfitterOptionButton(item);
-            outfitterTable.add(outfitterOptionButton).expandY().fillY();
+        Label label = new Label("Choose an item to start the run.",Assets.skin(), "title");
+
+
+        Table table = new Table();
+        table.setFillParent(true);
+
+        table = new Table();
+        table.add(label).colspan(outfitterItems.size());
+        table.row();
+        table.row();
+        table.setName("outfitterOptions");
+        table.pad(0.0f);
+        table.align(Align.bottomRight);
+        table.setFillParent(true);
+        table.padBottom(150);
+        table.padRight(50);
+
+
+        for(ItemSlot item : outfitterItems){
+            table.add(getOptionTable(item)).space(20.0f).minSize(150.0f);
         }
-        populateEncounter(outfitterTable);
+
+        stage.addActor(table);
+
+
     }
 
+    private Table getOptionTable(ItemSlot itemSlot){
+        Table table1 = new Table();
+        table1.setBackground(Assets.skin().getDrawable("button-up"));
 
-
-    private Table getOutfitterOptionButton(ItemSlot item) {
-        Table outfitterOption = new Table();
-        TextureRegionDrawable drawable = new TextureRegionDrawable(Assets.skin().getRegion(item.getItemType().toString()));
-        Drawable background = Assets.skin().getDrawable("button-over");
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        style.imageUp = drawable;
-        style.imageDown = drawable;
-        style.imageOver = drawable;
-        style.up = background;
-        style.down = background;
-        style.over = background;
-        ImageButton imageButton = new ImageButton(style);
-        outfitterOption.addListener(new HoverClickListener(stage, new InspectBox()));
-        outfitterOption.addListener(new ClickListener(){
+        Image image = new Image(Assets.skin(), itemSlot.getSpriteName());
+        image.setScaling(Scaling.fill);
+        table1.addListener(new HoverClickListener(stage, new InspectBox(itemSlot.getName(), itemSlot.getDescription())));
+        table1.addListener(clickOption(itemSlot));
+        table1.add(image).minSize(150).maxSize(150);
+        return table1;
+    }
+    private ClickListener clickOption(ItemSlot item){
+        return new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                addItemToInventory(item);
+                GameState.getInstance().getInventory().addItem(item);
                 redirectNextNode();
+                super.clicked(event, x, y);
             }
-        });
-        outfitterOption.add(imageButton).expand().fill();
-        return outfitterOption;
+        };
     }
-
-
-
-    private void addItemToInventory(ItemSlot item){
-        System.out.println("Adding chosen outfitter item to inventory: " + item.getName());
-        gameState.getInventory().addItem(item);
-    }
-
-
 }

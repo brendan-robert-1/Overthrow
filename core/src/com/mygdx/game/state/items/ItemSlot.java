@@ -4,14 +4,16 @@ public class ItemSlot{
     private ItemType itemType;
     private String name;
     private String description;
+    private String spriteName;
+    private int quantity;
 
 
-
-    public ItemSlot(ItemType itemType, String name, String description, int quantity) {
+    public ItemSlot(ItemType itemType, String name, String description, int quantity, String spriteName) {
         this.itemType = itemType;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
+        this.spriteName = spriteName;
     }
 
 
@@ -68,5 +70,14 @@ public class ItemSlot{
 
 
 
-    private int quantity;
+    public String getSpriteName() {
+        return spriteName;
+    }
+
+
+
+    public ItemSlot setSpriteName(String spriteName) {
+        this.spriteName = spriteName;
+        return this;
+    }
 }

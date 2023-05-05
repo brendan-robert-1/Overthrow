@@ -51,6 +51,18 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         populateTopBar(entireScreen);
         populateTeam(entireScreen);
 
+        Image image = new Image();
+        image.setDrawable(Assets.skin().getDrawable("health-pot"));
+        Image image2 = new Image();
+        image2.setDrawable(Assets.skin().getDrawable("hide-shield"));
+        Table spriteTest = new Table();
+        spriteTest.add(image).grow();
+        spriteTest.add(image2).grow();
+        spriteTest.setWidth(208);
+        spriteTest.setHeight(104);
+        spriteTest.setPosition(Gdx.graphics.getWidth()/2 - spriteTest.getWidth()/2, Gdx.graphics.getHeight()/2 - spriteTest.getHeight()/2);
+        spriteTest.setDebug(true);
+//        stage.addActor(spriteTest);
         stage.addActor(entireScreen);
         stage.addActor(encounter);
         stage.addActor(inventoryUi);
@@ -123,7 +135,7 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         characterPanel.add(new Label(character.getName() + "        hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
         characterPanel.add(new Image(Assets.skin().getRegion(imageFrom(character.getCharacterType())))).expand();
-        InspectBox characterInspectBox = new InspectBox("character stats");
+        InspectBox characterInspectBox = new InspectBox("character stats", "character stats");
         Table listOfStats = new Table();
         Label hp = new Label("hp: " + character.getHp(), Assets.skin());
         Label armor = new Label("armor: " + character.getStats().getArmor(), Assets.skin());
@@ -143,6 +155,8 @@ public abstract class InGameEncounterScreen extends OverthrowScreenAdapter {
         abilityPanels.setBackground(Assets.skin().getDrawable("button-over"));
         Table abilityPanel = new Table();
         abilityPanel.defaults().space(10F);
+
+
         abilityPanel.add(new AbilityButton("AB1")).space(10);
         abilityPanel.add(new AbilityButton("AB2")).space(10);
         abilityPanel.add(new AbilityButton("ULT")).space(10);

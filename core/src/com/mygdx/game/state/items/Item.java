@@ -4,6 +4,23 @@ public class Item {
     private ItemType itemType;
     private String displayName;
     private String description;
+    private String spriteName;
+
+
+    public String getSpriteName() {
+        return spriteName;
+    }
+
+
+
+    public Item setSpriteName(String spriteName) {
+        this.spriteName = spriteName;
+        return this;
+    }
+
+
+
+
 
 
 

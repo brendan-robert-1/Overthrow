@@ -27,4 +27,13 @@ public record CharacterSlots (
     public List<Character> asList(){
         return Arrays.asList(firstCharacter, secondCharacter, thirdCharacter, fourthCharacter);
     }
+
+    public int numberOfActiveCharacters(){
+        int characters = 0;
+        if(firstCharacter != null) characters++;
+        if(secondCharacter != null) characters++;
+        if(thirdCharacter != null) characters++;
+        if(fourthCharacter != null) characters++;
+        return characters;
+    }
 }

@@ -1,12 +1,17 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
+import com.mygdx.game.character.Inventor;
+import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.Inventory;
+import com.mygdx.game.state.items.Item;
 import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.state.items.ItemSlotFactory;
 
 public class InventoryUi extends Window {
 
@@ -17,10 +22,10 @@ public class InventoryUi extends Window {
     private CharacterSlots characterSlots;
     private Skin skin;
     private Table inventorySlotTable;
-    private Table character1EquipSlots;
-    private Table character2EquipSlots;
-    private Table character3EquipSlots;
-    private Table character4EquipSlots;
+    private Table character1EquipSlots = new Table();
+    private Table character2EquipSlots = new Table();
+    private Table character3EquipSlots = new Table();
+    private Table character4EquipSlots = new Table();
 
     public InventoryUi(){
         super("Inventory", Assets.skin());
@@ -28,46 +33,67 @@ public class InventoryUi extends Window {
         skin = Assets.skin();
         inventorySlotTable = new Table();
         populate();
-        this.add(inventorySlotTable).colspan(4).padBottom(20).padTop(20);
+        this.add(inventorySlotTable).colspan(characterSlots.numberOfActiveCharacters()).pad(20);
         this.row();
-        this.add(character1EquipSlots).padBottom(20).padLeft(20).padRight(20);
-        this.add(character2EquipSlots).padBottom(20).padLeft(20).padRight(20);
 
-        this.add(character3EquipSlots).padBottom(20).padLeft(20).padRight(20);
-        this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
+        if(characterSlots.firstCharacter() != null){
+            this.add(character1EquipSlots).padBottom(20).padLeft(20).padRight(20);
+        }
+        if(characterSlots.secondCharacter() != null){
+            this.add(character2EquipSlots).padBottom(20).padLeft(20).padRight(20);
+        }
+        if(characterSlots.thirdCharacter() != null){
+            this.add(character3EquipSlots).padBottom(20).padLeft(20).padRight(20);
+        }
+        if(characterSlots.fourthCharacter() != null){
+            this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
+        }
         this.pack();
     }
 
     private void populate(){
         buildInventoryPanel();
-        populateInventory();
+        populateInventory(inventorySlotTable);
 
         buildGearPanels();
         populateGearPanels();
     }
 
     private void buildGearPanels(){
-        character1EquipSlots = buildGearPanel(1);
-        character2EquipSlots = buildGearPanel(2);
-        character3EquipSlots = buildGearPanel(3);
-        character4EquipSlots = buildGearPanel(4);
+        CharacterSlots characterSlots = GameState.getInstance().getCharacterSlots();
+        if(characterSlots.firstCharacter() != null){
+            character1EquipSlots = buildGearPanel(characterSlots.firstCharacter());
+        }
+        if(characterSlots.secondCharacter() != null){
+            character2EquipSlots = buildGearPanel(characterSlots.secondCharacter());
+        }
+        if(characterSlots.thirdCharacter() != null){
+            character3EquipSlots = buildGearPanel(characterSlots.thirdCharacter());
+        }
+        if(characterSlots.fourthCharacter() != null){
+            character4EquipSlots = buildGearPanel(characterSlots.fourthCharacter());
+        }
     }
+
     private void populateGearPanels(){}
 
-    private Table buildGearPanel(int characterNumber){
+    private Table buildGearPanel(Character character){
         Table table = new Table();
-        Label label = new Label("Character: " + characterNumber, Assets.skin());
-        InventorySlot headSlot = new InventorySlot();
-        InventorySlot capeSlot = new InventorySlot();
-        InventorySlot earringSlot = new InventorySlot();
-        InventorySlot weapon1Slot = new InventorySlot();
-        InventorySlot chestSlot = new InventorySlot();
-        InventorySlot weapon2Slot = new InventorySlot();
-        InventorySlot necklaceSlot = new InventorySlot();
-        InventorySlot gloveSlot = new InventorySlot();
-        InventorySlot feetSlot = new InventorySlot();
-        InventorySlot ringSlot = new InventorySlot();
-        InventorySlot legSlot = new InventorySlot();
+        Image image = new Image(Assets.skin().getPatch("opaque-background"));
+        table.setBackground(image.getDrawable());
+        table.pad(30);
+        Label label = new Label(character.getName(), Assets.skin());
+        InventorySlot headSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("helmet-splash")));
+        InventorySlot capeSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("cape-splash")));
+        InventorySlot earringSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("earring-splash")));
+        InventorySlot weapon1Slot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("weapon-splash")));
+        InventorySlot chestSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("chest-splash")));
+        InventorySlot weapon2Slot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("shield-splash")));
+        InventorySlot necklaceSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("necklace-splash")));
+        InventorySlot gloveSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("gloves-splash")));
+        InventorySlot feetSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("feet-splash")));
+        InventorySlot ringSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("ring-splash")));
+        InventorySlot legSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("legs-splash")));
         table.add(label).colspan(3);
         table.row();
         table.add();
@@ -97,11 +123,15 @@ public class InventoryUi extends Window {
     }
 
 
-    private void populateInventory(){
+    private void populateInventory(Table targetTable){
         Inventory inventory = GameState.getInstance().getInventory();
         clearInventoryItems(inventorySlotTable);
-        for(ItemSlot item : inventory.getInventoryList()){
-
+        Array<Cell> cells = targetTable.getCells();
+        for(int i = 0; i < inventory.getInventoryList().size(); i++){
+            ItemSlot itemSlot = inventory.getInventoryList().get(i);
+            InventorySlot slot = (InventorySlot) cells.get(i).getActor();
+            Image image = new Image(Assets.skin().getRegion(itemSlot.getSpriteName()));
+            slot.add(image);
         }
     }
 
@@ -114,7 +144,6 @@ public class InventoryUi extends Window {
         }
     }
     private void buildInventoryPanel(){
-
         Table table = new Table();
         table.setBackground(new Image(
                 Assets.skin().getPatch("inventory-button-up")

@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.mygdx.game.Assets;
+import com.mygdx.game.state.items.ItemSlot;
 
 public class InventorySlot extends Stack {
     private Stack defaultBackground;
@@ -13,7 +14,7 @@ public class InventorySlot extends Stack {
 
     public InventorySlot(){
         defaultBackground = new Stack();
-        Image image = new Image(Assets.skin().getPatch("ability-portrait"));
+        Image image = new Image(Assets.skin().getPatch("inventory-background"));
         defaultBackground.add(image);
         this.add(defaultBackground);
     }
@@ -62,6 +63,11 @@ public class InventorySlot extends Stack {
             return items.size - 2;
         }
         return 0;
+    }
+
+    public void addItem(ItemSlot itemSlot){
+        this.numItems = itemSlot.getQuantity();
+        this.decal = new Image(Assets.skin().getAtlas().findRegion("shield-splash")); //get actual item image using factory
     }
 
 }
