@@ -1,5 +1,6 @@
 package com.mygdx.game.state;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.knight.KnightGenerator;
@@ -233,6 +234,10 @@ public class Character implements Comparable<Character>{
 
     public void increaseChargeTimeBy(int increaseBy){
         this.chargeTime+=increaseBy;
+    }
+
+    public boolean isFriendly(){
+         return GameState.getInstance().getCharacterSlots().contains(this);
     }
 
 

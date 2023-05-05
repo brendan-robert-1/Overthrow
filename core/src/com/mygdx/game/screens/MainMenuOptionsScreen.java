@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
+import com.mygdx.game.screens.encounterscreens.StageManager;
 
 public class MainMenuOptionsScreen extends OverthrowScreenAdapter {
     @Override
@@ -78,6 +79,6 @@ public class MainMenuOptionsScreen extends OverthrowScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        StageManager.getInstance().getViewport().update(width, height);
     }
 }

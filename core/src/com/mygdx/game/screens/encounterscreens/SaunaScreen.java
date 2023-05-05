@@ -28,7 +28,7 @@ public class SaunaScreen extends InGameEncounterScreen {
         TextButton addCoals = new TextButton("Add Coals", Assets.skin());
         addCoals.addListener(addCoalsClickListener());
         table.add(addCoals).pad(10).fillX();
-        populateEncounter(table);
+        stage.addActor(table);
     }
 
     private ClickListener normalHeatClickListener(){

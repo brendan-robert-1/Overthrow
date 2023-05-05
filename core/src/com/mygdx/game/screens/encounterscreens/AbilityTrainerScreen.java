@@ -36,6 +36,5 @@ public class AbilityTrainerScreen extends InGameEncounterScreen {
             }
         });
         table.add(proceed).padTop(25);
-        populateEncounter(table);
     }
 }

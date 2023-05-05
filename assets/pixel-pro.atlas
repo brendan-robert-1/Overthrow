@@ -4,23 +4,99 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-RUSTY-DAGGER
-  rotate: false
-  xy: 295, 21
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
 black-opaque
   rotate: false
-  xy: 1313, 889
+  xy: 1292, 141
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
+farms
+  rotate: false
+  xy: 1, 1051
+  size: 1800, 900
+  orig: 1800, 900
+  offset: 0, 0
+  index: -1
+splash
+  rotate: false
+  xy: 1, 1051
+  size: 1800, 900
+  orig: 1800, 900
+  offset: 0, 0
+  index: -1
+farms2
+  rotate: false
+  xy: 1, 599
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+font-title-export
+  rotate: false
+  xy: 1029, 132
+  size: 261, 265
+  orig: 261, 265
+  offset: 0, 0
+  index: -1
+knight-splash
+  rotate: false
+  xy: 1029, 537
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+knight2-large
+  rotate: false
+  xy: 1550, 141
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+pixel-pro
+  rotate: false
+  xy: 1, 85
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pixel-pro-medium
+  rotate: false
+  xy: 515, 85
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+plague_doctor-splash
+  rotate: false
+  xy: 1543, 399
+  size: 410, 650
+  orig: 410, 650
+  offset: 0, 0
+  index: -1
+
+pixel-pro2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+KNIGHT2
+  rotate: false
+  xy: 258, 646
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+RUSTY-DAGGER
+  rotate: false
+  xy: 724, 861
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 button-down
   rotate: false
-  xy: 1571, 901
+  xy: 208, 667
   size: 48, 48
   split: 13, 13, 15, 14
   pad: 0, 0, 0, 0
@@ -29,7 +105,7 @@ button-down
   index: -1
 button-over
   rotate: false
-  xy: 711, 178
+  xy: 790, 877
   size: 48, 48
   split: 13, 13, 15, 14
   pad: 0, 0, 0, 0
@@ -38,7 +114,7 @@ button-over
   index: -1
 button-up
   rotate: false
-  xy: 1901, 1286
+  xy: 208, 717
   size: 48, 48
   split: 13, 13, 15, 14
   pad: 0, 0, 0, 0
@@ -47,35 +123,35 @@ button-up
   index: -1
 cape-splash
   rotate: false
-  xy: 1, 21
+  xy: 1, 197
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 checkbox
   rotate: false
-  xy: 54, 1
+  xy: 208, 449
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 checkbox-on
   rotate: false
-  xy: 74, 1
+  xy: 984, 1002
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 chest-splash
   rotate: false
-  xy: 1669, 1049
+  xy: 259, 724
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 cursor
   rotate: false
-  xy: 1571, 892
+  xy: 586, 886
   size: 4, 7
   split: 1, 1, 2, 2
   pad: 0, 0, 0, 0
@@ -84,77 +160,63 @@ cursor
   index: -1
 earring-splash
   rotate: false
-  xy: 1313, 490
+  xy: 357, 724
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-farms
+enemy-placeholder-medium
   rotate: false
-  xy: 1, 1147
-  size: 1800, 900
-  orig: 1800, 900
-  offset: 0, 0
-  index: -1
-splash
-  rotate: false
-  xy: 1, 1147
-  size: 1800, 900
-  orig: 1800, 900
+  xy: 1, 767
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: -1
 feet-splash
   rotate: false
-  xy: 515, 130
+  xy: 592, 927
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 font-export
   rotate: false
-  xy: 778, 350
+  xy: 1, 295
   size: 142, 143
   orig: 142, 143
   offset: 0, 0
   index: -1
-font-title-export
-  rotate: false
-  xy: 515, 228
-  size: 261, 265
-  orig: 261, 265
-  offset: 0, 0
-  index: -1
 gloves-splash
   rotate: false
-  xy: 1571, 1049
+  xy: 1, 99
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 health-pot
   rotate: false
-  xy: 197, 21
-  size: 96, 96
-  orig: 96, 96
+  xy: 592, 861
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 helmet-splash
   rotate: false
-  xy: 1313, 588
+  xy: 1, 1
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 hide-shield
   rotate: false
-  xy: 1669, 951
-  size: 96, 96
-  orig: 96, 96
+  xy: 658, 861
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 horizontal-split-pane
   rotate: false
-  xy: 1509, 673
+  xy: 455, 809
   size: 5, 11
   split: 2, 2, 2, 2
   orig: 5, 11
@@ -162,46 +224,39 @@ horizontal-split-pane
   index: -1
 inventory-background
   rotate: false
-  xy: 1411, 588
-  size: 96, 96
+  xy: 99, 64
+  size: 80, 80
   split: 5, 5, 5, 5
   pad: 0, 0, 0, 0
-  orig: 96, 96
+  orig: 80, 80
   offset: 0, 0
   index: -1
 inventory-button-up
   rotate: false
-  xy: 1516, 747
+  xy: 208, 517
   size: 48, 48
   split: 13, 13, 15, 14
   pad: 0, 0, 0, 0
   orig: 48, 48
   offset: 0, 0
   index: -1
-knight
+knight2-big
   rotate: false
-  xy: 1803, 1336
-  size: 192, 384
-  orig: 192, 384
-  offset: 0, 0
-  index: -1
-knight-splash
-  rotate: false
-  xy: 927, 377
-  size: 384, 768
-  orig: 384, 768
+  xy: 462, 895
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
 legs-splash
   rotate: false
-  xy: 1803, 1238
+  xy: 690, 927
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 list
   rotate: false
-  xy: 1, 7
+  xy: 197, 164
   size: 51, 12
   split: 2, 2, 2, 2
   pad: 5, 5, 5, 5
@@ -210,7 +265,7 @@ list
   index: -1
 list-selection
   rotate: false
-  xy: 493, 101
+  xy: 336, 706
   size: 16, 16
   split: 3, 6, 0, 0
   pad: 0, 0, 0, 0
@@ -219,79 +274,58 @@ list-selection
   index: -1
 minor-health-pot
   rotate: false
-  xy: 1313, 392
+  xy: 455, 699
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 minor-poison-damage-pot
   rotate: false
-  xy: 1411, 490
+  xy: 145, 244
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 minus
   rotate: false
-  xy: 1313, 377
+  xy: 790, 862
   size: 12, 13
   orig: 12, 13
   offset: 0, 0
   index: -1
 necklace-splash
   rotate: false
-  xy: 778, 252
+  xy: 788, 927
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 opaque-background
   rotate: false
-  xy: 1767, 1113
+  xy: 302, 690
   size: 32, 32
   split: 7, 7, 7, 7
   pad: 0, 0, 0, 0
   orig: 32, 32
   offset: 0, 0
   index: -1
-pixel-pro
-  rotate: false
-  xy: 1, 633
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
-pixel-pro-medium
-  rotate: false
-  xy: 1, 119
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
-plague_doctor-splash
-  rotate: false
-  xy: 515, 495
-  size: 410, 650
-  orig: 410, 650
-  offset: 0, 0
-  index: -1
 plauge_doctor
   rotate: false
-  xy: 1803, 1722
+  xy: 1, 440
   size: 205, 325
   orig: 205, 325
   offset: 0, 0
   index: -1
 plus
   rotate: false
-  xy: 761, 213
+  xy: 258, 631
   size: 12, 13
   orig: 12, 13
   offset: 0, 0
   index: -1
 progress-bar
   rotate: false
-  xy: 1901, 1238
+  xy: 208, 469
   size: 46, 46
   split: 10, 10, 10, 10
   pad: 6, 6, 6, 6
@@ -300,42 +334,42 @@ progress-bar
   index: -1
 progress-bar-fill
   rotate: false
-  xy: 2046, 2013
+  xy: 553, 761
   size: 1, 34
   orig: 1, 34
   offset: 0, 0
   index: -1
 progress-bar-fill-vert
   rotate: false
-  xy: 2010, 2046
+  xy: 984, 1022
   size: 34, 1
   orig: 34, 1
   offset: 0, 0
   index: -1
 radio
   rotate: false
-  xy: 1803, 1154
+  xy: 197, 146
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 radio-on
   rotate: false
-  xy: 1671, 933
+  xy: 181, 128
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ring-splash
   rotate: false
-  xy: 99, 21
+  xy: 886, 927
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 round-gray
   rotate: false
-  xy: 876, 306
+  xy: 99, 251
   size: 42, 42
   split: 13, 13, 13, 13
   pad: 9, 9, 5, 5
@@ -344,7 +378,7 @@ round-gray
   index: -1
 round-white
   rotate: false
-  xy: 1869, 1194
+  xy: 940, 883
   size: 42, 42
   split: 13, 13, 13, 13
   pad: 9, 9, 5, 5
@@ -353,7 +387,7 @@ round-white
   index: -1
 round-white-small
   rotate: false
-  xy: 393, 43
+  xy: 152, 38
   size: 24, 24
   split: 10, 10, 10, 10
   pad: 10, 10, 2, 2
@@ -362,7 +396,7 @@ round-white-small
   index: -1
 selectbox
   rotate: false
-  xy: 1516, 847
+  xy: 99, 22
   size: 51, 40
   split: 2, 31, 2, 27
   pad: 2, 35, 2, 2
@@ -371,7 +405,7 @@ selectbox
   index: -1
 selection
   rotate: false
-  xy: 515, 119
+  xy: 250, 167
   size: 9, 9
   split: 2, 1, 2, 1
   pad: 4, 3, 4, 3
@@ -380,14 +414,14 @@ selection
   index: -1
 shield-splash
   rotate: false
-  xy: 613, 130
+  xy: 462, 797
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 slider-horizontal
   rotate: false
-  xy: 778, 240
+  xy: 99, 10
   size: 20, 10
   split: 4, 4, 4, 4
   pad: 1, 2, 2, 2
@@ -396,14 +430,14 @@ slider-horizontal
   index: -1
 slider-knob
   rotate: false
-  xy: 711, 152
+  xy: 560, 869
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 slider-vertical
   rotate: false
-  xy: 1516, 725
+  xy: 560, 847
   size: 9, 20
   split: 4, 3, 3, 3
   pad: 3, 3, 2, 2
@@ -412,14 +446,14 @@ slider-vertical
   index: -1
 speed-pot
   rotate: false
-  xy: 1411, 392
+  xy: 99, 146
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 textfield
   rotate: false
-  xy: 1951, 1292
+  xy: 258, 680
   size: 42, 42
   split: 8, 8, 8, 8
   orig: 42, 42
@@ -427,7 +461,7 @@ textfield
   index: -1
 top-bar
   rotate: false
-  xy: 1516, 797
+  xy: 208, 617
   size: 48, 48
   split: 13, 13, 4, 14
   pad: 0, 0, 0, 0
@@ -436,7 +470,7 @@ top-bar
   index: -1
 top-bar-button-up
   rotate: false
-  xy: 1516, 797
+  xy: 208, 617
   size: 48, 48
   split: 13, 13, 4, 14
   pad: 0, 0, 0, 0
@@ -445,7 +479,7 @@ top-bar-button-up
   index: -1
 top-bar-button-down
   rotate: false
-  xy: 443, 69
+  xy: 208, 567
   size: 48, 48
   split: 13, 12, 4, 14
   pad: 0, 0, 0, 0
@@ -454,7 +488,7 @@ top-bar-button-down
   index: -1
 top-bar-button-over
   rotate: false
-  xy: 1621, 901
+  xy: 890, 877
   size: 48, 48
   split: 13, 13, 4, 14
   pad: 0, 0, 0, 0
@@ -463,21 +497,21 @@ top-bar-button-over
   index: -1
 touchpad
   rotate: false
-  xy: 1313, 686
+  xy: 259, 822
   size: 201, 201
   orig: 201, 201
   offset: 0, 0
   index: -1
 touchpad-knob
   rotate: false
-  xy: 1803, 1172
+  xy: 197, 178
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 vertical-split-pane
   rotate: false
-  xy: 1997, 1715
+  xy: 99, 244
   size: 11, 5
   split: 2, 2, 1, 1
   pad: 1, 1, 1, 1
@@ -486,21 +520,21 @@ vertical-split-pane
   index: -1
 weapon-splash
   rotate: false
-  xy: 1571, 951
+  xy: 145, 342
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 white
   rotate: false
-  xy: 922, 492
+  xy: 940, 880
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 window
   rotate: false
-  xy: 393, 69
+  xy: 840, 877
   size: 48, 48
   split: 13, 13, 15, 14
   pad: 0, 0, 0, 0

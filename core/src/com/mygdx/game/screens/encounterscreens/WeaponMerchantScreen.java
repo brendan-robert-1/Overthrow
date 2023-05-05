@@ -44,7 +44,7 @@ public class WeaponMerchantScreen extends InGameEncounterScreen {
         });
         table.add(proceed).padTop(25);
         table.row();
-        populateEncounter(table);
+        stage.addActor(table);
     }
 }
 

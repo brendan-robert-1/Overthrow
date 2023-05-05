@@ -44,7 +44,7 @@ public class MarketScreen extends InGameEncounterScreen {
         });
         table.add(viewWares);
         table.add(nextEncounter);
-        populateEncounter(table);
+        stage.addActor(table);
     }
 
     private void displayMarket(){

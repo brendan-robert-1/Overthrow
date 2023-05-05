@@ -24,6 +24,8 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
     }
 
     private void populateEncounterOptions(Table table){
+        Table entireScreen = new Table();
+        entireScreen.setFillParent(true);
         Label label = new Label("Where to next?", Assets.skin(), "title");
         table.row();
         table.add(label).padRight(18);
@@ -43,6 +45,7 @@ public class NextEncounterSelectionScreen extends InGameEncounterScreen {
             });
             table.add(button).pad(10);
         }
-        populateEncounter(table);
+        entireScreen.add(table).expand().right().padRight(20);
+        stage.addActor(entireScreen);
     }
 }

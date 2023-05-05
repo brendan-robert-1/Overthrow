@@ -1,5 +1,6 @@
-package com.mygdx.game.combat;
+package com.mygdx.game.screens.encounterscreens.combat;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.encounters.fights.Fight;
 import com.mygdx.game.state.Character;
@@ -21,16 +22,21 @@ public class CombatProcessor {
     private EnemySlots enemySlots;
     private CharacterSlots characterSlots;
 
-    public CombatRewards processCombat(Fight fight){
+    public CombatProcessor(Fight fight){
         enemySlots = fight.startingUnits();
         characterSlots = GameState.getInstance().getCharacterSlots();
-        setStartingChargeTime();
-        while(!fightOver()){
-            processTurn();
-        }
-        resetChargeTime();
-        return combatRewards(fight);
     }
+
+//    public CombatRewards processCombat(Fight fight){
+//        enemySlots = fight.startingUnits();
+//        characterSlots = GameState.getInstance().getCharacterSlots();
+//        setStartingChargeTime();
+//        while(!fightOver()){
+//            processTurn();
+//        }
+//        resetChargeTime();
+//        return combatRewards(fight);
+//    }
 
     private boolean fightOver() {
         return allCharactersDead() || allEnemiesDead();
@@ -111,7 +117,7 @@ public class CombatProcessor {
     }
 
 
-    private Character calculateActiveTurn(){
+    public Character calculateActiveTurn(){
         Character activeTurnAwardedTo = characterMaxCt();
         activeTurnAwardedTo.reduceCharTimeBy(CT_THRESHOLD);
         return activeTurnAwardedTo;

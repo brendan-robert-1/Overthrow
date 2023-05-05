@@ -1,4 +1,4 @@
-package com.mygdx.game.combat;
+package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.mygdx.game.state.items.ItemSlot;
 

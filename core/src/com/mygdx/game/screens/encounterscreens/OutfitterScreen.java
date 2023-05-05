@@ -22,6 +22,7 @@ import java.util.List;
 public class OutfitterScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
     private Skin skin = Assets.skin();
+    private Table outfitterOptions;
     @Override
     public void show() {
         Outfitter outfitter = (Outfitter) gameState.getCurrentNode();
@@ -33,26 +34,26 @@ public class OutfitterScreen extends InGameEncounterScreen {
         Label label = new Label("Choose an item to start the run.",Assets.skin(), "title");
 
 
-        Table table = new Table();
-        table.setFillParent(true);
+        outfitterOptions = new Table();
+        outfitterOptions.setFillParent(true);
 
-        table = new Table();
-        table.add(label).colspan(outfitterItems.size());
-        table.row();
-        table.row();
-        table.setName("outfitterOptions");
-        table.pad(0.0f);
-        table.align(Align.bottomRight);
-        table.setFillParent(true);
-        table.padBottom(150);
-        table.padRight(50);
+        outfitterOptions = new Table();
+        outfitterOptions.add(label).colspan(outfitterItems.size());
+        outfitterOptions.row();
+        outfitterOptions.row();
+        outfitterOptions.setName("outfitterOptions");
+        outfitterOptions.pad(0.0f);
+        outfitterOptions.align(Align.bottomRight);
+        outfitterOptions.setFillParent(true);
+        outfitterOptions.padBottom(150);
+        outfitterOptions.padRight(50);
 
 
         for(ItemSlot item : outfitterItems){
-            table.add(getOptionTable(item)).space(20.0f).minSize(150.0f);
+            outfitterOptions.add(getOptionTable(item)).space(20.0f).minSize(150.0f);
         }
 
-        stage.addActor(table);
+        stage.addActor(outfitterOptions);
 
 
     }
@@ -63,9 +64,9 @@ public class OutfitterScreen extends InGameEncounterScreen {
 
         Image image = new Image(Assets.skin(), itemSlot.getSpriteName());
         image.setScaling(Scaling.fill);
-        table1.addListener(new HoverClickListener(stage, new InspectBox(itemSlot.getName(), itemSlot.getDescription())));
+        table1.addListener(new HoverClickListener(new InspectBox(itemSlot.getName(), itemSlot.getDescription())));
         table1.addListener(clickOption(itemSlot));
-        table1.add(image).minSize(150).maxSize(150);
+        table1.add(image).minSize(96).maxSize(96);
         return table1;
     }
     private ClickListener clickOption(ItemSlot item){
@@ -73,6 +74,7 @@ public class OutfitterScreen extends InGameEncounterScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 GameState.getInstance().getInventory().addItem(item);
+                outfitterOptions.remove();
                 redirectNextNode();
                 super.clicked(event, x, y);
             }

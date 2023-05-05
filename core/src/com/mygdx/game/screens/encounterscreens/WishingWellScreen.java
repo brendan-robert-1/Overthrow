@@ -39,7 +39,7 @@ public class WishingWellScreen extends InGameEncounterScreen {
         wish.addListener(wishListener());
         table.add(wish).pad(10).fillX();
         table.row();
-        populateEncounter(table);
+        stage.addActor(table);
     }
 
 

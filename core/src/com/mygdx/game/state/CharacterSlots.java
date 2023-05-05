@@ -9,6 +9,9 @@ public record CharacterSlots (
     Character thirdCharacter,
     Character fourthCharacter
 ){
+
+
+
     public enum Slot{
         FIRST,
         SECOND,
@@ -36,4 +39,11 @@ public record CharacterSlots (
         if(fourthCharacter != null) characters++;
         return characters;
     }
+    public boolean contains(Character character) {
+        return firstCharacter != null && firstCharacter.equals(character) ||
+                secondCharacter != null && secondCharacter.equals(character) ||
+                thirdCharacter != null && thirdCharacter.equals(character) ||
+                fourthCharacter != null && fourthCharacter.equals(character);
+    }
+
 }

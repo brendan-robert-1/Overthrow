@@ -29,5 +29,12 @@ public record EnemySlots (
     public List<Character> asList(){
         return Arrays.asList(firstCharacter, secondCharacter, thirdCharacter, fourthCharacter);
     }
+
+    public boolean contains(Character character) {
+        return firstCharacter != null && firstCharacter.equals(character) ||
+                secondCharacter != null &&secondCharacter.equals(character) ||
+                thirdCharacter != null &&thirdCharacter.equals(character) ||
+                fourthCharacter != null &&fourthCharacter.equals(character);
+    }
 }
 

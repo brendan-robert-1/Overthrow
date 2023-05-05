@@ -5,25 +5,26 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.screens.encounterscreens.StageManager;
 import com.mygdx.game.screens.widgets.InspectBox;
 
 public class HoverClickListener extends ClickListener {
 
     private InputListener mouseMoved = mouseMoved();
-    private Stage stage;
+    private Stage stage = StageManager.getInstance().getStage();
     private InspectBox inspectBox;
 
-    public HoverClickListener(Stage stage, String title, String description){
-        this(stage, new InspectBox(title, description));
+    public HoverClickListener(String title, String description){
+        this( new InspectBox(title, description));
     }
 
-    public HoverClickListener(Stage stage, InspectBox toDisplay){
-        this.stage = stage;
+    public HoverClickListener(InspectBox toDisplay){
         this.inspectBox = toDisplay;
     }
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            inspectBox.setZIndex(stage.getActors().size);
             stage.addActor(inspectBox);
             stage.addListener(mouseMoved);
             System.out.println("Entering object..");
@@ -46,6 +47,7 @@ public class HoverClickListener extends ClickListener {
             return new InputListener(){
                 @Override
                 public boolean mouseMoved(InputEvent event, float x, float y) {
+                    inspectBox.setZIndex(stage.getActors().size);
                     inspectBox.setVisible(true);
                     inspectBox.setPosition(event.getStageX()+ 10, event.getStageY() + 10);
                     return super.mouseMoved(event, x, y);

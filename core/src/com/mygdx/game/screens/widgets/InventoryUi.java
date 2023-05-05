@@ -1,17 +1,17 @@
 package com.mygdx.game.screens.widgets;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
-import com.mygdx.game.character.Inventor;
+import com.mygdx.game.screens.CharacterSpriteFetcher;
+import com.mygdx.game.screens.HoverClickListener;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.Inventory;
-import com.mygdx.game.state.items.Item;
 import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
 
 public class InventoryUi extends Window {
 
@@ -80,6 +80,7 @@ public class InventoryUi extends Window {
     private Table buildGearPanel(Character character){
         Table table = new Table();
         Image image = new Image(Assets.skin().getPatch("opaque-background"));
+        Image characterSprite = new Image(Assets.skin().getRegion(CharacterSpriteFetcher.smallSpriteFrom(character.getCharacterType())));
         table.setBackground(image.getDrawable());
         table.pad(30);
         Label label = new Label(character.getName(), Assets.skin());
@@ -94,7 +95,8 @@ public class InventoryUi extends Window {
         InventorySlot feetSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("feet-splash")));
         InventorySlot ringSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("ring-splash")));
         InventorySlot legSlot = new InventorySlot(new Image(Assets.skin().getAtlas().findRegion("legs-splash")));
-        table.add(label).colspan(3);
+        table.add(label).colspan(2);
+        table.add(characterSprite);
         table.row();
         table.add();
         table.add(headSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
@@ -131,9 +133,12 @@ public class InventoryUi extends Window {
             ItemSlot itemSlot = inventory.getInventoryList().get(i);
             InventorySlot slot = (InventorySlot) cells.get(i).getActor();
             Image image = new Image(Assets.skin().getRegion(itemSlot.getSpriteName()));
+            slot.addListener( new HoverClickListener(itemSlot.getName(), itemSlot.getDescription()){});
             slot.add(image);
         }
     }
+
+
 
     public static void clearInventoryItems(Table targetTable){
         Array<Cell> cells = targetTable.getCells();
@@ -157,5 +162,7 @@ public class InventoryUi extends Window {
         }
         inventorySlotTable = table;
     }
+
+
 
 }

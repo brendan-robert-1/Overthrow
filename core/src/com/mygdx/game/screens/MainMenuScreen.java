@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Assets;
 import com.mygdx.game.OverthrowScreenAdapter;
+import com.mygdx.game.screens.encounterscreens.StageManager;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 
 public class MainMenuScreen extends OverthrowScreenAdapter {
@@ -75,6 +76,6 @@ public class MainMenuScreen extends OverthrowScreenAdapter {
 
     @Override
     public void resize(int width, int height){
-        viewport.update(width, height);
+        StageManager.getInstance().getViewport().update(width, height);
     }
 }

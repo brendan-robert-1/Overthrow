@@ -1,6 +1,7 @@
 package com.mygdx.game.screens.encounterscreens;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -10,7 +11,7 @@ import com.mygdx.game.state.GameState;
 
 public class GemMerchantScreen extends InGameEncounterScreen {
     private GameState gameState = GameState.getInstance();
-
+    private Stage stage = StageManager.getInstance().getStage();
     @Override
     public void show() {
         Table market = new Table().right().padRight(200);

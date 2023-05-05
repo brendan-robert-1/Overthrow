@@ -41,6 +41,5 @@ public class ArmorMerchantScreen extends InGameEncounterScreen{
         });
         table.add(proceed).padTop(25);
         table.row();
-        populateEncounter(table);
     }
 }
