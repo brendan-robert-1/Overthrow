@@ -1,5 +1,6 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -7,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Assets;
 
-public class ArmorMerchantScreen extends InGameEncounterScreen{
+public class ArmorMerchantScreen extends ScreenAdapter {
 
     @Override
     public void show() {
@@ -36,7 +37,7 @@ public class ArmorMerchantScreen extends InGameEncounterScreen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Proceeding to next encounter...");
-                redirectNextNode();
+                InGameEncounterScreen.redirectNextNode();
             }
         });
         table.add(proceed).padTop(25);

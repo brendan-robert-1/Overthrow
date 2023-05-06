@@ -5,20 +5,21 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.screens.encounterscreens.StageManager;
 import com.mygdx.game.screens.widgets.InspectBox;
 
 public class HoverClickListener extends ClickListener {
 
     private InputListener mouseMoved = mouseMoved();
-    private Stage stage = StageManager.getInstance().getStage();
     private InspectBox inspectBox;
+    private Stage stage;
 
-    public HoverClickListener(String title, String description){
-        this( new InspectBox(title, description));
+    public HoverClickListener(Stage stage, String title, String description){
+        this(stage, new InspectBox(title, description));
+        this.stage = stage;
     }
 
-    public HoverClickListener(InspectBox toDisplay){
+    public HoverClickListener(Stage stage, InspectBox toDisplay){
+        this.stage = stage;
         this.inspectBox = toDisplay;
     }
 

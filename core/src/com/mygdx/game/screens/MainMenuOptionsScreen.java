@@ -1,20 +1,23 @@
 package com.mygdx.game.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
-import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.screens.encounterscreens.StageManager;
 
-public class MainMenuOptionsScreen extends OverthrowScreenAdapter {
+public class MainMenuOptionsScreen extends ScreenAdapter {
+    private Stage stage;
+    private Viewport viewport;
     @Override
     public void show() {
+        stage = new Stage();
+        viewport = new ScreenViewport();
         Table characters = new Table();
         stage.addActor(characters);
         characters.setFillParent(true);
@@ -76,9 +79,8 @@ public class MainMenuOptionsScreen extends OverthrowScreenAdapter {
     }
 
 
-
     @Override
     public void resize(int width, int height) {
-        StageManager.getInstance().getViewport().update(width, height);
+        viewport.update(width, height);
     }
 }

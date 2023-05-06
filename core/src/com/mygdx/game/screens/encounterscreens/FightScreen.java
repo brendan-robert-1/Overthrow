@@ -1,5 +1,8 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -7,52 +10,64 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.CharacterSpriteFetcher;
 import com.mygdx.game.screens.encounterscreens.combat.CombatProcessor;
 import com.mygdx.game.encounters.fights.Fight;
-import com.mygdx.game.screens.widgets.AbilitiesPanel;
-import com.mygdx.game.screens.widgets.AbilityButton;
-import com.mygdx.game.screens.widgets.InspectBox;
+import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.state.EnemySlots;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.Character;
 
-public class FightScreen extends InGameEncounterScreen {
+import javax.swing.text.View;
+
+public class FightScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
     private CombatProcessor combatProcessor;
-    private Stage stage = StageManager.getInstance().getStage();
     private EnemySlots enemySlots;
+    private Stage stage;
+    private Viewport viewport;
 
     @Override
     public void show() {
+        stage = new Stage();
+        viewport = new ScreenViewport();
+        Table entireScreen = new EntireInGameScreenTable();
+        InventoryUi inventoryUi = new InventoryUi();
+        entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
+        entireScreen.row();
+        entireScreen.add(new Team()).expand().bottom().left().pad(40);
+        Table enemyTeam = enemyTeam();
+        entireScreen.add(enemyTeam).expand().bottom().right();
+        stage.addActor(entireScreen);
+        stage.addActor(inventoryUi);
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    /*
+      stage = new Stage();
+        viewport = new ScreenViewport();
+        Table entireScreen = new Table();
+        entireScreen.setFillParent(true);
+
         Fight fight = (Fight) gameState.getCurrentNode();
         enemySlots = fight.startingUnits();
         combatProcessor = new CombatProcessor(fight);
-
         Character activeCharacter = combatProcessor.calculateActiveTurn();
         if(enemySlots.contains(activeCharacter)){
-            System.out.println("Taking enemy turn...");
-        } else {
-            displayPlayerPrompt(activeCharacter);
+            System.out.println("Taking enemy turn... " + activeCharacter.getName());
+            combatProcessor.executeEnemyTurn(activeCharacter);
         }
-
-       // populateTurnQueue();
-        populateEnemyTeam();
-        stage.addActor(new AbilitiesPanel(activeCharacter));
-      //  combatProcessor.processCombat(fight);
-    }
-
-
-    private void displayPlayerPrompt(Character activeCharacter){
+        entireScreen.add(enemyTeam()).expand().right().bottom().padBottom(150);
+        entireScreen.add(new AbilitiesPanel(combatProcessor.getNextActiveFriendly()));
+        stage.addActor(entireScreen);
+        combatProcessor.resetChargeTime();
+     */
 
 
-    }
-
-
-    private void populateEnemyTeam(){
-        Table entireScreen = new Table();
-        entireScreen.setFillParent(true);
+    private Table enemyTeam(){
         Table table = new Table(Assets.skin());
         Fight fightNode = (Fight) gameState.getCurrentNode();
         Character firstEnemy = fightNode.startingUnits().firstCharacter();
@@ -63,9 +78,8 @@ public class FightScreen extends InGameEncounterScreen {
         table.add(addEnemyPanel( secondEnemy)).expand();
         table.add( addEnemyPanel( thirdEnemy)).expand();
         table.add(addEnemyPanel( fourthEnemy)).expand();
-        entireScreen.add(table).expand().bottom().right().padBottom(150);
         table.pack();
-        stage.addActor(entireScreen);
+        return table;
     }
 
 
@@ -88,7 +102,6 @@ public class FightScreen extends InGameEncounterScreen {
         characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
 
-        // characterPanel.add(abilityPanels);
         characterPanel.defaults().expandX();
         return characterPanel;
     }
@@ -98,5 +111,17 @@ public class FightScreen extends InGameEncounterScreen {
         empty.defaults().expand().fill();
         empty.add(new Label("    ", Assets.skin()));
         return empty;
+    }
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(.1f,.1f, .15f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
     }
 }

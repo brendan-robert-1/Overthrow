@@ -1,28 +1,37 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.WishingWell;
+import com.mygdx.game.screens.widgets.EntireInGameScreenTable;
 import com.mygdx.game.state.GameState;
 
-public class WishingWellScreen extends InGameEncounterScreen {
+public class WishingWellScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
     private WishingWell wishingWell;
+    private Stage stage;
+    private Viewport viewport;
     @Override
     public void show() {
+        stage = new Stage();
+        viewport = new ScreenViewport();
+        Table entireScreen = new EntireInGameScreenTable();
         wishingWell = (WishingWell) gameState.getCurrentNode();
-        Table market = new Table();
-        market.right().padRight(200);
-        populateWishEncounter(market);
+        Table wishingWellTable = wishEncounter();
     }
 
-    private void populateWishEncounter(Table table){
+    private Table wishEncounter(){
+        Table table = new Table();
         Label label = new Label("Wishing Well", Assets.skin(), "title");
         label.setAlignment(Align.center);
         table.add(label).colspan(2).spaceBottom(10);
@@ -39,7 +48,7 @@ public class WishingWellScreen extends InGameEncounterScreen {
         wish.addListener(wishListener());
         table.add(wish).pad(10).fillX();
         table.row();
-        stage.addActor(table);
+        return table;
     }
 
 
@@ -52,7 +61,6 @@ public class WishingWellScreen extends InGameEncounterScreen {
                 if(gameState.getCoin()>= 10 && wishingWell.getPercentChance() < 100){
                     wishingWell.throwCoins();
                     gameState.decreaseCoinBy(10);
-                    updateCoins();
                     displayChance(wishingWell.getPercentChance(), label);
                 }
             }
@@ -74,7 +82,7 @@ public class WishingWellScreen extends InGameEncounterScreen {
                    System.out.println("Wish unsuccessful.");
                }
                //displayWishOutcome();
-                redirectNextNode();
+                InGameEncounterScreen.redirectNextNode();
             }
         };
     }

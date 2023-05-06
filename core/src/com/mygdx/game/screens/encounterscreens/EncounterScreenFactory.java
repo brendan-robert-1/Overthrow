@@ -1,11 +1,11 @@
 package com.mygdx.game.screens.encounterscreens;
 
-import com.mygdx.game.OverthrowScreenAdapter;
+import com.badlogic.gdx.ScreenAdapter;
 import com.mygdx.game.state.GameState;
 
 public class EncounterScreenFactory {
-    public static OverthrowScreenAdapter getScreenFor(GameState gameState){
-        switch(gameState.getCurrentNode().getNodeType()){
+    public static ScreenAdapter getScreenFor(){
+        switch(GameState.getInstance().getCurrentNode().getNodeType()){
             case OUTFITTER -> { return new OutfitterScreen();}
             case BASIC_FIGHT, BOSS_FIGHT -> { return new FightScreen();}
             case MARKET -> { return new MarketScreen();}
@@ -17,7 +17,7 @@ public class EncounterScreenFactory {
             case ABILITY_TRAINER -> {return new AbilityTrainerScreen();}
             case GEM_MERCHANT -> {return new GemMerchantScreen();}
             case CHEST -> {return new ChestScreen();}
-            default -> throw new IllegalStateException("Unexpected value: " + gameState.getCurrentNode().getNodeType());
+            default -> throw new IllegalStateException("Unexpected value: " + GameState.getInstance().getCurrentNode().getNodeType());
         }
     }
 }

@@ -2,20 +2,26 @@ package com.mygdx.game.state.items;
 
 import com.badlogic.gdx.Gdx;
 import com.google.gson.Gson;
+import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.state.Inventory;
 
 public class ItemSlotFactory {
 
     private static final String ITEMS_FILE = "gamedata/items.json";
     private static Items items = loadItems();
-
-
-    public static ItemSlot one(ItemType itemType){
-        Item item =  items.getItems().get(itemType);
-        return new ItemSlot(item.getItemType(), item.getDisplayName(), item.getDescription(),1, item.getSpriteName());
+    private static ItemSlotFactory instance;
+    private ItemSlotFactory(){}
+    public static ItemSlotFactory getInstance(){
+        if(instance == null){
+            instance = new ItemSlotFactory();
+        }
+        return instance;
     }
-    public static ItemSlot of(ItemType itemType, int quantity) {
+
+    public static InventoryItem of(ItemType itemType) {
         Item item =  items.getItems().get(itemType);
-        return new ItemSlot(item.getItemType(), item.getDisplayName(), item.getDescription(),quantity, item.getSpriteName());
+        InventoryItem inventoryItem = new InventoryItem();
+
     }
 
     private static Items loadItems(){
@@ -23,8 +29,5 @@ public class ItemSlotFactory {
         String jsonStr = Gdx.files.internal(ITEMS_FILE).readString();
         return gson.fromJson(jsonStr, Items.class);
     }
-
-
-
 
 }

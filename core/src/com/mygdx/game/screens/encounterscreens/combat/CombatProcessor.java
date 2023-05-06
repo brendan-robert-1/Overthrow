@@ -25,6 +25,7 @@ public class CombatProcessor {
     public CombatProcessor(Fight fight){
         enemySlots = fight.startingUnits();
         characterSlots = GameState.getInstance().getCharacterSlots();
+        setStartingChargeTime();
     }
 
 //    public CombatRewards processCombat(Fight fight){
@@ -38,7 +39,20 @@ public class CombatProcessor {
 //        return combatRewards(fight);
 //    }
 
-    private boolean fightOver() {
+    public void executeEnemyTurn(Character enemyCharacter) {
+        processFoeTurn(enemyCharacter);
+        if(!fightOver()){
+            System.out.println("Fight over!...");
+        }
+        increaseChargeTimeExcept(enemyCharacter);
+    }
+
+    public void executeFriendlyTurn(Character friendlyCharacter, Ability ability){
+        System.out.println("Executing ability: " + ability.name());
+        increaseChargeTimeExcept(friendlyCharacter);
+    }
+
+    public boolean fightOver() {
         return allCharactersDead() || allEnemiesDead();
     }
 
@@ -181,7 +195,7 @@ public class CombatProcessor {
                 .filter(Objects::nonNull)
                 .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
     }
-    private void resetChargeTime() {
+    public void resetChargeTime() {
         characterSlots.asList().stream()
                 .filter(Objects::nonNull)
                 .forEach(c -> {
@@ -189,7 +203,9 @@ public class CombatProcessor {
                 });
     }
 
-
-
-
+    public Character getNextActiveFriendly() {
+        Character activeTurnAwardedTo = characterMaxCt();
+        activeTurnAwardedTo.reduceCharTimeBy(CT_THRESHOLD);
+        return activeTurnAwardedTo;
+    }
 }

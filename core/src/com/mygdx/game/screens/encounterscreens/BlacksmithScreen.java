@@ -1,5 +1,7 @@
 package com.mygdx.game.screens.encounterscreens;
 
-public class BlacksmithScreen extends InGameEncounterScreen {
+import com.badlogic.gdx.ScreenAdapter;
+
+public class BlacksmithScreen extends ScreenAdapter {
 
 }

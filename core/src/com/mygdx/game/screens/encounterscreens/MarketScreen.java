@@ -1,31 +1,45 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Market;
-import com.mygdx.game.screens.widgets.MarketTable;
-import com.mygdx.game.screens.widgets.PixelProTextButton;
+import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.shops.ShopOffering;
 
 import java.util.List;
 
-public class MarketScreen extends InGameEncounterScreen {
+public class MarketScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
     private Market market;
-    public MarketScreen(){
-        this.market = (Market) gameState.getCurrentNode();
-    }
+    private Stage stage;
+    private Viewport viewport;
 
     @Override
     public void show() {
-        populateMarket();
+        stage = new Stage();
+        viewport = new ScreenViewport();
+        Table entireScreen = new EntireInGameScreenTable();
+        InventoryUi inventoryUi = new InventoryUi();
+        entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
+        entireScreen.row();
+        entireScreen.add(new Team()).expand().bottom().left().pad(40);
+        Table market = market();
+        entireScreen.add(market).expand().bottom().right();
+        stage.addActor(entireScreen);
+        Gdx.input.setInputProcessor(stage);
     }
 
-    private void populateMarket(){
+    private Table market(){
         Table table = new Table();
         PixelProTextButton viewWares = new PixelProTextButton("View Wares");
         PixelProTextButton nextEncounter = new PixelProTextButton("Next Encounter");
@@ -39,12 +53,12 @@ public class MarketScreen extends InGameEncounterScreen {
         nextEncounter.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                redirectNextNode();
+                InGameEncounterScreen.redirectNextNode();
             }
         });
         table.add(viewWares);
         table.add(nextEncounter);
-        stage.addActor(table);
+        return table;
     }
 
     private void displayMarket(){
@@ -92,6 +106,18 @@ public class MarketScreen extends InGameEncounterScreen {
         gameState.setCoin(gameState.getCoin() - offering.getPrice());
         gameState.getInventory().addItem(offering.getItemSlot());
         System.out.println("New coin amount after purchase: " + gameState.getCoin());
-        super.updateCoins();
+
+    }
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(.1f,.1f, .15f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
     }
 }

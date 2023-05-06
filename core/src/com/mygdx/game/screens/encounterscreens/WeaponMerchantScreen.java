@@ -1,24 +1,40 @@
 package com.mygdx.game.screens.encounterscreens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
+import com.mygdx.game.screens.widgets.EntireInGameScreenTable;
 import com.mygdx.game.state.GameState;
 
-public class WeaponMerchantScreen extends InGameEncounterScreen {
+public class WeaponMerchantScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
+    private Stage stage;
+    private Viewport viewport;
+
 
 
     @Override
     public void show() {
-        Table market = new Table().right().padRight(200);
-        populateMarket(market);
+        stage = new Stage();
+        viewport = new ScreenViewport();
+        Table entireScreen = new EntireInGameScreenTable();
+        Table market = market();
+
+        entireScreen.add(market).expand().bottom().right();
+        stage.addActor(entireScreen);
+        Gdx.input.setInputProcessor(stage);
     }
 
-    private void populateMarket(Table table){
+    private Table market(){
+        Table table = new Table();
         Label label = new Label("Market", Assets.skin());
         table.add(label);
         table.row();
@@ -39,12 +55,12 @@ public class WeaponMerchantScreen extends InGameEncounterScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Proceeding to next encounter...");
-                redirectNextNode();
+                InGameEncounterScreen.redirectNextNode();
             }
         });
         table.add(proceed).padTop(25);
         table.row();
-        stage.addActor(table);
+        return table;
     }
 }
 

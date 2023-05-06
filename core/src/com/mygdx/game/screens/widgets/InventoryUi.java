@@ -1,8 +1,10 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.CharacterSpriteFetcher;
@@ -10,7 +12,7 @@ import com.mygdx.game.screens.HoverClickListener;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.Inventory;
+import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeID;
 import com.mygdx.game.state.items.ItemSlot;
 
 public class InventoryUi extends Window {
@@ -20,22 +22,21 @@ public class InventoryUi extends Window {
     private static final int SLOT_WIDTH = 52;
     private static final int SLOT_HEIGHT = 52;
     private CharacterSlots characterSlots;
-    private Skin skin;
     private Table inventorySlotTable;
     private Table character1EquipSlots = new Table();
     private Table character2EquipSlots = new Table();
     private Table character3EquipSlots = new Table();
     private Table character4EquipSlots = new Table();
+    private InventorySlotTooltip inventorySlotTooltip;
 
     public InventoryUi(){
         super("Inventory", Assets.skin());
         characterSlots = GameState.getInstance().getCharacterSlots();
-        skin = Assets.skin();
         inventorySlotTable = new Table();
+        inventorySlotTooltip = new InventorySlotTooltip(Assets.skin());
         populate();
         this.add(inventorySlotTable).colspan(characterSlots.numberOfActiveCharacters()).pad(20);
         this.row();
-
         if(characterSlots.firstCharacter() != null){
             this.add(character1EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
@@ -48,12 +49,15 @@ public class InventoryUi extends Window {
         if(characterSlots.fourthCharacter() != null){
             this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
+        this.setMovable(false);
+        this.setVisible(false);
         this.pack();
+        this.setPosition(Gdx.graphics.getWidth()/2f - this.getWidth()/2f, Gdx.graphics.getHeight()/2f - this.getHeight()/2f);
+
     }
 
     private void populate(){
         buildInventoryPanel();
-        populateInventory(inventorySlotTable);
 
         buildGearPanels();
         populateGearPanels();
@@ -125,16 +129,31 @@ public class InventoryUi extends Window {
     }
 
 
-    private void populateInventory(Table targetTable){
-        Inventory inventory = GameState.getInstance().getInventory();
-        clearInventoryItems(inventorySlotTable);
+    public static void populateInventory(Table targetTable, Array<InventoryItemLocation> inventoryItems, DragAndDrop draganddrop, String defaultName, boolean disableNonDefaultItems){
+        clearInventoryItems(targetTable);
+
         Array<Cell> cells = targetTable.getCells();
-        for(int i = 0; i < inventory.getInventoryList().size(); i++){
-            ItemSlot itemSlot = inventory.getInventoryList().get(i);
-            InventorySlot slot = (InventorySlot) cells.get(i).getActor();
-            Image image = new Image(Assets.skin().getRegion(itemSlot.getSpriteName()));
-            slot.addListener( new HoverClickListener(itemSlot.getName(), itemSlot.getDescription()){});
-            slot.add(image);
+        for(int i = 0; i < inventoryItems.size; i++){
+            InventoryItemLocation itemLocation = inventoryItems.get(i);
+            ItemTypeID itemTypeID = ItemTypeID.valueOf(itemLocation.getItemTypeAtLocation());
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(itemLocation.getLocationIndex()).getActor());
+
+            for( int index = 0; index < itemLocation.getNumberItemsAtLocation(); index++ ){
+                InventoryItem item = InventoryItemFactory.getInstance().getInventoryItem(itemTypeID);
+                String itemName =  itemLocation.getItemNameProperty();
+                if( itemName == null || itemName.isEmpty() ){
+                    item.setName(defaultName);
+                }else{
+                    item.setName(itemName);
+                }
+
+                inventorySlot.add(item);
+                if( item.getName().equalsIgnoreCase(defaultName) ){
+                    draganddrop.addSource(new InventorySlotSource(inventorySlot, draganddrop));
+                }else if( disableNonDefaultItems == false ){
+                    draganddrop.addSource(new InventorySlotSource(inventorySlot, draganddrop));
+                }
+            }
         }
     }
 
@@ -155,6 +174,7 @@ public class InventoryUi extends Window {
         ).getDrawable());
         for(int i = 1; i <= TOTAL_SLOTS; i++){
             InventorySlot slot = new InventorySlot();
+            slot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
             table.add(slot).size(SLOT_WIDTH, SLOT_HEIGHT);
             if(i % ROW_LENGTH == 0){
                 table.row();

@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.encounterscreens;
+package com.mygdx.game.screens.widgets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;

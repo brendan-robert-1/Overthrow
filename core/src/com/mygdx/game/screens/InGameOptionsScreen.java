@@ -1,36 +1,34 @@
 package com.mygdx.game.screens;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
-import com.mygdx.game.OverthrowScreenAdapter;
-import com.mygdx.game.screens.encounterscreens.StageManager;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 
-public class InGameOptionsScreen extends OverthrowScreenAdapter {
+public class InGameOptionsScreen extends ScreenAdapter {
+
+    private Stage stage;
+    private Viewport viewport;
     @Override
     public void show() {
-        stage.clear();
-        setCursor();
+        stage = new Stage();
+        viewport = new ScreenViewport();
         Table table = new Table();
         stage.addActor(table);
-        table.setFillParent(true); //Table is maxium size of stage
+        table.setFillParent(true); //Table is maximum size of stage
         addMainMenuButtons(table);
         stage.addListener(escapeKeyboardListener());
         Gdx.input.setInputProcessor(stage); //stage being used for button listening
     }
 
-    private void setCursor(){
-        //        Pixmap pm = new Pixmap(Gdx.files.internal("cursor.png"));
-        //        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
-        //        pm.dispose();
-    }
 
     private void addMainMenuButtons(Table table) {
         addButton(table, "Game Options", new ClickListener(){
@@ -67,7 +65,7 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
         });
     }
 
-    private class AreYouSureScreen extends OverthrowScreenAdapter{
+    private class AreYouSureScreen extends ScreenAdapter{
         @Override
         public void show() {
             Table table = new Table();
@@ -103,11 +101,6 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
         table.row();
     }
 
-    @Override
-    public void resize(int width, int height){
-        StageManager.getInstance().getViewport().update(width, height);
-    }
-
     private InputListener escapeKeyboardListener (){
         return new InputListener(){
             @Override
@@ -120,4 +113,16 @@ public class InGameOptionsScreen extends OverthrowScreenAdapter {
         };
     }
 
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(.1f,.1f, .15f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
+    }
 }

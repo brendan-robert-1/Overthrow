@@ -9,9 +9,6 @@ public record CharacterSlots (
     Character thirdCharacter,
     Character fourthCharacter
 ){
-
-
-
     public enum Slot{
         FIRST,
         SECOND,
