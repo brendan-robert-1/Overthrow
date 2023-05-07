@@ -1,9 +1,9 @@
 package com.mygdx.game.encounters.factories;
 
-import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
-import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
+import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.items.InventoryItemFactory;
 import com.mygdx.game.state.shops.MarketOffering;
 import com.mygdx.game.state.shops.MarketOfferingFactory;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class MarketFactory {
-    public static Encounter generateRandomMarketFor(ActType actType) {
+    public static GameNode generateRandomMarketFor(ActType actType) {
         switch(actType){
             case FARMS -> {return generateFarmMarket(actType);}
             case BATTLEFIELD -> { return generateBattleFieldMarket(actType);}
@@ -28,7 +28,7 @@ public class MarketFactory {
 
 
 
-    private static Encounter generatePalaceMarket(ActType actType) {
+    private static GameNode generatePalaceMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generatePalaceWares(actType);
         return new Market(wares);
     }
@@ -38,7 +38,7 @@ public class MarketFactory {
 
 
 
-    private static Encounter generateMountainMarket(ActType actType) {
+    private static GameNode generateMountainMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateMountainWares(actType);
         return new Market(wares);
     }
@@ -47,7 +47,7 @@ public class MarketFactory {
 
 
 
-    private static Encounter generateSwampMarket(ActType actType) {
+    private static GameNode generateSwampMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateSwampWares(actType);
         return new Market(wares);
     }
@@ -56,7 +56,7 @@ public class MarketFactory {
 
 
 
-    private static Encounter generateBattleFieldMarket(ActType actType) {
+    private static GameNode generateBattleFieldMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateBattleFieldWares(actType);
         return new Market(wares);
     }
@@ -64,7 +64,7 @@ public class MarketFactory {
 
 
 
-    private static Encounter generateFarmMarket(ActType actType) {
+    private static GameNode generateFarmMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateFarmWares(actType);
         return new Market(wares);
     }

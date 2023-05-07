@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters;
 
-public class NewTeamMember extends Encounter{
+import com.mygdx.game.state.GameNode;
+
+public class NewTeamMember extends GameNode {
     public NewTeamMember(NodeType nodeType, String displayName) {
         super(nodeType, displayName);
     }

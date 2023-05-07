@@ -67,7 +67,6 @@ public class MarketTable extends Table {
         table1.add(table2).spaceTop(25.0f).grow();
         table.add(table1).pad(100.0f).grow();
         this.add(table).grow();
-        this.setDebug(true);
     }
 
 

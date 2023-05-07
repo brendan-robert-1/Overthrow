@@ -2,13 +2,12 @@ package com.mygdx.game.state.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.google.gson.Gson;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.widgets.InventoryItem;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 
 public class InventoryItemFactory {
 

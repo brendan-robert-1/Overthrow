@@ -2,7 +2,7 @@ package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.encounters.fights.Fight;
-import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.EnemySlots;

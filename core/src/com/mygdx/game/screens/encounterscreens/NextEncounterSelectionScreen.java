@@ -15,11 +15,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.GameStateScreen;
-import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
-import com.mygdx.game.screens.widgets.EntireInGameScreenTable;
-import com.mygdx.game.screens.widgets.InventoryUi;
-import com.mygdx.game.screens.widgets.Team;
-import com.mygdx.game.screens.widgets.TopBar;
+import com.mygdx.game.screens.widgets.*;
+import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
@@ -29,17 +26,19 @@ public class NextEncounterSelectionScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
     private Stage stage;
     private Viewport viewport;
+    private InventoryUi inventoryUi;
     @Override
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
         Table entireScreen = new EntireInGameScreenTable();
-        InventoryUi inventoryUi = new InventoryUi();
+        Table encounterOptions = populateEncounterOptions();
+        inventoryUi = new InventoryUi();
+        inventoryUi.setKeepWithinStage(false);
         entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
         entireScreen.row();
         entireScreen.add(new Team()).expand().bottom().left().pad(40);
-        Table encounterOptionsTable = populateEncounterOptions();
-        entireScreen.add(encounterOptionsTable).expand().bottom().right();
+        entireScreen.add(encounterOptions).expand().bottom().right().padBottom(20);
         stage.addActor(entireScreen);
         stage.addActor(inventoryUi);
         for(Actor actor : inventoryUi.getInventoryActors()){

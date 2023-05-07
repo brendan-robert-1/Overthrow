@@ -53,7 +53,6 @@ public class GemMerchantScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Proceeding to next encounter...");
-                InGameEncounterScreen.redirectNextNode();
             }
         });
         market.add(proceed).padTop(25);

@@ -1,13 +1,14 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
+import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.shops.ShopOffering;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Market extends Encounter{
+public class Market extends GameNode {
     private Map<InventoryItem, Integer> waresToPrice;
     public Market(Map<InventoryItem, Integer> waresToPrice){
         super(NodeType.MARKET, "Market");

@@ -82,7 +82,6 @@ public class WishingWellScreen extends ScreenAdapter {
                    System.out.println("Wish unsuccessful.");
                }
                //displayWishOutcome();
-                InGameEncounterScreen.redirectNextNode();
             }
         };
     }

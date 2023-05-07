@@ -1,29 +1,25 @@
-package com.mygdx.game.screens.widgets;
+package com.mygdx.game.screens.widgets.inventory;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multiset;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.CharacterSpriteFetcher;
+import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.GameState;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemUseType;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemUseType;
 import com.mygdx.game.state.items.InventoryItemFactory;
 
 public class InventoryUi extends Window{
 
-    public static final int TOTAL_SLOTS = 2;
-    private static final int ROW_LENGTH = 1;
-    private static final int SLOT_WIDTH = 52;
-    private static final int SLOT_HEIGHT = 52;
+    public static final int TOTAL_SLOTS = 50;
+    private static final int ROW_LENGTH = 10;
+    public static final int SLOT_WIDTH = 52;
+    public static final int SLOT_HEIGHT = 52;
     public static final String PLAYER_INVENTORY = "Player_Inventory";
     private CharacterSlots characterSlots;
 
@@ -43,6 +39,7 @@ public class InventoryUi extends Window{
         characterSlots = GameState.getInstance().getCharacterSlots();
         dragAndDrop = new DragAndDrop();
         dragAndDrop.setDragTime(100);
+        dragAndDrop.setKeepWithinStage(false);
         inventorySlotTable = new Table();
         inventoryActors = new Array<>();
         inventorySlotTooltip = new InventorySlotTooltip(Assets.skin());
@@ -62,10 +59,10 @@ public class InventoryUi extends Window{
         if(characterSlots.fourthCharacter() != null){
             this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
+
         this.setVisible(false);
         this.pack();
-        this.setPosition(Gdx.graphics.getWidth()/2f - this.getWidth()/2f, Gdx.graphics.getHeight()/2f - this.getHeight()/2f);
-        this.setDebug(true);
+        this.setPosition((Gdx.graphics.getWidth() - this.getWidth())/2, ((Gdx.graphics.getHeight() - this.getHeight())/2));
     }
 
     private void populate(){
@@ -96,23 +93,21 @@ public class InventoryUi extends Window{
     private Table buildGearPanel(Character character){
         Table table = new Table();
         Image image = new Image(Assets.skin().getPatch("opaque-background"));
-        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(CharacterSpriteFetcher.smallSpriteFrom(character.getCharacterType())));
-        Image characterSprite = new Image(trd);
+        Image characterSprite = new CharacterSprite(character.getCharacterType());
         table.setBackground(image.getDrawable());
         table.pad(30);
         Label label = new Label(character.getName(), Assets.skin());
-        InventorySlot headSlot = new InventorySlot(ItemUseType.ARMOR_HEAD, new Image(atlas.findRegion("helmet-splash")));
-        InventorySlot capeSlot = new InventorySlot(ItemUseType.ARMOR_CAPE, new Image(atlas.findRegion("cape-splash")));
-        InventorySlot earringSlot = new InventorySlot(ItemUseType.ARMOR_EARRING, new Image(atlas.findRegion("earring-splash")));
-        InventorySlot weapon1Slot = new InventorySlot(ItemUseType.WEAPON_ONEHAND, new Image(atlas.findRegion("weapon-splash")));
-        InventorySlot chestSlot = new InventorySlot(ItemUseType.ARMOR_CHEST, new Image(atlas.findRegion("chest-splash")));
-        InventorySlot weapon2Slot = new InventorySlot(ItemUseType.WEAPON_TWOHAND, new Image(atlas.findRegion("shield-splash")));
-        InventorySlot necklaceSlot = new InventorySlot(ItemUseType.ARMOR_NECKLACE, new Image(atlas.findRegion("necklace-splash")));
-        InventorySlot gloveSlot = new InventorySlot(ItemUseType.ARMOR_GLOVES, new Image(atlas.findRegion("gloves-splash")));
-        InventorySlot feetSlot = new InventorySlot(ItemUseType.ARMOR_FEET, new Image(atlas.findRegion("feet-splash")));
-        InventorySlot ringSlot = new InventorySlot(ItemUseType.ARMOR_RING, new Image(atlas.findRegion("ring-splash")));
-        InventorySlot legSlot = new InventorySlot(ItemUseType.ARMOR_LEGS, new Image(atlas.findRegion("legs-splash")));
+        InventorySlot headSlot = new InventorySlot(ItemUseType.ARMOR_HEAD, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot capeSlot = new InventorySlot(ItemUseType.ARMOR_CAPE,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot earringSlot = new InventorySlot(ItemUseType.ARMOR_EARRING, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot weapon1Slot = new InventorySlot(ItemUseType.WEAPON_ONEHAND, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot chestSlot = new InventorySlot(ItemUseType.ARMOR_CHEST,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot weapon2Slot = new InventorySlot(ItemUseType.WEAPON_TWOHAND, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot necklaceSlot = new InventorySlot(ItemUseType.ARMOR_NECKLACE, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot gloveSlot = new InventorySlot(ItemUseType.ARMOR_GLOVES, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot feetSlot = new InventorySlot(ItemUseType.ARMOR_FEET, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot ringSlot = new InventorySlot(ItemUseType.ARMOR_RING, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
+        InventorySlot legSlot = new InventorySlot(ItemUseType.ARMOR_LEGS,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
 
         headSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
         capeSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
@@ -171,6 +166,7 @@ public class InventoryUi extends Window{
 
     //mainly used for loading from disk
     public static  void populateInventory(Table targetTable, Array<InventoryItemLocation> inventoryItems, DragAndDrop dragAndDrop){
+        clearInventoryItems(targetTable);
         Array<Cell> cells = targetTable.getCells();
         for(int i = 0; i < inventoryItems.size; i++){
             InventoryItemLocation itemLocation = inventoryItems.get(i);

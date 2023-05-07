@@ -1,14 +1,11 @@
 package com.mygdx.game.screens.widgets;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.CharacterSpriteFetcher;
-import com.mygdx.game.screens.encounterscreens.RightClickInspectListener;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
@@ -31,9 +28,9 @@ public class Team extends Table{
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.getName() + "        hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
-        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(CharacterSpriteFetcher.mediumSpriteFrom(character.getCharacterType())));
-        characterPanel.add(new Image(trd)).expand();
+        Image characterSprite = new CharacterSprite(character.getCharacterType());
+        characterSprite.setScaling(Scaling.fit);
+        characterPanel.add(characterSprite).width(300).height(300);
         InspectBox characterInspectBox = new InspectBox(character.getName(),
                 "hp: " + character.getHp() + "\n" +
                         "armor: " + character.getHp() + "\n"+
@@ -45,7 +42,6 @@ public class Team extends Table{
         //characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
         characterPanel.defaults().expandX();
-        characterPanel.addListener(new TextTooltip("hello", Assets.skin()));
         return characterPanel;
     }
 

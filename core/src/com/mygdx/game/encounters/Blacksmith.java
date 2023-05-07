@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters;
 
-public class Blacksmith extends Encounter{
+import com.mygdx.game.state.GameNode;
+
+public class Blacksmith extends GameNode {
     public Blacksmith(){
         super(NodeType.BLACKSMITH, "Blacksmith");
     }

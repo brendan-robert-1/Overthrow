@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,7 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.widgets.CharacterSplash;
+import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.screens.widgets.ProceedButton;
 import com.mygdx.game.state.Character.CharacterType;
@@ -26,7 +25,7 @@ import java.util.stream.Stream;
 public class NewRunScreen extends ScreenAdapter {
     private Stage stage;
     private Viewport viewport;
-    CharacterSplash splash;
+    CharacterSprite splash;
 
     @Override
     public void show() {
@@ -65,7 +64,8 @@ public class NewRunScreen extends ScreenAdapter {
                     splash.remove();
                 }
                 System.out.println(characterType.toString() + " has been selected.");
-                splash = new CharacterSplash(characterType);
+                splash = new CharacterSprite(characterType);
+                splash.scaleBy(15);
                 NewGameGenerator.generateNewGame(characterType);
                 stage.addActor(splash);
                 stage.addActor(proceedTable());

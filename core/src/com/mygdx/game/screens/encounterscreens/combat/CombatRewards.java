@@ -1,6 +1,6 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
-import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 
 import java.util.List;
 

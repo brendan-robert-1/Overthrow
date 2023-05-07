@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters;
 
-public class Sauna extends Encounter{
+import com.mygdx.game.state.GameNode;
+
+public class Sauna extends GameNode {
     public Sauna(){
         super(NodeType.SAUNA, "Sauna");
     }

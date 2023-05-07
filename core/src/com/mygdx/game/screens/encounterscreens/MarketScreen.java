@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.screens.widgets.*;
+import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.shops.ShopOffering;
 
@@ -53,7 +54,6 @@ public class MarketScreen extends ScreenAdapter {
         nextEncounter.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InGameEncounterScreen.redirectNextNode();
             }
         });
         table.add(viewWares);

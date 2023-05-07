@@ -42,7 +42,7 @@ public class SaunaScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Sauna using normal heat");
-                InGameEncounterScreen.redirectNextNode();
+
             }
         };
     }
@@ -52,7 +52,7 @@ public class SaunaScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Sauna using normal heat");
-                InGameEncounterScreen.redirectNextNode();
+
             }
         };
     }

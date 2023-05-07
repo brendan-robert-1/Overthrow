@@ -1,6 +1,6 @@
 package com.mygdx.game.state.shops;
 
-import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 
 public class PotentialOffering {
     private ItemTypeId itemTypeId;

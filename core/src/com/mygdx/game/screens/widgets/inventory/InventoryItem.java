@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.widgets;
+package com.mygdx.game.screens.widgets.inventory;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -36,13 +36,9 @@ public class InventoryItem extends Image {
         this.displayName = inventoryItem.getDisplayName();
     }
 
-
-
     public String getDisplayName() {
         return displayName;
     }
-
-
 
     public enum ItemAttribute{
         CONSUMABLE(1),

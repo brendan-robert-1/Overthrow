@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters;
 
-public class Chest extends Encounter{
+import com.mygdx.game.state.GameNode;
+
+public class Chest extends GameNode {
     public Chest(){
         super(NodeType.CHEST, "Chest");
     }

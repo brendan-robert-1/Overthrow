@@ -1,27 +1,30 @@
 package com.mygdx.game.state;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.OverthrowActs;
+import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 
-public abstract class GameNode {
+public abstract class GameNode extends Window {
     private NodeType nodeType;
     private OverthrowActs.ActType actType;
     private String displayName;
 
-
-    public GameNode setDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
-    }
-
-
+    private InventoryUi inventoryUi;
 
 
 
     public GameNode(NodeType nodeType, String displayName){
+        super(displayName, Assets.skin());
         this.nodeType = nodeType;
         this.displayName = displayName;
+        this.setBackground((Drawable)null);
     }
-    public GameNode(){}
+    public GameNode(){
+        super("Encounter", Assets.skin());
+    }
     public NodeType getNodeType() {
         return nodeType;
     }
@@ -30,6 +33,23 @@ public abstract class GameNode {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+
+    public GameNode setDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    public InventoryUi getInventoryUi() {
+        return inventoryUi;
+    }
+
+
+
+    public GameNode setInventoryUi(InventoryUi inventoryUi) {
+        this.inventoryUi = inventoryUi;
+        return this;
     }
 
 
@@ -48,7 +68,8 @@ public abstract class GameNode {
         ABILITY_TRAINER,
         GEM_MERCHANT,
         QUESTION_MARK,
-        CHEST
+        CHEST,
+        PATH_SELECTION
     }
 
 }

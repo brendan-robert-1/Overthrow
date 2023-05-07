@@ -6,7 +6,7 @@ import com.mygdx.game.state.GameState;
 public class EncounterScreenFactory {
     public static ScreenAdapter getScreenFor(){
         switch(GameState.getInstance().getCurrentNode().getNodeType()){
-            case OUTFITTER -> { return new OutfitterScreen();}
+            case OUTFITTER -> { return MainGameScreen.getInstance();}
             case BASIC_FIGHT, BOSS_FIGHT -> { return new FightScreen();}
             case MARKET -> { return new MarketScreen();}
             case ARMOR_MERCHANT -> {return new ArmorMerchantScreen();}

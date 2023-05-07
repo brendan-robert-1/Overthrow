@@ -4,6 +4,7 @@ import com.mygdx.game.encounters.*;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.encounters.chancetables.FarmsEncounterChanceTable;
 import com.mygdx.game.encounters.factories.*;
+import com.mygdx.game.screens.widgets.outfitter.Outfitter;
 
 public class NodeGenerator {
     public static GameNode generateRandomNode(ActType actType, int floorNumber){

@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.widgets;
+package com.mygdx.game.screens.widgets.inventory;
 
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;

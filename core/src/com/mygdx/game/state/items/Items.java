@@ -1,7 +1,7 @@
 package com.mygdx.game.state.items;
 
-import com.mygdx.game.screens.widgets.InventoryItem;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 
 import java.util.Map;
 

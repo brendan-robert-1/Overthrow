@@ -1,5 +1,5 @@
-package com.mygdx.game.screens.widgets;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+package com.mygdx.game.screens.widgets.inventory;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 
 public class InventoryItemLocation {
     private int locationIndex;

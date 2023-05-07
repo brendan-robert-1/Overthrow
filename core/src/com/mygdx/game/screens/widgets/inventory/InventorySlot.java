@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.widgets;
+package com.mygdx.game.screens.widgets.inventory;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.widgets.InventoryItem.ItemUseType;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemUseType;
 
 public class InventorySlot extends Stack implements InventorySlotSubject {
     private Stack defaultBackground;

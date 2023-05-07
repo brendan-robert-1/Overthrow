@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.encounterscreens.InGameEncounterScreen;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
@@ -59,7 +58,7 @@ public class NodeSelectionScreen extends ScreenAdapter {
         outfitterOption.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InGameEncounterScreen.redirectNextNode();
+
             }
         });
         return outfitterOption;

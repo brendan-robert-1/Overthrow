@@ -48,7 +48,7 @@ public class HoverClickListener extends ClickListener {
             return new InputListener(){
                 @Override
                 public boolean mouseMoved(InputEvent event, float x, float y) {
-                    inspectBox.setZIndex(stage.getActors().size);
+                   // inspectBox.setZIndex(stage.getActors().size);
                     inspectBox.setVisible(true);
                     inspectBox.setPosition(event.getStageX()+ 10, event.getStageY() + 10);
                     return super.mouseMoved(event, x, y);

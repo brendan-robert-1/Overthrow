@@ -1,6 +1,6 @@
 package com.mygdx.game.state.shops;
 
-import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 
 public class ShopOffering {
     private InventoryItem inventoryItem;

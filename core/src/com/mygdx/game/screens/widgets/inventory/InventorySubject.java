@@ -1,4 +1,4 @@
-package com.mygdx.game.screens.widgets;
+package com.mygdx.game.screens.widgets.inventory;
 
 
 public interface InventorySubject {

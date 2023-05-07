@@ -1,8 +1,10 @@
 package com.mygdx.game.encounters;
 
+import com.mygdx.game.state.GameNode;
+
 import java.util.Random;
 
-public class WishingWell extends Encounter{
+public class WishingWell extends GameNode {
 
     private int percentChance = 50;
     public WishingWell(){

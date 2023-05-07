@@ -22,7 +22,7 @@ public class NewGameGenerator {
         return new CharacterSlots(
                 null,
                 null,
-                null,
+                Character.generateNewCharacter(Character.CharacterType.PLAGUE_DOCTOR),
                 Character.generateNewCharacter(characterType)
         );
     }

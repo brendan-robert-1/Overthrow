@@ -1,7 +1,7 @@
 package com.mygdx.game.encounters.factories;
 
-import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
+import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameNode.NodeType;
 
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class QuestionMarkFactory {
             WISHING_WELL,
             CHEST
     );
-    public static Encounter generateRandomQuestionMarkFor(ActType actType) {
+    public static GameNode generateRandomQuestionMarkFor(ActType actType) {
         switch(actType){
             case FARMS -> {return generateFarmQuestionMark(actType);}
             case BATTLEFIELD -> { return generateBattleFieldQuestionMark(actType);}
@@ -30,23 +30,23 @@ public class QuestionMarkFactory {
     }
 
     //TODO specify specific question marks
-    private static Encounter generateFarmQuestionMark(ActType actType) {
+    private static GameNode generateFarmQuestionMark(ActType actType) {
         switch(new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1)){
             case 0 -> {
-                Encounter encounter = FightFactory.generateRandomFightFor(actType);
+                GameNode encounter = FightFactory.generateRandomFightFor(actType);
                 encounter.setDisplayName("?");
                 return encounter;
             }
             case 1 -> {
-                Encounter encounter = MarketFactory.generateRandomMarketFor(actType);
+                GameNode encounter = MarketFactory.generateRandomMarketFor(actType);
                 encounter.setDisplayName("?");
                 return encounter;}
             case 2 -> {
-                Encounter encounter = WishingWellFactory.generateRandomWishingWellFor(actType);
+                GameNode encounter = WishingWellFactory.generateRandomWishingWellFor(actType);
                 encounter.setDisplayName("?");
                 return encounter;}
             case 3 -> {
-                Encounter encounter = ChestFactory.generateRandomChestFor(actType);
+                GameNode encounter = ChestFactory.generateRandomChestFor(actType);
                 encounter.setDisplayName("?");
                 return encounter;}
             default -> throw new IllegalStateException("Unexpected value: " + new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1));
@@ -55,7 +55,7 @@ public class QuestionMarkFactory {
 
 
     //TODO specify specific question marks
-    private static Encounter generatePalaceQuestionMark(ActType actType) {
+    private static GameNode generatePalaceQuestionMark(ActType actType) {
         switch(new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1)){
             case 0 -> {return FightFactory.generateRandomFightFor(actType);}
             case 1 -> { return MarketFactory.generateRandomMarketFor(actType);}
@@ -68,7 +68,7 @@ public class QuestionMarkFactory {
 
 
     //TODO specify specific question marks
-    private static Encounter generateMountainQuestionMark(ActType actType) {
+    private static GameNode generateMountainQuestionMark(ActType actType) {
         switch(new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1)){
             case 0 -> { return FightFactory.generateRandomFightFor(actType);}
             case 1 -> { return MarketFactory.generateRandomMarketFor(actType);}
@@ -80,7 +80,7 @@ public class QuestionMarkFactory {
 
 
     //TODO specify specific question marks
-    private static Encounter generateSwampQuestionMark(ActType actType) {
+    private static GameNode generateSwampQuestionMark(ActType actType) {
         switch(new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1)){
             case 0 -> { return FightFactory.generateRandomFightFor(actType);}
             case 1 -> { return MarketFactory.generateRandomMarketFor(actType);}
@@ -92,7 +92,7 @@ public class QuestionMarkFactory {
 
 
     //TODO specify specific question marks
-    private static Encounter generateBattleFieldQuestionMark(ActType actType) {
+    private static GameNode generateBattleFieldQuestionMark(ActType actType) {
         switch(new Random().nextInt(0, ENCOUNTERS_QUESTION_MARK.size() - 1)){
             case 0 -> { return FightFactory.generateRandomFightFor(actType);}
             case 1 -> { return MarketFactory.generateRandomMarketFor(actType);}

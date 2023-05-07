@@ -55,7 +55,7 @@ public class WeaponMerchantScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Proceeding to next encounter...");
-                InGameEncounterScreen.redirectNextNode();
+
             }
         });
         table.add(proceed).padTop(25);
