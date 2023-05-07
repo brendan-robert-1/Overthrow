@@ -1,15 +1,16 @@
 package com.mygdx.game.screens.widgets;
+import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
 
 public class InventoryItemLocation {
     private int locationIndex;
-    private String itemTypeAtLocation;
+    private ItemTypeId itemTypeAtLocation;
     private int numberItemsAtLocation;
     private String itemNameProperty;
 
     public InventoryItemLocation(){
     }
 
-    public InventoryItemLocation( int locationIndex, String itemTypeAtLocation, int numberItemsAtLocation, String itemNameProperty){
+    public InventoryItemLocation( int locationIndex, ItemTypeId itemTypeAtLocation, int numberItemsAtLocation, String itemNameProperty){
         this.locationIndex = locationIndex;
         this.itemTypeAtLocation = itemTypeAtLocation;
         this.numberItemsAtLocation = numberItemsAtLocation;
@@ -24,11 +25,11 @@ public class InventoryItemLocation {
         this.itemNameProperty = itemNameProperty;
     }
 
-    public String getItemTypeAtLocation() {
+    public ItemTypeId getItemTypeAtLocation() {
         return itemTypeAtLocation;
     }
 
-    public void setItemTypeAtLocation(String itemTypeAtLocation) {
+    public void setItemTypeAtLocation(ItemTypeId itemTypeAtLocation) {
         this.itemTypeAtLocation = itemTypeAtLocation;
     }
 

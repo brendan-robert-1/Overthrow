@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.mygdx.game.Assets;
-import com.mygdx.game.state.items.ItemSlot;
 
 public class InventorySlot extends Stack implements InventorySlotSubject {
     private Stack defaultBackground;

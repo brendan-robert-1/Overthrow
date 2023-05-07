@@ -1,15 +1,13 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.encounters.fights.Fight;
+import com.mygdx.game.screens.widgets.InventoryItem;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.EnemySlots;
 import com.mygdx.game.state.GameState;
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
-import com.mygdx.game.state.items.ItemType;
+import com.mygdx.game.state.items.InventoryItemFactory;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -176,9 +174,8 @@ public class CombatProcessor {
     //TODO generate random rewards for a given fight type from json
     private CombatRewards combatRewards(Fight fight) {
         CombatRewards rewards = new CombatRewards();
-        List<ItemSlot> itemRewards = new ArrayList<>();
-        itemRewards.add(ItemSlotFactory.one(ItemType.LEATHER_PANTS));
-        itemRewards.add(ItemSlotFactory.one(ItemType.MINOR_HEALTH_POT));
+        List<InventoryItem> itemRewards = new ArrayList<>();
+        itemRewards.add(InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HIDE_SHIELD));
         rewards.setItemRewards(itemRewards);
         rewards.setCoins(18);
         System.out.println("Fight complete! Rewarding 18 coins, leather pants, and a minor health pot.");

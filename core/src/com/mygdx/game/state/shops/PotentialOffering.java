@@ -1,26 +1,13 @@
 package com.mygdx.game.state.shops;
 
+import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+
 public class PotentialOffering {
-    private String itemName;
+    private ItemTypeId itemTypeId;
     private int quantityMin;
     private int quantityMax;
     private int priceMin;
     private int priceMax;
-
-
-
-    public String getItemName() {
-        return itemName;
-    }
-
-
-
-    public PotentialOffering setItemName(String itemName) {
-        this.itemName = itemName;
-        return this;
-    }
-
-
 
     public int getQuantityMin() {
         return quantityMin;
@@ -69,6 +56,19 @@ public class PotentialOffering {
 
     public PotentialOffering setPriceMax(int priceMax) {
         this.priceMax = priceMax;
+        return this;
+    }
+
+
+
+    public ItemTypeId getItemTypeId() {
+        return itemTypeId;
+    }
+
+
+
+    public PotentialOffering setItemTypeId(ItemTypeId itemTypeId) {
+        this.itemTypeId = itemTypeId;
         return this;
     }
 }

@@ -1,12 +1,12 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
-import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.screens.widgets.InventoryItem;
 
 import java.util.List;
 
 public class CombatRewards {
     public int coins;
-    public List<ItemSlot> itemRewards;
+    public List<InventoryItem> itemRewards;
 
 
 
@@ -23,13 +23,13 @@ public class CombatRewards {
 
 
 
-    public List<ItemSlot> getItemRewards() {
+    public List<InventoryItem> getItemRewards() {
         return itemRewards;
     }
 
 
 
-    public CombatRewards setItemRewards(List<ItemSlot> itemRewards) {
+    public CombatRewards setItemRewards(List<InventoryItem> itemRewards) {
         this.itemRewards = itemRewards;
         return this;
     }

@@ -86,7 +86,7 @@ public class MarketScreen extends ScreenAdapter {
     }
 
     private TextButton shopOfferingButton(ShopOffering offering){
-        TextButton button = new TextButton(offering.getItemSlot().getName() + ": " + offering.getPrice() + " coins", Assets.skin());
+        TextButton button = new TextButton(offering.getInventoryItem().getName() + ": " + offering.getPrice() + " coins", Assets.skin());
         button.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -104,7 +104,7 @@ public class MarketScreen extends ScreenAdapter {
 
     private void chargeAndAddToInventory(ShopOffering offering) {
         gameState.setCoin(gameState.getCoin() - offering.getPrice());
-        gameState.getInventory().addItem(offering.getItemSlot());
+        gameState.getInventory().addItem(offering.getInventoryItem());
         System.out.println("New coin amount after purchase: " + gameState.getCoin());
 
     }

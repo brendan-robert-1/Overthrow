@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -41,6 +42,9 @@ public class NextEncounterSelectionScreen extends ScreenAdapter {
         entireScreen.add(encounterOptionsTable).expand().bottom().right();
         stage.addActor(entireScreen);
         stage.addActor(inventoryUi);
+        for(Actor actor : inventoryUi.getInventoryActors()){
+            stage.addActor(actor);
+        }
         Gdx.input.setInputProcessor(stage);
     }
 

@@ -1,9 +1,13 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Assets;
 
 public class InventorySlotTooltipListener extends InputListener {
 
@@ -26,11 +30,20 @@ public class InventorySlotTooltipListener extends InputListener {
 
         currentCords.set(x, y);
         inventorySlot.localToStageCoordinates(currentCords);
-
         toolTip.updateDescription(inventorySlot);
         toolTip.setPosition(currentCords.x + offset.x, currentCords.y + offset.y);
         toolTip.toFront();
-        toolTip.setVisible(inventorySlot, true);
+        toolTip.setVisible(true);
+    }
+
+    @Override
+    public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+        InventorySlot inventorySlot = (InventorySlot)event.getListenerActor();
+        toolTip.setVisible(inventorySlot, false);
+        isInside = false;
+
+        currentCords.set(x, y);
+        inventorySlot.localToStageCoordinates(currentCords);
     }
 
     @Override

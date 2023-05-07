@@ -4,20 +4,19 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.mygdx.game.state.items.ItemSlot;
 
 public class InventorySlotTooltip extends Window {
 
-    private Skin _skin;
-    private Label _description;
+    private Skin skin;
+    private Label description;
 
     public InventorySlotTooltip(final Skin skin){
         super("", skin);
-        this._skin = skin;
+        this.skin = skin;
 
-        _description = new Label("", skin);
+        description = new Label("", skin);
 
-        this.add(_description);
+        this.add(description);
         this.padLeft(5).padRight(5);
         this.pack();
         this.setVisible(false);
@@ -40,22 +39,15 @@ public class InventorySlotTooltip extends Window {
             StringBuilder string = new StringBuilder();
             InventoryItem item = inventorySlot.getTopInventoryItem();
             string.append(item.getItemShortDescription());
-            if( item.isInventoryItemOffensive() ){
-                string.append(System.getProperty("line.separator"));
-                string.append(String.format("Attack Points: %s", item.getItemUseTypeValue()));
-            }else if( item.isInventoryItemDefensive() ){
-                string.append(System.getProperty("line.separator"));
-                string.append(String.format("Defense Points: %s", item.getItemUseTypeValue()));
-            }
             string.append(System.getProperty("line.separator"));
-            string.append(String.format("Original Value: %s GP", item.getItemValue()));
+            string.append(String.format("Original Value: %s GP", item.getCoinValue()));
             string.append(System.getProperty("line.separator"));
             string.append(String.format("Trade Value: %s GP", item.getTradeValue()));
 
-            _description.setText(string);
+            description.setText(string.toString());
             this.pack();
         }else{
-            _description.setText("");
+            description.setText("");
             this.pack();
         }
 

@@ -1,9 +1,9 @@
 package com.mygdx.game.state.shops;
 
-import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.screens.widgets.InventoryItem;
 
 public class ShopOffering {
-    private ItemSlot itemSlot;
+    private InventoryItem inventoryItem;
     private int price;
 
 
@@ -21,14 +21,14 @@ public class ShopOffering {
 
 
 
-    public ItemSlot getItemSlot() {
-        return itemSlot;
+    public InventoryItem getInventoryItem() {
+        return inventoryItem;
     }
 
 
 
-    public ShopOffering setItemSlot(ItemSlot itemSlot) {
-        this.itemSlot = itemSlot;
+    public ShopOffering setInventoryItem(InventoryItem inventoryItem) {
+        this.inventoryItem = inventoryItem;
         return this;
     }
 }

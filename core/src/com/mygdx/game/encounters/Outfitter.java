@@ -1,8 +1,8 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
-import com.mygdx.game.state.items.ItemType;
+import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.screens.widgets.InventoryItem.ItemTypeId;
+import com.mygdx.game.state.items.InventoryItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +18,11 @@ public class Outfitter extends Encounter{
         return sb.toString();
     }
 
-    public List<ItemSlot> buildOutfitterItems() {
-        List<ItemSlot> outfitterList = new ArrayList<>();
-        outfitterList.add(ItemSlotFactory.one(ItemType.HIDE_SHIELD));
-        outfitterList.add(ItemSlotFactory.one(ItemType.HEALTH_POT));
-        outfitterList.add(ItemSlotFactory.one(ItemType.RUSTY_DAGGER));
+    public List<InventoryItem> buildOutfitterItems() {
+        List<InventoryItem> outfitterList = new ArrayList<>();
+        outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.HIDE_SHIELD));
+        outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.HEALTH_POT));
+        outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.RUSTY_DAGGER));
         return outfitterList;
     }
 }

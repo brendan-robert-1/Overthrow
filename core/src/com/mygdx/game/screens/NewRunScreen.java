@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -30,7 +32,8 @@ public class NewRunScreen extends ScreenAdapter {
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
-        TextureRegionDrawable trd = new TextureRegionDrawable(Assets.skin().getRegion("splash"));
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("splash"));
         Table table = new Table();
         table.setBackground(trd);
         table.bottom().left();

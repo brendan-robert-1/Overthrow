@@ -3,9 +3,8 @@ package com.mygdx.game.encounters.factories;
 import com.mygdx.game.encounters.Encounter;
 import com.mygdx.game.encounters.Market;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
-import com.mygdx.game.state.items.ItemSlot;
-import com.mygdx.game.state.items.ItemSlotFactory;
-import com.mygdx.game.state.items.ItemType;
+import com.mygdx.game.screens.widgets.InventoryItem;
+import com.mygdx.game.state.items.InventoryItemFactory;
 import com.mygdx.game.state.shops.MarketOffering;
 import com.mygdx.game.state.shops.MarketOfferingFactory;
 import com.mygdx.game.state.shops.PotentialOffering;
@@ -30,7 +29,7 @@ public class MarketFactory {
 
 
     private static Encounter generatePalaceMarket(ActType actType) {
-        Map<ItemSlot, Integer> wares = generatePalaceWares(actType);
+        Map<InventoryItem, Integer> wares = generatePalaceWares(actType);
         return new Market(wares);
     }
 
@@ -40,7 +39,7 @@ public class MarketFactory {
 
 
     private static Encounter generateMountainMarket(ActType actType) {
-        Map<ItemSlot, Integer> wares = generateMountainWares(actType);
+        Map<InventoryItem, Integer> wares = generateMountainWares(actType);
         return new Market(wares);
     }
 
@@ -49,7 +48,7 @@ public class MarketFactory {
 
 
     private static Encounter generateSwampMarket(ActType actType) {
-        Map<ItemSlot, Integer> wares = generateSwampWares(actType);
+        Map<InventoryItem, Integer> wares = generateSwampWares(actType);
         return new Market(wares);
     }
 
@@ -58,7 +57,7 @@ public class MarketFactory {
 
 
     private static Encounter generateBattleFieldMarket(ActType actType) {
-        Map<ItemSlot, Integer> wares = generateBattleFieldWares(actType);
+        Map<InventoryItem, Integer> wares = generateBattleFieldWares(actType);
         return new Market(wares);
     }
 
@@ -66,79 +65,79 @@ public class MarketFactory {
 
 
     private static Encounter generateFarmMarket(ActType actType) {
-        Map<ItemSlot, Integer> wares = generateFarmWares(actType);
+        Map<InventoryItem, Integer> wares = generateFarmWares(actType);
         return new Market(wares);
     }
 
-    private static Map<ItemSlot, Integer> generatePalaceWares(ActType actType) {
+    private static Map<InventoryItem, Integer> generatePalaceWares(ActType actType) {
         return null;
     }
 
-    private static Map<ItemSlot, Integer> generateMountainWares(ActType actType) {
+    private static Map<InventoryItem, Integer> generateMountainWares(ActType actType) {
         return null;
     }
 
-    private static Map<ItemSlot, Integer> generateSwampWares(ActType actType) {
-        return null;
-    }
-
-
-    private static Map<ItemSlot, Integer> generateBattleFieldWares(ActType actType) {
+    private static Map<InventoryItem, Integer> generateSwampWares(ActType actType) {
         return null;
     }
 
 
-    private static Map<ItemSlot, Integer> generateFarmWares(ActType actType) {
+    private static Map<InventoryItem, Integer> generateBattleFieldWares(ActType actType) {
+        return null;
+    }
+
+
+    private static Map<InventoryItem, Integer> generateFarmWares(ActType actType) {
         MarketOffering marketOffering = MarketOfferingFactory.getMarketOfferingFor(actType);
         return buildWaresFromPotential(marketOffering);
     }
 
     //TODO add a remove from offerings once selected so no duplicates
-    private static Map<ItemSlot, Integer> buildWaresFromPotential(MarketOffering marketOffering){
-        Map<ItemSlot, Integer> wares = new HashMap<>();
-        PotentialOffering weapon1 = getRandomOffering(marketOffering.getPotentialWeapons());
-        int priceWeapon1 = getRandomPrice(weapon1);
-        int quantityWeapon1 = getRandomQuantity(weapon1);
-        wares.put(buildItemFrom(weapon1, quantityWeapon1), priceWeapon1);
-
-        PotentialOffering weapon2= getRandomOffering(marketOffering.getPotentialWeapons());
-        int priceWeapon2 = getRandomPrice(weapon2);
-        int quantityWeapon2 = getRandomQuantity(weapon2);
-        wares.put(buildItemFrom(weapon2, quantityWeapon2), priceWeapon2);
-
-        PotentialOffering armor1= getRandomOffering(marketOffering.getPotentialArmor());
-        int priceArmor1 = getRandomPrice(armor1);
-        int quantityArmor1 = getRandomQuantity(armor1);
-        wares.put(buildItemFrom(armor1, quantityArmor1), priceArmor1);
-
-        PotentialOffering armor2= getRandomOffering(marketOffering.getPotentialArmor());
-        int priceArmor2 = getRandomPrice(armor2);
-        int quantityArmor2 = getRandomQuantity(armor2);
-        wares.put(buildItemFrom(armor2, quantityArmor2),priceArmor2);
-
-        PotentialOffering consumable1= getRandomOffering(marketOffering.getPotentialConsumables());
-        int priceConsumable1 = getRandomPrice(consumable1);
-        int quantityConsumable1 = getRandomQuantity(consumable1);
-        wares.put(buildItemFrom(consumable1, quantityConsumable1),priceConsumable1);
-
-        PotentialOffering consumable2= getRandomOffering(marketOffering.getPotentialConsumables());
-        int priceConsumable2 = getRandomPrice(consumable2);
-        int quantityConsumable2 = getRandomQuantity(consumable2);
-        wares.put(buildItemFrom(consumable2, quantityConsumable2),priceConsumable2);
-
-        PotentialOffering gem = getRandomOffering(marketOffering.getPotentialGems());
-        int priceGem = getRandomPrice(gem);
-        int quantityGem = getRandomQuantity(gem);
-        wares.put(buildItemFrom(gem, quantityGem),priceGem);
+    private static Map<InventoryItem, Integer> buildWaresFromPotential(MarketOffering marketOffering){
+        Map<InventoryItem, Integer> wares = new HashMap<>();
+//        PotentialOffering weapon1 = getRandomOffering(marketOffering.getPotentialWeapons());
+//        int priceWeapon1 = getRandomPrice(weapon1);
+//        int quantityWeapon1 = getRandomQuantity(weapon1);
+//        wares.put(buildItemFrom(weapon1), priceWeapon1);
+//
+//        PotentialOffering weapon2= getRandomOffering(marketOffering.getPotentialWeapons());
+//        int priceWeapon2 = getRandomPrice(weapon2);
+//        int quantityWeapon2 = getRandomQuantity(weapon2);
+//        wares.put(buildItemFrom(weapon2), priceWeapon2);
+//
+//        PotentialOffering armor1= getRandomOffering(marketOffering.getPotentialArmor());
+//        int priceArmor1 = getRandomPrice(armor1);
+//        int quantityArmor1 = getRandomQuantity(armor1);
+//        wares.put(buildItemFrom(armor1), priceArmor1);
+//
+//        PotentialOffering armor2= getRandomOffering(marketOffering.getPotentialArmor());
+//        int priceArmor2 = getRandomPrice(armor2);
+//        int quantityArmor2 = getRandomQuantity(armor2);
+//        wares.put(buildItemFrom(armor2),priceArmor2);
+//
+//        PotentialOffering consumable1= getRandomOffering(marketOffering.getPotentialConsumables());
+//        int priceConsumable1 = getRandomPrice(consumable1);
+//        int quantityConsumable1 = getRandomQuantity(consumable1);
+//        wares.put(buildItemFrom(consumable1),priceConsumable1);
+//
+//        PotentialOffering consumable2= getRandomOffering(marketOffering.getPotentialConsumables());
+//        int priceConsumable2 = getRandomPrice(consumable2);
+//        int quantityConsumable2 = getRandomQuantity(consumable2);
+//        wares.put(buildItemFrom(consumable2),priceConsumable2);
+//
+//        PotentialOffering gem = getRandomOffering(marketOffering.getPotentialGems());
+//        int priceGem = getRandomPrice(gem);
+//        int quantityGem = getRandomQuantity(gem);
+//        wares.put(buildItemFrom(gem),priceGem);
 
         return wares;
     }
 
 
 
-    private static ItemSlot buildItemFrom(PotentialOffering potentialOffering, int quantity) {
-        ItemType itemType = ItemType.from(potentialOffering.getItemName());
-        return ItemSlotFactory.of(itemType, quantity);
+    private static InventoryItem buildItemFrom(PotentialOffering potentialOffering) {
+        InventoryItem itemType = InventoryItemFactory.getInstance().of(potentialOffering.getItemTypeId());
+        return itemType;
     }
 
 

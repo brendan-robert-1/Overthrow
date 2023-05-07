@@ -1,6 +1,6 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.items.ItemSlot;
+import com.mygdx.game.screens.widgets.InventoryItem;
 import com.mygdx.game.state.shops.ShopOffering;
 
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Market extends Encounter{
-    private Map<ItemSlot, Integer> waresToPrice;
-    public Market(Map<ItemSlot, Integer> waresToPrice){
+    private Map<InventoryItem, Integer> waresToPrice;
+    public Market(Map<InventoryItem, Integer> waresToPrice){
         super(NodeType.MARKET, "Market");
         this.waresToPrice = waresToPrice;
     }
@@ -22,16 +22,16 @@ public class Market extends Encounter{
 
 
 
-    public Map<ItemSlot, Integer> getWaresToPrice() {
+    public Map<InventoryItem, Integer> getWaresToPrice() {
         return waresToPrice;
     }
 
     public List<ShopOffering> getShopOfferings(){
         List<ShopOffering> offerings = new ArrayList<>();
-        for(ItemSlot item : waresToPrice.keySet()){
+        for(InventoryItem item : waresToPrice.keySet()){
             int price = waresToPrice.get(item);
             ShopOffering offering = new ShopOffering();
-            offering.setItemSlot(item);
+            offering.setInventoryItem(item);
             offering.setPrice(price);
             offerings.add(offering);
         }

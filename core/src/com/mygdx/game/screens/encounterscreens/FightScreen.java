@@ -3,6 +3,8 @@ package com.mygdx.game.screens.encounterscreens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -10,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
@@ -43,6 +46,9 @@ public class FightScreen extends ScreenAdapter {
         entireScreen.add(enemyTeam).expand().bottom().right();
         stage.addActor(entireScreen);
         stage.addActor(inventoryUi);
+        for(Actor actor : inventoryUi.getInventoryActors()){
+            stage.addActor(actor);
+        }
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -90,7 +96,9 @@ public class FightScreen extends ScreenAdapter {
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.skin().getRegion("enemy-placeholder-medium"))).expand();
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("enemy-placeholder-medium"));
+        characterPanel.add(new Image(trd)).expand();
         InspectBox characterInspectBox = new InspectBox(character.getName(),
                 "hp: " + character.getHp() + "\n" +
                         "armor: " + character.getHp() + "\n"+

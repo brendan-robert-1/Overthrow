@@ -1,42 +1,7 @@
 {
   "potentialArmor": [
     {
-      "itemName": "HIDE_SHIELD",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "5",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "LEATHER_PANTS",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "5",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "MINER_HAT",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "5",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "LEATHERWORKER_GLOVES",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "5",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "SNUG_SANDALS",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "5",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "OVERSIZED_BOOTS",
+      "itemTypeId": "HIDE_SHIELD",
       "quantityMin": "1",
       "quantityMax": "1",
       "priceMin": "5",
@@ -44,72 +9,7 @@
     }
   ],
   "potentialConsumables": [
-    {
-      "itemName": "MINOR_HEALTH_POT",
-      "quantityMin": "2",
-      "quantityMax": "3",
-      "priceMin": "2",
-      "priceMax": "3"
-    },
-    {
-      "itemName": "MINOR_POISON_RESIST_POT",
-      "quantityMin": "2",
-      "quantityMax": "3",
-      "priceMin": "2",
-      "priceMax": "3"
-    }
   ],
   "potentialWeapons": [
-    {
-      "itemName": "RUSTY_DAGGER",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "6",
-      "priceMax": "8"
-    },
-    {
-      "itemName": "FRESHMAN_SPELLCRAFT_NOTEBOOK",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "8",
-      "priceMax": "10"
-    },
-    {
-      "itemName": "TATTERED_SLINGSHOT",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "4",
-      "priceMax": "8"
-    }
-  ],
-  "potentialGems": [
-    {
-      "itemName": "CLOUDED_POISON_RESIST_OPAL",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "12",
-      "priceMax": "14"
-    },
-    {
-      "itemName": "CLOUDED_FIRE_DAMAGE_RUBY",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "12",
-      "priceMax": "14"
-    },
-    {
-      "itemName": "CLOUDED_POISON_DAMAGE_JADE",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "12",
-      "priceMax": "14"
-    },
-    {
-      "itemName": "CLOUDED_SPEED_CRYSTAL",
-      "quantityMin": "1",
-      "quantityMax": "1",
-      "priceMin": "12",
-      "priceMax": "14"
-    }
   ]
 }

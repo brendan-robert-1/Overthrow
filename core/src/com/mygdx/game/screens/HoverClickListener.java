@@ -25,7 +25,7 @@ public class HoverClickListener extends ClickListener {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-            inspectBox.setZIndex(stage.getActors().size);
+            inspectBox.toFront();
             stage.addActor(inspectBox);
             stage.addListener(mouseMoved);
             System.out.println("Entering object..");

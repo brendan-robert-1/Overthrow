@@ -18,22 +18,17 @@ public class Assets {
     private static Assets instance;
     private Assets(){
         assetManager = new AssetManager();
-        loadAll();
+        assetManager.load("overthrow.atlas", TextureAtlas.class);
+        assetManager.load(SKIN);
+        assetManager.finishLoading();
     }
+
     public static Assets getInstance(){
         if(instance == null){
             instance = new Assets();
         }
         return instance;
     }
-
-    public void loadAll(){
-        assetManager.load(SKIN);
-        assetManager.finishLoading();
-    }
-
-
-
 
     public static AssetManager getAssetManager() {
         return instance.getInstance().assetManager;

@@ -1,0 +1,102 @@
+  "LEATHER_PANTS": {
+      "itemType": "LEATHER_PANTS",
+      "displayName": "Leather Pants",
+      "description": "Leather Pants",
+      "spriteName": "leather-pans"
+    },
+    "MINER_HAT": {
+      "itemType": "MINER_HAT",
+      "displayName": "Miner Hat",
+      "description": "Miner Hat",
+      "spriteName": "hide-shield"
+    },
+    "LEATHERWORKER_GLOVES": {
+      "itemType": "LEATHERWORKER_GLOVES",
+      "displayName": "Leatherworker Gloves",
+      "description": "Leatherworker Gloves",
+      "spriteName": "hide-shield"
+    },
+    "SNUG_SANDALS": {
+      "itemType": "SNUG_SANDALS",
+      "displayName": "Snug Sandals",
+      "description": "Snug Sandals",
+      "spriteName": "hide-shield"
+    },
+    "OVERSIZED_BOOTS": {
+      "itemType": "OVERSIZED_BOOTS",
+      "displayName": "Oversized Boots",
+      "description": "Oversized Boots",
+      "spriteName": "hide-shield"
+    },
+    "MINOR_HEALTH_POT": {
+      "itemType": "MINOR_HEALTH_POT",
+      "displayName": "Minor Health Pot",
+      "description": "+25 hp",
+      "spriteName": "minor-health-pot"
+    },
+    "HEALTH_POT": {
+      "itemType": "HEALTH_POT",
+      "displayName": "Health Pot",
+      "description": "+25 hp",
+      "spriteName": "health-pot"
+    },
+    "MINOR_POISON_RESIST_POT": {
+      "itemType": "MINOR_POISON_RESIST_POT",
+      "displayName": "Minor Poison Resist Pot",
+      "description": "Minor Poison Resist Pot",
+      "spriteName": "minor-poison-resist-pot"
+    },
+    "SPEED_POT": {
+      "itemType": "SPEED_POT",
+      "displayName": "Speed pot",
+      "description": "Speed Pot",
+      "spriteName": "speed-pot"
+    },
+    "MINOR_SPEED_POT": {
+      "itemType": "MINOR_SPEED_POT",
+      "displayName": "Speed pot",
+      "description": "Speed Pot",
+      "spriteName": "speed-pot"
+    },
+    "RUSTY_DAGGER": {
+      "itemType": "RUSTY_DAGGER",
+      "displayName": "Rusty Dagger",
+      "description": "+2 Physical Damage",
+      "spriteName": "RUSTY-DAGGER"
+    },
+    "FRESHMAN_SPELLCRAFT_NOTEBOOK": {
+      "itemType": "FRESHMAN_SPELLCRAFT_NOTEBOOK",
+      "displayName": "Freshman Spellcraft Notebook",
+      "description": "Freshman Spellcraft Notebook",
+      "spriteName": "freshman-spellcraft-notebook"
+    },
+    "TATTERED_SLINGSHOT": {
+      "itemType": "TATTERED_SLINGSHOT",
+      "displayName": "Tattered Slingshot",
+      "description": "Tattered Slingshot",
+      "spriteName": "hide-shield"
+    },
+    "CLOUDED_POISON_RESIST_OPAL": {
+      "itemType": "CLOUDED_POISON_RESIST_OPAL",
+      "displayName": "Clouded Poison Resist Opal",
+      "description": "Clouded Poison Resist Opal",
+      "spriteName": "hide-shield"
+    },
+    "CLOUDED_POISON_DAMAGE_JADE": {
+      "itemType": "CLOUDED_POISON_DAMAGE_JADE",
+      "displayName": "Clouded Poison Damage Jade",
+      "description": "Clouded Poison Damage Jade",
+      "spriteName": "hide-shield"
+    },
+    "CLOUDED_FIRE_DAMAGE_RUBY": {
+      "itemType": "CLOUDED_FIRE_DAMAGE_RUBY",
+      "displayName": "Clouded Fire Damage Ruby",
+      "description": "Clouded Fire Damage Ruby",
+      "spriteName": "hide-shield"
+    },
+    "CLOUDED_SPEED_CRYSTAL": {
+      "itemType": "CLOUDED_SPEED_CRYSTAL",
+      "displayName": "Clouded Speed Crystal",
+      "description": "Clouded Speed Crystal",
+      "spriteName": "hide-shield"
+    }

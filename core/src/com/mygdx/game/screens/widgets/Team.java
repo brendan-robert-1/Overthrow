@@ -1,9 +1,11 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.CharacterSpriteFetcher;
 import com.mygdx.game.screens.encounterscreens.RightClickInspectListener;
@@ -29,7 +31,9 @@ public class Team extends Table{
         Table characterPanel = new Table(Assets.skin());
         characterPanel.add(new Label(character.getName() + "        hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
-        characterPanel.add(new Image(Assets.skin().getRegion(CharacterSpriteFetcher.mediumSpriteFrom(character.getCharacterType())))).expand();
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(CharacterSpriteFetcher.mediumSpriteFrom(character.getCharacterType())));
+        characterPanel.add(new Image(trd)).expand();
         InspectBox characterInspectBox = new InspectBox(character.getName(),
                 "hp: " + character.getHp() + "\n" +
                         "armor: " + character.getHp() + "\n"+

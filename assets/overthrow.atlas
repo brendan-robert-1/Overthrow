@@ -1,0 +1,174 @@
+
+overthrow.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+HEALTH_POT
+  rotate: false
+  xy: 904, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+HIDE_SHIELD
+  rotate: false
+  xy: 1902, 1551
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+KNIGHT-splash
+  rotate: false
+  xy: 414, 174
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+KNIGHT2
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+PLAGUE_DOCTOR-splash
+  rotate: false
+  xy: 2, 36
+  size: 410, 650
+  orig: 410, 650
+  offset: 0, 0
+  index: -1
+RUSTY_DAGGER
+  rotate: false
+  xy: 1100, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cape-splash
+  rotate: false
+  xy: 1902, 1617
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+chest-splash
+  rotate: false
+  xy: 1002, 784
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+earring-splash
+  rotate: false
+  xy: 1518, 1042
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+enemy-placeholder-medium
+  rotate: false
+  xy: 1162, 882
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+farms
+  rotate: false
+  xy: 2, 1140
+  size: 1800, 900
+  orig: 1800, 900
+  offset: 0, 0
+  index: -1
+splash
+  rotate: false
+  xy: 2, 1140
+  size: 1800, 900
+  orig: 1800, 900
+  offset: 0, 0
+  index: -1
+farms2
+  rotate: false
+  xy: 2, 688
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+feet-splash
+  rotate: false
+  xy: 1804, 1421
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+gloves-splash
+  rotate: false
+  xy: 544, 76
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+helmet-splash
+  rotate: false
+  xy: 904, 784
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+knight2-big
+  rotate: false
+  xy: 414, 44
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+knight2-large
+  rotate: false
+  xy: 904, 882
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+legs-splash
+  rotate: false
+  xy: 1804, 1617
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+necklace-splash
+  rotate: false
+  xy: 1804, 1519
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+plauge_doctor
+  rotate: false
+  xy: 1804, 1715
+  size: 205, 325
+  orig: 205, 325
+  offset: 0, 0
+  index: -1
+ring-splash
+  rotate: false
+  xy: 642, 76
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+shield-splash
+  rotate: false
+  xy: 1420, 944
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+weapon-splash
+  rotate: false
+  xy: 1420, 1042
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
