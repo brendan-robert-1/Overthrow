@@ -104,7 +104,7 @@ public class MarketScreen extends ScreenAdapter {
 
     private void chargeAndAddToInventory(ShopOffering offering) {
         gameState.setCoin(gameState.getCoin() - offering.getPrice());
-        gameState.getInventory().addItem(offering.getInventoryItem());
+
         System.out.println("New coin amount after purchase: " + gameState.getCoin());
 
     }

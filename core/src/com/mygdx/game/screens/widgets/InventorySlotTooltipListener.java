@@ -33,7 +33,7 @@ public class InventorySlotTooltipListener extends InputListener {
         toolTip.updateDescription(inventorySlot);
         toolTip.setPosition(currentCords.x + offset.x, currentCords.y + offset.y);
         toolTip.toFront();
-        toolTip.setVisible(true);
+        toolTip.setVisible(inventorySlot, true);
     }
 
     @Override

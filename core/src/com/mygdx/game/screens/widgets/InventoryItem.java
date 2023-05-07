@@ -70,8 +70,14 @@ public class InventoryItem extends Image {
         WEAPON_ONEHAND(8),
         WEAPON_TWOHAND(16),
         ARMOR_SHIELD(128),
-        ARMOR_HELMET(256),
+        ARMOR_HEAD(256),
+        ARMOR_EARRING(12),
+        ARMOR_NECKLACE(162),
+        ARMOR_CAPE(123),
+        ARMOR_RING(14),
+        ARMOR_GLOVES(15),
         ARMOR_CHEST(512),
+        ARMOR_LEGS(10241),
         ARMOR_FEET(1024),
         QUEST_ITEM(2048);
 

@@ -8,17 +8,22 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.mygdx.game.Assets;
+import com.mygdx.game.screens.widgets.InventoryItem.ItemUseType;
 
 public class InventorySlot extends Stack implements InventorySlotSubject {
     private Stack defaultBackground;
     private Image decal;
     private int numItems = 0;
     private Label numItemsLabel;
+    private ItemUseType filterItemType;
     private Array<InventorySlotObserver> observers;
 
+
     public InventorySlot(){
+
         defaultBackground = new Stack();
         observers = new Array<>();
+        decal = new Image();
         Image image = new Image(Assets.skin().getPatch("inventory-background"));
         defaultBackground.add(image);
         numItemsLabel = new Label(String.valueOf(numItemsLabel), Assets.skin());
@@ -28,12 +33,12 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         this.add(numItemsLabel);
     }
 
-    public InventorySlot(Image decal){
+    public InventorySlot(ItemUseType filterItemType, Image decal){
         this();
+        this.filterItemType = filterItemType;
         this.decal = decal;
         defaultBackground.add(decal);
     }
-
 
 
     public void clearAllInventoryItems(boolean sendRemoveNotification) {
@@ -83,6 +88,13 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
             return items.size - 2;
         }
         return 0;
+    }
+
+    public boolean doesAcceptItemUseType(ItemUseType itemUseType){
+        if(filterItemType == null){
+            return true;
+        }
+        return filterItemType.equals(itemUseType);
     }
 
     public InventoryItem getTopInventoryItem(){
@@ -143,4 +155,51 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         }
     }
 
+    static public void swapSlots(InventorySlot source, InventorySlot inventorySlotTarget, InventoryItem dragActor){
+        //check if items can accept each other, otherwise, no swap
+        if( !inventorySlotTarget.doesAcceptItemUseType(dragActor.getItemUseType()) ||
+                !source.doesAcceptItemUseType(inventorySlotTarget.getTopInventoryItem().getItemUseType())) {
+            source.add(dragActor);
+            return;
+        }
+
+        //swap
+        Array<Actor> tempArray = source.getAllInventoryItems();
+        tempArray.add(dragActor);
+        source.add(inventorySlotTarget.getAllInventoryItems());
+        inventorySlotTarget.add(tempArray);
+    }
+
+    public Array<Actor> getAllInventoryItems() {
+        Array<Actor> items = new Array<Actor>();
+        if( hasItem() ){
+            SnapshotArray<Actor> arrayChildren = this.getChildren();
+            int numInventoryItems =  arrayChildren.size - 2;
+            for(int i = 0; i < numInventoryItems; i++) {
+                decrementItemCount(true);
+                items.add(arrayChildren.pop());
+            }
+        }
+        return items;
+    }
+
+    public void add(Array<Actor> array) {
+        for( Actor actor : array){
+            super.add(actor);
+
+            if( numItemsLabel == null ){
+                return;
+            }
+
+            if( !actor.equals(defaultBackground) && !actor.equals(numItemsLabel) ) {
+                incrementItemCount(true);
+            }
+        }
+    }
+
+
+    public InventorySlot setFilterItemType(ItemUseType filterItemType) {
+        this.filterItemType = filterItemType;
+        return this;
+    }
 }

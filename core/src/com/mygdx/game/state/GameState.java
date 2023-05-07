@@ -6,7 +6,6 @@ public class GameState {
     private UUID runSeed;
     private CharacterSlots characterSlots;
     private int coin;
-    private Inventory inventory;
     private MapGraph mapGraph;
     private GameNode currentNode;
     private int currentFloor;
@@ -68,20 +67,6 @@ public class GameState {
         }
         this.coin = coin - decreaseCoinBy;
     }
-
-
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-
-
-    public GameState setInventory(Inventory inventory) {
-        this.inventory = inventory;
-        return this;
-    }
-
 
 
     public MapGraph getMapGraph() {

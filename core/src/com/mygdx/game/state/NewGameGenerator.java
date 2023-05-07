@@ -14,7 +14,6 @@ public class NewGameGenerator {
         state.setRunSeed(seed);
         state.setCharacterSlots(characterSlotsGenerator(characterType));
         state.setCoin(99);
-        state.setInventory(new Inventory());
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);
         state.setCurrentFloor(0);
