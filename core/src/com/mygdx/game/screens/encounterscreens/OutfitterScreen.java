@@ -34,6 +34,7 @@ public class OutfitterScreen extends ScreenAdapter {
         Outfitter outfitter = (Outfitter) gameState.getCurrentNode();
         Table outfitterTable = getOutfitterTable(outfitter);
         inventoryUi = new InventoryUi();
+        inventoryUi.setKeepWithinStage(false);
         entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
         entireScreen.row();
         entireScreen.add(new Team()).expand().bottom().left().pad(40);
@@ -43,6 +44,7 @@ public class OutfitterScreen extends ScreenAdapter {
         for(Actor actor : inventoryUi.getInventoryActors()){
             stage.addActor(actor);
         }
+        stage.setDebugAll(true);
         Gdx.input.setInputProcessor(stage);
     }
 

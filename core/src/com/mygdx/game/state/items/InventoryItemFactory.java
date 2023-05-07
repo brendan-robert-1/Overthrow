@@ -26,12 +26,12 @@ public class InventoryItemFactory {
     }
 
     public InventoryItem of(ItemTypeId itemType) {
-        InventoryItem inventoryItem = items.getItems().get(itemType);
+        InventoryItem newItem = new InventoryItem(items.getItems().get(itemType));
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(inventoryItem.getItemTypeId().toString()));
-        inventoryItem.setDrawable(new TextureRegionDrawable(trd));
-        inventoryItem.setScaling(Scaling.none);
-        return inventoryItem;
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(newItem.getItemTypeId().toString()));
+        newItem.setDrawable(new TextureRegionDrawable(trd));
+        newItem.setScaling(Scaling.none);
+        return newItem;
     }
 
     private static Items loadItems(){

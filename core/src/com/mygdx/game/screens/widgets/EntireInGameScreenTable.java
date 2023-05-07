@@ -11,7 +11,7 @@ public class EntireInGameScreenTable extends Table {
     public EntireInGameScreenTable(){
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
         TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("farms2"));
-        this.setBackground(trd);
+     //   this.setBackground(trd);
         this.setFillParent(true);
         this.pack();
     }

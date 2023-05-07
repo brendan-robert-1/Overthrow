@@ -1,6 +1,8 @@
 package com.mygdx.game.screens.widgets;
 
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Assets;
 
 public class InventorySlotSource extends Source {
@@ -39,8 +42,15 @@ public class InventorySlotSource extends Source {
 
         sourceSlot.decrementItemCount(true);
 
-        payload.setDragActor(actor);
-        dragAndDrop.setDragActorPosition(-x, -y + actor.getHeight());
+//        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+//        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion(InventoryItem.ItemTypeId.HIDE_SHIELD.toString()));
+//        Image image = new Image(trd);
+
+        payload.setDragActor(getActor());
+        System.out.println("x, y: " + x + ", " +y);
+        System.out.println("actor.getWidth(): " + actor.getWidth() + ", actor.getHeight(): " + actor.getHeight());
+        System.out.println("stage x: " + event.getStageX() + ", stage y: " + event.getStageY());
+        dragAndDrop.setDragActorPosition(-event.getStageX() + 60, -event.getStageY() + 10);
 
         return payload;
     }
@@ -49,7 +59,6 @@ public class InventorySlotSource extends Source {
         if( target == null ){
             sourceSlot.add(payload.getDragActor());
         }
-        System.out.println("stopping drag: -" + x + ", -" + y);
     }
 
     public InventorySlot getSourceSlot() {

@@ -42,6 +42,7 @@ public class InventoryUi extends Window{
         super("Inventory", Assets.skin());
         characterSlots = GameState.getInstance().getCharacterSlots();
         dragAndDrop = new DragAndDrop();
+        dragAndDrop.setDragTime(100);
         inventorySlotTable = new Table();
         inventoryActors = new Array<>();
         inventorySlotTooltip = new InventorySlotTooltip(Assets.skin());
@@ -61,11 +62,10 @@ public class InventoryUi extends Window{
         if(characterSlots.fourthCharacter() != null){
             this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        this.setMovable(false);
         this.setVisible(false);
         this.pack();
         this.setPosition(Gdx.graphics.getWidth()/2f - this.getWidth()/2f, Gdx.graphics.getHeight()/2f - this.getHeight()/2f);
-
+        this.setDebug(true);
     }
 
     private void populate(){

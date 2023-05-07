@@ -20,13 +20,15 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
 
 
     public InventorySlot(){
-
         defaultBackground = new Stack();
         observers = new Array<>();
         decal = new Image();
         Image image = new Image(Assets.skin().getPatch("inventory-background"));
         defaultBackground.add(image);
-        numItemsLabel = new Label(String.valueOf(numItemsLabel), Assets.skin());
+        defaultBackground.setName("defaultBackground");
+
+        numItemsLabel = new Label(String.valueOf(numItems), Assets.skin());
+        numItemsLabel.setName("numItems");
         numItemsLabel.setAlignment(Align.bottomRight);
         numItemsLabel.setVisible(false);
         this.add(defaultBackground);
@@ -41,16 +43,7 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
     }
 
 
-    public void clearAllInventoryItems(boolean sendRemoveNotification) {
-        if(hasItem()){
-            SnapshotArray<Actor> arrayChildren = this.getChildren();
-            int numItems = getNumItems();
-            for(int i = 0; i < numItems; i++){
-                decrementItemCount(sendRemoveNotification);
-                arrayChildren.pop();
-            }
-        }
-    }
+
 
     public void decrementItemCount(boolean sendRemoveNotification) {
         numItems--;
@@ -63,6 +56,31 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
             notify(this, InventorySlotObserver.SlotEvent.REMOVED_ITEM);
         }
     }
+
+    public void incrementItemCount(boolean sendAddNotification) {
+        numItems++;
+        numItemsLabel.setText(String.valueOf(numItems));
+        if( defaultBackground.getChildren().size > 1 ){
+            defaultBackground.getChildren().pop();
+        }
+        checkVisibilityOfItemCount();
+        if( sendAddNotification ){
+            notify(this, InventorySlotObserver.SlotEvent.ADDED_ITEM);
+        }
+    }
+
+
+    public void clearAllInventoryItems(boolean sendRemoveNotification) {
+        if(hasItem()){
+            SnapshotArray<Actor> arrayChildren = this.getChildren();
+            int numItems = getNumItems();
+            for(int i = 0; i < numItems; i++){
+                decrementItemCount(sendRemoveNotification);
+                arrayChildren.pop();
+            }
+        }
+    }
+
 
     private void checkVisibilityOfItemCount(){
         if( numItems < 2){
@@ -97,6 +115,19 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         return filterItemType.equals(itemUseType);
     }
 
+    public void remove(Actor actor) {
+        super.removeActor(actor);
+
+        if( numItemsLabel == null ){
+            return;
+        }
+
+        if( !actor.equals(defaultBackground) && !actor.equals(numItemsLabel) ) {
+            decrementItemCount(true);
+        }
+    }
+
+
     public InventoryItem getTopInventoryItem(){
         InventoryItem actor = null;
         if( hasChildren() ){
@@ -107,17 +138,7 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         }
         return actor;
     }
-    public void incrementItemCount(boolean sendAddNotification) {
-        numItems++;
-        numItemsLabel.setText(String.valueOf(numItems));
-        if( defaultBackground.getChildren().size > 1 ){
-            defaultBackground.getChildren().pop();
-        }
-        checkVisibilityOfItemCount();
-        if( sendAddNotification ){
-            notify(this, InventorySlotObserver.SlotEvent.ADDED_ITEM);
-        }
-    }
+
 
     @Override
     public void addObserver(InventorySlotObserver slotObserver) {
