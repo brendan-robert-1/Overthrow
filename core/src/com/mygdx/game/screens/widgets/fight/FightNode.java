@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.OverthrowActs;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
+import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.InspectBox;
 import com.mygdx.game.screens.widgets.nextencounter.PathSelectedObserver;
 import com.mygdx.game.state.Character;
@@ -77,12 +78,9 @@ public abstract class FightNode extends GameNode implements FightSubject, PathSe
         characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expand().fill().pad(20).align(Align.center);
 
         characterPanel.row();
-        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("enemy-placeholder-medium"));
-        Image enemySplash = new Image(trd);
-        enemySplash.setScaling(Scaling.fit);
-        enemySplash.setSize(200,250);
-        characterPanel.add(enemySplash).expand();
+        Image sprite = new CharacterSprite(character.getCharacterType());
+        sprite.setScaling(Scaling.fit);
+        characterPanel.add(sprite).width(200).height(250);
         InspectBox characterInspectBox = new InspectBox(character.getName(),
                 "hp: " + character.getHp() + "\n" +
                         "armor: " + character.getHp() + "\n"+

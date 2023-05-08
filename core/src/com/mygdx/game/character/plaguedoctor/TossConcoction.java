@@ -39,4 +39,11 @@ public class TossConcoction implements Ability {
         System.out.println(source.getName() + " is executing toss concoction onto: " + target.getName());
         target.decreaseHpBy(15);
     }
+
+
+
+    @Override
+    public AbilityType abilityType() {
+        return AbilityType.TOSS_CONCOCTION;
+    }
 }

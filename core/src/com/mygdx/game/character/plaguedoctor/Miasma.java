@@ -35,5 +35,12 @@ public class Miasma implements Ability {
     public void execute(Character target, Character source){
         System.out.println("Executing bloodlust onto: " + target.getName());
     }
+
+
+
+    @Override
+    public AbilityType abilityType() {
+        return AbilityType.MIASMA;
+    }
 }
 

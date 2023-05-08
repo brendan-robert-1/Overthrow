@@ -6,7 +6,7 @@
       "itemTypeId": "HIDE_SHIELD",
       "displayName": "Hide Shield",
       "itemShortDescription": "+1 Armor",
-      "coinValue": 0
+      "coinValue": 3
     },
     "RUSTY_DAGGER": {
       "itemAttribute": "EQUIPPABLE",
@@ -14,7 +14,7 @@
       "itemTypeId": "RUSTY_DAGGER",
       "displayName": "Rusty Dagger",
       "itemShortDescription": "+2 Physical Damage",
-      "coinValue": 0
+      "coinValue": 3
     },
     "HEALTH_POT": {
       "itemAttribute": "CONSUMABLE",
@@ -22,7 +22,7 @@
       "itemTypeId": "HEALTH_POT",
       "displayName": "Health Potion",
       "itemShortDescription": "+25 heal to 1 character",
-      "coinValue": 0
+      "coinValue": 2
     }
   }
 }

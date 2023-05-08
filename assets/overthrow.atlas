@@ -4,86 +4,135 @@ size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+BLOODLET
+  rotate: false
+  xy: 1804, 1564
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 HEALTH_POT
   rotate: false
-  xy: 904, 712
+  xy: 904, 746
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 HIDE_SHIELD
   rotate: false
-  xy: 2, 2
+  xy: 2, 36
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+HOMESTEADER_DAD
+  rotate: false
+  xy: 326, 326
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HOMESTEADER_DOG
+  rotate: false
+  xy: 1838, 1598
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HOMESTEADER_MOM
+  rotate: false
+  xy: 1804, 1598
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 KNIGHT
   rotate: false
-  xy: 904, 678
+  xy: 260, 260
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+MIASMA
+  rotate: false
+  xy: 904, 712
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR-export
   rotate: false
-  xy: 1886, 1646
+  xy: 68, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR
   rotate: false
-  xy: 1886, 1646
+  xy: 68, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 RUSTY_DAGGER
   rotate: false
-  xy: 260, 260
+  xy: 260, 294
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+TOSS_CONCOCTION
+  rotate: false
+  xy: 1886, 1680
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 WEAPON_ONEHAND
   rotate: false
-  xy: 1804, 1598
+  xy: 1804, 1632
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 enemy-placeholder-medium
   rotate: false
-  xy: 2, 68
+  xy: 2, 102
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 farms
   rotate: false
-  xy: 2, 778
+  xy: 2, 812
   size: 1800, 900
   orig: 1800, 900
   offset: 0, 0
   index: -1
 splash
   rotate: false
-  xy: 2, 778
+  xy: 2, 812
   size: 1800, 900
   orig: 1800, 900
   offset: 0, 0
   index: -1
 farms2
   rotate: false
-  xy: 2, 326
+  xy: 2, 360
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: -1
 lantern
   rotate: false
-  xy: 1804, 1564
+  xy: 970, 778
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+turn-carousel-background
+  rotate: false
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

@@ -128,7 +128,6 @@ public class CombatProcessor {
         }
     }
 
-
     public Character calculateActiveTurn(){
         Character activeTurnAwardedTo = characterMaxCt();
         activeTurnAwardedTo.reduceCharTimeBy(CT_THRESHOLD);
@@ -147,7 +146,6 @@ public class CombatProcessor {
         if(fastestEnemy.compareTo(fastestCharacter) < 0){
             return fastestCharacter;
         }
-
         return fastestEnemy;
     }
 
@@ -192,6 +190,7 @@ public class CombatProcessor {
                 .filter(Objects::nonNull)
                 .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
     }
+
     public void resetChargeTime() {
         characterSlots.asList().stream()
                 .filter(Objects::nonNull)
@@ -204,5 +203,26 @@ public class CombatProcessor {
         Character activeTurnAwardedTo = characterMaxCt();
         activeTurnAwardedTo.reduceCharTimeBy(CT_THRESHOLD);
         return activeTurnAwardedTo;
+    }
+
+
+    public List<Character> projectFutureTurnOrder(){
+        List<Character> turnOrders = new ArrayList<>();
+        List<Character> copyOfCharacters = new ArrayList<>();
+
+        //copy current characters and populate temp list
+        GameState.getInstance().getCharacterSlots().asList().stream().filter(Objects::nonNull).forEach(c -> copyOfCharacters.add(new Character(c)));
+        enemySlots.asList().stream().filter(Objects::nonNull).forEach(e -> copyOfCharacters.add(new Character(e)));
+
+        for(int i = 0; i < 10; i++){
+            //find next active character and progress/reset turns
+            Character activeCharacter =  copyOfCharacters.stream().filter(Objects::nonNull)
+                    .max(Comparator.comparing(Character::getChargeTime))
+                    .get();
+            turnOrders.add(activeCharacter);
+            activeCharacter.setChargeTime(0);
+            copyOfCharacters.stream().filter(c -> !c.equals(activeCharacter)).forEach( c -> c.increaseChargeTimeBy(CT_THRESHOLD));
+        }
+        return turnOrders;
     }
 }

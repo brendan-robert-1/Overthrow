@@ -12,6 +12,7 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
+import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.items.InventoryItemFactory;
 

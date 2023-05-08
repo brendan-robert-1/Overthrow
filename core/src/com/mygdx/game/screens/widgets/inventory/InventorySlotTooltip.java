@@ -16,8 +16,8 @@ public class InventorySlotTooltip extends Window {
 
         description = new Label("", skin);
 
-        this.add(description);
-        this.padLeft(5).padRight(5);
+        this.add(description).pad(20);
+        this.pad(5);
         this.pack();
         this.setVisible(false);
     }
@@ -38,12 +38,11 @@ public class InventorySlotTooltip extends Window {
         if( inventorySlot.hasItem() ){
             StringBuilder string = new StringBuilder();
             InventoryItem item = inventorySlot.getTopInventoryItem();
+            string.append(item.getDisplayName());
+            string.append(System.getProperty("line.separator"));
             string.append(item.getItemShortDescription());
             string.append(System.getProperty("line.separator"));
-            string.append(String.format("Original Value: %s GP", item.getCoinValue()));
-            string.append(System.getProperty("line.separator"));
-            string.append(String.format("Trade Value: %s GP", item.getTradeValue()));
-
+            string.append(String.format("Sell value: %s GP", item.getTradeValue()));
             description.setText(string.toString());
             this.pack();
         }else{

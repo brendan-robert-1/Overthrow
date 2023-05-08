@@ -1,6 +1,5 @@
 package com.mygdx.game.state;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.knight.KnightGenerator;
@@ -8,6 +7,8 @@ import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 import com.mygdx.game.state.gear.EquippedGear;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Character implements Comparable<Character>{
 
@@ -39,6 +40,19 @@ public class Character implements Comparable<Character>{
         this.chargeTime = chargeTime;
     }
 
+    public Character(Character character){
+        this.name = character.name;
+        this.characterType = character.characterType;
+        this.hp = character.hp;
+        this.equippedGear = character.equippedGear;
+        this.firstBasicAbility = character.firstBasicAbility;
+        this.secondBasicAbility = character.secondBasicAbility;
+        this.ultimateAbility = character.ultimateAbility;
+        this.buffs = character.buffs;
+        this.baseStats = character.baseStats;
+        this.chargeTime = character.chargeTime;
+    }
+
 
 
     @Override
@@ -68,6 +82,16 @@ public class Character implements Comparable<Character>{
 //            }
 //        }
        
+    }
+
+    public static boolean isFriendly(CharacterType characterType){
+        AtomicBoolean isFriendly = new AtomicBoolean(false);
+        GameState.getInstance().getCharacterSlots().asList().stream().filter(Objects::nonNull).forEach(c -> {
+            if(c.getCharacterType() == characterType){
+                isFriendly.set(true);
+            }
+        });
+        return isFriendly.get();
     }
 
 

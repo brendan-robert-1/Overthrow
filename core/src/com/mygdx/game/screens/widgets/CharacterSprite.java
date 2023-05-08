@@ -1,7 +1,10 @@
 package com.mygdx.game.screens.widgets;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
@@ -18,6 +21,17 @@ public class CharacterSprite extends Image {
         this.setSize(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
         this.setScaling(Scaling.none);
 
+        this.setPosition(getXVal(),0);
+        this.pack();
+    }
+
+    public CharacterSprite(CharacterType characterType, boolean flip){
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        TextureRegion trd = new TextureRegion(atlas.findRegion(characterType.toString()));
+        trd.flip(true, false);
+        this.setDrawable(new TextureRegionDrawable(trd));
+        this.setSize(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        this.setScaling(Scaling.none);
         this.setPosition(getXVal(),0);
         this.pack();
     }

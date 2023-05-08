@@ -8,20 +8,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.screens.encounterscreens.combat.CombatProcessor;
 import com.mygdx.game.screens.widgets.*;
-import com.mygdx.game.screens.widgets.fight.AbilitySelectPanel;
-import com.mygdx.game.screens.widgets.fight.FightObserver;
-import com.mygdx.game.screens.widgets.fight.TurnCarousel;
+import com.mygdx.game.screens.widgets.fight.*;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryItemLocation;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounter;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounterObserver;
 import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
+import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
-public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver {
+import java.util.List;
+
+public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, TurnSubject {
     private GameState gameState = GameState.getInstance();
     private InventoryUi inventoryUiContainer;
     private Stage stage;
@@ -31,7 +33,9 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private Table encounterContainer;
     private GameNode encounterWindow;
     private AbilitySelectPanel  abilitySelectPanel = new AbilitySelectPanel();
+    private Array<TurnObserver> turnObservers = new Array<>();
     private TurnCarousel turnCarousel = new TurnCarousel();
+    private CombatProcessor combatProcessor;
 
     private static MainGameScreen instance;
     private MainGameScreen(){
@@ -48,6 +52,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
+        addObserver(turnCarousel);
         inventoryUiContainer = new InventoryUi();
         inventoryUiContainer.setKeepWithinStage(false);
         Table hudContainer = new EntireInGameScreenTable();
@@ -71,13 +76,13 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
         abilitySelectPanel.setVisible(false);
         turnCarousel.setVisible(false);
-
+        hudContainer.row();
+        hudContainer.add(abilitySelectPanel);
 
         stage.addActor(hudContainer);
         stage.addActor(pathSelectContainer);
         stage.addActor(encounterContainer);
         stage.addActor(inventoryUiContainer);
-        stage.addActor(abilitySelectPanel);
         stage.addActor(turnCarousel);
 
         for(Actor actor : inventoryUiContainer.getInventoryActors()){
@@ -122,8 +127,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         if(nodeSelected == GameNode.NodeType.BASIC_FIGHT
                 || nodeSelected == GameNode.NodeType.BOSS_FIGHT
                 || nodeSelected == GameNode.NodeType.ELITE_FIGHT){
-            displayAbilitySelectPanel();
-            displayTurnCarousel();
+            processCombat(nodeSelected, event);
         }
         System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
         encounterWindow = GameState.getInstance().getCurrentNode();
@@ -132,9 +136,54 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         encounterContainer.setFillParent(true);
         encounterContainer.pack();
         encounterWindow.pack();
-        encounterContainer.add(encounterWindow).expand().bottom().right();
+        encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(100);
         stage.addActor(encounterContainer);
         pathSelectContainer.setVisible(false);
+    }
+
+
+
+    private void processCombat(GameNode.NodeType nodeSelected, NextEncounterEvent event) {
+        displayAbilitySelectPanel();
+        displayTurnCarousel();
+        FightNode fight = (FightNode) GameState.getInstance().getCurrentNode();
+        combatProcessor = new CombatProcessor(fight);
+        java.util.List<Character> futureTurns = combatProcessor.projectFutureTurnOrder();
+        notify("turn started", futureTurns, TurnObserver.TurnEvent.TURN_STARTED);
+        Character activeCharacter = combatProcessor.calculateActiveTurn();
+        if(activeCharacter.isFriendly()){
+            populateAbilityPanel(activeCharacter);
+            //Wait for ability used  fire event
+        }else {
+            //display box with ability, source, target and effect for 1.5 seconds
+            //process ability damage
+            //fire turn ended
+        }
+
+
+        /*
+          ##  Fire turn started event
+           ## determine first active character
+            if enemy show a 3 second box with what the attack is
+            change game state for attack
+            fire turn ended event
+
+            if friendly populate ability panel
+            set up drag and drop source and target with the enemy panels
+            when drag and drop to target is selected check if viable target
+            if viable target process ability stage change
+            first turn end event
+
+         */
+
+
+    }
+
+
+
+    private void populateAbilityPanel(Character activeCharacter) {
+        abilitySelectPanel.populateAbillites(activeCharacter);
+        abilitySelectPanel.pack();
     }
 
 
@@ -154,7 +203,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private void displayAbilitySelectPanel(){
         System.out.println("Displaying ability panel.");
         abilitySelectPanel.setVisible(true);
-        abilitySelectPanel.setDebug(true);
         abilitySelectPanel.pack();
     }
     private void displayTurnCarousel(){
@@ -168,5 +216,38 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     }
     private void hideTurnCarousel(){
         turnCarousel.setVisible(true);
+    }
+
+
+
+    @Override
+    public void addObserver(TurnObserver observer) {
+        turnObservers.add(observer);
+    }
+
+
+
+    @Override
+    public void removeObserver(TurnObserver observer) {
+        turnObservers.removeValue(observer, true);
+    }
+
+
+
+    @Override
+    public void removeAllObservers() {
+        for(TurnObserver turnObserver : turnObservers){
+            turnObservers.removeValue(turnObserver, true);
+        }
+    }
+
+
+
+
+    @Override
+    public void notify(String eventd, List<Character> futureTurns,TurnObserver.TurnEvent event) {
+        for(TurnObserver turnObserver : turnObservers){
+            turnObserver.onNotify(eventd, futureTurns, event);
+        }
     }
 }
