@@ -5,7 +5,9 @@ import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.knight.KnightGenerator;
 import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 import com.mygdx.game.state.gear.EquippedGear;
+import org.checkerframework.checker.units.qual.A;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -19,7 +21,8 @@ public class Character implements Comparable<Character>{
     private Ability firstBasicAbility;
     private Ability secondBasicAbility;
     private Ability ultimateAbility;
-    private List<Buff> buffs;
+    private List<Buff> buffs = new ArrayList<>();
+    private List<Buff> debuffs = new ArrayList<>();
     private final Stats baseStats;
     private Stats inCombatStatModifiers = new Stats();
     private int chargeTime;
@@ -49,6 +52,7 @@ public class Character implements Comparable<Character>{
         this.secondBasicAbility = character.secondBasicAbility;
         this.ultimateAbility = character.ultimateAbility;
         this.buffs = character.buffs;
+        this.debuffs = character.debuffs;
         this.baseStats = character.baseStats;
         this.chargeTime = character.chargeTime;
     }
@@ -175,6 +179,20 @@ public class Character implements Comparable<Character>{
 
     public Ability getSecondBasicAbility() {
         return secondBasicAbility;
+    }
+
+    public List<Buff> getDebuffs() {
+        return debuffs;
+    }
+
+    public void resetChargeTime(){
+        chargeTime = 0;
+    }
+
+
+    public Character setDebuffs(List<Buff> debuffs) {
+        this.debuffs = debuffs;
+        return this;
     }
 
 

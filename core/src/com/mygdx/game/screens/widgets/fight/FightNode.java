@@ -1,11 +1,8 @@
 package com.mygdx.game.screens.widgets.fight;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -23,6 +20,8 @@ import java.util.List;
 
 public abstract class FightNode extends GameNode implements FightSubject, PathSelectedObserver {
     Array<FightObserver> observers;
+    private EnemyTeam enemyTeam;
+
 
     public FightNode(NodeType nodeType, String displayName) {
         super(nodeType, displayName);
@@ -36,8 +35,15 @@ public abstract class FightNode extends GameNode implements FightSubject, PathSe
     private void init(){
         observers = new Array<>();
         observers.add(MainGameScreen.getInstance());
-        this.add(getFightTable());
+        enemyTeam = new EnemyTeam(startingUnits());
+        this.add(getFightTable(enemyTeam));
         this.pack();
+    }
+
+    public void update(){
+        this.clearChildren();
+        enemyTeam.update();
+        this.add(getFightTable(enemyTeam));
     }
 
 
@@ -47,63 +53,17 @@ public abstract class FightNode extends GameNode implements FightSubject, PathSe
 
 
 
-    private Table getFightTable() {
+    private Table getFightTable(EnemyTeam enemyTeam) {
         Table entireFightTable = new Table();
         entireFightTable.setFillParent(true);
-        entireFightTable.add(enemyTeam()).expand().bottom().right();
+        entireFightTable.add(enemyTeam).expand().bottom().right();
         return entireFightTable;
     }
 
 
-    private Table enemyTeam(){
-        Table table = new Table(Assets.skin());
-        Character firstEnemy = startingUnits().firstCharacter();
-        Character secondEnemy = startingUnits().secondCharacter();
-        Character thirdEnemy = startingUnits().thirdCharacter();
-        Character fourthEnemy = startingUnits().fourthCharacter();
-        table.add(addEnemyPanel(firstEnemy)).expand();
-        table.add(addEnemyPanel( secondEnemy)).expand();
-        table.add( addEnemyPanel( thirdEnemy)).expand();
-        table.add(addEnemyPanel( fourthEnemy)).expand();
-        table.pack();
-        return table;
+    public EnemyTeam getEnemyTeam(){
+        return enemyTeam;
     }
-
-
-    private Table addEnemyPanel(Character character) {
-        if(character == null){
-            return emptyEnemyPanel();
-        }
-        Table characterPanel = new Table(Assets.skin());
-        characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expand().fill().pad(20).align(Align.center);
-
-        characterPanel.row();
-        Image sprite = new CharacterSprite(character.getCharacterType());
-        sprite.setScaling(Scaling.fit);
-        characterPanel.add(sprite).width(200).height(250);
-        InspectBox characterInspectBox = new InspectBox(character.getName(),
-                "hp: " + character.getHp() + "\n" +
-                        "armor: " + character.getHp() + "\n"+
-                        "magic resistance: " + character.getHp() + "\n"+
-                        "physical damage: " + character.getHp() + "\n"+
-                        "magic damage: " + character.getHp() + "\n"+
-                        "speed: " + character.getHp() + "\n"
-        );
-       // characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
-        characterPanel.row();
-
-        characterPanel.defaults().expand().fill();
-        return characterPanel;
-    }
-
-    private Table emptyEnemyPanel() {
-        Table empty = new Table(Assets.skin());
-        empty.defaults().expand().fill();
-        empty.add(new Label("    ", Assets.skin()));
-        return empty;
-    }
-
-
 
     @Override
     public void addObserver(FightObserver observer) {
@@ -136,7 +96,7 @@ public abstract class FightNode extends GameNode implements FightSubject, PathSe
     }
 
     @Override
-    public void onNotify(PathSelectedEvent event){
+    public void onNotify(PathSelectedEvent event) {
         notify("Fight started", FightObserver.FightEvent.FIGHT_STARTED);
     }
 }

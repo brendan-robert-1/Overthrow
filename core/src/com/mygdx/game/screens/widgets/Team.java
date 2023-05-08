@@ -3,29 +3,47 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
 public class Team extends Table{
 
+    public void update() {
+        this.clearChildren();
+        this.populate();
+    }
+
     public Team(){
-        this.add(characterPanel(GameState.getInstance().getCharacterSlots().firstCharacter())).expand().fill();
-        this.add(characterPanel(GameState.getInstance().getCharacterSlots().secondCharacter())).expand().fill();
-        this.add(characterPanel(GameState.getInstance().getCharacterSlots().thirdCharacter())).expand().fill();
-        this.add(characterPanel(GameState.getInstance().getCharacterSlots().fourthCharacter())).expand().fill();
-        this.pack();
+        populate();
+    }
+
+    private void populate(){
+        Character firstCharacter = GameState.getInstance().getCharacterSlots().firstCharacter();
+        Character secondCharacter = GameState.getInstance().getCharacterSlots().secondCharacter();
+        Character thirdCharacter = GameState.getInstance().getCharacterSlots().thirdCharacter();
+        Character fourthCharacter = GameState.getInstance().getCharacterSlots().fourthCharacter();
+
+        if(firstCharacter != null && firstCharacter.getHp() > 0){
+            this.add(characterPanel(GameState.getInstance().getCharacterSlots().firstCharacter())).expand().fill();
+        }
+        if(secondCharacter != null&& secondCharacter.getHp() > 0){
+            this.add(characterPanel(GameState.getInstance().getCharacterSlots().secondCharacter())).expand().fill();
+        }
+        if(thirdCharacter != null && thirdCharacter.getHp() > 0){
+            this.add(characterPanel(GameState.getInstance().getCharacterSlots().thirdCharacter())).expand().fill();
+        }
+        if(fourthCharacter != null && fourthCharacter.getHp() > 0){
+            this.add(characterPanel(GameState.getInstance().getCharacterSlots().fourthCharacter())).expand().fill();
+        }
     }
 
 
 
-    private Table characterPanel(Character character) {
-        if(character == null){
-            return emptyCharacterPanel();
-        }
-        Table characterPanel = new Table(Assets.skin());
+    private CharacterPanel characterPanel(Character character) {
+        CharacterPanel characterPanel = new CharacterPanel(character, Assets.skin());
         characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
         Image characterSprite = new CharacterSprite(character.getCharacterType());
@@ -42,6 +60,7 @@ public class Team extends Table{
         //characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
         characterPanel.defaults().expandX();
+        characterPanel.setName(character.getCharacterType().toString());
         return characterPanel;
     }
 
@@ -51,5 +70,7 @@ public class Team extends Table{
         empty.add(new Label("                   ", Assets.skin()));
         return empty;
     }
+
+
 
 }

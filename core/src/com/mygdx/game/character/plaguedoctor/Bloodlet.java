@@ -1,9 +1,15 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
+import java.util.Objects;
+
 public class Bloodlet implements Ability {
+
+    private static final int REDUCE_DEBUFF_TURNS_BY = 3;
+    private static final int DAMAGE = 3;
 
     @Override
     public String name() {
@@ -27,6 +33,13 @@ public class Bloodlet implements Ability {
 
 
     @Override
+    public boolean friendlyTargetable() {
+        return true;
+    }
+
+
+
+    @Override
     public boolean selfTargetable() {
         return true;
     }
@@ -34,8 +47,12 @@ public class Bloodlet implements Ability {
 
 
     @Override
-    public void execute(Character target, Character source) {
-        System.out.println("Executing bloodlust onto: " + target.getName());
+    public void execute(Character target, Character source, FightNode fight) {
+        System.out.println("Bloodlet is executing on: " + target.getName());
+        target.decreaseHpBy(DAMAGE);
+        target.getDebuffs().stream().filter(Objects::nonNull).forEach(debuff -> {
+            debuff.reduceTurnsRemaining(REDUCE_DEBUFF_TURNS_BY);
+        });
     }
 
 

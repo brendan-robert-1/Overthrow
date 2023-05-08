@@ -1,6 +1,7 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Character;
@@ -17,11 +18,11 @@ import java.util.Objects;
 public class CombatProcessor {
 
     private static final int CT_THRESHOLD = 100;
-    private EnemySlots enemySlots;
     private CharacterSlots characterSlots;
+    private FightNode fight;
 
     public CombatProcessor(FightNode fight){
-        enemySlots = fight.startingUnits();
+        this.fight = fight;
         characterSlots = GameState.getInstance().getCharacterSlots();
         setStartingChargeTime();
     }
@@ -39,59 +40,30 @@ public class CombatProcessor {
 
     public void executeEnemyTurn(Character enemyCharacter) {
         processFoeTurn(enemyCharacter);
-        if(!fightOver()){
-            System.out.println("Fight over!...");
-        }
+        increaseChargeTimeExcept(enemyCharacter);
+        enemyCharacter.resetChargeTime();
         increaseChargeTimeExcept(enemyCharacter);
     }
-
-    public void executeFriendlyTurn(Character friendlyCharacter, Ability ability){
-        System.out.println("Executing ability: " + ability.name());
-        increaseChargeTimeExcept(friendlyCharacter);
-    }
-
-    public boolean fightOver() {
-        return allCharactersDead() || allEnemiesDead();
-    }
-
-    private void processTurn(){
-        Character activeCharacter = calculateActiveTurn();
-        //System.out.println("Fastest character is " + activeCharacter.getName() + " with CT of: " + activeCharacter.getChargeTime());
-        if(isFriendlyTurn(activeCharacter)){
-            processFriendlyTurn(activeCharacter);
-        } else {
-            processFoeTurn(activeCharacter);
-        }
-        increaseChargeTimeExcept(activeCharacter);
+    private void processFoeTurn(Character activeCharacter){
+        Ability ability = activeCharacter.getFirstBasicAbility(); //TODO pick random
+        Character target = findTargetFor(ability, false);
+        ability.execute(target, activeCharacter, fight );
     }
 
 
 
-    private void increaseChargeTimeExcept(Character activeCharacter) {
+    public void increaseChargeTimeExcept(Character activeCharacter) {
         characterSlots.asList().stream()
                 .filter(Objects::nonNull)
                 .filter(c -> !c.equals(activeCharacter))
                 .forEach(c -> c.increaseChargeTimeBy(CT_THRESHOLD));
-        enemySlots.asList().stream()
+        fight.getEnemyTeam().getEnemySlots().asList().stream()
                 .filter(Objects::nonNull)
                 .filter(c -> !c.equals(activeCharacter))
                 .forEach(c -> c.increaseChargeTimeBy(CT_THRESHOLD));
     }
 
 
-
-    //TODO find out how to get ability from UI
-    private void processFriendlyTurn(Character activeCharacter){
-        Ability ability = activeCharacter.getFirstBasicAbility();
-        Character target = findTargetFor(ability, true);
-        ability.execute(target, activeCharacter);
-    }
-
-    private void processFoeTurn(Character activeCharacter){
-        Ability ability = activeCharacter.getFirstBasicAbility(); //TODO pick random
-        Character target = findTargetFor(ability, false);
-        ability.execute(target, activeCharacter);
-    }
 
     private Character findTargetFor(Ability ability, boolean isFriendly) {
         if(ability.offensiveTargetable()){
@@ -103,7 +75,7 @@ public class CombatProcessor {
 
     private Character findOffensiveTarget(boolean isFriendly) {
         if(isFriendly){
-            return enemySlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+            return fight.getEnemyTeam().getEnemySlots().asList().stream().filter(Objects::nonNull).findFirst().get();
         } else {
             return characterSlots.asList().stream().filter(Objects::nonNull).findFirst().get();
         }
@@ -114,19 +86,10 @@ public class CombatProcessor {
         if(isFriendly){
             return characterSlots.asList().stream().filter(Objects::nonNull).findFirst().get();
         } else {
-            return enemySlots.asList().stream().filter(Objects::nonNull).findFirst().get();
+            return fight.getEnemyTeam().getEnemySlots().asList().stream().filter(Objects::nonNull).findFirst().get();
         }
     }
 
-    private boolean isFriendlyTurn(Character activeCharacter){
-        if(characterSlots.asList().contains(activeCharacter)){
-            return true;
-        } else if (enemySlots.asList().contains(activeCharacter)){
-            return false;
-        } else {
-            throw new IllegalStateException("Active character is not in the friendly or foe list. Invalid state keep debugging.");
-        }
-    }
 
     public Character calculateActiveTurn(){
         Character activeTurnAwardedTo = characterMaxCt();
@@ -139,7 +102,7 @@ public class CombatProcessor {
                 .filter(Objects::nonNull)
                 .max(Comparator.comparing(Character::getChargeTime))
                 .get();
-        Character fastestEnemy = enemySlots.asList().stream()
+        Character fastestEnemy = fight.getEnemyTeam().getEnemySlots().asList().stream()
                 .filter(Objects::nonNull)
                 .max(Comparator.comparing(Character::getChargeTime))
                 .get();
@@ -161,12 +124,10 @@ public class CombatProcessor {
     }
 
     private boolean allEnemiesDead(){
-        for(Character character : enemySlots.asList()){
-            if(character.getHp() > 0){
-                return false;
-            }
-        }
-        return true;
+        boolean atLeastOneAlive = fight.getEnemyTeam().getEnemySlots().asList().stream().filter(Objects::nonNull)
+                .filter(c -> c.getHp()  >0)
+                .anyMatch(c -> c.getHp() > 0);
+        return !atLeastOneAlive;
     }
 
     //TODO generate random rewards for a given fight type from json
@@ -186,7 +147,7 @@ public class CombatProcessor {
         characterSlots.asList().stream()
                 .filter(Objects::nonNull)
                 .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
-        enemySlots.asList().stream()
+        fight.getEnemyTeam().getEnemySlots().asList().stream()
                 .filter(Objects::nonNull)
                 .forEach(c -> c.setChargeTime(c.getStats().getSpeed()));
     }
@@ -212,7 +173,7 @@ public class CombatProcessor {
 
         //copy current characters and populate temp list
         GameState.getInstance().getCharacterSlots().asList().stream().filter(Objects::nonNull).forEach(c -> copyOfCharacters.add(new Character(c)));
-        enemySlots.asList().stream().filter(Objects::nonNull).forEach(e -> copyOfCharacters.add(new Character(e)));
+        fight.getEnemyTeam().getEnemySlots().asList().stream().filter(Objects::nonNull).forEach(e -> copyOfCharacters.add(new Character(e)));
 
         for(int i = 0; i < 10; i++){
             //find next active character and progress/reset turns
@@ -224,5 +185,23 @@ public class CombatProcessor {
             copyOfCharacters.stream().filter(c -> !c.equals(activeCharacter)).forEach( c -> c.increaseChargeTimeBy(CT_THRESHOLD));
         }
         return turnOrders;
+    }
+
+
+
+    public void executeAbility(Character targetCharacter, Ability ability) {
+    }
+
+
+    public boolean fightOver() {
+        return allCharactersDead() || allEnemiesDead();
+    }
+
+    public boolean lost() {
+        return allCharactersDead();
+    }
+
+    public boolean won(){
+        return allEnemiesDead();
     }
 }

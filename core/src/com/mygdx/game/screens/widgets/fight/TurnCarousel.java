@@ -8,28 +8,35 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
+import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.AbilitySprite;
 import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.state.Character;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TurnCarousel extends Table implements TurnObserver{
+public class TurnCarousel extends Table{
+
+    List<Character> futureTurns = new ArrayList<>();
+
+
     public TurnCarousel(){
         this.setPosition(Gdx.graphics.getWidth()/2 - this.getWidth()/2, Gdx.graphics.getHeight()-100);
-        this.setVisible(false);
+        this.setVisible(true);
     }
 
 
-    @Override
-    public void onNotify(String text, java.util.List<Character> futureTurns, TurnEvent event) {
-        if(event.equals(TurnEvent.TURN_STARTED)){
-            populateCarousel(futureTurns);
-        }
-    }
+//    @Override
+//    public void onNotify(String text, java.util.List<Character> futureTurns, TurnEvent event) {
+//        if(event.equals(TurnEvent.TURN_STARTED)){
+//           populateCarousel(futureTurns);
+//        }
+//    }
 
 
-    private void populateCarousel(List<Character> futureTurns) {
-        this.getChildren().forEach(Actor::remove);
+    public void populateCarousel(List<Character> futureTurns) {
+        this.futureTurns = futureTurns;
         for(Character turn : futureTurns){
             Stack images = new Stack();
             TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
@@ -44,7 +51,15 @@ public class TurnCarousel extends Table implements TurnObserver{
             images.add(sprite);
             this.add(images);
         }
+
         this.pack();
         this.setPosition(Gdx.graphics.getWidth()/2 - this.getWidth()/2, Gdx.graphics.getHeight()-100);
+    }
+
+
+
+    public void update(List<Character> futureTurns) {
+        //this.add(new AbilitySprite(Ability.AbilityType.MIASMA));
+       populateCarousel(futureTurns);
     }
 }

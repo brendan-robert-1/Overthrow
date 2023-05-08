@@ -1,6 +1,7 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
 public class TossConcoction implements Ability {
@@ -27,6 +28,13 @@ public class TossConcoction implements Ability {
 
 
     @Override
+    public boolean friendlyTargetable() {
+        return false;
+    }
+
+
+
+    @Override
     public boolean selfTargetable() {
         return false;
     }
@@ -35,8 +43,8 @@ public class TossConcoction implements Ability {
 
 
     @Override
-    public void execute(Character target, Character source) {
-        System.out.println(source.getName() + " is executing toss concoction onto: " + target.getName());
+    public void execute(Character target, Character source, FightNode fight) {
+        System.out.println("Toss Concoction is executing on: " + target.getName());
         target.decreaseHpBy(15);
     }
 
