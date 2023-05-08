@@ -64,9 +64,12 @@ public class TopBar extends Table {
 
     private void showInventory(){
         if(inventoryUi.isVisible()){
+            inventoryUi.setZIndex(getStage().getActors().size);
             inventoryUi.setVisible(false);
         }else{
+            inventoryUi.setZIndex(getStage().getActors().size);
             inventoryUi.setVisible(true);
+            inventoryUi.pack();
         }
     }
 

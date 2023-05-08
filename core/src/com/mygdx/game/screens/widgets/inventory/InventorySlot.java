@@ -86,6 +86,7 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         if( numItems < 2){
             numItemsLabel.setVisible(false);
         }else{
+
             numItemsLabel.setVisible(true);
         }
     }

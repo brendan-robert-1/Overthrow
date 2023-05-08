@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.FightNode;
+import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TaxMan extends Fight{
+public class TaxMan extends FightNode {
     public TaxMan(){
         super(NodeType.BOSS_FIGHT, "Boss");
     }

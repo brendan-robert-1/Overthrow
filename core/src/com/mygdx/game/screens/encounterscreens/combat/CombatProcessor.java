@@ -1,7 +1,7 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.encounters.fights.Fight;
+import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
@@ -20,7 +20,7 @@ public class CombatProcessor {
     private EnemySlots enemySlots;
     private CharacterSlots characterSlots;
 
-    public CombatProcessor(Fight fight){
+    public CombatProcessor(FightNode fight){
         enemySlots = fight.startingUnits();
         characterSlots = GameState.getInstance().getCharacterSlots();
         setStartingChargeTime();
@@ -172,7 +172,7 @@ public class CombatProcessor {
     }
 
     //TODO generate random rewards for a given fight type from json
-    private CombatRewards combatRewards(Fight fight) {
+    private CombatRewards combatRewards(FightNode fight) {
         CombatRewards rewards = new CombatRewards();
         List<InventoryItem> itemRewards = new ArrayList<>();
         itemRewards.add(InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HIDE_SHIELD));

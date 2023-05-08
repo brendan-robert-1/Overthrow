@@ -9,6 +9,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.screens.widgets.*;
+import com.mygdx.game.screens.widgets.fight.AbilitySelectPanel;
+import com.mygdx.game.screens.widgets.fight.FightObserver;
+import com.mygdx.game.screens.widgets.fight.TurnCarousel;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryItemLocation;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
@@ -18,13 +21,17 @@ import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 
-public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver {
+public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver {
     private GameState gameState = GameState.getInstance();
-    private InventoryUi inventoryUi;
+    private InventoryUi inventoryUiContainer;
     private Stage stage;
     private Viewport viewport;
-    private NextEncounter nextEncounterWindow;
-    private Table nextEncounterContainer;
+    private Table pathSelectContainer;
+
+    private Table encounterContainer;
+    private GameNode encounterWindow;
+    private AbilitySelectPanel  abilitySelectPanel = new AbilitySelectPanel();
+    private TurnCarousel turnCarousel = new TurnCarousel();
 
     private static MainGameScreen instance;
     private MainGameScreen(){
@@ -41,26 +48,39 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
-        inventoryUi = new InventoryUi();
-        inventoryUi.setKeepWithinStage(false);
-        Table entireScreen = new EntireInGameScreenTable();
-        GameNode encounterWindow = GameState.getInstance().getCurrentNode();
-        encounterWindow.setInventoryUi(inventoryUi);
+        inventoryUiContainer = new InventoryUi();
+        inventoryUiContainer.setKeepWithinStage(false);
+        Table hudContainer = new EntireInGameScreenTable();
 
-        entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
-        entireScreen.row();
-        entireScreen.add(new Team()).expand().bottom().left().pad(40);
-        entireScreen.add(encounterWindow).expand().bottom().right().padBottom(20);
-        nextEncounterWindow = new NextEncounter();
 
-        nextEncounterContainer = new Table();
-        nextEncounterContainer.setFillParent(true);
-        nextEncounterContainer.setVisible(false);
-        nextEncounterContainer.add(nextEncounterWindow).expand().bottom().right().padBottom(20);
-        stage.addActor(entireScreen);
-        stage.addActor(nextEncounterContainer);
-        stage.addActor(inventoryUi);
-        for(Actor actor : inventoryUi.getInventoryActors()){
+        hudContainer.add(new TopBar(inventoryUiContainer)).expand().fillX().colspan(2).top();
+        hudContainer.row();
+        hudContainer.add(new Team()).expand().bottom().left().pad(40);
+
+        NextEncounter pathSelectWindow; pathSelectWindow = new NextEncounter();
+        pathSelectContainer = new Table();
+        pathSelectContainer.setFillParent(true);
+        pathSelectContainer.setVisible(false);
+        pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
+
+        encounterWindow = GameState.getInstance().getCurrentNode();
+        encounterWindow.setInventoryUi(inventoryUiContainer);
+        encounterContainer = new Table();
+        encounterContainer.setFillParent(true);
+        encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(20);
+
+        abilitySelectPanel.setVisible(false);
+        turnCarousel.setVisible(false);
+
+
+        stage.addActor(hudContainer);
+        stage.addActor(pathSelectContainer);
+        stage.addActor(encounterContainer);
+        stage.addActor(inventoryUiContainer);
+        stage.addActor(abilitySelectPanel);
+        stage.addActor(turnCarousel);
+
+        for(Actor actor : inventoryUiContainer.getInventoryActors()){
             stage.addActor(actor);
         }
         Gdx.input.setInputProcessor(stage);
@@ -85,24 +105,68 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     public void onNotify(InventoryItem itemSelected, OutfitterEvent event) {
         System.out.println("The main game screen is being notified of an outfit being selected.");
         Array<InventoryItemLocation> itemLocations = new Array<>();
-        itemLocations.add(new InventoryItemLocation(0, itemSelected.getItemTypeId(), 1, itemSelected.getDisplayName()));
-        InventoryUi.populateInventory(inventoryUi.getInventorySlotTable(),itemLocations,inventoryUi.getDragAndDrop());
-        displayNextEncounterWindow();
+        itemLocations.add(new InventoryItemLocation(0, itemSelected.getItemTypeId(),1, itemSelected.getDisplayName()));
+        InventoryUi.populateInventory(inventoryUiContainer.getInventorySlotTable(),itemLocations, inventoryUiContainer.getDragAndDrop());
+        displayPathSelectWindow();
     }
 
-    private void displayNextEncounterWindow(){
+    private void displayPathSelectWindow(){
         System.out.println("Displaying next encounter selection window");
-        nextEncounterContainer.setVisible(true);
-        nextEncounterContainer.setDebug(true);
-        nextEncounterContainer.pack();
+        pathSelectContainer.setVisible(true);
+        pathSelectContainer.setDebug(true);
+        pathSelectContainer.pack();
+    }
+
+    @Override
+    public void onNotify(GameNode.NodeType nodeSelected, NextEncounterEvent event) {
+        if(nodeSelected == GameNode.NodeType.BASIC_FIGHT
+                || nodeSelected == GameNode.NodeType.BOSS_FIGHT
+                || nodeSelected == GameNode.NodeType.ELITE_FIGHT){
+            displayAbilitySelectPanel();
+            displayTurnCarousel();
+        }
+        System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
+        encounterWindow = GameState.getInstance().getCurrentNode();
+        encounterWindow.setInventoryUi(inventoryUiContainer);
+        encounterContainer = new Table();
+        encounterContainer.setFillParent(true);
+        encounterContainer.pack();
+        encounterWindow.pack();
+        encounterContainer.add(encounterWindow).expand().bottom().right();
+        stage.addActor(encounterContainer);
+        pathSelectContainer.setVisible(false);
     }
 
 
 
     @Override
-    public void onNotify(GameNode.NodeType nodeSelected, NextEncounterEvent event) {
-        System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
-        nextEncounterContainer.setVisible(false);
-        nextEncounterContainer.pack();
+    public void onNotify(String text, FightEvent event) {
+        System.out.println("Main game screen is being notified of fight event");
+        switch(event){
+            case ENEMY_TURN_TAKEN -> {}
+            case FIGHT_OVER -> {
+                hideTurnCarousel();
+                hideAbilitySelectPanel();
+            }
+        }
+    }
+
+    private void displayAbilitySelectPanel(){
+        System.out.println("Displaying ability panel.");
+        abilitySelectPanel.setVisible(true);
+        abilitySelectPanel.setDebug(true);
+        abilitySelectPanel.pack();
+    }
+    private void displayTurnCarousel(){
+        System.out.println("Displaying turn carousel.");
+        turnCarousel.setVisible(true);
+        abilitySelectPanel.pack();
+    }
+
+    private void hideAbilitySelectPanel(){
+        abilitySelectPanel.setVisible(true);
+    }
+    private void hideTurnCarousel(){
+        turnCarousel.setVisible(true);
     }
 }

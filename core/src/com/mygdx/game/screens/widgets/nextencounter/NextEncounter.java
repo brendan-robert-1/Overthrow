@@ -19,8 +19,9 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.util.Set;
 
-public class NextEncounter extends GameNode implements NextEncounterSubject{
+public class NextEncounter extends GameNode implements NextEncounterSubject, PathSelectedSubject{
     Array<NextEncounterObserver> observers;
+    Array<PathSelectedObserver> pathSelectedObservers = new Array<>();
 
     public NextEncounter(){
         super(NodeType.PATH_SELECTION, "Choose the next encounter");
@@ -35,13 +36,13 @@ public class NextEncounter extends GameNode implements NextEncounterSubject{
         GameNode currentNode = GameState.getInstance().getCurrentNode();
         Set<GameNode> nextEncounterOptions = GameState.getInstance().getMapGraph().getGraph().successors(currentNode);
         for(GameNode encounter : nextEncounterOptions){
-            TextButton button = new TextButton(encounter.getDisplayName(), Assets.skin());
+            TextButton button = new TextButton(nextEncounterDisplay(encounter.getNodeType()), Assets.skin());
             button.pad(25);
 
             button.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    System.out.println("Choose encounter: " + encounter.getDisplayName());
+                    System.out.println("Chose encounter: " + encounter.getNodeType());
                     GameState.getInstance().setCurrentNode(encounter);
                     NextEncounter.this.notify(encounter.getNodeType(), NextEncounterObserver.NextEncounterEvent.NODE_SELECTED);
                 }
@@ -49,6 +50,29 @@ public class NextEncounter extends GameNode implements NextEncounterSubject{
             table.add(button).pad(10);
         }
         return table;
+    }
+    
+    private String nextEncounterDisplay(NodeType nodeType){
+        switch(nodeType){
+
+            case OUTFITTER -> {return "Outfitter";}
+            case BASIC_FIGHT -> {return "Fight";}
+            case ELITE_FIGHT -> {return "Elite Fight";}
+            case BOSS_FIGHT -> {return "Boss Fight";}
+            case MARKET -> {return "Merchant";}
+            case ARMOR_MERCHANT -> {return "Merchant";}
+            case WEAPON_MERCHANT -> {return "Merchant";}
+            case BLACKSMITH -> {return "BLACKSMITH";}
+            case WISHING_WELL -> {return "WISHING_WELL";}
+            case SAUNA -> {return "SAUNA";}
+            case ABILITY_TRAINER -> {return "ABILITY_TRAINER";}
+            case GEM_MERCHANT -> {return "Merchant";}
+            case QUESTION_MARK -> {return "QUESTION_MARK";}
+            case CHEST -> {return "CHEST";}
+            case PATH_SELECTION -> {return "Merchant";}
+
+            default -> throw new IllegalStateException("Unexpected value: " + nodeType);
+        }
     }
 
 
@@ -67,9 +91,35 @@ public class NextEncounter extends GameNode implements NextEncounterSubject{
 
 
     @Override
+    public void addObserver(PathSelectedObserver observer) {
+        pathSelectedObservers.add(observer);
+    }
+
+
+
+    @Override
+    public void removeObserver(PathSelectedObserver observer) {
+        pathSelectedObservers.removeValue(observer, true);
+    }
+
+
+
+    @Override
     public void removeAllObservers() {
         for(NextEncounterObserver observer : observers){
             observers.removeValue(observer,true);
+        }
+        for(PathSelectedObserver observer : pathSelectedObservers){
+            pathSelectedObservers.removeValue(observer,true);
+        }
+    }
+
+
+
+    @Override
+    public void notify(PathSelectedObserver.PathSelectedEvent event) {
+        for(PathSelectedObserver observer : pathSelectedObservers){
+            observer.onNotify(event);
         }
     }
 

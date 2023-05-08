@@ -4,7 +4,7 @@ import com.mygdx.game.encounters.*;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.encounters.chancetables.FarmsEncounterChanceTable;
 import com.mygdx.game.encounters.factories.*;
-import com.mygdx.game.screens.widgets.outfitter.Outfitter;
+import com.mygdx.game.screens.widgets.outfitter.OutfitterNode;
 
 public class NodeGenerator {
     public static GameNode generateRandomNode(ActType actType, int floorNumber){
@@ -21,7 +21,7 @@ public class NodeGenerator {
     private static GameNode generateRandomFarmsNode(ActType actType, int floorNumber){
        GameNode.NodeType nodeType = new FarmsEncounterChanceTable().generateRandomNode(floorNumber);
        switch(nodeType){
-           case OUTFITTER -> {return new Outfitter();}
+           case OUTFITTER -> {return new OutfitterNode();}
            case BASIC_FIGHT -> {return FightFactory.generateRandomFightFor(actType);}
            case ELITE_FIGHT -> {return FightFactory.generateRandomEliteFightFor(actType);}
            case BOSS_FIGHT -> {return BossFightFactory.generateRandomBossFightFor(actType);}

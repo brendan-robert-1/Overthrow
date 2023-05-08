@@ -1,11 +1,11 @@
 package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.fights.Fight;
 import com.mygdx.game.encounters.fights.Homesteaders;
+import com.mygdx.game.screens.widgets.fight.FightNode;
 
 public class FightFactory {
-    public static Fight generateRandomFightFor(OverthrowActs.ActType actType){
+    public static FightNode generateRandomFightFor(OverthrowActs.ActType actType){
         switch(actType){
             case FARMS -> {return generateFarmFight();}
             case BATTLEFIELD -> { return generateBattlefieldFight();}
@@ -16,7 +16,7 @@ public class FightFactory {
         }
     }
 
-    public static Fight generateRandomEliteFightFor(OverthrowActs.ActType actType) {
+    public static FightNode generateRandomEliteFightFor(OverthrowActs.ActType actType) {
         switch(actType){
             case FARMS -> {return generateFarmFight();}
             case BATTLEFIELD -> { return generateBattlefieldFight();}
@@ -27,19 +27,19 @@ public class FightFactory {
         }
     }
 
-    private static Fight generateFarmFight(){
+    private static FightNode generateFarmFight(){
         return new Homesteaders();
     }
-    private static Fight generateBattlefieldFight(){
+    private static FightNode generateBattlefieldFight(){
         return new Homesteaders();
     }
-    private static Fight generateSwampFight(){
+    private static FightNode generateSwampFight(){
         return new Homesteaders();
     }
-    private static Fight generateMountainFight(){
+    private static FightNode generateMountainFight(){
         return new Homesteaders();
     }
-    private static Fight generatePalaceFight(){
+    private static FightNode generatePalaceFight(){
         return new Homesteaders();
     }
 }

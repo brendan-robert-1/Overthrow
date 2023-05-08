@@ -1,6 +1,7 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Homesteaders extends Fight {
+public class Homesteaders extends FightNode {
 
     private static final int DOG_STARTING_HP = 7;
     private static final Ability DOG_STARTING_BASIC_ABILITY_1 = new TossConcoction();
@@ -32,7 +33,7 @@ public class Homesteaders extends Fight {
 
 
     public Homesteaders(){
-        super(NodeType.BASIC_FIGHT, "Fight");
+        super(NodeType.BASIC_FIGHT, "Homesteaders");
     }
 
     @Override

@@ -26,11 +26,11 @@ public class Team extends Table{
             return emptyCharacterPanel();
         }
         Table characterPanel = new Table(Assets.skin());
-        characterPanel.add(new Label(character.getName() + "        hp: " + character.getHp(), Assets.skin(), "title")).expandX();
+        characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expandX();
         characterPanel.row();
         Image characterSprite = new CharacterSprite(character.getCharacterType());
         characterSprite.setScaling(Scaling.fit);
-        characterPanel.add(characterSprite).width(300).height(300);
+        characterPanel.add(characterSprite).width(200).height(250);
         InspectBox characterInspectBox = new InspectBox(character.getName(),
                 "hp: " + character.getHp() + "\n" +
                         "armor: " + character.getHp() + "\n"+

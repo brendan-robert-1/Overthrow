@@ -18,11 +18,11 @@ import com.mygdx.game.state.items.InventoryItemFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Outfitter extends GameNode implements OutfitterSubject {
+public class OutfitterNode extends GameNode implements OutfitterSubject {
 
     Array<OutfitterObserver> observers;
 
-    public Outfitter(){
+    public OutfitterNode(){
         super(NodeType.OUTFITTER, "Choose an item to start the run");
         this.observers = new Array<>();
         observers.add(MainGameScreen.getInstance());
@@ -60,8 +60,8 @@ public class Outfitter extends GameNode implements OutfitterSubject {
         return new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Outfitter.this.notify(item, OutfitterObserver.OutfitterEvent.ITEM_SELECTED);
-                Outfitter.this.remove();
+                OutfitterNode.this.notify(item, OutfitterObserver.OutfitterEvent.ITEM_SELECTED);
+                OutfitterNode.this.remove();
                 super.clicked(event, x, y);
             }
         };
@@ -84,15 +84,15 @@ public class Outfitter extends GameNode implements OutfitterSubject {
 
 
     @Override
-    public void addObserver(OutfitterObserver outfitterObserver) {
-        observers.add(outfitterObserver);
+    public void addObserver(OutfitterObserver observer) {
+        observers.add(observer);
     }
 
 
 
     @Override
-    public void removeObserver(OutfitterObserver outfitterObserver) {
-        observers.removeValue(outfitterObserver, true);
+    public void removeObserver(OutfitterObserver observer) {
+        observers.removeValue(observer, true);
     }
 
 
