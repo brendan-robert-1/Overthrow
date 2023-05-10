@@ -81,8 +81,11 @@ public class InventoryItem extends Image {
     }
 
     public enum ItemTypeId {
-        HIDE_SHIELD, HEALTH_POT, RUSTY_DAGGER, QUESTION_MARK
-        ;
+        HIDE_SHIELD, HEALTH_POT,
+        RUSTY_DAGGER, QUESTION_MARK,
+        SNUG_SANDALS,
+        ARMOR_HAT,
+        LEATHER_PANTS, MINER_HAT;
     }
 
     public enum ItemUseType{

@@ -23,6 +23,30 @@
       "displayName": "Health Potion",
       "itemShortDescription": "+25 heal to 1 character",
       "coinValue": 2
+    },
+    "SNUG_SANDALS": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_FEET",
+      "itemTypeId": "SNUG_SANDALS",
+      "displayName": "Snug Sandals",
+      "itemShortDescription": "+1 Speed",
+      "coinValue": 2
+    },
+    "MINER_HAT": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_HEAD",
+      "itemTypeId": "MINER_HAT",
+      "displayName": "Miner Hat",
+      "itemShortDescription": "+2 Armor -1 Speed",
+      "coinValue": 2
+    } ,
+    "LEATHER_PANTS": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_LEGS",
+      "itemTypeId": "LEATHER_PANTS",
+      "displayName": "Leather Pants",
+      "itemShortDescription": "+1 Magic Resistance",
+      "coinValue": 2
     }
   }
 }

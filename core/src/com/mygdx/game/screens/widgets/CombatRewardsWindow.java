@@ -29,19 +29,19 @@ public class CombatRewardsWindow extends Table {
         table.add(label).expand().colspan(3).pad(30);
         table.row();
 
-        InventoryItem item1 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HEALTH_POT);
+        InventoryItem item1 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.SNUG_SANDALS);
         item1.setCombatRewardsDisplayText("???");
-        InventoryItem item3 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HIDE_SHIELD);
-        InventoryItem item4 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.RUSTY_DAGGER);
+        InventoryItem item3 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.LEATHER_PANTS);
+        InventoryItem item4 = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.MINER_HAT);
 
 
         CombatRewardOptionTable combatRewardOptionTable1 = new CombatRewardOptionTable(item1, true);
         CombatRewardOptionTable combatRewardOptionTable2 = new CombatRewardOptionTable(item3, false);
         CombatRewardOptionTable combatRewardOptionTable3 = new CombatRewardOptionTable(item4, false);
 
-        table.add(combatRewardOptionTable1).expand().fill().pad(20);
-        table.add(combatRewardOptionTable2).expand().fill().pad(20);
-        table.add(combatRewardOptionTable3).expand().fill().pad(20);
+        table.add(combatRewardOptionTable1).expand().height(128).width(128).fill().pad(20);
+        table.add(combatRewardOptionTable2).expand().height(128).width(128).fill().pad(20);
+        table.add(combatRewardOptionTable3).expand().height(128).width(128).fill().pad(20);
 
         combatRewardOptionTable1.addListener(new HudTooltipListener());
         combatRewardOptionTable2.addListener(new HudTooltipListener());

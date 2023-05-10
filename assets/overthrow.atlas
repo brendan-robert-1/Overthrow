@@ -6,21 +6,21 @@ filter: Nearest, Nearest
 repeat: none
 ARMOR_UP
   rotate: false
-  xy: 1804, 1598
+  xy: 1839, 1632
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 BLOODLET
   rotate: false
-  xy: 102, 102
+  xy: 1804, 1564
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CHALLENGE
   rotate: false
-  xy: 1839, 1632
+  xy: 1886, 1680
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -48,14 +48,14 @@ HIDE_SHIELD
   index: -1
 HOMESTEADER_DAD
   rotate: false
-  xy: 2, 2
+  xy: 360, 360
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_DOG
   rotate: false
-  xy: 260, 260
+  xy: 1838, 1598
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -69,14 +69,21 @@ HOMESTEADER_MOM
   index: -1
 JOUST
   rotate: false
-  xy: 904, 712
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 KNIGHT
   rotate: false
-  xy: 1004, 812
+  xy: 260, 260
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+LEATHER_PANTS
+  rotate: false
+  xy: 1920, 1714
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -88,23 +95,30 @@ MIASMA
   orig: 32, 32
   offset: 0, 0
   index: -1
+MINER_HAT
+  rotate: false
+  xy: 1004, 812
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 PIERCE
   rotate: false
-  xy: 1920, 1714
+  xy: 102, 102
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR-export
   rotate: false
-  xy: 1886, 1680
+  xy: 904, 712
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR
   rotate: false
-  xy: 1886, 1680
+  xy: 904, 712
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -128,6 +142,13 @@ RUSTY_DAGGER
   xy: 260, 328
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+SNUG_SANDALS
+  rotate: false
+  xy: 326, 360
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 TOSS_CONCOCTION
@@ -181,7 +202,7 @@ lantern
   index: -1
 turn-carousel-background
   rotate: false
-  xy: 326, 360
+  xy: 1804, 1598
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

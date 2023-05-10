@@ -67,9 +67,9 @@ public class MarketNode extends GameNode implements ProceedSubject {
     }
 
     public Table getOptionPanel(){
-        InventoryItem inventoryItem = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HEALTH_POT);
+        InventoryItem inventoryItem = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.SNUG_SANDALS);
         Table table = new MarketOption(inventoryItem);
-        ItemSprite itemSprite = new ItemSprite(InventoryItem.ItemTypeId.HEALTH_POT);
+        ItemSprite itemSprite = new ItemSprite(InventoryItem.ItemTypeId.SNUG_SANDALS);
         itemSprite.setScaling(Scaling.fit);
         table.add(itemSprite).expand().fill();
         table.row();
