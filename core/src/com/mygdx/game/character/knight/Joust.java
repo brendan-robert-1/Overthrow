@@ -48,7 +48,7 @@ public class Joust implements Ability {
     @Override
     public void execute(Character target, Character source, FightNode fight) {
         System.out.println("Joust is executing on: " + target.getName());
-        target.decreaseHpBy(3);
+        target.decreaseHpBy(50);
         Buff pierce = new PierceBuff(2);
         target.addDebuff(pierce);
     }

@@ -10,15 +10,14 @@ public class BuffsBar extends Table {
 
     private List<Buff> buffs;
     private List<Buff> debuffs;
-    private HudTooltip hudTooltip;
+    private HudTooltip hudTooltip = HudTooltip.getInstance();
 
     public void update(){
         this.clearChildren();
         build();
     }
 
-    public BuffsBar(List<Buff> buffs, List<Buff> debuffs, HudTooltip hudTooltip){
-        this.hudTooltip = hudTooltip;
+    public BuffsBar(List<Buff> buffs, List<Buff> debuffs){
         if(buffs == null){
             this.buffs =new ArrayList<>();
         } else {
@@ -36,12 +35,12 @@ public class BuffsBar extends Table {
     public void build(){
         for(Buff buff : buffs) {
             BuffSprite buffSprite = new BuffSprite(buff);
-            buffSprite.addListener(new HudTooltipListener(hudTooltip));
+            buffSprite.addListener(new HudTooltipListener());
             this.add(buffSprite).expandX().left().padLeft(10);
         }
         for(Buff debuff : debuffs){
             BuffSprite buffSprite = new BuffSprite(debuff);
-            buffSprite.addListener(new HudTooltipListener(hudTooltip));
+            buffSprite.addListener(new HudTooltipListener());
             this.add(buffSprite).expandX().left().padLeft(10);
         }
         this.pack();

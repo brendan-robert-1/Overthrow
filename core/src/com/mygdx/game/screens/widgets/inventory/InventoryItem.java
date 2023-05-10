@@ -10,12 +10,13 @@ public class InventoryItem extends Image {
     private ItemUseType itemUseType;
     private ItemTypeId itemTypeId;
     private String displayName;
+    private String combatRewardsDisplayName;
     private String itemShortDescription;
+    private String combatRewardsDisplayText;
     private int coinValue;
 
     public InventoryItem(TextureRegion textureRegion, ItemAttribute itemAttribute, ItemTypeId itemTypeId, ItemUseType itemUseType, int coinValue){
         super(textureRegion);
-
         this.itemTypeId = itemTypeId;
         this.itemAttribute = itemAttribute;
         this.itemUseType = itemUseType;
@@ -32,6 +33,8 @@ public class InventoryItem extends Image {
         this.itemAttribute = inventoryItem.getItemAttribute();
         this.itemUseType = inventoryItem.getItemUseType();
         this.itemShortDescription = inventoryItem.getItemShortDescription();
+        this.combatRewardsDisplayText = inventoryItem.getItemShortDescription();
+        this.combatRewardsDisplayName = inventoryItem.getDisplayName();
         this.coinValue = inventoryItem.getCoinValue();
         this.displayName = inventoryItem.getDisplayName();
     }
@@ -39,6 +42,28 @@ public class InventoryItem extends Image {
     public String getDisplayName() {
         return displayName;
     }
+
+
+
+    public String getCombatRewardsDisplayText() {
+        return combatRewardsDisplayText;
+    }
+
+
+
+    public InventoryItem setCombatRewardsDisplayText(String combatRewardsDisplayText) {
+        this.combatRewardsDisplayText = combatRewardsDisplayText;
+        this.combatRewardsDisplayName = combatRewardsDisplayText;
+        return this;
+    }
+
+
+
+    public String getCombatRewardsDisplayName() {
+        return combatRewardsDisplayName;
+    }
+
+
 
     public enum ItemAttribute{
         CONSUMABLE(1),
@@ -56,7 +81,7 @@ public class InventoryItem extends Image {
     }
 
     public enum ItemTypeId {
-        HIDE_SHIELD, HEALTH_POT, RUSTY_DAGGER
+        HIDE_SHIELD, HEALTH_POT, RUSTY_DAGGER, QUESTION_MARK
         ;
     }
 

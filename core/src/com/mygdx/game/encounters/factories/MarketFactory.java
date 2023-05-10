@@ -1,6 +1,6 @@
 package com.mygdx.game.encounters.factories;
 
-import com.mygdx.game.encounters.Market;
+import com.mygdx.game.encounters.MarketNode;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.GameNode;
@@ -30,7 +30,7 @@ public class MarketFactory {
 
     private static GameNode generatePalaceMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generatePalaceWares(actType);
-        return new Market(wares);
+        return new MarketNode(wares);
     }
 
 
@@ -40,7 +40,7 @@ public class MarketFactory {
 
     private static GameNode generateMountainMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateMountainWares(actType);
-        return new Market(wares);
+        return new MarketNode(wares);
     }
 
 
@@ -49,7 +49,7 @@ public class MarketFactory {
 
     private static GameNode generateSwampMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateSwampWares(actType);
-        return new Market(wares);
+        return new MarketNode(wares);
     }
 
 
@@ -58,7 +58,7 @@ public class MarketFactory {
 
     private static GameNode generateBattleFieldMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateBattleFieldWares(actType);
-        return new Market(wares);
+        return new MarketNode(wares);
     }
 
 
@@ -66,7 +66,7 @@ public class MarketFactory {
 
     private static GameNode generateFarmMarket(ActType actType) {
         Map<InventoryItem, Integer> wares = generateFarmWares(actType);
-        return new Market(wares);
+        return new MarketNode(wares);
     }
 
     private static Map<InventoryItem, Integer> generatePalaceWares(ActType actType) {

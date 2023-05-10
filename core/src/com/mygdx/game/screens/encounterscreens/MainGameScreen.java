@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
@@ -28,12 +29,12 @@ import com.mygdx.game.state.GameState;
 
 import java.util.List;
 
-public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, AbilityUsedObserver, TurnSubject {
-    private GameState gameState = GameState.getInstance();
-    private InventoryUi inventoryUi;
+public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, AbilityUsedObserver,
+        TurnSubject, CombatRewardSelectedObserver, ProceedObserver {
     private Stage stage;
     private Viewport viewport;
     private Table pathSelectContainer;
+    private NextEncounter  pathSelectWindow;
     private Table encounterContainer;
     private GameNode encounterWindow;
     private DragAndDrop abilitySelectDragAndDrop = new DragAndDrop();
@@ -41,8 +42,8 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private Array<TurnObserver> turnObservers = new Array<>();
     private TurnCarousel turnCarousel = new TurnCarousel();
     private CombatProcessor combatProcessor;
-    private HudTooltip hudTooltip = new HudTooltip(Assets.skin());
     private FightNode fight;
+    private CombatRewardsWindow combatRewardsWindow;
 
 
     private static MainGameScreen instance;
@@ -60,18 +61,16 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
-        inventoryUi = new InventoryUi();
-        inventoryUi.setKeepWithinStage(false);
-        entireInGameScreenTable = new EntireInGameScreenTable(inventoryUi, hudTooltip);
+        InventoryUi.getInstance().setKeepWithinStage(false);
+        entireInGameScreenTable = new EntireInGameScreenTable();
 
-        NextEncounter pathSelectWindow; pathSelectWindow = new NextEncounter();
+        pathSelectWindow = new NextEncounter();
         pathSelectContainer = new Table();
         pathSelectContainer.setFillParent(true);
         pathSelectContainer.setVisible(false);
         pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
 
         encounterWindow = GameState.getInstance().getCurrentNode();
-        encounterWindow.setInventoryUi(inventoryUi);
         encounterContainer = new Table();
         encounterContainer.setFillParent(true);
         encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(20);
@@ -79,12 +78,12 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         stage.addActor(entireInGameScreenTable);
         stage.addActor(pathSelectContainer);
         stage.addActor(encounterContainer);
-        stage.addActor(inventoryUi);
+        stage.addActor(InventoryUi.getInstance());
 
-        for(Actor actor : inventoryUi.getInventoryActors()){
+        for(Actor actor : InventoryUi.getInstance().getInventoryActors()){
             stage.addActor(actor);
         }
-        stage.addActor(hudTooltip);
+        stage.addActor(HudTooltip.getInstance());
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -108,12 +107,18 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         System.out.println("The main game screen is being notified of an outfit being selected.");
         Array<InventoryItemLocation> itemLocations = new Array<>();
         itemLocations.add(new InventoryItemLocation(0, itemSelected.getItemTypeId(),1, itemSelected.getDisplayName()));
-        InventoryUi.populateInventory(inventoryUi.getInventorySlotTable(),itemLocations, inventoryUi.getDragAndDrop());
+        InventoryUi.populateInventory(itemLocations);
         displayPathSelectWindow();
     }
 
+
+
+
     private void displayPathSelectWindow(){
         System.out.println("Displaying next encounter selection window");
+        pathSelectWindow = new NextEncounter();
+        pathSelectContainer.clearChildren();
+        pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
         pathSelectContainer.setVisible(true);
         pathSelectContainer.setDebug(true);
         pathSelectContainer.pack();
@@ -124,27 +129,35 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         if(nodeSelected == GameNode.NodeType.BASIC_FIGHT
                 || nodeSelected == GameNode.NodeType.BOSS_FIGHT
                 || nodeSelected == GameNode.NodeType.ELITE_FIGHT){
-            processCombat(nodeSelected, event);
+            processCombat();
+            System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
+            encounterWindow = GameState.getInstance().getCurrentNode();
+            encounterContainer = new Table();
+            encounterContainer.setFillParent(true);
+            encounterContainer.pack();
+            encounterWindow.pack();
+            encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(100);
+            stage.addActor(encounterContainer);
+            pathSelectContainer.setVisible(false);
+        } else {
+            System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
+            encounterWindow = GameState.getInstance().getCurrentNode();
+            encounterContainer = new Table();
+            encounterContainer.setFillParent(true);
+            encounterContainer.pack();
+            encounterWindow.pack();
+            encounterContainer.add(encounterWindow).expand().fill().pad(150);
+            stage.addActor(encounterContainer);
+            pathSelectContainer.setVisible(false);
         }
-        System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
-        encounterWindow = GameState.getInstance().getCurrentNode();
-        encounterWindow.setInventoryUi(inventoryUi);
-        encounterContainer = new Table();
-        encounterContainer.setFillParent(true);
-        encounterContainer.pack();
-        encounterWindow.pack();
-        encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(100);
-        stage.addActor(encounterContainer);
-        pathSelectContainer.setVisible(false);
     }
 
 
 
-    private void processCombat(GameNode.NodeType nodeSelected, NextEncounterEvent event) {
+    private void processCombat() {
         entireInGameScreenTable.displayAbilitySelectPanel();
         displayTurnCarousel();
         fight = (FightNode) GameState.getInstance().getCurrentNode();
-        fight.getEnemyTeam().setHudTooltip(hudTooltip);
         combatProcessor = new CombatProcessor(fight);
         executeTurn();
     }
@@ -167,9 +180,11 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
             ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
         } else if(combatProcessor.won()){
             displayCombatRewards();
+            turnCarousel.remove();
             return;
         }
         java.util.List<Character> futureTurns = combatProcessor.projectFutureTurnOrder();
+        turnCarousel.remove();
         turnCarousel = new TurnCarousel();
         turnCarousel.populateCarousel(futureTurns);
         stage.addActor(turnCarousel);
@@ -199,10 +214,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         stage.addActor(encounterContainer);
     }
 
-    private void displayCombatRewards() {
-        System.out.println("you won the fight here are the rewards");
-    }
-
 
 
     @Override
@@ -210,19 +221,11 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         System.out.println("Main game screen is being notified of fight event");
         switch(event){
             case ENEMY_TURN_TAKEN -> {}
-            case FIGHT_OVER -> {
-                hideTurnCarousel();
-                entireInGameScreenTable.hideAbilitySelectPanel();
-            }
         }
     }
 
     private void displayTurnCarousel(){
         System.out.println("Displaying turn carousel.");
-        turnCarousel.setVisible(true);
-    }
-
-    private void hideTurnCarousel(){
         turnCarousel.setVisible(true);
     }
 
@@ -257,4 +260,29 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         }
     }
 
+
+    private void displayCombatRewards() {
+        System.out.println("you won the fight here are the rewards");
+        encounterContainer.setVisible(false);
+        entireInGameScreenTable.hideAbilitySelectPanel();
+        combatRewardsWindow = new CombatRewardsWindow();
+        stage.addActor(combatRewardsWindow);
+    }
+
+
+
+    // Notified after a combat reward option is chosen
+    @Override
+    public void onNotify(CombatRewardSelectedObserver.RewardType type) {
+        combatRewardsWindow.remove();
+        displayPathSelectWindow();
+    }
+
+
+
+    @Override
+    public void onNotify(ProceedEvent event) {
+        encounterContainer.setVisible(false);
+        displayPathSelectWindow();
+    }
 }

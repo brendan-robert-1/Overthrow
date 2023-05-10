@@ -4,18 +4,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.mygdx.game.character.buff.Buff;
-import com.mygdx.game.screens.widgets.inventory.InventorySlot;
-import com.mygdx.game.screens.widgets.inventory.InventorySlotTooltip;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.mygdx.game.screens.widgets.markets.MarketOption;
 
 public class HudTooltipListener extends InputListener {
-    private HudTooltip tooltip;
+    private HudTooltip tooltip = HudTooltip.getInstance();
     private boolean isInside = false;
     private Vector2 currentCords;
     private Vector2 offset;
 
-    public HudTooltipListener(HudTooltip tooltip){
-        this.tooltip = tooltip;
+    public HudTooltipListener(){
         this.currentCords = new Vector2(0,0);
         this.offset = new Vector2(20,10);
     }
@@ -26,7 +24,6 @@ public class HudTooltipListener extends InputListener {
         Actor actor = event.getListenerActor();
         String desc = getDescFrom(actor);
         isInside = true;
-
         currentCords.set(x, y);
         actor.localToStageCoordinates(currentCords);
         tooltip.updateDescription(desc);
@@ -36,7 +33,7 @@ public class HudTooltipListener extends InputListener {
     }
 
 
-
+    //This shit is so janky, but it works, don't ask me
     private String getDescFrom(Actor actor) {
         if(actor instanceof BuffSprite) {
             StringBuilder sb = new StringBuilder();
@@ -53,6 +50,21 @@ public class HudTooltipListener extends InputListener {
             sb.append(as.getAbility().name());
             sb.append(System.getProperty("line.separator"));
             sb.append(as.getAbility().description());
+            return sb.toString();
+        } else if(actor instanceof CombatRewardOptionTable) {
+            StringBuilder sb = new StringBuilder();
+            CombatRewardOptionTable option = (CombatRewardOptionTable) actor;
+            sb.append(option.getCombatRewardOption().getCombatRewardsDisplayName());
+            sb.append(System.getProperty("line.separator"));
+            sb.append(option.getCombatRewardOption().getCombatRewardsDisplayText());
+            return sb.toString();
+        }else if(actor instanceof MarketOption){
+            StringBuilder sb = new StringBuilder();
+            MarketOption option = (MarketOption) actor;
+            sb.append(option.getDisplayName());
+            sb.append(System.getProperty("line.separator"));
+            sb.append(System.getProperty("line.separator"));
+            sb.append(option.getDisplayText());
             return sb.toString();
         } else {
             return "<empty>";

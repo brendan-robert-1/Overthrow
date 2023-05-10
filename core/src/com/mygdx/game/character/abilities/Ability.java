@@ -8,7 +8,8 @@ public interface Ability{
         BLOODLET,
         JOUST,
         ARMOR_UP,
-        CHALLENGE
+        CHALLENGE,
+        QUESTION_MARK
     }
     String name();
     String description();

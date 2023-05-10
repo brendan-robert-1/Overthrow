@@ -13,7 +13,7 @@ public class NewGameGenerator {
         GameState state = GameState.getInstance();
         state.setRunSeed(seed);
         state.setCharacterSlots(characterSlotsGenerator(characterType));
-        state.setCoin(99);
+        state.setCoin(4);
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);
         state.setCurrentFloor(0);
@@ -22,7 +22,7 @@ public class NewGameGenerator {
         return new CharacterSlots(
                 null,
                 null,
-                Character.generateNewCharacter(Character.CharacterType.PLAGUE_DOCTOR),
+                null,//Character.generateNewCharacter(Character.CharacterType.PLAGUE_DOCTOR),
                 Character.generateNewCharacter(characterType)
         );
     }

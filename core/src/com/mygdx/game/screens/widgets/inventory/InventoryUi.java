@@ -14,6 +14,8 @@ import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemUseType;
 import com.mygdx.game.state.items.InventoryItemFactory;
 
+import java.util.Iterator;
+
 public class InventoryUi extends Window{
 
     public static final int TOTAL_SLOTS = 50;
@@ -34,7 +36,16 @@ public class InventoryUi extends Window{
     private Array<Actor> inventoryActors;
     private DragAndDrop dragAndDrop;
 
-    public InventoryUi(){
+    private static InventoryUi instance;
+
+    public static InventoryUi getInstance(){
+        if(instance == null){
+            instance = new InventoryUi();
+        }
+        return instance;
+    }
+
+    private InventoryUi(){
         super("Inventory", Assets.skin());
         characterSlots = GameState.getInstance().getCharacterSlots();
         dragAndDrop = new DragAndDrop();
@@ -64,6 +75,19 @@ public class InventoryUi extends Window{
         this.pack();
         this.setPosition((Gdx.graphics.getWidth() - this.getWidth())/2, ((Gdx.graphics.getHeight() - this.getHeight())/2));
     }
+
+    public boolean inventoryFull(){
+        for(Actor actor : inventorySlotTable.getChildren()){
+            InventorySlot inventorySlot = (InventorySlot) actor;
+            if(!inventorySlot.hasItem()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
 
     private void populate(){
         buildInventoryPanel();
@@ -165,9 +189,9 @@ public class InventoryUi extends Window{
 
 
     //mainly used for loading from disk
-    public static  void populateInventory(Table targetTable, Array<InventoryItemLocation> inventoryItems, DragAndDrop dragAndDrop){
-        clearInventoryItems(targetTable);
-        Array<Cell> cells = targetTable.getCells();
+    public static  void populateInventory(Array<InventoryItemLocation> inventoryItems){
+        clearInventoryItems(instance.inventorySlotTable);
+        Array<Cell> cells = instance.inventorySlotTable.getCells();
         for(int i = 0; i < inventoryItems.size; i++){
             InventoryItemLocation itemLocation = inventoryItems.get(i);
             ItemTypeId itemTypeId = itemLocation.getItemTypeAtLocation();
@@ -182,11 +206,29 @@ public class InventoryUi extends Window{
                     item.setName(itemName);
                 }
                 inventorySlot.add(item);
-                dragAndDrop.addSource(new InventorySlotSource(inventorySlot, dragAndDrop));
+                instance.dragAndDrop.addSource(new InventorySlotSource(inventorySlot, instance.dragAndDrop));
             }
         }
-        targetTable.pack();
+        instance.inventorySlotTable.pack();
     }
+
+    private void addItemAt(InventoryItem inventoryItem, int index){
+       InventorySlot slot = (InventorySlot) inventorySlotTable.getChildren().get(index);
+       slot.add(inventoryItem);
+       instance.dragAndDrop.addSource(new InventorySlotSource(slot, instance.dragAndDrop));
+    }
+
+
+    public void addToFirstOpenSlot(InventoryItem combatRewardOption) {
+        for(int i = 0; i < inventorySlotTable.getChildren().size; i++){
+            InventorySlot inventorySlot = (InventorySlot)inventorySlotTable.getChildren().get(i) ;
+            if(!inventorySlot.hasItem()){
+                addItemAt(combatRewardOption, i);
+                return;
+            }
+        }
+    }
+
 
     public static void clearInventoryItems(Table targetTable){
         Array<Cell> cells = targetTable.getCells();

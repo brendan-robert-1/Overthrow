@@ -13,7 +13,6 @@ import com.mygdx.game.state.EnemySlots;
 public class EnemyTeam extends Table {
 
     private EnemySlots enemySlots;
-    private HudTooltip hudTooltip;
 
     public EnemyTeam(EnemySlots enemySlots){
       super(Assets.skin());
@@ -69,7 +68,7 @@ public class EnemyTeam extends Table {
 
         // characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
-        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs(), hudTooltip)).expandX().height(32).left();
+        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs())).expandX().height(32).left();
         characterPanel.defaults().expand().fill();
         characterPanel.setName(character.getCharacterType().toString());
 
@@ -80,9 +79,5 @@ public class EnemyTeam extends Table {
 
     public EnemySlots getEnemySlots() {
         return enemySlots;
-    }
-
-    public void setHudTooltip(HudTooltip hudTooltip){
-        this.hudTooltip = hudTooltip;
     }
 }

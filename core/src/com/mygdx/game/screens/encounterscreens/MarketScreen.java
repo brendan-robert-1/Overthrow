@@ -8,12 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.Market;
+import com.mygdx.game.encounters.MarketNode;
 import com.mygdx.game.screens.widgets.*;
-import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.shops.ShopOffering;
 
@@ -21,7 +19,7 @@ import java.util.List;
 
 public class MarketScreen extends ScreenAdapter {
     private GameState gameState = GameState.getInstance();
-    private Market market;
+    private MarketNode marketNode;
     private Stage stage;
     private Viewport viewport;
 
@@ -51,7 +49,7 @@ public class MarketScreen extends ScreenAdapter {
     }
 
     private void displayMarket(){
-        MarketTable marketTable = new MarketTable(market);
+        MarketTable marketTable = new MarketTable(marketNode);
         marketTable.setFillParent(true);
         stage.addActor(marketTable);
     }

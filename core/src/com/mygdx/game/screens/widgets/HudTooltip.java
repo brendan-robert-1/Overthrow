@@ -3,14 +3,22 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.mygdx.game.Assets;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventorySlot;
 
 public class HudTooltip extends Window {
     private Skin skin;
     private Label description;
+    private static HudTooltip instance;
+    public static HudTooltip getInstance(){
+        if(instance == null){
+            instance = new HudTooltip(Assets.skin());
+        }
+        return instance;
+    }
 
-    public HudTooltip(final Skin skin){
+    private HudTooltip(final Skin skin){
         super("", skin);
         this.skin = skin;
 

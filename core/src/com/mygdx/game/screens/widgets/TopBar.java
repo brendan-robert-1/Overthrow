@@ -15,9 +15,7 @@ import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.GameState;
 
 public class TopBar extends Table {
-    private InventoryUi inventoryUi;
-    public TopBar(InventoryUi inventoryUi){
-        this.inventoryUi = inventoryUi;
+    public TopBar(){
         Window window = new Window("", Assets.skin(), "top-bar");
         PixelProTextButton coins = new PixelProTextButton("Coins: " + GameState.getInstance().getCoin(), Assets.skin(), "top-bar");
         PixelProTextButton inventory = new PixelProTextButton("Inventory", Assets.skin(), "top-bar");
@@ -63,6 +61,7 @@ public class TopBar extends Table {
 
 
     private void showInventory(){
+        InventoryUi inventoryUi = InventoryUi.getInstance();
         if(inventoryUi.isVisible()){
             inventoryUi.setZIndex(getStage().getActors().size);
             inventoryUi.setVisible(false);

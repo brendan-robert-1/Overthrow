@@ -58,8 +58,8 @@ public class FarmsEncounterChanceTable {
 
     private void generateWeightsFloor2(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.QUESTION_MARK);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.MARKET);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.MARKET);
         putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.MARKET);
         floorNumberToSlots.put(2, weights);
     }

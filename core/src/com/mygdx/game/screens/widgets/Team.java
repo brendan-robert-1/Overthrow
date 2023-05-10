@@ -12,15 +12,15 @@ import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
 public class Team extends Table{
-    private HudTooltip hudTooltip;
+    private HudTooltip hudTooltip = HudTooltip.getInstance();
 
     public void update() {
         this.clearChildren();
         this.populate();
     }
 
-    public Team(HudTooltip hudTooltip){
-        this.hudTooltip = hudTooltip;
+    public Team(){
+
         populate();
     }
 
@@ -54,7 +54,7 @@ public class Team extends Table{
         characterSprite.setScaling(Scaling.fit);
         characterPanel.add(characterSprite).width(200).height(250);
         characterPanel.row();
-        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs(), hudTooltip)).expandX().height(16).left();
+        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs())).expandX().height(16).left();
         characterPanel.defaults().expandX();
         characterPanel.setName(character.getCharacterType().toString());
 

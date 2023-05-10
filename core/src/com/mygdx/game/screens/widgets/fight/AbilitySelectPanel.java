@@ -51,15 +51,15 @@ public class AbilitySelectPanel extends Table {
 
         AbilitySelect ability1Stack = new AbilitySelect(ability1Decal, ability1);
         dragAndDrop.addSource(new AbilityDragSource(ability1Stack,ability1, dragAndDrop, activeCharacter ));
-        ability1Stack.addListener(new HudTooltipListener(hudTooltip));
+        ability1Stack.addListener(new HudTooltipListener());
 
         AbilitySelect ability2Stack = new AbilitySelect(ability2Decal, ability2);
         dragAndDrop.addSource(new AbilityDragSource(ability2Stack,ability2, dragAndDrop, activeCharacter ));
-        ability2Stack.addListener(new HudTooltipListener(hudTooltip));
+        ability2Stack.addListener(new HudTooltipListener());
 
         AbilitySelect ultStack = new AbilitySelect(ultDecal, ult);
         dragAndDrop.addSource(new AbilityDragSource(ultStack,ult, dragAndDrop, activeCharacter ));
-        ultStack.addListener(new HudTooltipListener(hudTooltip));
+        ultStack.addListener(new HudTooltipListener());
         
         setTargets(dragAndDrop, enemyTeam, team);
 

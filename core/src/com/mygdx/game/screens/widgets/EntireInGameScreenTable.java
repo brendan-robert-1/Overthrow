@@ -13,15 +13,12 @@ import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.Character;
 
 public class EntireInGameScreenTable extends Table {
-    private final InventoryUi inventoryUi;
     private Array<Actor> hudToolTipActors = new Array<>();
     private Team team;
     private AbilitySelectPanel abilitySelectPanel;
-    private HudTooltip hudTooltip;
+    private HudTooltip hudTooltip = HudTooltip.getInstance();
 
-    public EntireInGameScreenTable(InventoryUi inventoryUi, HudTooltip hudTooltip){
-        this.hudTooltip = hudTooltip;
-        this.inventoryUi = inventoryUi;
+    public EntireInGameScreenTable(){
         abilitySelectPanel = new AbilitySelectPanel(hudTooltip);
         abilitySelectPanel.setVisible(false);
         update();
@@ -34,8 +31,8 @@ public class EntireInGameScreenTable extends Table {
         this.setBackground(trd);
         this.setFillParent(true);
         hudToolTipActors.add(hudTooltip);
-        team = new Team(hudTooltip);
-        this.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
+        team = new Team();
+        this.add(new TopBar()).expand().fillX().colspan(2).top();
         this.row();
         this.add(team).expand().bottom().left().pad(40);
         this.row();
@@ -60,7 +57,7 @@ public class EntireInGameScreenTable extends Table {
     }
 
     public void hideAbilitySelectPanel(){
-        abilitySelectPanel.setVisible(true);
+        abilitySelectPanel.setVisible(false);
     }
 
 
