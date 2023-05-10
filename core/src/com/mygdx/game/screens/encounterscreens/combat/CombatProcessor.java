@@ -1,12 +1,11 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.screens.widgets.fight.EnemyTeam;
+import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.CharacterSlots;
-import com.mygdx.game.state.EnemySlots;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.InventoryItemFactory;
 
@@ -203,5 +202,73 @@ public class CombatProcessor {
 
     public boolean won(){
         return allEnemiesDead();
+    }
+
+    private void removeEmptyBuffs(){
+        characterSlots.asList().forEach(character -> {
+            removeEmptyBuffs(character);
+            removeEmptyDebuffs(character);
+        });
+        fight.getEnemyTeam().getEnemySlots().asList().forEach(character -> {
+            removeEmptyBuffs(character);
+            removeEmptyDebuffs(character);
+        });
+    }
+
+    private void processEndOfTurnDebuffFor(Character character) {
+        if(character == null){return;}
+        List<Buff> debuffs = character.getDebuffs();
+        if(debuffs == null) {debuffs = new ArrayList<>();}
+        debuffs.forEach(debuff -> {
+            debuff.executeEndOfTurn(character);
+            debuff.reduceTurnsRemaining(1);
+        });
+    }
+    private void processEndOfTurnBuffFor(Character character) {
+        if(character == null){return;}
+        List<Buff> buffs = character.getBuffs();
+        if(buffs == null) {buffs = new ArrayList<>();}
+        buffs.forEach(buff -> {
+            buff.executeEndOfTurn(character);
+            buff.reduceTurnsRemaining(1);
+        });
+    }
+
+
+
+    private void removeEmptyDebuffs(Character character) {
+        if(character == null){return;}
+        List<Buff> debuffs = character.getDebuffs();
+        if(debuffs == null) {debuffs = new ArrayList<>();}
+        List<Buff> filtered = debuffs.stream().filter(b -> b.turnsRemaining != 0).toList();
+        ArrayList<Buff> arrayList = new ArrayList<>(filtered);
+        character.setDebuffs(arrayList);
+    }
+
+
+
+    private void removeEmptyBuffs(Character character) {
+        if(character == null){return;}
+        List<Buff> buffs = character.getBuffs();
+        if(buffs == null) {buffs = new ArrayList<>();}
+        List<Buff> filtered = buffs.stream().filter(b -> b.turnsRemaining != 0).toList();
+        ArrayList<Buff> arrayList = new ArrayList<>(filtered);
+        character.setBuffs(arrayList);
+    }
+
+
+
+
+
+    public void processEndOfTurnEvents(){
+        characterSlots.asList().forEach(character -> {
+            processEndOfTurnDebuffFor(character);
+            processEndOfTurnBuffFor(character);
+        });
+        fight.getEnemyTeam().getEnemySlots().asList().forEach(character -> {
+            processEndOfTurnDebuffFor(character);
+            processEndOfTurnBuffFor(character);
+        });
+        removeEmptyBuffs();
     }
 }

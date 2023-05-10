@@ -21,11 +21,7 @@ public class ChestScreen extends ScreenAdapter {
     private Viewport viewport;
     @Override
     public void show() {
-       stage = new Stage();
-       viewport = new ScreenViewport();
-       Table entireScreen = new EntireInGameScreenTable();
-       stage.addActor(entireScreen);
-       Gdx.input.setInputProcessor(stage);
+
     }
 
     private void populateChestContents(){

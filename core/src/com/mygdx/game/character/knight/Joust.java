@@ -1,23 +1,25 @@
-package com.mygdx.game.character.plaguedoctor;
+package com.mygdx.game.character.knight;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
-import com.mygdx.game.character.buff.PoisonDebuff;
+import com.mygdx.game.character.buff.PierceBuff;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
-public class TossConcoction implements Ability {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Joust implements Ability {
     @Override
     public String name() {
-        return "Toss Concoction";
+        return "Joust";
     }
 
 
 
     @Override
     public String description() {
-        return "AOE debuffing attack";
+        return "Lunge at targeted enemy dealing moderate damage and applying 2 turns of Pierce";
     }
 
 
@@ -43,19 +45,18 @@ public class TossConcoction implements Ability {
 
 
 
-
     @Override
     public void execute(Character target, Character source, FightNode fight) {
-        System.out.println("Toss Concoction is executing on: " + target.getName());
-        target.decreaseHpBy(2);
-        Buff poison = new PoisonDebuff(3, 3);
-        target.addDebuff(poison);
+        System.out.println("Joust is executing on: " + target.getName());
+        target.decreaseHpBy(3);
+        Buff pierce = new PierceBuff(2);
+        target.addDebuff(pierce);
     }
 
 
 
     @Override
     public AbilityType abilityType() {
-        return AbilityType.TOSS_CONCOCTION;
+        return AbilityType.JOUST;
     }
 }

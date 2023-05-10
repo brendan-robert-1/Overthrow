@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class KnightGenerator {
     private static final int STARTING_HP = 100;
-    private static final Ability STARTING_BASIC_ABILITY_1 = new TossConcoction();
-    private static final Ability STARTING_BASIC_ABILITY_2 = new Bloodlet();
-    private static final Ability STARTING_ULT_ABILITY = new Miasma();
+    private static final Ability STARTING_BASIC_ABILITY_1 = new Joust();
+    private static final Ability STARTING_BASIC_ABILITY_2 = new ArmorUp();
+    private static final Ability STARTING_ULT_ABILITY = new Challenge();
 
     public static Character generateStartingPlagueDoctor(){
         return new Character(
@@ -25,7 +25,6 @@ public class KnightGenerator {
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 baseStats(), 0
         );
     }

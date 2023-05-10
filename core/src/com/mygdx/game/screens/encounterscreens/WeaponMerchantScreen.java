@@ -23,14 +23,7 @@ public class WeaponMerchantScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
-        Table market = market();
 
-        entireScreen.add(market).expand().bottom().right();
-        stage.addActor(entireScreen);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private Table market(){

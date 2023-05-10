@@ -60,7 +60,6 @@ public class Homesteaders extends FightNode {
                 DOG_STARTING_BASIC_ABILITY_1,
                 DOG_STARTING_BASIC_ABILITY_2,
                 DOG_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 dogBaseStats(),
                 0
         );
@@ -74,7 +73,6 @@ public class Homesteaders extends FightNode {
                 MOM_STARTING_BASIC_ABILITY_1,
                 MOM_STARTING_BASIC_ABILITY_2,
                 MOM_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 momBaseStats(),
                 0
         );
@@ -88,7 +86,6 @@ public class Homesteaders extends FightNode {
                 DAD_STARTING_BASIC_ABILITY_1,
                 DAD_STARTING_BASIC_ABILITY_2,
                 DAD_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 dogBaseStats(),
                 0
         );

@@ -22,13 +22,7 @@ public class AbilityTrainerScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
-        Table abilityTrainer = abilityTrainer();
-        entireScreen.add(abilityTrainer).expand().bottom().right();
-        stage.addActor(entireScreen);
-        Gdx.input.setInputProcessor(stage);
+
     }
 
 

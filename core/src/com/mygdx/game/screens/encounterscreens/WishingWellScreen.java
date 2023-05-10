@@ -23,11 +23,7 @@ public class WishingWellScreen extends ScreenAdapter {
     private Viewport viewport;
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
-        wishingWell = (WishingWell) gameState.getCurrentNode();
-        Table wishingWellTable = wishEncounter();
+
     }
 
     private Table wishEncounter(){

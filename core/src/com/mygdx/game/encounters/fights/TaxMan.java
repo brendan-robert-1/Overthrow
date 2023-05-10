@@ -54,7 +54,6 @@ public class TaxMan extends FightNode {
                 TAX_MAN_STARTING_BASIC_ABILITY_1,
                 TAX_MAN_STARTING_BASIC_ABILITY_2,
                 TAX_MAN_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 taxmanBaseStats(),
                 0
         );
@@ -72,7 +71,6 @@ public class TaxMan extends FightNode {
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_1,
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_2,
                 TAX_COLLECTOR_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 collectorBaseStats(),
                 0
         );

@@ -8,23 +8,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.screens.widgets.AbilitySprite;
-import com.mygdx.game.screens.widgets.Team;
+import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.state.Character;
-import com.mygdx.game.state.GameState;
-
-import java.util.Objects;
 
 public class AbilitySelectPanel extends Table {
 
+    private HudTooltip hudTooltip;
     private DragAndDrop dragAndDrop;
-    public AbilitySelectPanel(){
+    public AbilitySelectPanel(HudTooltip hudTooltip){
         this.setVisible(false);
+        this.hudTooltip = hudTooltip;
     }
 
 
 
     public void populateAbilities(Character activeCharacter, DragAndDrop dragAndDrop, EnemyTeam enemyTeam, Team team) {
+        this.clearChildren();
         this.dragAndDrop = dragAndDrop;
         dragAndDrop.setDragTime(100);
         dragAndDrop.setKeepWithinStage(false);
@@ -33,41 +32,34 @@ public class AbilitySelectPanel extends Table {
         Ability ability2 = activeCharacter.getSecondBasicAbility();
         Ability ult = activeCharacter.getUltimateAbility();
 
-        Image ability1Image = new AbilitySprite(activeCharacter.getFirstBasicAbility().abilityType());
-        ability1Image.setScaling(Scaling.fit);
-        ability1Image.setSize(40,40);
+        Image ability1Decal = new AbilitySprite(activeCharacter.getFirstBasicAbility().abilityType());
+        ability1Decal.setScaling(Scaling.fit);
+        ability1Decal.setSize(40,40);
 
-        Image ability2Image = new AbilitySprite(activeCharacter.getSecondBasicAbility().abilityType());
-        ability2Image.setScaling(Scaling.fit);
-        ability2Image.setSize(40,40);
-        ability2Image.setSize(40,40);
+        Image ability2Decal = new AbilitySprite(activeCharacter.getSecondBasicAbility().abilityType());
+        ability2Decal.setScaling(Scaling.fit);
+        ability2Decal.setSize(40,40);
+        ability2Decal.setSize(40,40);
 
-        Image ultImage = new AbilitySprite(activeCharacter.getUltimateAbility().abilityType());
-        ultImage.setScaling(Scaling.fit);
-        ultImage.setSize(40,40);
-        ultImage.setSize(40,40);
+        Image ultDecal = new AbilitySprite(activeCharacter.getUltimateAbility().abilityType());
+        ultDecal.setScaling(Scaling.fit);
+        ultDecal.setSize(40,40);
+        ultDecal.setSize(40,40);
 
 
-        Image background = new Image(Assets.skin().getPatch("inventory-background"));
-        background.setSize(52,52);
-        Stack ability1Stack = new Stack();
-        ability1Stack.add(background);
-        ability1Stack.add(ability1Image);
+
+
+        AbilitySelect ability1Stack = new AbilitySelect(ability1Decal, ability1);
         dragAndDrop.addSource(new AbilityDragSource(ability1Stack,ability1, dragAndDrop, activeCharacter ));
+        ability1Stack.addListener(new HudTooltipListener(hudTooltip));
 
-        background = new Image(Assets.skin().getPatch("inventory-background"));
-        background.setSize(52,52);
-        Stack ability2Stack = new Stack();
-        ability2Stack.add(background);
-        ability2Stack.add(ability2Image);
+        AbilitySelect ability2Stack = new AbilitySelect(ability2Decal, ability2);
         dragAndDrop.addSource(new AbilityDragSource(ability2Stack,ability2, dragAndDrop, activeCharacter ));
+        ability2Stack.addListener(new HudTooltipListener(hudTooltip));
 
-        background = new Image(Assets.skin().getPatch("inventory-background"));
-        background.setSize(52,52);
-        Stack ultStack = new Stack();
-        ultStack.add(background);
-        ultStack.add(ultImage);
+        AbilitySelect ultStack = new AbilitySelect(ultDecal, ult);
         dragAndDrop.addSource(new AbilityDragSource(ultStack,ult, dragAndDrop, activeCharacter ));
+        ultStack.addListener(new HudTooltipListener(hudTooltip));
         
         setTargets(dragAndDrop, enemyTeam, team);
 

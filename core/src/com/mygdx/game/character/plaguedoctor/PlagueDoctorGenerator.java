@@ -22,7 +22,6 @@ public class PlagueDoctorGenerator {
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 baseStats(),
                 0
         );

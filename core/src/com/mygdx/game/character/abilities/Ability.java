@@ -5,7 +5,10 @@ public interface Ability{
     public enum AbilityType {
         MIASMA,
         TOSS_CONCOCTION,
-        BLOODLET
+        BLOODLET,
+        JOUST,
+        ARMOR_UP,
+        CHALLENGE
     }
     String name();
     String description();

@@ -23,15 +23,7 @@ public class GemMerchantScreen extends ScreenAdapter {
     private Viewport viewport;
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
 
-        Table market = market();
-        entireScreen.add(market);
-
-        stage.addActor(entireScreen);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private Table market(){

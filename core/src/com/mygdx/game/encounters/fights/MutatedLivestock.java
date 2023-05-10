@@ -61,7 +61,6 @@ public class MutatedLivestock extends FightNode {
                 MUTATED_COW_STARTING_BASIC_ABILITY_1,
                 MUTATED_COW_STARTING_BASIC_ABILITY_2,
                 MUTATED_COW_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 chickenBaseStats(),
                 0
         );
@@ -75,7 +74,6 @@ public class MutatedLivestock extends FightNode {
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_1,
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_2,
                 MUTATED_CHICKEN_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 pigBaseStats(),
                 0
         );
@@ -89,7 +87,6 @@ public class MutatedLivestock extends FightNode {
                 MUTATED_PIG_STARTING_BASIC_ABILITY_1,
                 MUTATED_PIG_STARTING_BASIC_ABILITY_2,
                 MUTATED_PIG_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 cowBaseStats(),
                 0
         );

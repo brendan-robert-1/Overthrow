@@ -29,22 +29,6 @@ public class NextEncounterSelectionScreen extends ScreenAdapter {
     private InventoryUi inventoryUi;
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
-        Table encounterOptions = populateEncounterOptions();
-        inventoryUi = new InventoryUi();
-        inventoryUi.setKeepWithinStage(false);
-        entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
-        entireScreen.row();
-        entireScreen.add(new Team()).expand().bottom().left().pad(40);
-        entireScreen.add(encounterOptions).expand().bottom().right().padBottom(20);
-        stage.addActor(entireScreen);
-        stage.addActor(inventoryUi);
-        for(Actor actor : inventoryUi.getInventoryActors()){
-            stage.addActor(actor);
-        }
-        Gdx.input.setInputProcessor(stage);
     }
 
     private Table populateEncounterOptions(){

@@ -7,13 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class InventorySlotTooltipListener extends InputListener {
 
-    private InventorySlotTooltip toolTip;
+    private InventorySlotTooltip tooltip;
     private boolean isInside = false;
     private Vector2 currentCords;
     private Vector2 offset;
 
-    public InventorySlotTooltipListener(InventorySlotTooltip toolTip){
-        this.toolTip = toolTip;
+    public InventorySlotTooltipListener(InventorySlotTooltip tooltip){
+        this.tooltip = tooltip;
         this.currentCords = new Vector2(0,0);
         this.offset = new Vector2(20,10);
     }
@@ -26,16 +26,16 @@ public class InventorySlotTooltipListener extends InputListener {
 
         currentCords.set(x, y);
         inventorySlot.localToStageCoordinates(currentCords);
-        toolTip.updateDescription(inventorySlot);
-        toolTip.setPosition(currentCords.x + offset.x, currentCords.y + offset.y);
-        toolTip.toFront();
-        toolTip.setVisible(inventorySlot, true);
+        tooltip.updateDescription(inventorySlot);
+        tooltip.setPosition(currentCords.x + offset.x, currentCords.y + offset.y);
+        tooltip.toFront();
+        tooltip.setVisible(inventorySlot, true);
     }
 
     @Override
     public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
         InventorySlot inventorySlot = (InventorySlot)event.getListenerActor();
-        toolTip.setVisible(inventorySlot, false);
+        tooltip.setVisible(inventorySlot, false);
         isInside = false;
 
         currentCords.set(x, y);
@@ -49,7 +49,7 @@ public class InventorySlotTooltipListener extends InputListener {
             currentCords.set(x, y);
             inventorySlot.localToStageCoordinates(currentCords);
 
-            toolTip.setPosition(currentCords.x+offset.x, currentCords.y+offset.y);
+            tooltip.setPosition(currentCords.x+offset.x, currentCords.y+offset.y);
         }
         return false;
     }
@@ -58,7 +58,7 @@ public class InventorySlotTooltipListener extends InputListener {
     @Override
     public void touchDragged (InputEvent event, float x, float y, int pointer) {
         InventorySlot inventorySlot = (InventorySlot)event.getListenerActor();
-        toolTip.setVisible(inventorySlot, false);
+        tooltip.setVisible(inventorySlot, false);
     }
 
     @Override

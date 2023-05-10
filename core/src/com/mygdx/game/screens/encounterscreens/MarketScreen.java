@@ -27,17 +27,6 @@ public class MarketScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ScreenViewport();
-        Table entireScreen = new EntireInGameScreenTable();
-        InventoryUi inventoryUi = new InventoryUi();
-        entireScreen.add(new TopBar(inventoryUi)).expand().fillX().colspan(2).top();
-        entireScreen.row();
-        entireScreen.add(new Team()).expand().bottom().left().pad(40);
-        Table market = market();
-        entireScreen.add(market).expand().bottom().right();
-        stage.addActor(entireScreen);
-        Gdx.input.setInputProcessor(stage);
     }
 
     private Table market(){

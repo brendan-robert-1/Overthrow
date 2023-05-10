@@ -35,6 +35,9 @@ public class AbilityDragTarget extends Target implements AbilityUsedSubject {
     @Override
     public void drop(Source source, Payload payload, float x, float y, int pointer) {
         AbilityDragSource abilityDragSource = (AbilityDragSource) source;
+        if(abilityDragSource == null){
+            return;
+        }
         notify(targetCharacter, abilityDragSource.getAbility(), abilityDragSource.getSourceCharacter());
     }
 

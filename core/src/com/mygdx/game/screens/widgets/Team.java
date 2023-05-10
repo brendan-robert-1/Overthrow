@@ -1,8 +1,10 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
@@ -10,13 +12,15 @@ import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
 public class Team extends Table{
+    private HudTooltip hudTooltip;
 
     public void update() {
         this.clearChildren();
         this.populate();
     }
 
-    public Team(){
+    public Team(HudTooltip hudTooltip){
+        this.hudTooltip = hudTooltip;
         populate();
     }
 
@@ -49,18 +53,11 @@ public class Team extends Table{
         Image characterSprite = new CharacterSprite(character.getCharacterType());
         characterSprite.setScaling(Scaling.fit);
         characterPanel.add(characterSprite).width(200).height(250);
-        InspectBox characterInspectBox = new InspectBox(character.getName(),
-                "hp: " + character.getHp() + "\n" +
-                        "armor: " + character.getHp() + "\n"+
-                        "magic resistance: " + character.getHp() + "\n"+
-                        "physical damage: " + character.getHp() + "\n"+
-                        "magic damage: " + character.getHp() + "\n"+
-                        "speed: " + character.getHp() + "\n"
-        );
-        //characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
+        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs(), hudTooltip)).expandX().height(16).left();
         characterPanel.defaults().expandX();
         characterPanel.setName(character.getCharacterType().toString());
+
         return characterPanel;
     }
 

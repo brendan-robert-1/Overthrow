@@ -43,11 +43,7 @@ public class AbilityDragSource extends Source {
     }
     @Override
     public void dragStop (InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
-        if( target == null ){
-            source.add(payload.getDragActor());
-        } else{
-            source.add(payload.getDragActor());
-        }
+        source.add(payload.getDragActor());
     }
 
 

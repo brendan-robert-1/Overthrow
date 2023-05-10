@@ -5,7 +5,6 @@ import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.knight.KnightGenerator;
 import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 import com.mygdx.game.state.gear.EquippedGear;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Character implements Comparable<Character>{
 
 
     public Character(String name, CharacterType characterType, int hp, EquippedGear equippedGear, Ability firstBasicAbility, Ability secondBasicAbility,
-                     Ability ultimateAbility, List<Buff> buffs, Stats baseStats, int chargeTime) {
+                     Ability ultimateAbility, Stats baseStats, int chargeTime) {
         this.name = name;
         this.characterType = characterType;
         this.hp = hp;
@@ -38,7 +37,6 @@ public class Character implements Comparable<Character>{
         this.firstBasicAbility = firstBasicAbility;
         this.secondBasicAbility = secondBasicAbility;
         this.ultimateAbility = ultimateAbility;
-        this.buffs = buffs;
         this.baseStats = baseStats;
         this.chargeTime = chargeTime;
     }
@@ -63,6 +61,56 @@ public class Character implements Comparable<Character>{
     public int compareTo(Character o) {
         return Integer.compare(chargeTime, o.chargeTime);
     }
+
+
+
+    public void addBuff(Buff buff) {
+        if(buffs == null){
+            buffs = new ArrayList<>();
+        }
+        boolean updated = false;
+        for(Buff existingBuff : buffs){
+            if(existingBuff.buffType == buff.buffType){
+                existingBuff.turnsRemaining += buff.turnsRemaining;
+                updated = true;
+            }
+        }
+        if(!updated){
+            buffs.add(buff);
+        }
+
+    }
+
+    public void addDebuff(Buff debuff){
+        if(debuffs == null){
+            debuffs = new ArrayList<>();
+        }
+        boolean updated = false;
+        for(Buff existingDebuff : debuffs){
+            if(existingDebuff.buffType == debuff.buffType){
+                existingDebuff.turnsRemaining += debuff.turnsRemaining;
+                updated = true;
+            }
+        }
+        if(!updated){
+            debuffs.add(debuff);
+        }
+
+    }
+
+
+
+    public void setBuffs(List<Buff> buffs) {
+        this.buffs = buffs;
+    }
+
+
+
+    public void setDebuffs(List<Buff> debuffs) {
+        this.debuffs = debuffs;
+    }
+
+
 
     public enum CharacterType {
         PLAGUE_DOCTOR, LEPER, INVENTOR, KNIGHT,
@@ -190,12 +238,6 @@ public class Character implements Comparable<Character>{
     }
 
 
-    public Character setDebuffs(List<Buff> debuffs) {
-        this.debuffs = debuffs;
-        return this;
-    }
-
-
 
     public Character setSecondBasicAbility(Ability secondBasicAbility) {
         this.secondBasicAbility = secondBasicAbility;
@@ -221,12 +263,6 @@ public class Character implements Comparable<Character>{
         return buffs;
     }
 
-
-
-    public Character setBuffs(List<Buff> buffs) {
-        this.buffs = buffs;
-        return this;
-    }
 
     public Stats getStats(){
         return new Stats(

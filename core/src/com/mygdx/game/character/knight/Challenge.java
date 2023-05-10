@@ -1,23 +1,20 @@
-package com.mygdx.game.character.plaguedoctor;
+package com.mygdx.game.character.knight;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.character.buff.Buff;
-import com.mygdx.game.character.buff.PoisonDebuff;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
-public class TossConcoction implements Ability {
-
+public class Challenge implements Ability {
     @Override
     public String name() {
-        return "Toss Concoction";
+        return "Challenge";
     }
 
 
 
     @Override
     public String description() {
-        return "AOE debuffing attack";
+        return "Marks an opponent with a debuff that increases damage taken from the marker for 4 turns.";
     }
 
 
@@ -43,19 +40,15 @@ public class TossConcoction implements Ability {
 
 
 
-
     @Override
     public void execute(Character target, Character source, FightNode fight) {
-        System.out.println("Toss Concoction is executing on: " + target.getName());
-        target.decreaseHpBy(2);
-        Buff poison = new PoisonDebuff(3, 3);
-        target.addDebuff(poison);
+        System.out.println("Challenge is being executed on: " + source.getName() + " onto: " + target.getName());
     }
 
 
 
     @Override
     public AbilityType abilityType() {
-        return AbilityType.TOSS_CONCOCTION;
+        return AbilityType.CHALLENGE;
     }
 }

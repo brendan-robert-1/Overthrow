@@ -6,14 +6,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.widgets.CharacterSprite;
-import com.mygdx.game.screens.widgets.InspectBox;
+import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.EnemySlots;
 
 public class EnemyTeam extends Table {
 
     private EnemySlots enemySlots;
+    private HudTooltip hudTooltip;
 
     public EnemyTeam(EnemySlots enemySlots){
       super(Assets.skin());
@@ -66,19 +66,13 @@ public class EnemyTeam extends Table {
         Image sprite = new CharacterSprite(character.getCharacterType());
         sprite.setScaling(Scaling.fit);
         characterPanel.add(sprite).width(200).height(250);
-        InspectBox characterInspectBox = new InspectBox(character.getName(),
-                "hp: " + character.getHp() + "\n" +
-                        "armor: " + character.getHp() + "\n"+
-                        "magic resistance: " + character.getHp() + "\n"+
-                        "physical damage: " + character.getHp() + "\n"+
-                        "magic damage: " + character.getHp() + "\n"+
-                        "speed: " + character.getHp() + "\n"
-        );
+
         // characterPanel.addListener(new RightClickInspectListener(stage, characterInspectBox));
         characterPanel.row();
-
+        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs(), hudTooltip)).expandX().height(32).left();
         characterPanel.defaults().expand().fill();
         characterPanel.setName(character.getCharacterType().toString());
+
         return characterPanel;
     }
 
@@ -86,5 +80,9 @@ public class EnemyTeam extends Table {
 
     public EnemySlots getEnemySlots() {
         return enemySlots;
+    }
+
+    public void setHudTooltip(HudTooltip hudTooltip){
+        this.hudTooltip = hudTooltip;
     }
 }

@@ -52,7 +52,6 @@ public class Fred extends FightNode {
                 FRED_STARTING_BASIC_ABILITY_1,
                 FRED_STARTING_BASIC_ABILITY_2,
                 FRED_STARTING_ULT_ABILITY,
-                new ArrayList<>(),
                 baseStats(),
                 0
         );
