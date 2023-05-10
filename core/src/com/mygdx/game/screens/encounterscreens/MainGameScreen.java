@@ -120,7 +120,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         pathSelectContainer.clearChildren();
         pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
         pathSelectContainer.setVisible(true);
-        pathSelectContainer.setDebug(true);
         pathSelectContainer.pack();
     }
 

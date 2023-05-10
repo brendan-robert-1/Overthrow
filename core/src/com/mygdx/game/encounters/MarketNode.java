@@ -2,6 +2,7 @@ package com.mygdx.game.encounters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -11,8 +12,10 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
+import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.screens.widgets.markets.MarketOption;
 import com.mygdx.game.state.GameNode;
+import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.InventoryItemFactory;
 import com.mygdx.game.state.shops.ShopOffering;
 
@@ -60,7 +63,6 @@ public class MarketNode extends GameNode implements ProceedSubject {
             }
         });
         table.add(proceedButton).colspan(3).expandX().right().padRight(5);
-        table.setDebug(true);
         return table;
     }
 
@@ -73,7 +75,23 @@ public class MarketNode extends GameNode implements ProceedSubject {
         table.row();
         table.add(new Label("Price: "+ inventoryItem.getCoinValue(), Assets.skin())).padTop(10);
         table.addListener(new HudTooltipListener());
+        table.addListener(purchaseClickListener(inventoryItem));
         return table;
+    }
+
+    private InputListener purchaseClickListener(InventoryItem inventoryItem){
+        return new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(GameState.getInstance().getCoin() >= inventoryItem.getCoinValue()){
+                    InventoryUi.getInstance().addToFirstOpenSlot(inventoryItem);
+                    GameState.getInstance().decreaseCoinBy(inventoryItem.getCoinValue());
+                    event.getListenerActor().remove();
+                    TopBar.getInstance().update();
+                    super.clicked(event, x, y);
+                }
+            }
+        };
     }
 
 

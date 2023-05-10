@@ -32,7 +32,7 @@ public class EntireInGameScreenTable extends Table {
         this.setFillParent(true);
         hudToolTipActors.add(hudTooltip);
         team = new Team();
-        this.add(new TopBar()).expand().fillX().colspan(2).top();
+        this.add(TopBar.getInstance()).expand().fillX().colspan(2).top();
         this.row();
         this.add(team).expand().bottom().left().pad(40);
         this.row();
