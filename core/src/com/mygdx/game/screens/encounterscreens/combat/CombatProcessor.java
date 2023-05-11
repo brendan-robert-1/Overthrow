@@ -36,6 +36,7 @@ public class CombatProcessor {
                 logger.info(activeCharacter.getName() + " has used " + ability.name() +" onto " + target.getName());
                 increaseChargeTimeExcept(activeCharacter);
                 activeCharacter.getCharacter().resetChargeTime();
+                MainGameScreen.getInstance().updateScreenMidCombat();
                 processEndOfTurnEvents();
             }
         },2f);

@@ -50,7 +50,7 @@ public class Bloodlet implements Ability {
     @Override
     public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
         System.out.println("Bloodlet is executing on: " + target.getName());
-        target.getCharacter().decreaseHpBy(DAMAGE);
+        target.decreaseHpBy(DAMAGE);
         target.getBuffsBar().getDebuffs().stream().filter(Objects::nonNull).forEach(debuff -> {
             debuff.reduceTurnsRemaining(REDUCE_DEBUFF_TURNS_BY);
         });

@@ -217,10 +217,6 @@ public class Character {
         this.setHp(hp + increase);
     }
 
-    public void decreaseHpBy(int decreaseBy){
-        this.setHp(hp - decreaseBy);
-    }
-
     public Character setInCombatStatModifiers(Stats inCombatStatModifiers) {
         this.inCombatStatModifiers = inCombatStatModifiers;
         return this;

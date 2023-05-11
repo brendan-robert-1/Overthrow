@@ -1,5 +1,6 @@
 package com.mygdx.game.character.buff;
 
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.state.Character;
 
 import java.io.UTFDataFormatException;
@@ -14,9 +15,9 @@ public class PoisonDebuff extends Buff {
 
 
     @Override
-    public void executeEndOfTurn(Character character) {
-        character.decreaseHpBy(getPotency());
-        this.setPotency(this.getPotency() -1);
+    public void executeEndOfTurn(CharacterPanel characterPanel) {
+        characterPanel.decreaseHpBy(getPotency());
+        this.setPotency(this.getPotency() - 1);
         if(getPotency() <= 0){
             this.turnsRemaining = 0;
         }

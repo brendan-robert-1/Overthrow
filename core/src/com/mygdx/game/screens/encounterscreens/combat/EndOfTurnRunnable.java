@@ -1,7 +1,6 @@
 package com.mygdx.game.screens.encounterscreens.combat;
 
 import com.badlogic.gdx.utils.Timer.Task;
-import com.mygdx.game.ActionState;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.Team;
@@ -27,9 +26,10 @@ public class EndOfTurnRunnable extends Task implements FightSubject {
 
     @Override
     public void run() {
+        logger.info("Processing end of turn events");
         fight.getEnemyTeam().streamNonNull().forEach(enemyPanel -> {
-            logger.info("Processing end of turn events");
             processEndOfTurnDebuffFor(enemyPanel);
+            processEndOfTurnBuffFor(enemyPanel);
             enemyPanel.update();
         });
         fight.resolveDeaths();
@@ -47,7 +47,7 @@ public class EndOfTurnRunnable extends Task implements FightSubject {
         List<Buff> debuffs = characterPanel.getBuffsBar().getDebuffs();
         if(debuffs == null) {debuffs = new ArrayList<>();}
         debuffs.forEach(debuff -> {
-            debuff.executeEndOfTurn(character);
+            debuff.executeEndOfTurn(characterPanel);
             characterPanel.animateDebuff(debuff);
             debuff.reduceTurnsRemaining(1);
         });
@@ -60,7 +60,7 @@ public class EndOfTurnRunnable extends Task implements FightSubject {
         List<Buff> buffs = characterPanel.getBuffsBar().getBuffs();
         if(buffs == null) {buffs = new ArrayList<>();}
         buffs.forEach(buff -> {
-            buff.executeEndOfTurn(character);
+            buff.executeEndOfTurn(characterPanel);
             buff.reduceTurnsRemaining(1);
         });
     }

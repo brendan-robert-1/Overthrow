@@ -1,5 +1,6 @@
 package com.mygdx.game.character.buff;
 
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.state.Character;
 
 public class Bleed extends Buff{
@@ -12,8 +13,8 @@ public class Bleed extends Buff{
 
 
     @Override
-    public void executeEndOfTurn(Character character) {
-        character.decreaseHpBy(this.getPotency());
+    public void executeEndOfTurn(CharacterPanel characterPanel) {
+        characterPanel.decreaseHpBy(this.getPotency());
     }
 
 

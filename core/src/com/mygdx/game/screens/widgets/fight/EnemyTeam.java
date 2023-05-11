@@ -26,10 +26,6 @@ public class EnemyTeam extends Table {
         this.pack();
     }
 
-    public void update(){
-        init();
-    };
-
 
 
     public void init(){
@@ -94,9 +90,6 @@ public class EnemyTeam extends Table {
         if(fourthCharacterPanel == enemyPanel){
             fourthCharacterPanel = null;
         }
-        this.update();
-
+        this.pack();
     }
-
-
 }

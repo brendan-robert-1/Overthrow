@@ -22,7 +22,14 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
 
 
     public void update() {
-        this.clearChildren();
+        buffsBar.update();
+        label.setText("hp: " + character.getHp());
+        this.pack();
+    }
+
+    public CharacterPanel(Character character){
+        super(Assets.skin());
+        this.character = character;
         label = new Label("hp: " + character.getHp(), Assets.skin(), "title");
         this.add(label).expand().fill().pad(20).align(Align.center);
 
@@ -37,12 +44,6 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         this.defaults().expand().fill();
         this.setName(character.getCharacterType().toString());
         this.pack();
-    }
-
-    public CharacterPanel(Character character){
-        super(Assets.skin());
-        this.character = character;
-        update();
     }
 
 
@@ -96,5 +97,12 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
 
     public int getHp(){
         return character.getHp();
+    }
+
+    public void decreaseHpBy(int decreaseBy){
+        this.getCharacter().setHp(this.character.getHp() - decreaseBy);
+        if(this.getCharacter().getHp() <=0){
+            this.remove();
+        }
     }
 }

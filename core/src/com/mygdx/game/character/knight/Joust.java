@@ -45,9 +45,9 @@ public class Joust implements Ability {
 
     @Override
     public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
-        target.getCharacter().decreaseHpBy(15);
+        target.decreaseHpBy(15);
         Buff pierce = new PierceBuff(5);
-        target.getBuffsBar().addBuff(pierce);
+        target.getBuffsBar().addDebuff(pierce);
     }
 
 

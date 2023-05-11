@@ -164,6 +164,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         logger.info("DEBUG THIS target: " + targetCharacter.getName() + " "+ ability.name() + " "  + sourceCharacter.getName());
         ActionState.playerStateValue = ActionState.StateValue.NOT_ALLOWED_TO_ACT;
         ability.execute(targetCharacter, sourceCharacter, fight);
+        updateScreenMidCombat();
         sourceCharacter.getCharacter().resetChargeTime();
         combatProcessor.increaseChargeTimeExcept(sourceCharacter);
         combatProcessor.processEndOfTurnEvents();
@@ -185,7 +186,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     }
 
     private void executeTurn(){
-        updateScreenMidCombat();
         if(combatProcessor.lost()) {
             logger.info("You lost!");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
@@ -210,6 +210,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private void displayTurnCarousel(){
         turnCarousel.setVisible(true);
     }
+
     private void incrementTurnCarousel(){
         java.util.List<CharacterPanel> futureTurns = combatProcessor.projectFutureTurnOrder();
         turnCarousel.remove();

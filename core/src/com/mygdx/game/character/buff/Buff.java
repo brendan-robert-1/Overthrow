@@ -1,5 +1,6 @@
 package com.mygdx.game.character.buff;
 
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.state.Character;
 
 public abstract class Buff {
@@ -9,12 +10,7 @@ public abstract class Buff {
 
 
 
-    public abstract void executeEndOfTurn(Character character);
-
-
-
-
-
+    public abstract void executeEndOfTurn(CharacterPanel characterPanel);
 
     public static enum BuffType{
         POISON,

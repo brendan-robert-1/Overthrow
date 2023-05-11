@@ -32,11 +32,9 @@ public abstract class FightNode extends GameNode implements PathSelectedObserver
     }
 
     public void update(){
-        this.clearChildren();
-        enemyTeam.update();
+        resolveDeaths();
         enemyTeam.pack();
         this.pack();
-        this.add(getFightTable(enemyTeam));
     }
 
     public void resolveDeaths() {

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
-
-
     private List<Buff> buffs = new ArrayList<>();
     private List<Buff> debuffs = new ArrayList<>();
     private HudTooltip hudTooltip = HudTooltip.getInstance();
@@ -24,7 +22,6 @@ public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
     }
 
     public void build(){
-        this.clearChildren();
         for(Buff buff : buffs) {
             BuffSprite buffSprite = new BuffSprite(buff);
             buffSprite.addListener(new HudTooltipListener());
@@ -41,16 +38,7 @@ public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
 
 
     public void animateDebuff(Buff toAnimate) {
-        for(Buff buff : buffs){
-            if(buff.equals(toAnimate)){
 
-            }
-        }
-        for(Buff debuff : debuffs){
-            if(debuff.equals(toAnimate)){
-
-            }
-        }
        // notify(BuffAnimatorSubject.BuffAnimatorEvent.FINISHED_ANIMATION);
     }
 
@@ -79,6 +67,7 @@ public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
         if(!buffFound){
             buffs.add(buff);
         }
+        build();
     }
 
     public void addDebuff(Buff debuff){
@@ -93,5 +82,6 @@ public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
         if(!buffFound){
             debuffs.add(debuff);
         }
+        build();
     }
 }
