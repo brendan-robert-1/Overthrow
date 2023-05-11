@@ -17,9 +17,9 @@ public class AbilityDragSource extends Source {
     private DragAndDrop dragAndDrop;
     private Ability ability;
     private Stack source;
-    private Character sourceCharacter;
+    private CharacterPanel sourceCharacter;
 
-    public AbilityDragSource(Stack source, Ability ability, DragAndDrop dragAndDrop, Character sourceCharacter){
+    public AbilityDragSource(Stack source, Ability ability, DragAndDrop dragAndDrop, CharacterPanel sourceCharacter){
         super(source.getChildren().peek());
         this.source = source;
         this.dragAndDrop = dragAndDrop;
@@ -54,7 +54,7 @@ public class AbilityDragSource extends Source {
 
 
 
-    public Character getSourceCharacter() {
+    public CharacterPanel getSourceCharacter() {
         return sourceCharacter;
     }
 }

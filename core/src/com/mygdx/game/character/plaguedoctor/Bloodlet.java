@@ -1,6 +1,7 @@
 package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
@@ -47,10 +48,10 @@ public class Bloodlet implements Ability {
 
 
     @Override
-    public void execute(Character target, Character source, FightNode fight) {
+    public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
         System.out.println("Bloodlet is executing on: " + target.getName());
-        target.decreaseHpBy(DAMAGE);
-        target.getDebuffs().stream().filter(Objects::nonNull).forEach(debuff -> {
+        target.getCharacter().decreaseHpBy(DAMAGE);
+        target.getBuffsBar().getDebuffs().stream().filter(Objects::nonNull).forEach(debuff -> {
             debuff.reduceTurnsRemaining(REDUCE_DEBUFF_TURNS_BY);
         });
     }

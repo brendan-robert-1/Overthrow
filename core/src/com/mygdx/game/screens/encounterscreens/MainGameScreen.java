@@ -5,13 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Assets;
+import com.mygdx.game.ActionState;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.screens.MainMenuScreen;
 import com.mygdx.game.screens.encounterscreens.combat.CombatProcessor;
@@ -23,14 +22,14 @@ import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounter;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounterObserver;
 import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
-import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
-
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, AbilityUsedObserver,
-        TurnSubject, CombatRewardSelectedObserver, ProceedObserver {
+         CombatRewardSelectedObserver, ProceedObserver {
+    private static final Logger logger = LogManager.getLogger(MainGameScreen.class);
     private Stage stage;
     private Viewport viewport;
     private Table pathSelectContainer;
@@ -104,7 +103,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
     @Override
     public void onNotify(InventoryItem itemSelected, OutfitterEvent event) {
-        System.out.println("The main game screen is being notified of an outfit being selected.");
         Array<InventoryItemLocation> itemLocations = new Array<>();
         itemLocations.add(new InventoryItemLocation(0, itemSelected.getItemTypeId(),1, itemSelected.getDisplayName()));
         InventoryUi.populateInventory(itemLocations);
@@ -115,7 +113,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
 
     private void displayPathSelectWindow(){
-        System.out.println("Displaying next encounter selection window");
         pathSelectWindow = new NextEncounter();
         pathSelectContainer.clearChildren();
         pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
@@ -129,7 +126,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
                 || nodeSelected == GameNode.NodeType.BOSS_FIGHT
                 || nodeSelected == GameNode.NodeType.ELITE_FIGHT){
             processCombat();
-            System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
+
             encounterWindow = GameState.getInstance().getCurrentNode();
             encounterContainer = new Table();
             encounterContainer.setFillParent(true);
@@ -139,7 +136,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
             stage.addActor(encounterContainer);
             pathSelectContainer.setVisible(false);
         } else {
-            System.out.println("Main screen is being notified of the next encounter being selected: " + nodeSelected);
+
             encounterWindow = GameState.getInstance().getCurrentNode();
             encounterContainer = new Table();
             encounterContainer.setFillParent(true);
@@ -158,110 +155,77 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         displayTurnCarousel();
         fight = (FightNode) GameState.getInstance().getCurrentNode();
         combatProcessor = new CombatProcessor(fight);
-        executeTurn();
+        onNotify("", FightEvent.FIGHT_STARTED);
     }
 
 
     @Override
-    public void onNotify(Character targetCharacter, Ability ability, Character sourceCharacter) {
+    public void onNotify(CharacterPanel targetCharacter, Ability ability, CharacterPanel sourceCharacter) {
+        logger.info("DEBUG THIS target: " + targetCharacter.getName() + " "+ ability.name() + " "  + sourceCharacter.getName());
+        ActionState.playerStateValue = ActionState.StateValue.NOT_ALLOWED_TO_ACT;
         ability.execute(targetCharacter, sourceCharacter, fight);
-        sourceCharacter.resetChargeTime();
+        sourceCharacter.getCharacter().resetChargeTime();
         combatProcessor.increaseChargeTimeExcept(sourceCharacter);
         combatProcessor.processEndOfTurnEvents();
-        entireInGameScreenTable.pack();
-        updateScreenMidCombat();
-        executeTurn();
+    }
+
+
+    @Override
+    public void onNotify(String text, FightEvent event) {
+        switch(event){
+            case TURN_OVER ->{
+                logger.info("Turn over main game screen is now executing a new turn.");
+                executeTurn();
+            }
+            case FIGHT_STARTED -> {
+                logger.info("Fight has begun main game screen is executing a new turn.");
+                executeTurn();
+            }
+        }
     }
 
     private void executeTurn(){
+        updateScreenMidCombat();
         if(combatProcessor.lost()) {
-            System.out.println("You lost!");
+            logger.info("You lost!");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen());
         } else if(combatProcessor.won()){
             displayCombatRewards();
             turnCarousel.remove();
             return;
         }
-        java.util.List<Character> futureTurns = combatProcessor.projectFutureTurnOrder();
-        turnCarousel.remove();
-        turnCarousel = new TurnCarousel();
-        turnCarousel.populateCarousel(futureTurns);
-        stage.addActor(turnCarousel);
-        //notify("turn started", futureTurns, TurnObserver.TurnEvent.TURN_STARTED);
-        Character activeCharacter = combatProcessor.calculateActiveTurn();
-        System.out.println("executing turn for: " + activeCharacter.getName());
-        if(activeCharacter.isFriendly()){
+        incrementTurnCarousel();
+        CharacterPanel activeCharacter = combatProcessor.calculateActiveTurn();
+        logger.info(activeCharacter.getName() + "'s turn. They have " + activeCharacter.getChargeTime() + " charge time.");
+        if(activeCharacter.getCharacter().isFriendly()){
             abilitySelectDragAndDrop = new DragAndDrop();
             entireInGameScreenTable.populateAbilities(activeCharacter, abilitySelectDragAndDrop, fight.getEnemyTeam());
-            //Wait for ability used fire event
-        }else {
-           combatProcessor.executeEnemyTurn(activeCharacter);
-            combatProcessor.processEndOfTurnEvents();
-            updateScreenMidCombat();
-            executeTurn();
-        }
-    }
-
-    public void updateScreenMidCombat(){
-        encounterContainer.remove();
-        encounterContainer = new Table();
-        encounterContainer.setFillParent(true);
-        fight.update();
-        entireInGameScreenTable.update();
-        encounterContainer.add(fight).expand().bottom().right().padBottom(100);
-        encounterContainer.pack();
-        stage.addActor(encounterContainer);
-    }
-
-
-
-    @Override
-    public void onNotify(String text, FightEvent event) {
-        System.out.println("Main game screen is being notified of fight event");
-        switch(event){
-            case ENEMY_TURN_TAKEN -> {}
+            ActionState.playerStateValue = ActionState.StateValue.ALLOWED_TO_ACT;
+            logger.info("Waiting for user input.");
+        } else {
+            combatProcessor.processFoeTurn(activeCharacter);
         }
     }
 
     private void displayTurnCarousel(){
-        System.out.println("Displaying turn carousel.");
         turnCarousel.setVisible(true);
     }
-
-    @Override
-    public void addObserver(TurnObserver observer) {
-        turnObservers.add(observer);
+    private void incrementTurnCarousel(){
+        java.util.List<CharacterPanel> futureTurns = combatProcessor.projectFutureTurnOrder();
+        turnCarousel.remove();
+        turnCarousel = new TurnCarousel();
+        turnCarousel.populateCarousel(futureTurns);
+        stage.addActor(turnCarousel);
     }
 
-
-
-    @Override
-    public void removeObserver(TurnObserver observer) {
-        turnObservers.removeValue(observer, true);
+    public void updateScreenMidCombat(){
+        System.out.println("Updating screen");
+        fight.update();
+        entireInGameScreenTable.update();
     }
-
-
-
-    @Override
-    public void removeAllObservers() {
-        for(TurnObserver turnObserver : turnObservers){
-            turnObservers.removeValue(turnObserver, true);
-        }
-    }
-
-
-
-
-    @Override
-    public void notify(String eventd, List<Character> futureTurns,TurnObserver.TurnEvent event) {
-        for(TurnObserver turnObserver : turnObservers){
-            turnObserver.onNotify(eventd, futureTurns, event);
-        }
-    }
-
 
     private void displayCombatRewards() {
-        System.out.println("you won the fight here are the rewards");
+        logger.info("you won the fight here are the rewards");
         encounterContainer.setVisible(false);
         entireInGameScreenTable.hideAbilitySelectPanel();
         combatRewardsWindow = new CombatRewardsWindow();

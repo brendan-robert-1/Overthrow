@@ -21,7 +21,6 @@ public class KnightGenerator {
                 "Knight",
                 Character.CharacterType.KNIGHT,
                 STARTING_HP,
-                new EquippedGear(),
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,

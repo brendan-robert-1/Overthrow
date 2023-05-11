@@ -7,5 +7,5 @@ public interface AbilityUsedSubject {
     public void addObserver(AbilityUsedObserver observer);
     public void removeObserver(AbilityUsedObserver observer);
     public void removeAllObservers();
-    public void notify(Character targetCharacter, Ability ability, Character sourceCharacter);
+    public void notify(CharacterPanel targetCharacter, Ability ability, CharacterPanel sourceCharacter);
 }

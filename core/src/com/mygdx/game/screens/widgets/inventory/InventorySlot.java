@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -25,6 +26,8 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         observers = new Array<>();
         decal = new Image();
         Image image = new Image(Assets.skin().getPatch("inventory-background"));
+        image.setSize(52,52);
+        image.setScaling(Scaling.fit);
         defaultBackground.add(image);
         defaultBackground.setName("defaultBackground");
 
@@ -40,6 +43,8 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         this();
         this.filterItemType = filterItemType;
         this.decal = decal;
+        decal.setSize(52,52);
+        decal.setScaling(Scaling.fit);
         defaultBackground.add(decal);
     }
 

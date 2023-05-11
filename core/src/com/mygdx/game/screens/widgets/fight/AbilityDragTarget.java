@@ -1,26 +1,22 @@
 package com.mygdx.game.screens.widgets.fight;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.ActionState;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
-import com.mygdx.game.state.Character;
 
 public class AbilityDragTarget extends Target implements AbilityUsedSubject {
     Actor targetTable;
-    Array<AbilityUsedObserver> observers = new Array<>();
-    private Character targetCharacter;
+    private CharacterPanel targetCharacter;
 
-    public AbilityDragTarget(Actor target, Character targetCharacter){
+    public AbilityDragTarget(Actor target, CharacterPanel targetCharacter){
         super(target);
         this.targetTable = target;
         this.targetCharacter = targetCharacter;
-        observers.add(MainGameScreen.getInstance());
     }
 
 
@@ -38,7 +34,12 @@ public class AbilityDragTarget extends Target implements AbilityUsedSubject {
         if(abilityDragSource == null){
             return;
         }
-        notify(targetCharacter, abilityDragSource.getAbility(), abilityDragSource.getSourceCharacter());
+        if(ActionState.playerStateValue == ActionState.StateValue.ALLOWED_TO_ACT){
+            notify(targetCharacter, abilityDragSource.getAbility(), abilityDragSource.getSourceCharacter());
+        } else {
+            System.out.println("Not enough time elapsed ignoring action");
+            return;
+        }
     }
 
 
@@ -65,9 +66,7 @@ public class AbilityDragTarget extends Target implements AbilityUsedSubject {
 
 
     @Override
-    public void notify(Character targetCharacter, Ability ability, Character sourceCharacter) {
-        observers.forEach(observer -> {
-            observer.onNotify(targetCharacter, ability, sourceCharacter);
-        });
+    public void notify(CharacterPanel targetCharacter, Ability ability, CharacterPanel sourceCharacter) {
+            MainGameScreen.getInstance().onNotify(targetCharacter, ability, sourceCharacter);
     }
 }

@@ -4,7 +4,6 @@ import java.util.UUID;
 
 public class GameState {
     private UUID runSeed;
-    private CharacterSlots characterSlots;
     private int coin;
     private MapGraph mapGraph;
     private GameNode currentNode;
@@ -31,20 +30,6 @@ public class GameState {
         this.runSeed = runSeed;
         return this;
     }
-
-
-
-    public CharacterSlots getCharacterSlots() {
-        return characterSlots;
-    }
-
-
-
-    public GameState setCharacterSlots(CharacterSlots characterSlots) {
-        this.characterSlots = characterSlots;
-        return this;
-    }
-
 
 
     public int getCoin() {

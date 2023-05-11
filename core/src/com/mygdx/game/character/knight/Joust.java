@@ -3,11 +3,9 @@ package com.mygdx.game.character.knight;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.buff.PierceBuff;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Joust implements Ability {
     @Override
@@ -46,11 +44,10 @@ public class Joust implements Ability {
 
 
     @Override
-    public void execute(Character target, Character source, FightNode fight) {
-        System.out.println("Joust is executing on: " + target.getName());
-        target.decreaseHpBy(50);
-        Buff pierce = new PierceBuff(2);
-        target.addDebuff(pierce);
+    public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
+        target.getCharacter().decreaseHpBy(15);
+        Buff pierce = new PierceBuff(5);
+        target.getBuffsBar().addBuff(pierce);
     }
 
 

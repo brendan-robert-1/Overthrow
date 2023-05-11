@@ -1,18 +1,17 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
-import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.EnemySlots;
 import com.mygdx.game.state.Character;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +33,9 @@ public class Fred extends FightNode {
     private static final Ability FRED_STARTING_ULT_ABILITY = new Miasma();
 
     @Override
-    public EnemySlots startingUnits() {
-        return new EnemySlots(
-                generateFred(),
+    public EnemyTeam startingUnits() {
+        return new EnemyTeam(
+                new CharacterPanel(generateFred()),
                 null,
                 null,
                 null
@@ -48,7 +47,6 @@ public class Fred extends FightNode {
                 "Fred",
                 Character.CharacterType.FRED,
                 FRED_STARTING_HP,
-                new EquippedGear(),
                 FRED_STARTING_BASIC_ABILITY_1,
                 FRED_STARTING_BASIC_ABILITY_2,
                 FRED_STARTING_ULT_ABILITY,

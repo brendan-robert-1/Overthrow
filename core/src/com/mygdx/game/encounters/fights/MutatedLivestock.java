@@ -1,8 +1,9 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
-import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
@@ -10,9 +11,7 @@ import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.EnemySlots;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,11 +42,11 @@ public class MutatedLivestock extends FightNode {
     private static final Ability MUTATED_PIG_STARTING_ULT_ABILITY = new Miasma();
 
     @Override
-    public EnemySlots startingUnits() {
-        return new EnemySlots(
-                generateChicken(),
-                generatePig(),
-                generateCow(),
+    public EnemyTeam startingUnits() {
+        return new EnemyTeam(
+                new CharacterPanel(generateChicken()),
+                new CharacterPanel(generatePig()),
+                new CharacterPanel(generateCow()),
                 null
         );
     }
@@ -57,7 +56,6 @@ public class MutatedLivestock extends FightNode {
                 "Chicken",
                 Character.CharacterType.MUTATED_CHICKEN,
                 MUTATED_COW_STARTING_HP,
-                new EquippedGear(),
                 MUTATED_COW_STARTING_BASIC_ABILITY_1,
                 MUTATED_COW_STARTING_BASIC_ABILITY_2,
                 MUTATED_COW_STARTING_ULT_ABILITY,
@@ -70,7 +68,6 @@ public class MutatedLivestock extends FightNode {
                 "Pig",
                 Character.CharacterType.MUTATED_PIG,
                 MUTATED_CHICKEN_STARTING_HP,
-                new EquippedGear(),
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_1,
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_2,
                 MUTATED_CHICKEN_STARTING_ULT_ABILITY,
@@ -83,7 +80,6 @@ public class MutatedLivestock extends FightNode {
                 "Cow",
                 Character.CharacterType.MUTATED_COW,
                 MUTATED_PIG_STARTING_HP,
-                new EquippedGear(),
                 MUTATED_PIG_STARTING_BASIC_ABILITY_1,
                 MUTATED_PIG_STARTING_BASIC_ABILITY_2,
                 MUTATED_PIG_STARTING_ULT_ABILITY,

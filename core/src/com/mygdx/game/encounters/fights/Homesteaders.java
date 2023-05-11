@@ -1,6 +1,8 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.gear.EquippedGear;
@@ -8,9 +10,8 @@ import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.EnemySlots;
 import com.mygdx.game.state.Character;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,11 +43,11 @@ public class Homesteaders extends FightNode {
     }
 
     @Override
-    public EnemySlots startingUnits() {
-            return new EnemySlots(
-                    generateHomeSteaderDog(),
-                    generateHomeSteaderMom(),
-                    generateHomeSteaderDad(),
+    public EnemyTeam startingUnits() {
+            return new EnemyTeam(
+                    new CharacterPanel(generateHomeSteaderDog()),
+                    new CharacterPanel(generateHomeSteaderMom()),
+                    new CharacterPanel(generateHomeSteaderDad()),
                     null
             );
         }
@@ -56,7 +57,6 @@ public class Homesteaders extends FightNode {
                 "Dog",
                 Character.CharacterType.HOMESTEADER_DOG,
                 DOG_STARTING_HP,
-                new EquippedGear(),
                 DOG_STARTING_BASIC_ABILITY_1,
                 DOG_STARTING_BASIC_ABILITY_2,
                 DOG_STARTING_ULT_ABILITY,
@@ -69,7 +69,6 @@ public class Homesteaders extends FightNode {
                 "Homesteader",
                 Character.CharacterType.HOMESTEADER_MOM,
                 MOM_STARTING_HP,
-                new EquippedGear(),
                 MOM_STARTING_BASIC_ABILITY_1,
                 MOM_STARTING_BASIC_ABILITY_2,
                 MOM_STARTING_ULT_ABILITY,
@@ -82,7 +81,6 @@ public class Homesteaders extends FightNode {
                 "Homesteader",
                 Character.CharacterType.HOMESTEADER_DAD,
                 DAD_STARTING_HP,
-                new EquippedGear(),
                 DAD_STARTING_BASIC_ABILITY_1,
                 DAD_STARTING_BASIC_ABILITY_2,
                 DAD_STARTING_ULT_ABILITY,

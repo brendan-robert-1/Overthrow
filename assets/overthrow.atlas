@@ -6,203 +6,210 @@ filter: Nearest, Nearest
 repeat: none
 ARMOR_UP
   rotate: false
-  xy: 1839, 1632
+  xy: 294, 328
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 BLOODLET
   rotate: false
-  xy: 1804, 1564
+  xy: 70, 70
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CHALLENGE
   rotate: false
-  xy: 1886, 1680
+  xy: 1804, 1566
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CRAB_MAGICIAN
   rotate: false
-  xy: 260, 294
+  xy: 2, 36
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-HEALTH_POT
-  rotate: false
-  xy: 904, 780
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-HIDE_SHIELD
-  rotate: false
-  xy: 2, 70
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-HOMESTEADER_DAD
-  rotate: false
-  xy: 360, 360
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-HOMESTEADER_DOG
-  rotate: false
-  xy: 1838, 1598
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-HOMESTEADER_MOM
+HEALTH_POT-export
   rotate: false
   xy: 904, 746
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-JOUST
+HEALTH_POT
+  rotate: false
+  xy: 904, 746
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HIDE_SHIELD
   rotate: false
   xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+HOMESTEADER_DAD
+  rotate: false
+  xy: 36, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HOMESTEADER_DOG
+  rotate: false
+  xy: 294, 294
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HOMESTEADER_MOM
+  rotate: false
+  xy: 260, 328
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+JOUST
+  rotate: false
+  xy: 904, 712
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 KNIGHT
   rotate: false
-  xy: 260, 260
+  xy: 973, 780
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 LEATHER_PANTS
   rotate: false
-  xy: 1920, 1714
+  xy: 1838, 1600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 MIASMA
   rotate: false
-  xy: 2, 36
+  xy: 1886, 1682
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 MINER_HAT
   rotate: false
-  xy: 1004, 812
+  xy: 1920, 1682
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PIERCE
   rotate: false
-  xy: 102, 102
+  xy: 938, 746
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR-export
   rotate: false
-  xy: 904, 712
+  xy: 1886, 1648
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR
   rotate: false
-  xy: 904, 712
+  xy: 1886, 1648
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 POISON
   rotate: false
-  xy: 1804, 1632
+  xy: 904, 780
   size: 33, 32
   orig: 33, 32
   offset: 0, 0
   index: -1
 QUESTION_MARK
   rotate: false
-  xy: 1886, 1714
+  xy: 2, 70
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 RUSTY_DAGGER
   rotate: false
-  xy: 260, 328
-  size: 64, 64
-  orig: 64, 64
+  xy: 260, 260
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 SNUG_SANDALS
   rotate: false
-  xy: 326, 360
+  xy: 36, 70
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TOSS_CONCOCTION
   rotate: false
-  xy: 970, 812
+  xy: 1804, 1600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 WEAPON_ONEHAND
   rotate: false
-  xy: 1804, 1666
+  xy: 1804, 1634
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 enemy-placeholder-medium
   rotate: false
-  xy: 2, 136
+  xy: 2, 104
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 farms
   rotate: false
-  xy: 2, 846
+  xy: 2, 814
   size: 1800, 900
   orig: 1800, 900
   offset: 0, 0
   index: -1
 splash
   rotate: false
-  xy: 2, 846
+  xy: 2, 814
   size: 1800, 900
   orig: 1800, 900
   offset: 0, 0
   index: -1
 farms2
   rotate: false
-  xy: 2, 394
+  xy: 2, 362
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: -1
 lantern
   rotate: false
-  xy: 68, 102
+  xy: 939, 780
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 turn-carousel-background
   rotate: false
-  xy: 1804, 1598
+  xy: 260, 294
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

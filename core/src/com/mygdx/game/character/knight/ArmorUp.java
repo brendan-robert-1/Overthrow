@@ -2,6 +2,7 @@ package com.mygdx.game.character.knight;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.ArmorUpBuff;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
@@ -40,12 +41,12 @@ public class ArmorUp implements Ability {
     }
 
 
-
     @Override
-    public void execute(Character target, Character source, FightNode fight) {
+    public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
         System.out.println("Armor up is executing on: " + target.getName());
-        target.addBuff(new ArmorUpBuff(3));
+        target.getBuffsBar().addBuff(new ArmorUpBuff(3));
     }
+
 
 
 

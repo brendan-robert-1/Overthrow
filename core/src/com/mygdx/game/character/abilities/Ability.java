@@ -1,4 +1,5 @@
 package com.mygdx.game.character.abilities;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 public interface Ability{
@@ -16,7 +17,8 @@ public interface Ability{
     boolean offensiveTargetable();
     boolean friendlyTargetable();
     boolean selfTargetable();
-    void execute(Character target, Character source, FightNode fight);
+    void execute(CharacterPanel target, CharacterPanel source, FightNode fight);
+
     AbilityType abilityType();
 }
 

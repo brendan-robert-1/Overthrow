@@ -46,13 +46,13 @@ public class MarketNode extends GameNode implements ProceedSubject {
 
     private Table marketWindow(){
         Table table = new Table();
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.SNUG_SANDALS)).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.RUSTY_DAGGER)).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.HEALTH_POT)).expand().fill().height(128).width(128).pad(20);
         table.row();
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
-        table.add(getOptionPanel()).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.HIDE_SHIELD)).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.MINER_HAT)).expand().fill().height(128).width(128).pad(20);
+        table.add(getOptionPanel(InventoryItem.ItemTypeId.LEATHER_PANTS)).expand().fill().height(128).width(128).pad(20);
         table.row();
         ProceedButton proceedButton = new ProceedButton();
         proceedButton.addListener(new ClickListener(){
@@ -66,10 +66,10 @@ public class MarketNode extends GameNode implements ProceedSubject {
         return table;
     }
 
-    public Table getOptionPanel(){
-        InventoryItem inventoryItem = InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.SNUG_SANDALS);
+    public Table getOptionPanel(InventoryItem.ItemTypeId itemTypeId){
+        InventoryItem inventoryItem = InventoryItemFactory.getInstance().of(itemTypeId);
         Table table = new MarketOption(inventoryItem);
-        ItemSprite itemSprite = new ItemSprite(InventoryItem.ItemTypeId.SNUG_SANDALS);
+        ItemSprite itemSprite = new ItemSprite(itemTypeId);
         itemSprite.setScaling(Scaling.fit);
         table.add(itemSprite).expand().fill();
         table.row();

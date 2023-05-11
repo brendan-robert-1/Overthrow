@@ -7,14 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.widgets.CharacterSprite;
+import com.mygdx.game.screens.widgets.Team;
 import com.mygdx.game.state.Character;
-import com.mygdx.game.state.CharacterSlots;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemUseType;
 import com.mygdx.game.state.items.InventoryItemFactory;
-
-import java.util.Iterator;
 
 public class InventoryUi extends Window{
 
@@ -23,8 +21,7 @@ public class InventoryUi extends Window{
     public static final int SLOT_WIDTH = 52;
     public static final int SLOT_HEIGHT = 52;
     public static final String PLAYER_INVENTORY = "Player_Inventory";
-    private CharacterSlots characterSlots;
-
+    private Team team = Team.getInstance();
 
 
     private Table inventorySlotTable;
@@ -47,7 +44,6 @@ public class InventoryUi extends Window{
 
     private InventoryUi(){
         super("Inventory", Assets.skin());
-        characterSlots = GameState.getInstance().getCharacterSlots();
         dragAndDrop = new DragAndDrop();
         dragAndDrop.setDragTime(100);
         dragAndDrop.setKeepWithinStage(false);
@@ -56,18 +52,18 @@ public class InventoryUi extends Window{
         inventorySlotTooltip = new InventorySlotTooltip(Assets.skin());
         inventoryActors.add(inventorySlotTooltip);
         populate();
-        this.add(inventorySlotTable).colspan(characterSlots.numberOfActiveCharacters()).pad(20);
+        this.add(inventorySlotTable).colspan(team.activeCharacters()).pad(20);
         this.row();
-        if(characterSlots.firstCharacter() != null){
+        if(team.getCharacterPanel1() != null){
             this.add(character1EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(characterSlots.secondCharacter() != null){
+        if(team.getCharacterPanel2() != null){
             this.add(character2EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(characterSlots.thirdCharacter() != null){
+        if(team.getCharacterPanel3() != null){
             this.add(character3EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(characterSlots.fourthCharacter() != null){
+        if(team.getCharacterPanel4() != null){
             this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
 
@@ -97,18 +93,17 @@ public class InventoryUi extends Window{
     }
 
     private void buildGearPanels(){
-        CharacterSlots characterSlots = GameState.getInstance().getCharacterSlots();
-        if(characterSlots.firstCharacter() != null){
-            character1EquipSlots = buildGearPanel(characterSlots.firstCharacter());
+        if(team.getCharacterPanel1() != null){
+            character1EquipSlots = buildGearPanel(team.getCharacterPanel1().getCharacter());
         }
-        if(characterSlots.secondCharacter() != null){
-            character2EquipSlots = buildGearPanel(characterSlots.secondCharacter());
+        if(team.getCharacterPanel2() != null){
+            character2EquipSlots = buildGearPanel(team.getCharacterPanel2().getCharacter());
         }
-        if(characterSlots.thirdCharacter() != null){
-            character3EquipSlots = buildGearPanel(characterSlots.thirdCharacter());
+        if(team.getCharacterPanel3() != null){
+            character3EquipSlots = buildGearPanel(team.getCharacterPanel3().getCharacter());
         }
-        if(characterSlots.fourthCharacter() != null){
-            character4EquipSlots = buildGearPanel(characterSlots.fourthCharacter());
+        if(team.getCharacterPanel4() != null){
+            character4EquipSlots = buildGearPanel(team.getCharacterPanel4().getCharacter());
         }
     }
 

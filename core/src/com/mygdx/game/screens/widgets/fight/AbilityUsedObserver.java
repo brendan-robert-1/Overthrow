@@ -4,6 +4,6 @@ import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.state.Character;
 
 public interface AbilityUsedObserver {
-    void onNotify(Character targetCharacter, Ability ability, Character sourceCharacter);
+    void onNotify(CharacterPanel targetCharacter, Ability ability, CharacterPanel sourceCharacter);
 }
 

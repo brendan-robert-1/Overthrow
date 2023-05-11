@@ -22,9 +22,10 @@ public class AbilitySelectPanel extends Table {
 
 
 
-    public void populateAbilities(Character activeCharacter, DragAndDrop dragAndDrop, EnemyTeam enemyTeam, Team team) {
+    public void populateAbilities(CharacterPanel activeCharacterPanel, DragAndDrop dragAndDrop, EnemyTeam enemyTeam) {
         this.clearChildren();
         this.dragAndDrop = dragAndDrop;
+        Character activeCharacter = activeCharacterPanel.getCharacter();
         dragAndDrop.setDragTime(100);
         dragAndDrop.setKeepWithinStage(false);
         this.getChildren().forEach(Actor::remove);
@@ -50,18 +51,18 @@ public class AbilitySelectPanel extends Table {
 
 
         AbilitySelect ability1Stack = new AbilitySelect(ability1Decal, ability1);
-        dragAndDrop.addSource(new AbilityDragSource(ability1Stack,ability1, dragAndDrop, activeCharacter ));
+        dragAndDrop.addSource(new AbilityDragSource(ability1Stack,ability1, dragAndDrop, activeCharacterPanel ));
         ability1Stack.addListener(new HudTooltipListener());
 
         AbilitySelect ability2Stack = new AbilitySelect(ability2Decal, ability2);
-        dragAndDrop.addSource(new AbilityDragSource(ability2Stack,ability2, dragAndDrop, activeCharacter ));
+        dragAndDrop.addSource(new AbilityDragSource(ability2Stack,ability2, dragAndDrop, activeCharacterPanel ));
         ability2Stack.addListener(new HudTooltipListener());
 
         AbilitySelect ultStack = new AbilitySelect(ultDecal, ult);
-        dragAndDrop.addSource(new AbilityDragSource(ultStack,ult, dragAndDrop, activeCharacter ));
+        dragAndDrop.addSource(new AbilityDragSource(ultStack,ult, dragAndDrop, activeCharacterPanel ));
         ultStack.addListener(new HudTooltipListener());
         
-        setTargets(dragAndDrop, enemyTeam, team);
+        setTargets(dragAndDrop, enemyTeam);
 
         this.add(ability1Stack);
         this.add(ability2Stack);
@@ -71,15 +72,15 @@ public class AbilitySelectPanel extends Table {
 
 
 
-    private void setTargets(DragAndDrop dragAndDrop, EnemyTeam enemyTeam, Team team) {
+    private void setTargets(DragAndDrop dragAndDrop, EnemyTeam enemyTeam) {
         for(Actor enemy :  enemyTeam.getChildren()){
             CharacterPanel enemyCharacterPanel = (CharacterPanel) enemy;
-            AbilityDragTarget dragTarget = new AbilityDragTarget(enemy, enemyCharacterPanel.getCharacter());
+            AbilityDragTarget dragTarget = new AbilityDragTarget(enemy, enemyCharacterPanel);
             dragAndDrop.addTarget(dragTarget);
         }
-        for(Actor friendly :  team.getChildren()){
+        for(Actor friendly :  Team.getInstance().getChildren()){
             CharacterPanel friendlyCharacterPanel = (CharacterPanel) friendly;
-            AbilityDragTarget dragTarget = new AbilityDragTarget(friendly, friendlyCharacterPanel.getCharacter());
+            AbilityDragTarget dragTarget = new AbilityDragTarget(friendly, friendlyCharacterPanel);
             dragAndDrop.addTarget(dragTarget);
         }
 

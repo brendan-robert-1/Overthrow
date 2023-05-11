@@ -4,11 +4,15 @@ import com.mygdx.game.state.Character;
 
 public abstract class Buff {
     public int turnsRemaining;
+    private int potency = 0;
     public BuffType buffType;
 
 
 
     public abstract void executeEndOfTurn(Character character);
+
+
+
 
 
 
@@ -57,4 +61,15 @@ public abstract class Buff {
     }
 
     public abstract String getDisplayText();
+    public int getPotency() {
+        return potency;
+    }
+
+
+
+    public Buff setPotency(int potency) {
+        this.potency = potency;
+        return this;
+    }
+
 }

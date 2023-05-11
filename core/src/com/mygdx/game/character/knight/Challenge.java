@@ -1,6 +1,7 @@
 package com.mygdx.game.character.knight;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
 
@@ -41,7 +42,7 @@ public class Challenge implements Ability {
 
 
     @Override
-    public void execute(Character target, Character source, FightNode fight) {
+    public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
         System.out.println("Challenge is being executed on: " + source.getName() + " onto: " + target.getName());
     }
 

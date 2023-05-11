@@ -18,7 +18,6 @@ public class PlagueDoctorGenerator {
                 "Plague Doctor",
                 Character.CharacterType.PLAGUE_DOCTOR,
                 STARTING_HP,
-                new EquippedGear(),
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,

@@ -11,61 +11,170 @@ import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.GameState;
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 public class Team extends Table{
     private HudTooltip hudTooltip = HudTooltip.getInstance();
+    private CharacterPanel characterPanel1;
+    private CharacterPanel characterPanel2;
+    private CharacterPanel characterPanel3;
+    private CharacterPanel characterPanel4;
 
-    public void update() {
-        this.clearChildren();
-        this.populate();
+    private Team(){
+        populate();
+    }
+    private static Team instance;
+    public static Team getInstance(){
+        if(instance == null){
+            instance = new Team();
+        }
+        return instance;
     }
 
-    public Team(){
 
+
+    public boolean contains(Character character) {
+        if(characterPanel1 != null && characterPanel1.getCharacter() != null && characterPanel1.getCharacter().equals(character)){
+            return true;
+        }
+        if(characterPanel2 != null && characterPanel2.getCharacter() != null && characterPanel2.getCharacter().equals(character)){
+            return true;
+        }
+        if(characterPanel3 != null && characterPanel3.getCharacter() != null && characterPanel3.getCharacter().equals(character)){
+            return true;
+        }
+        if(characterPanel4 != null && characterPanel4.getCharacter() != null && characterPanel4.getCharacter().equals(character)){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public void update() {
         populate();
     }
 
+
     private void populate(){
-        Character firstCharacter = GameState.getInstance().getCharacterSlots().firstCharacter();
-        Character secondCharacter = GameState.getInstance().getCharacterSlots().secondCharacter();
-        Character thirdCharacter = GameState.getInstance().getCharacterSlots().thirdCharacter();
-        Character fourthCharacter = GameState.getInstance().getCharacterSlots().fourthCharacter();
+        this.clearChildren();
+        if(characterPanel1 != null && characterPanel1.getCharacter().getHp() > 0){
+            characterPanel1 = new CharacterPanel(characterPanel1.getCharacter());
+            this.add(characterPanel1).expand().fill();
+        }
+        if(characterPanel2 != null && characterPanel2.getCharacter().getHp() > 0){
+            characterPanel2 = new CharacterPanel(characterPanel2.getCharacter());
+            this.add(characterPanel2).expand().fill();
+        }
+        if(characterPanel3 != null && characterPanel3.getCharacter().getHp() > 0){
+            characterPanel3 = new CharacterPanel(characterPanel3.getCharacter());
+            this.add(characterPanel3).expand().fill();
+        }
+        if(characterPanel4 != null && characterPanel4.getCharacter().getHp() > 0){
+            characterPanel4 = new CharacterPanel(characterPanel4.getCharacter());
+            this.add(characterPanel4).expand().fill();
+        }
+    }
 
-        if(firstCharacter != null && firstCharacter.getHp() > 0){
-            this.add(characterPanel(GameState.getInstance().getCharacterSlots().firstCharacter())).expand().fill();
-        }
-        if(secondCharacter != null&& secondCharacter.getHp() > 0){
-            this.add(characterPanel(GameState.getInstance().getCharacterSlots().secondCharacter())).expand().fill();
-        }
-        if(thirdCharacter != null && thirdCharacter.getHp() > 0){
-            this.add(characterPanel(GameState.getInstance().getCharacterSlots().thirdCharacter())).expand().fill();
-        }
-        if(fourthCharacter != null && fourthCharacter.getHp() > 0){
-            this.add(characterPanel(GameState.getInstance().getCharacterSlots().fourthCharacter())).expand().fill();
-        }
+    public Stream<CharacterPanel> streamNonNull(){
+        return Arrays.asList(
+                characterPanel1,
+                characterPanel2,
+                characterPanel3,
+                characterPanel4
+        ).stream().filter(Objects::nonNull);
+    }
+
+    public int activeCharacters(){
+        int i = 0;
+        if(characterPanel1 != null) i++;
+        if(characterPanel2 != null) i++;
+        if(characterPanel3 != null) i++;
+        if(characterPanel4 != null) i++;
+        return i;
+    }
+
+
+    public CharacterPanel getCharacterPanel1() {
+        return characterPanel1;
     }
 
 
 
-    private CharacterPanel characterPanel(Character character) {
-        CharacterPanel characterPanel = new CharacterPanel(character, Assets.skin());
-        characterPanel.add(new Label("hp: " + character.getHp(), Assets.skin(), "title")).expandX();
-        characterPanel.row();
-        Image characterSprite = new CharacterSprite(character.getCharacterType());
-        characterSprite.setScaling(Scaling.fit);
-        characterPanel.add(characterSprite).width(200).height(250);
-        characterPanel.row();
-        characterPanel.add(new BuffsBar(character.getBuffs(), character.getDebuffs())).expandX().height(16).left();
-        characterPanel.defaults().expandX();
-        characterPanel.setName(character.getCharacterType().toString());
-
-        return characterPanel;
+    public Team setCharacterPanel1(CharacterPanel characterPanel1) {
+        this.characterPanel1 = characterPanel1;
+        populate();
+        return this;
     }
 
-    private Table emptyCharacterPanel(){
-        Table empty = new Table(Assets.skin());
-        empty.defaults().expand().fill();
-        empty.add(new Label("                   ", Assets.skin()));
-        return empty;
+
+
+    public CharacterPanel getCharacterPanel2() {
+        return characterPanel2;
+    }
+
+
+
+    public Team setCharacterPanel2(CharacterPanel characterPanel2) {
+        this.characterPanel2 = characterPanel2;
+        populate();
+        return this;
+    }
+
+
+
+    public CharacterPanel getCharacterPanel3() {
+        return characterPanel3;
+    }
+
+
+
+    public Team setCharacterPanel3(CharacterPanel characterPanel3) {
+        this.characterPanel3 = characterPanel3;
+        populate();
+        return this;
+    }
+
+
+
+    public CharacterPanel getCharacterPanel4() {
+        return characterPanel4;
+    }
+
+
+
+    public Team setCharacterPanel4(CharacterPanel characterPanel4) {
+        this.characterPanel4 = characterPanel4;
+        populate();
+        return this;
+    }
+
+
+
+    public void resolveDeaths() {
+        streamNonNull().forEach(c -> {
+            if(c.getHp() <= 0){
+                removeDead(c);
+            }
+        });
+    }
+
+
+    private void removeDead(CharacterPanel c){
+        if(characterPanel1.equals( c)){
+            characterPanel1 = null;
+        }
+        if(characterPanel2.equals( c)){
+            characterPanel1 = null;
+        }
+        if(characterPanel3.equals( c)){
+            characterPanel3 = null;
+        }
+        if(characterPanel4.equals( c)){
+            characterPanel4 = null;
+        }
     }
 
 

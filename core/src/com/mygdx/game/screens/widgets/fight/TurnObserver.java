@@ -7,5 +7,5 @@ public interface TurnObserver {
         TURN_STARTED,
         TURN_ENDED
     }
-    void onNotify(String text, java.util.List<Character> futureTurns, TurnEvent event);
+    void onNotify(String text, TurnEvent event);
 }

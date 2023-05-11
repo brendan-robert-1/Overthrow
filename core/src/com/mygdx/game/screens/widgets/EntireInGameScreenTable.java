@@ -8,13 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
 import com.mygdx.game.screens.widgets.fight.AbilitySelectPanel;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.Character;
 
 public class EntireInGameScreenTable extends Table {
     private Array<Actor> hudToolTipActors = new Array<>();
-    private Team team;
     private AbilitySelectPanel abilitySelectPanel;
     private HudTooltip hudTooltip = HudTooltip.getInstance();
 
@@ -26,15 +26,15 @@ public class EntireInGameScreenTable extends Table {
 
     public void update(){
         this.clearChildren();
+        Team.getInstance().update();
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
         TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("farms2"));
         this.setBackground(trd);
         this.setFillParent(true);
         hudToolTipActors.add(hudTooltip);
-        team = new Team();
         this.add(TopBar.getInstance()).expand().fillX().colspan(2).top();
         this.row();
-        this.add(team).expand().bottom().left().pad(40);
+        this.add(Team.getInstance()).expand().bottom().left().pad(40);
         this.row();
         this.add(abilitySelectPanel);
         this.pack();
@@ -46,8 +46,8 @@ public class EntireInGameScreenTable extends Table {
 
 
 
-    public void populateAbilities(Character activeCharacter, DragAndDrop abilitySelectDragAndDrop, EnemyTeam enemyTeam) {
-        abilitySelectPanel.populateAbilities(activeCharacter,abilitySelectDragAndDrop, enemyTeam, team);
+    public void populateAbilities(CharacterPanel activeCharacter, DragAndDrop abilitySelectDragAndDrop, EnemyTeam enemyTeam) {
+        abilitySelectPanel.populateAbilities(activeCharacter,abilitySelectDragAndDrop, enemyTeam);
     }
 
     public void displayAbilitySelectPanel(){

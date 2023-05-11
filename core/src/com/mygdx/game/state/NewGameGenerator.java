@@ -1,6 +1,9 @@
 package com.mygdx.game.state;
 
 import com.mygdx.game.encounters.OverthrowActs.ActType;
+import com.mygdx.game.screens.widgets.Team;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 
 import java.util.UUID;
 
@@ -12,22 +15,14 @@ public class NewGameGenerator {
         graph.printMap(currentNode);
         GameState state = GameState.getInstance();
         state.setRunSeed(seed);
-        state.setCharacterSlots(characterSlotsGenerator(characterType));
+        Team.getInstance().setCharacterPanel1( new CharacterPanel(Character.generateNewCharacter(characterType)));
         state.setCoin(4);
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);
         state.setCurrentFloor(0);
     }
-    private static CharacterSlots characterSlotsGenerator(Character.CharacterType characterType){
-        return new CharacterSlots(
-                null,
-                null,
-                null,//Character.generateNewCharacter(Character.CharacterType.PLAGUE_DOCTOR),
-                Character.generateNewCharacter(characterType)
-        );
-    }
-    private static EnemySlots newEmptyEnemySlots(){
-        return new EnemySlots(null, null, null, null);
+    private static EnemyTeam newEmptyEnemySlots(){
+        return new EnemyTeam(null, null, null, null);
     }
 }
 

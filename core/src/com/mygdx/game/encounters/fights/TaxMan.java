@@ -1,8 +1,9 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
-import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
@@ -10,9 +11,7 @@ import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.EnemySlots;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,11 +35,11 @@ public class TaxMan extends FightNode {
     private static final Ability TAX_COLLECTOR_STARTING_ULT_ABILITY = new Miasma();
 
     @Override
-    public EnemySlots startingUnits() {
-        return new EnemySlots(
-                generateTaxMan(),
-                generateTaxCollector(),
-                generateTaxCollector(),
+    public EnemyTeam startingUnits() {
+        return new EnemyTeam(
+                new CharacterPanel(generateTaxMan()),
+                new CharacterPanel(generateTaxCollector()),
+                new CharacterPanel(generateTaxCollector()),
                 null
         );
     }
@@ -50,7 +49,6 @@ public class TaxMan extends FightNode {
                 "Tax Man",
                 Character.CharacterType.TAX_MAN,
                 TAX_MAN_STARTING_HP,
-                new EquippedGear(),
                 TAX_MAN_STARTING_BASIC_ABILITY_1,
                 TAX_MAN_STARTING_BASIC_ABILITY_2,
                 TAX_MAN_STARTING_ULT_ABILITY,
@@ -67,7 +65,6 @@ public class TaxMan extends FightNode {
                 "Tax Collector",
                 Character.CharacterType.TAX_COLLECTOR,
                 TAX_COLLECTOR_STARTING_HP,
-                new EquippedGear(),
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_1,
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_2,
                 TAX_COLLECTOR_STARTING_ULT_ABILITY,
