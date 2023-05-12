@@ -9,7 +9,6 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.Team;
 import com.mygdx.game.state.Character;
-import com.mygdx.game.state.GameState;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemUseType;
 import com.mygdx.game.state.items.InventoryItemFactory;
@@ -54,16 +53,16 @@ public class InventoryUi extends Window{
         populate();
         this.add(inventorySlotTable).colspan(team.activeCharacters()).pad(20);
         this.row();
-        if(team.getCharacterPanel1() != null){
+        if(team.getFirstCharacterPanel() != null){
             this.add(character1EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(team.getCharacterPanel2() != null){
+        if(team.getSecondCharacterPanel() != null){
             this.add(character2EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(team.getCharacterPanel3() != null){
+        if(team.getThirdCharacterPanel() != null){
             this.add(character3EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
-        if(team.getCharacterPanel4() != null){
+        if(team.getFourthCharacterPanel() != null){
             this.add(character4EquipSlots).padBottom(20).padLeft(20).padRight(20);
         }
 
@@ -93,17 +92,17 @@ public class InventoryUi extends Window{
     }
 
     private void buildGearPanels(){
-        if(team.getCharacterPanel1() != null){
-            character1EquipSlots = buildGearPanel(team.getCharacterPanel1().getCharacter());
+        if(team.getFirstCharacterPanel() != null){
+            character1EquipSlots = buildGearPanel(team.getFirstCharacterPanel().getCharacter());
         }
-        if(team.getCharacterPanel2() != null){
-            character2EquipSlots = buildGearPanel(team.getCharacterPanel2().getCharacter());
+        if(team.getSecondCharacterPanel() != null){
+            character2EquipSlots = buildGearPanel(team.getSecondCharacterPanel().getCharacter());
         }
-        if(team.getCharacterPanel3() != null){
-            character3EquipSlots = buildGearPanel(team.getCharacterPanel3().getCharacter());
+        if(team.getThirdCharacterPanel() != null){
+            character3EquipSlots = buildGearPanel(team.getThirdCharacterPanel().getCharacter());
         }
-        if(team.getCharacterPanel4() != null){
-            character4EquipSlots = buildGearPanel(team.getCharacterPanel4().getCharacter());
+        if(team.getFourthCharacterPanel() != null){
+            character4EquipSlots = buildGearPanel(team.getFourthCharacterPanel().getCharacter());
         }
     }
 

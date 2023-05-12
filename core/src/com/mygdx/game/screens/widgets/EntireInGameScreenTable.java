@@ -1,12 +1,16 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
+import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.widgets.fight.AbilitySelectPanel;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.EnemyTeam;
@@ -21,15 +25,12 @@ public class EntireInGameScreenTable extends Table {
     public EntireInGameScreenTable(){
         abilitySelectPanel = new AbilitySelectPanel(hudTooltip);
         abilitySelectPanel.setVisible(false);
-        update();
-    }
-
-    public void update(){
-        this.clearChildren();
         Team.getInstance().update();
-        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("farms2"));
-        this.setBackground(trd);
+
+//        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+//        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("farms2"));
+//        this.setBackground(trd);
+
         this.setFillParent(true);
         hudToolTipActors.add(hudTooltip);
         this.add(TopBar.getInstance()).expand().fillX().colspan(2).top();
@@ -38,6 +39,11 @@ public class EntireInGameScreenTable extends Table {
         this.row();
         this.add(abilitySelectPanel);
         this.pack();
+    }
+
+    public void update(){
+        Team.getInstance().update();
+        TopBar.getInstance().update();
     }
 
     public Array<Actor> getHudToolTipActors() {

@@ -1,6 +1,7 @@
 package com.mygdx.game.encounters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -22,6 +23,8 @@ import com.mygdx.game.state.shops.ShopOffering;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class MarketNode extends GameNode implements ProceedSubject {
 
@@ -84,6 +87,8 @@ public class MarketNode extends GameNode implements ProceedSubject {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(GameState.getInstance().getCoin() >= inventoryItem.getCoinValue()){
+                    Sound purchase = Assets.getInstance().getSoundAsset("purchase.mp3");
+                    purchase.play(MASTER_VOLUME);
                     InventoryUi.getInstance().addToFirstOpenSlot(inventoryItem);
                     GameState.getInstance().decreaseCoinBy(inventoryItem.getCoinValue());
                     event.getListenerActor().remove();

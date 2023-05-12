@@ -1,5 +1,8 @@
 package com.mygdx.game.screens.widgets.fight;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -9,6 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.character.buff.Buff;
+import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.widgets.BuffsBar;
 import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.state.Character;
@@ -33,11 +37,25 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         label = new Label("hp: " + character.getHp(), Assets.skin(), "title");
         this.add(label).expand().fill().pad(20).align(Align.center);
 
-        this.row();
-        Image sprite = new CharacterSprite(character.getCharacterType());
-        sprite.setScaling(Scaling.fit);
-        this.characterSprite = sprite;
-        this.add(sprite).width(200).height(250);
+        if(character.getCharacterType() == Character.CharacterType.KNIGHT){
+            this.row();
+            TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+                    Animation<TextureRegion> idleKnight = new Animation<TextureRegion>(0.1f, atlas.findRegions("KNIGHT"), Animation.PlayMode.LOOP);
+                    AnimatedActor animatedActor = new AnimatedActor(idleKnight);
+                    animatedActor.setScaling(Scaling.fit);
+
+                    this.add(animatedActor).width(200).height(250);
+        }else {
+
+            this.row();
+            Image sprite = new CharacterSprite(character.getCharacterType());
+            sprite.setScaling(Scaling.fit);
+            this.characterSprite = sprite;
+            this.add(sprite).width(200).height(250);
+        }
+
+
+//
 
         this.row();
         this.add(buffsBar).expandX().height(32).left();

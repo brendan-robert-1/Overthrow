@@ -27,9 +27,17 @@ public class EndOfTurnRunnable extends Task implements FightSubject {
     @Override
     public void run() {
         logger.info("Processing end of turn events");
+
+        team.streamNonNull().forEach(characterPanel -> {
+            processEndOfTurnDebuffFor(characterPanel);
+            processEndOfTurnBuffFor(characterPanel);
+            characterPanel.getBuffsBar().removeFinishedBuffs();
+            characterPanel.update();
+        });
         fight.getEnemyTeam().streamNonNull().forEach(enemyPanel -> {
             processEndOfTurnDebuffFor(enemyPanel);
             processEndOfTurnBuffFor(enemyPanel);
+            enemyPanel.getBuffsBar().removeFinishedBuffs();
             enemyPanel.update();
         });
         fight.resolveDeaths();
@@ -51,6 +59,7 @@ public class EndOfTurnRunnable extends Task implements FightSubject {
             characterPanel.animateDebuff(debuff);
             debuff.reduceTurnsRemaining(1);
         });
+
     }
 
     private void processEndOfTurnBuffFor(CharacterPanel characterPanel) {

@@ -3,36 +3,45 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
+import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.screens.widgets.ProceedButton;
 import com.mygdx.game.state.Character.CharacterType;
 import com.mygdx.game.state.NewGameGenerator;
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.stream.Stream;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class NewRunScreen extends ScreenAdapter {
     private Stage stage;
     private Viewport viewport;
     CharacterSprite splash;
+    private CharacterType characterTypeSelected;
 
     @Override
     public void show() {
         stage = new Stage();
         viewport = new ScreenViewport();
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("splash"));
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("messing-around2"));
         Table table = new Table();
         table.setBackground(trd);
         table.bottom().left();
@@ -60,14 +69,23 @@ public class NewRunScreen extends ScreenAdapter {
         return new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
+                sound1.play(MASTER_VOLUME);
                 if(splash != null){
+
                     splash.remove();
                 }
                 System.out.println(characterType.toString() + " has been selected.");
-                splash = new CharacterSprite(characterType);
-                splash.scaleBy(15);
-                NewGameGenerator.generateNewGame(characterType);
-                stage.addActor(splash);
+                //splash = new CharacterSprite(characterType);
+                //splash.scaleBy(15);
+                characterTypeSelected = characterType;
+                TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+                Animation<TextureRegion> idleKnight = new Animation<TextureRegion>(0.1f, atlas.findRegions("KNIGHT"), Animation.PlayMode.LOOP);
+                AnimatedActor animatedActor = new AnimatedActor(idleKnight);
+                animatedActor.setScaling(Scaling.fit);
+                animatedActor.scaleBy(7);
+                animatedActor.setPosition(Gdx.graphics.getWidth()/2 - animatedActor.getWidth()/2, 0);
+                stage.addActor(animatedActor);
                 stage.addActor(proceedTable());
             }
         };
@@ -83,6 +101,11 @@ public class NewRunScreen extends ScreenAdapter {
         button.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
+                sound1.play(MASTER_VOLUME);
+                NewGameGenerator.generateNewGame(characterTypeSelected);
+
+
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
                         new GameStateScreen( )
                 );

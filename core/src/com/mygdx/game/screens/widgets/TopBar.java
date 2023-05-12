@@ -3,6 +3,7 @@ package com.mygdx.game.screens.widgets;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -13,6 +14,8 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.screens.InGameOptionsScreen;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.state.GameState;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class TopBar extends Table {
     private static TopBar instance;
@@ -36,6 +39,8 @@ public class TopBar extends Table {
         inventory.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
+                sound1.play(MASTER_VOLUME);
                 showInventory();
             }
         });

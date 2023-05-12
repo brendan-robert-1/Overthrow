@@ -1,5 +1,6 @@
 package com.mygdx.game.screens.widgets.outfitter;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -18,6 +19,8 @@ import com.mygdx.game.state.items.InventoryItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class OutfitterNode extends GameNode implements OutfitterSubject {
 
@@ -61,6 +64,8 @@ public class OutfitterNode extends GameNode implements OutfitterSubject {
         return new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
+                sound1.play(MASTER_VOLUME);
                 OutfitterNode.this.notify(item, OutfitterObserver.OutfitterEvent.ITEM_SELECTED);
                 OutfitterNode.this.remove();
                 super.clicked(event, x, y);

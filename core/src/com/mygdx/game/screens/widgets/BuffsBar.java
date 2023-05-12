@@ -84,4 +84,29 @@ public class BuffsBar extends Table/* implements BuffAnimatorSubject*/{
         }
         build();
     }
+
+
+
+    public void removeDebuff(Buff debuff) {
+        debuffs.remove(debuff);
+    }
+
+    public void removeBuff(Buff buff){
+        buffs.remove(buff);
+    }
+
+
+
+    public void removeFinishedBuffs() {
+        List<Buff> newBuffs =  new ArrayList<>();
+        List<Buff> newDebuffs = new ArrayList<>();
+        for(Buff buff : buffs){
+            if(buff.turnsRemaining >0 )newBuffs.add(buff);
+        }
+        for (Buff buff : debuffs){
+            if(buff.turnsRemaining >0 )newDebuffs.add(buff);
+        }
+        this.buffs = newBuffs;
+        this.debuffs =newDebuffs;
+    }
 }

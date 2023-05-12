@@ -1,5 +1,6 @@
 package com.mygdx.game.screens.widgets;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -12,6 +13,8 @@ import com.mygdx.game.screens.widgets.fight.CombatRewardSubject;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class CombatRewardOptionTable extends Table implements CombatRewardSubject {
 
@@ -37,6 +40,8 @@ public class CombatRewardOptionTable extends Table implements CombatRewardSubjec
             public void clicked(InputEvent event, float x, float y) {
                 InventoryUi.getInstance().addToFirstOpenSlot(combatRewardOption);
                 CombatRewardOptionTable.this.notify(CombatRewardSelectedObserver.RewardType.SELECTED);
+                Sound sound = Assets.getInstance().getSoundAsset("select-option.mp3");
+                sound.play(MASTER_VOLUME);
                 super.clicked(event, x, y);
             }
         };

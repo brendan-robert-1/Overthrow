@@ -2,6 +2,7 @@ package com.mygdx.game.screens.widgets.nextencounter;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -18,6 +19,8 @@ import com.mygdx.game.state.GameState;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.Set;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class NextEncounter extends GameNode implements NextEncounterSubject, PathSelectedSubject{
     Array<NextEncounterObserver> observers;
@@ -44,6 +47,8 @@ public class NextEncounter extends GameNode implements NextEncounterSubject, Pat
                 public void clicked(InputEvent event, float x, float y) {
                     System.out.println("Chose encounter: " + encounter.getNodeType());
                     GameState.getInstance().setCurrentNode(encounter);
+                    final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
+                    sound1.play(MASTER_VOLUME);
                     NextEncounter.this.notify(encounter.getNodeType(), NextEncounterObserver.NextEncounterEvent.NODE_SELECTED);
                 }
             });

@@ -28,24 +28,25 @@ public class CombatProcessor {
         Timer.schedule( new Timer.Task(){
             @Override
             public void run() {
-                logger.info("Processing foe turn");
+              //  logger.info("Processing foe turn");
                 Ability ability = activeCharacter.getCharacter().getFirstBasicAbility(); //TODO pick random
                 CharacterPanel target = findTargetFor(ability, false);
                 fight.getEnemyTeam().animateAttack(activeCharacter);
-                ability.execute(target, activeCharacter, fight );
-                logger.info(activeCharacter.getName() + " has used " + ability.name() +" onto " + target.getName());
+                 ability.execute(target, activeCharacter, fight );
+               // logger.info(activeCharacter.getName() + " has used " + ability.name() +" onto " + target.getName());
                 increaseChargeTimeExcept(activeCharacter);
                 activeCharacter.getCharacter().resetChargeTime();
                 MainGameScreen.getInstance().updateScreenMidCombat();
                 processEndOfTurnEvents();
             }
-        },2f);
+        },1f);
     }
 
 
     public void processEndOfTurnEvents(){
         logger.info("Scheduling end of turn events");
-        Timer.schedule(new EndOfTurnRunnable(fight),0.14f);
+        new EndOfTurnRunnable(fight).run();
+       // Timer.schedule(new EndOfTurnRunnable(fight),1f);
 
     }
 

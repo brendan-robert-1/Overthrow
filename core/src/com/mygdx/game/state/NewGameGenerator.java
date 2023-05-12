@@ -15,7 +15,7 @@ public class NewGameGenerator {
         graph.printMap(currentNode);
         GameState state = GameState.getInstance();
         state.setRunSeed(seed);
-        Team.getInstance().setCharacterPanel1( new CharacterPanel(Character.generateNewCharacter(characterType)));
+        Team.getInstance().init( new CharacterPanel(Character.generateNewCharacter(characterType)), null, null, null);
         state.setCoin(4);
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);

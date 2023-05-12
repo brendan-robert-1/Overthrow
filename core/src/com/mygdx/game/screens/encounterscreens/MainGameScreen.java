@@ -3,15 +3,22 @@ package com.mygdx.game.screens.encounterscreens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.ActionState;
+import com.mygdx.game.Assets;
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.MainMenuScreen;
 import com.mygdx.game.screens.encounterscreens.combat.CombatProcessor;
 import com.mygdx.game.screens.widgets.*;
@@ -26,6 +33,8 @@ import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, AbilityUsedObserver,
          CombatRewardSelectedObserver, ProceedObserver {
@@ -73,6 +82,14 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         encounterContainer = new Table();
         encounterContainer.setFillParent(true);
         encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(20);
+
+
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions("farms-fire"), Animation.PlayMode.LOOP);
+        AnimatedActor animatedActor = new AnimatedActor(farms);
+        animatedActor.setScaling(Scaling.fit);
+        animatedActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.addActor(animatedActor);
 
         stage.addActor(entireInGameScreenTable);
         stage.addActor(pathSelectContainer);
@@ -230,6 +247,8 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         encounterContainer.setVisible(false);
         entireInGameScreenTable.hideAbilitySelectPanel();
         combatRewardsWindow = new CombatRewardsWindow();
+        Sound combatRewardSound = Assets.getInstance().getSoundAsset("coin-reward.mp3");
+        combatRewardSound.play(MASTER_VOLUME);
         stage.addActor(combatRewardsWindow);
     }
 
