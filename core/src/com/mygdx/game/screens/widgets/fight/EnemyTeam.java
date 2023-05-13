@@ -54,7 +54,7 @@ public class EnemyTeam extends Table {
 
 
     public void animateAttack(CharacterPanel characterPanel) {
-        characterPanel.setDebug(true);
+     //   characterPanel.setDebug(true);
         characterPanel.setClip(true);
         characterPanel.getCharacterSprite().addAction(Actions.sequence(
                 Actions.moveBy(-50, 0, 0.5f),

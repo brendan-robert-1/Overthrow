@@ -1,6 +1,10 @@
 package com.mygdx.game.encounters.fights;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.character.enemies.homesteaders.DogBite;
+import com.mygdx.game.character.enemies.homesteaders.DogGrowl;
+import com.mygdx.game.character.enemies.homesteaders.Nourish;
+import com.mygdx.game.character.enemies.homesteaders.PitchforkStab;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
@@ -18,19 +22,19 @@ import java.util.List;
 public class Homesteaders extends FightNode {
 
     private static final int DOG_STARTING_HP = 7;
-    private static final Ability DOG_STARTING_BASIC_ABILITY_1 = new TossConcoction();
-    private static final Ability DOG_STARTING_BASIC_ABILITY_2 = new Bloodlet();
-    private static final Ability DOG_STARTING_ULT_ABILITY = new Miasma();
+    private static final Ability DOG_STARTING_BASIC_ABILITY_1 = new DogBite();
+    private static final Ability DOG_STARTING_BASIC_ABILITY_2 = new DogBite();
+    private static final Ability DOG_STARTING_ULT_ABILITY = new DogGrowl();
 
     private static final int MOM_STARTING_HP = 20;
-    private static final Ability MOM_STARTING_BASIC_ABILITY_1 = new TossConcoction();
-    private static final Ability MOM_STARTING_BASIC_ABILITY_2 = new Bloodlet();
-    private static final Ability MOM_STARTING_ULT_ABILITY = new Miasma();
+    private static final Ability MOM_STARTING_BASIC_ABILITY_1 = new Nourish();
+    private static final Ability MOM_STARTING_BASIC_ABILITY_2 = new Nourish();
+    private static final Ability MOM_STARTING_ULT_ABILITY = new Nourish();
 
     private static final int DAD_STARTING_HP = 23;
-    private static final Ability DAD_STARTING_BASIC_ABILITY_1 = new TossConcoction();
-    private static final Ability DAD_STARTING_BASIC_ABILITY_2 = new Bloodlet();
-    private static final Ability DAD_STARTING_ULT_ABILITY = new Miasma();
+    private static final Ability DAD_STARTING_BASIC_ABILITY_1 = new PitchforkStab();
+    private static final Ability DAD_STARTING_BASIC_ABILITY_2 = new PitchforkStab();
+    private static final Ability DAD_STARTING_ULT_ABILITY = new PitchforkStab();
 
 
     public Homesteaders(){

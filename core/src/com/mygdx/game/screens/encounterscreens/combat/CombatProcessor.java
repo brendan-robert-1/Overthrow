@@ -8,10 +8,7 @@ import com.mygdx.game.screens.widgets.fight.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class CombatProcessor {
     private static final Logger logger = LogManager.getLogger(CombatProcessor.class);
@@ -28,18 +25,26 @@ public class CombatProcessor {
         Timer.schedule( new Timer.Task(){
             @Override
             public void run() {
-              //  logger.info("Processing foe turn");
-                Ability ability = activeCharacter.getCharacter().getFirstBasicAbility(); //TODO pick random
+                Ability ability = choseRandomAbility(activeCharacter);
                 CharacterPanel target = findTargetFor(ability, false);
+                logger.info(activeCharacter.getCharacter().getName() + " is casting " + ability.name() + " onto " + target.getCharacter().getName());
                 fight.getEnemyTeam().animateAttack(activeCharacter);
                  ability.execute(target, activeCharacter, fight );
-               // logger.info(activeCharacter.getName() + " has used " + ability.name() +" onto " + target.getName());
                 increaseChargeTimeExcept(activeCharacter);
                 activeCharacter.getCharacter().resetChargeTime();
                 MainGameScreen.getInstance().updateScreenMidCombat();
                 processEndOfTurnEvents();
             }
         },1f);
+    }
+
+    private Ability choseRandomAbility(CharacterPanel activeCharacter){
+        switch(new Random().nextInt(0,2)){
+            case 0 -> {return activeCharacter.getCharacter().getFirstBasicAbility();}
+            case 1 -> {return activeCharacter.getCharacter().getSecondBasicAbility();}
+            case 2 -> {return activeCharacter.getCharacter().getUltimateAbility();}
+            default -> throw new IllegalStateException("Unexpected value: " + new Random().nextInt(0, 2));
+        }
     }
 
 

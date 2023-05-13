@@ -18,7 +18,7 @@ public class Assets {
     private AssetManager assetManager;
     public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<>("pixel-pro.json", Skin.class, new SkinLoader.SkinParameter("pixel-pro.atlas"));
     private static InternalFileHandleResolver _filePathResolver =  new InternalFileHandleResolver();
-    public static float MASTER_VOLUME = 0.1f;
+    public static float MASTER_VOLUME = 0.00f;
 
     private static Assets instance;
     private Assets(){
@@ -27,9 +27,13 @@ public class Assets {
         assetManager.load(SKIN);
         loadSoundAsset("axe.mp3");
         loadSoundAsset("joust.mp3");
+        loadSoundAsset("man-growl.mp3");
         loadSoundAsset("purchase.mp3");
         loadSoundAsset("coin-reward.mp3");
         loadSoundAsset("select-option.mp3");
+        loadSoundAsset("dog-growl.mp3");
+        loadSoundAsset("bottle.mp3");
+        loadSoundAsset("keys.mp3");
         assetManager.finishLoading();
     }
 

@@ -22,6 +22,7 @@ public class NodeGenerator {
        GameNode.NodeType nodeType = new FarmsEncounterChanceTable().generateRandomNode(floorNumber);
        switch(nodeType){
            case OUTFITTER -> {return new OutfitterNode();}
+           case KEYMASTER -> {return new KeymasterNode();}
            case BASIC_FIGHT -> {return FightFactory.generateRandomFightFor(actType);}
            case ELITE_FIGHT -> {return FightFactory.generateRandomEliteFightFor(actType);}
            case BOSS_FIGHT -> {return BossFightFactory.generateRandomBossFightFor(actType);}

@@ -40,12 +40,36 @@
       "itemShortDescription": "+2 Armor -1 Speed",
       "coinValue": 2
     } ,
+    "SWAMP_KEY": {
+      "itemAttribute": "QUEST",
+      "itemUseType": "QUEST_ITEM",
+      "itemTypeId": "SWAMP_KEY",
+      "displayName": "Swamp key",
+      "itemShortDescription": "Increases flexibility in the swamp.",
+      "coinValue": 0
+    },
+    "WAR_CHEST_KEY": {
+      "itemAttribute": "QUEST",
+      "itemUseType": "QUEST_ITEM",
+      "itemTypeId": "WAR_CHEST_KEY",
+      "displayName": "War Chest Key",
+      "itemShortDescription": "Can improve access to spoils of war.",
+      "coinValue": 0
+    },
+    "FENCE_KEY": {
+      "itemAttribute": "QUEST",
+      "itemUseType": "QUEST_ITEM",
+      "itemTypeId": "FENCE_KEY",
+      "displayName": "Fence Key",
+      "itemShortDescription": "Can help escape towns.",
+      "coinValue": 0
+    },
     "LEATHER_PANTS": {
       "itemAttribute": "EQUIPPABLE",
       "itemUseType": "ARMOR_LEGS",
       "itemTypeId": "LEATHER_PANTS",
       "displayName": "Leather Pants",
-      "itemShortDescription": "+1 Magic Resistance",
+      "itemShortDescription": "+1 magic resistance",
       "coinValue": 2
     }
   }

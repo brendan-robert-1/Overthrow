@@ -59,7 +59,7 @@ public class NextEncounter extends GameNode implements NextEncounterSubject, Pat
     
     private String nextEncounterDisplay(NodeType nodeType){
         switch(nodeType){
-
+            case KEYMASTER -> {return "Keymaster";}
             case OUTFITTER -> {return "Outfitter";}
             case BASIC_FIGHT -> {return "Fight";}
             case ELITE_FIGHT -> {return "Elite Fight";}

@@ -67,7 +67,8 @@ public class InventoryItem extends Image {
 
     public enum ItemAttribute{
         CONSUMABLE(1),
-        EQUIPPABLE(2);
+        EQUIPPABLE(2),
+        QUEST(4);
 
         private int attribute;
 
@@ -85,7 +86,8 @@ public class InventoryItem extends Image {
         RUSTY_DAGGER, QUESTION_MARK,
         SNUG_SANDALS,
         ARMOR_HAT,
-        LEATHER_PANTS, MINER_HAT;
+        LEATHER_PANTS, MINER_HAT,
+        SWAMP_KEY, FENCE_KEY, WAR_CHEST_KEY;
     }
 
     public enum ItemUseType{

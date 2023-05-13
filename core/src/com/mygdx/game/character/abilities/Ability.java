@@ -9,8 +9,7 @@ public interface Ability{
         BLOODLET,
         JOUST,
         ARMOR_UP,
-        CHALLENGE,
-        QUESTION_MARK
+        CHALLENGE, HOMESTEADER_DOG_BITE, HOMESTEADER_NOURISH, HOMESTEADER_PITCHFORK_STAB, QUESTION_MARK
     }
     String name();
     String description();

@@ -51,8 +51,7 @@ public abstract class GameNode extends Window {
         ABILITY_TRAINER,
         GEM_MERCHANT,
         QUESTION_MARK,
-        CHEST,
-        PATH_SELECTION
+        CHEST, KEYMASTER, PATH_SELECTION
     }
 
 }

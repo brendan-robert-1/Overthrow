@@ -130,6 +130,7 @@ public class MapGraph {
     private String getConsoleCodeFor(GameNode.NodeType nodeType){
         switch(nodeType){
             case OUTFITTER -> {return "O";}
+            case KEYMASTER ->  {return "?";}
             case BASIC_FIGHT -> {return "F";}
             case ELITE_FIGHT -> {return "EF";}
             case BOSS_FIGHT -> {return "B";}

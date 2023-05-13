@@ -123,4 +123,11 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
             this.remove();
         }
     }
+
+    public void increaseHpBy(int increaseBy){
+        this.getCharacter().setHp(this.character.getHp() + increaseBy);
+        if(this.getCharacter().getHp() <=0){
+            this.remove();
+        }
+    }
 }

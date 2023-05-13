@@ -63,7 +63,7 @@ public class Character {
         MUTATED_CHICKEN,
         MUTATED_COW,
         MUTATED_PIG,
-        FRED;
+        FRED, KEYMASTER;
 //        public static String toDisplayName(CharacterType characterType){
 //            switch(characterType){
 //                case PLAGUE_DOCTOR -> {return "Plague Doctor";}
