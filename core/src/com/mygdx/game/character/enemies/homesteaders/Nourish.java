@@ -9,6 +9,8 @@ import com.mygdx.game.screens.widgets.fight.FightNode;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class Nourish implements Ability {
+
+    private static final int HEAL = 5;
     @Override
     public String name() {
         return "Nourish";
@@ -56,5 +58,12 @@ public class Nourish implements Ability {
     @Override
     public AbilityType abilityType() {
         return AbilityType.HOMESTEADER_NOURISH;
+    }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.HEAL;
     }
 }

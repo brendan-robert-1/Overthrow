@@ -13,8 +13,7 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem.ItemTypeId;
-import com.mygdx.game.state.Character;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.state.items.InventoryItemFactory;
 
 import java.util.ArrayList;
@@ -23,6 +22,15 @@ import java.util.List;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class OutfitterNode extends GameNode implements OutfitterSubject {
+
+    @Override
+    public String ambientSounds() {
+        return "fire.mp3";
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
 
     Array<OutfitterObserver> observers;
 

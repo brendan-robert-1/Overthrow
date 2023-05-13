@@ -1,17 +1,15 @@
-package com.mygdx.game.state;
+package com.mygdx.game.encounters;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.game.Assets;
-import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.screens.widgets.HudTooltip;
-import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 
 public abstract class GameNode extends Window {
     private NodeType nodeType;
     private OverthrowActs.ActType actType;
     private String displayName;
+    public abstract String backgroundAsset();
+    public abstract String ambientSounds();
 
 
     public GameNode(NodeType nodeType, String displayName){
@@ -51,7 +49,7 @@ public abstract class GameNode extends Window {
         ABILITY_TRAINER,
         GEM_MERCHANT,
         QUESTION_MARK,
-        CHEST, KEYMASTER, PATH_SELECTION
+        CHEST, KEYMASTER, ABANDONED_FARMHOUSE, PATH_SELECTION
     }
 
 }

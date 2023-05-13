@@ -87,7 +87,8 @@ public class InventoryItem extends Image {
         SNUG_SANDALS,
         ARMOR_HAT,
         LEATHER_PANTS, MINER_HAT,
-        SWAMP_KEY, FENCE_KEY, WAR_CHEST_KEY;
+        SWAMP_KEY, FENCE_KEY, WAR_CHEST_KEY,
+        TANKARD, SPOILED_MILK,HOMESTEADERS_SUNHAT, PITCHFORK, STALE_BREAD, LANTERN;
     }
 
     public enum ItemUseType{

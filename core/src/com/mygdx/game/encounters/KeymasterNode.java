@@ -1,6 +1,5 @@
-package com.mygdx.game.state;
+package com.mygdx.game.encounters;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
-import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.ProceedButton;
 import com.mygdx.game.screens.widgets.ProceedObserver;
 import com.mygdx.game.screens.widgets.ProceedSubject;
@@ -33,6 +31,17 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
     private Table options;
     private Table explanation;
     private Table rewards = new Table();
+
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
+
+
+    @Override
+    public String ambientSounds() {
+        return "keys.mp3";
+    }
 
     public KeymasterNode(){
         super(NodeType.KEYMASTER, "Keymaster");

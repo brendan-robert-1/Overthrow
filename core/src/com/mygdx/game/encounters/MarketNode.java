@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
@@ -15,7 +14,6 @@ import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.screens.widgets.markets.MarketOption;
-import com.mygdx.game.state.GameNode;
 import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.InventoryItemFactory;
 import com.mygdx.game.state.shops.ShopOffering;
@@ -28,7 +26,18 @@ import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class MarketNode extends GameNode implements ProceedSubject {
 
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
+
     private Map<InventoryItem, Integer> waresToPrice;
+
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
 
     public MarketNode(Map<InventoryItem, Integer> waresToPrice){
         super(NodeType.MARKET, "Market");

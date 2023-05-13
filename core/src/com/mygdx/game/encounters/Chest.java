@@ -1,10 +1,17 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.GameNode;
-
 public class Chest extends GameNode {
     public Chest(){
         super(NodeType.CHEST, "Chest");
+    }
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
     }
     @Override
     public String toString() {

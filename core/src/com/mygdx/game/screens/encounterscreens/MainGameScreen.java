@@ -4,14 +4,19 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -29,7 +34,9 @@ import com.mygdx.game.screens.widgets.inventory.InventoryUi;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounter;
 import com.mygdx.game.screens.widgets.nextencounter.NextEncounterObserver;
 import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
+import com.mygdx.game.sfx.ScreenTransitionAction;
+import com.mygdx.game.sfx.ScreenTransitionActor;
 import com.mygdx.game.state.GameState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +44,7 @@ import org.apache.logging.log4j.Logger;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, NextEncounterObserver, FightObserver, AbilityUsedObserver,
-         CombatRewardSelectedObserver, ProceedObserver {
+         CombatRewardSelectedObserver, ProceedObserver, BackgroundChangeObserver {
     private static final Logger logger = LogManager.getLogger(MainGameScreen.class);
     private Stage stage;
     private Viewport viewport;
@@ -52,6 +59,9 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private CombatProcessor combatProcessor;
     private FightNode fight;
     private CombatRewardsWindow combatRewardsWindow;
+    private AnimatedActor background;
+    private ScreenTransitionActor transitionActor;
+    private Sound encounterBackgroundSound;
 
 
     private static MainGameScreen instance;
@@ -79,18 +89,25 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         pathSelectContainer.add(pathSelectWindow).expand().bottom().right().padBottom(20);
 
         encounterWindow = GameState.getInstance().getCurrentNode();
+        playAmbient(encounterWindow.ambientSounds());
+
         encounterContainer = new Table();
         encounterContainer.setFillParent(true);
         encounterContainer.add(encounterWindow).expand().bottom().right().padBottom(20);
 
+        transitionActor = new ScreenTransitionActor();
+        transitionActor.setVisible(false);
+        addTransitionToScreen(2);
+
 
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
         Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions("farms-fire"), Animation.PlayMode.LOOP);
-        AnimatedActor animatedActor = new AnimatedActor(farms);
-        animatedActor.setScaling(Scaling.fit);
-        animatedActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        stage.addActor(animatedActor);
+        background = new AnimatedActor(farms);
+        background.setScaling(Scaling.fit);
+        background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+        stage.addActor(background);
+        stage.addActor(transitionActor);
         stage.addActor(entireInGameScreenTable);
         stage.addActor(pathSelectContainer);
         stage.addActor(encounterContainer);
@@ -139,12 +156,15 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
     @Override
     public void onNotify(GameNode.NodeType nodeSelected, NextEncounterEvent event) {
+
         if(nodeSelected == GameNode.NodeType.BASIC_FIGHT
                 || nodeSelected == GameNode.NodeType.BOSS_FIGHT
                 || nodeSelected == GameNode.NodeType.ELITE_FIGHT){
             processCombat();
-
+            addTransitionToScreen();
             encounterWindow = GameState.getInstance().getCurrentNode();
+            updateBackgroundForEncounter(encounterWindow.backgroundAsset());
+            playAmbient(encounterWindow.ambientSounds());
             encounterContainer = new Table();
             encounterContainer.setFillParent(true);
             encounterContainer.pack();
@@ -153,8 +173,10 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
             stage.addActor(encounterContainer);
             pathSelectContainer.setVisible(false);
         } else {
-
+            addTransitionToScreen();
             encounterWindow = GameState.getInstance().getCurrentNode();
+            updateBackgroundForEncounter(encounterWindow.backgroundAsset());
+            playAmbient(encounterWindow.ambientSounds());
             encounterContainer = new Table();
             encounterContainer.setFillParent(true);
             encounterContainer.pack();
@@ -162,6 +184,16 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
             encounterContainer.add(encounterWindow).expand().fill().pad(150);
             stage.addActor(encounterContainer);
             pathSelectContainer.setVisible(false);
+        }
+    }
+
+
+
+    private void playAmbient(String ambientSoundAsset) {
+        if(encounterBackgroundSound != null)  encounterBackgroundSound.stop();
+        if(ambientSoundAsset != null){
+            encounterBackgroundSound = Assets.getInstance().getSoundAsset(ambientSoundAsset);
+            encounterBackgroundSound.loop(MASTER_VOLUME);
         }
     }
 
@@ -268,4 +300,47 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         encounterContainer.setVisible(false);
         displayPathSelectWindow();
     }
+
+
+
+    @Override
+    public void onNotify(String backgroundAsset, BackgroundChange event) {
+        if(background != null){
+            background.remove();
+            TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+            Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions(backgroundAsset), Animation.PlayMode.LOOP);
+            background = new AnimatedActor(farms);
+            background.setScaling(Scaling.fit);
+            background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            stage.addActor(background);
+            background.toBack();
+        }
+
+    }
+
+
+    private void updateBackgroundForEncounter(String backgroundAsset) {
+        if(background != null){
+            background.remove();
+            TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+            Animation<TextureRegion> backgroundRegions = new Animation<TextureRegion>(0.1f, atlas.findRegions(backgroundAsset), Animation.PlayMode.LOOP);
+            background = new AnimatedActor(backgroundRegions);
+            background.setScaling(Scaling.fit);
+            background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            stage.addActor(background);
+            background.toBack();
+        }
+    }
+    public void addTransitionToScreen(int duration){
+        transitionActor.setVisible(true);
+        stage.addAction(
+                Actions.sequence(
+                        Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_IN, duration), transitionActor)));
+    }
+
+    public void addTransitionToScreen(){
+        addTransitionToScreen(1);
+    }
+
+
 }

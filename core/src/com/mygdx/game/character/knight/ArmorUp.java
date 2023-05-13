@@ -54,4 +54,11 @@ public class ArmorUp implements Ability {
     public AbilityType abilityType() {
         return AbilityType.ARMOR_UP;
     }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.NONE;
+    }
 }

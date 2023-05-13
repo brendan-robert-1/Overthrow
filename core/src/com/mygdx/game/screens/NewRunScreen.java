@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -22,6 +23,8 @@ import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.widgets.CharacterSprite;
 import com.mygdx.game.screens.widgets.PixelProTextButton;
 import com.mygdx.game.screens.widgets.ProceedButton;
+import com.mygdx.game.sfx.ScreenTransitionAction;
+import com.mygdx.game.sfx.ScreenTransitionActor;
 import com.mygdx.game.state.Character.CharacterType;
 import com.mygdx.game.state.NewGameGenerator;
 import org.checkerframework.checker.units.qual.A;
@@ -35,11 +38,17 @@ public class NewRunScreen extends ScreenAdapter {
     private Viewport viewport;
     CharacterSprite splash;
     private CharacterType characterTypeSelected;
+    private ScreenTransitionActor transitionActor;
+
 
     @Override
     public void show() {
+
         stage = new Stage();
         viewport = new ScreenViewport();
+        transitionActor = new ScreenTransitionActor();
+        transitionActor.setVisible(false);
+        stage.addActor(transitionActor);
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
         TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("messing-around2"));
         Table table = new Table();
@@ -103,9 +112,8 @@ public class NewRunScreen extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 final Sound sound1 = Assets.getInstance().getSoundAsset("select-option.mp3");
                 sound1.play(MASTER_VOLUME);
+                addTransitionToScreen();
                 NewGameGenerator.generateNewGame(characterTypeSelected);
-
-
                 ((Game) Gdx.app.getApplicationListener()).setScreen(
                         new GameStateScreen( )
                 );
@@ -150,5 +158,12 @@ public class NewRunScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
+    }
+
+    public void addTransitionToScreen(){
+        transitionActor.setVisible(true);
+        stage.addAction(
+                Actions.sequence(
+                        Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_OUT, 2), transitionActor)));
     }
 }

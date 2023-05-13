@@ -60,5 +60,12 @@ public class Miasma implements Ability {
     public AbilityType abilityType() {
         return AbilityType.MIASMA;
     }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.NONE;
+    }
 }
 

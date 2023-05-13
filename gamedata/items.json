@@ -71,6 +71,54 @@
       "displayName": "Leather Pants",
       "itemShortDescription": "+1 magic resistance",
       "coinValue": 2
+    },
+    "SPOILED_MILK": {
+      "itemAttribute": "CONSUMABLE",
+      "itemUseType": "ITEM_RESTORE_HEALTH",
+      "itemTypeId": "SPOILED_MILK",
+      "displayName": "Slightly Spoiled Milk",
+      "itemShortDescription": "+3 magic resistance, -3 hp",
+      "coinValue": 2
+    },
+    "HOMESTEADERS_SUNHAT": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_HEAD",
+      "itemTypeId": "HOMESTEADERS_SUNHAT",
+      "displayName": "Homesteaders Sunhat",
+      "itemShortDescription": "+1 speed +1 armor +1 Magic Resistance",
+      "coinValue": 2
+    },
+    "PITCHFORK": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "PITCHFORK",
+      "displayName": "Pitchfork",
+      "itemShortDescription": "+2 physical damage +1 armor",
+      "coinValue": 2
+    },
+    "STALE_BREAD": {
+      "itemAttribute": "CONSUMABLE",
+      "itemUseType": "ITEM_RESTORE_HEALTH",
+      "itemTypeId": "STALE_BREAD",
+      "displayName": "Stale Bread",
+      "itemShortDescription": "+6 party heal",
+      "coinValue": 2
+    },
+    "TANKARD": {
+      "itemAttribute": "QUEST",
+      "itemUseType": "QUEST_ITEM",
+      "itemTypeId": "TANKARD",
+      "displayName": "Tankard",
+      "itemShortDescription": "Give this to someone down on their luck. Or drink it yourself.",
+      "coinValue": 2
+    },
+    "LANTERN": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_SHIELD",
+      "itemTypeId": "LANTERN",
+      "displayName": "Lantern",
+      "itemShortDescription": "Increases combat effectiveness against some enemies.",
+      "coinValue": 2
     }
   }
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.screens.widgets.markets.MarketOption;
 
 public class HudTooltipListener extends InputListener {
@@ -12,8 +13,15 @@ public class HudTooltipListener extends InputListener {
     private boolean isInside = false;
     private Vector2 currentCords;
     private Vector2 offset;
+    private String desc = null;
 
     public HudTooltipListener(){
+        this.currentCords = new Vector2(0,0);
+        this.offset = new Vector2(20,10);
+    }
+
+    public HudTooltipListener(String desc){
+        this.desc = desc;
         this.currentCords = new Vector2(0,0);
         this.offset = new Vector2(20,10);
     }
@@ -22,7 +30,9 @@ public class HudTooltipListener extends InputListener {
     @Override
     public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
         Actor actor = event.getListenerActor();
-        String desc = getDescFrom(actor);
+        if(desc == null){
+            desc = getDescFrom(actor);
+        }
         isInside = true;
         currentCords.set(x, y);
         actor.localToStageCoordinates(currentCords);
@@ -30,6 +40,7 @@ public class HudTooltipListener extends InputListener {
         tooltip.setPosition(currentCords.x + offset.x, currentCords.y + offset.y);
         tooltip.toFront();
         tooltip.setVisible(true);
+
     }
 
 
@@ -76,6 +87,7 @@ public class HudTooltipListener extends InputListener {
     @Override
     public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
        Actor actor = event.getListenerActor();
+
         tooltip.setVisible( false);
         isInside = false;
 

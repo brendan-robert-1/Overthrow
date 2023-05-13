@@ -10,11 +10,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.StringBuilder;
 import com.mygdx.game.Assets;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.render.AnimatedActor;
+import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.BuffsBar;
 import com.mygdx.game.screens.widgets.CharacterSprite;
+import com.mygdx.game.screens.widgets.HudTooltip;
+import com.mygdx.game.screens.widgets.HudTooltipListener;
 import com.mygdx.game.state.Character;
 
 public class CharacterPanel extends Table implements Comparable<CharacterPanel> {
@@ -23,18 +27,19 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
     private Image characterSprite;
     private Label label;
     private BuffsBar buffsBar = new BuffsBar();
+    private HudTooltip hudTooltip;
 
 
     public void update() {
         buffsBar.update();
-        label.setText("hp: " + character.getHp());
+        label.setText("hp: " + character.getHp() + "/" + character.getMaxHp());
         this.pack();
     }
 
     public CharacterPanel(Character character){
         super(Assets.skin());
         this.character = character;
-        label = new Label("hp: " + character.getHp(), Assets.skin(), "title");
+        label = new Label("hp: " + character.getHp() + "/" + character.getMaxHp(), Assets.skin(), "title");
         this.add(label).expand().fill().pad(20).align(Align.center);
 
         if(character.getCharacterType() == Character.CharacterType.KNIGHT){
@@ -43,7 +48,7 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
                     Animation<TextureRegion> idleKnight = new Animation<TextureRegion>(0.1f, atlas.findRegions("KNIGHT"), Animation.PlayMode.LOOP);
                     AnimatedActor animatedActor = new AnimatedActor(idleKnight);
                     animatedActor.setScaling(Scaling.fit);
-
+                    animatedActor.addListener(new HudTooltipListener(buildCharacterTooltipDesc()));
                     this.add(animatedActor).width(200).height(250);
         }else {
 
@@ -63,6 +68,27 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         this.setName(character.getCharacterType().toString());
         this.pack();
     }
+
+
+
+    private String buildCharacterTooltipDesc() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(character.getName());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("hp: " + character.getHp());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Armor: " + character.getStats().getArmor());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Magic Resistance: " + character.getStats().getMagicResistance());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Physical Damage: " + character.getStats().getPhysicalDamage());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Magical Damage: " + character.getStats().getMagicalDamage());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Speed: " + character.getStats().getSpeed());
+        return sb.toString();
+    }
+
 
 
     public static CharacterPanel from(CharacterPanel c) {
@@ -119,15 +145,19 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
 
     public void decreaseHpBy(int decreaseBy){
         this.getCharacter().setHp(this.character.getHp() - decreaseBy);
-        if(this.getCharacter().getHp() <=0){
+        if(this.getCharacter().getHp() <= 0){
             this.remove();
         }
     }
 
     public void increaseHpBy(int increaseBy){
-        this.getCharacter().setHp(this.character.getHp() + increaseBy);
-        if(this.getCharacter().getHp() <=0){
+        Character character  = this.getCharacter();
+        character.setHp(character.getHp() + increaseBy);
+        if(character.getHp() <=0){
             this.remove();
+        }
+        if(character.getHp() > character.getMaxHp()){
+            character.setHp(character.getMaxHp());
         }
     }
 }

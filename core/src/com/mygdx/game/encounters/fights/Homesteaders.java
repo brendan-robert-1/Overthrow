@@ -36,6 +36,10 @@ public class Homesteaders extends FightNode {
     private static final Ability DAD_STARTING_BASIC_ABILITY_2 = new PitchforkStab();
     private static final Ability DAD_STARTING_ULT_ABILITY = new PitchforkStab();
 
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
 
     public Homesteaders(){
         super(NodeType.BASIC_FIGHT, "Homesteaders");
@@ -44,6 +48,11 @@ public class Homesteaders extends FightNode {
     @Override
     public List<OverthrowActs.ActType> actTypeEncounterable() {
         return Arrays.asList(OverthrowActs.ActType.FARMS, OverthrowActs.ActType.BATTLEFIELD);
+    }
+
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
     }
 
     @Override
@@ -61,6 +70,7 @@ public class Homesteaders extends FightNode {
                 "Dog",
                 Character.CharacterType.HOMESTEADER_DOG,
                 DOG_STARTING_HP,
+                DOG_STARTING_HP,
                 DOG_STARTING_BASIC_ABILITY_1,
                 DOG_STARTING_BASIC_ABILITY_2,
                 DOG_STARTING_ULT_ABILITY,
@@ -72,6 +82,7 @@ public class Homesteaders extends FightNode {
         return new Character(
                 "Homesteader",
                 Character.CharacterType.HOMESTEADER_MOM,
+                MOM_STARTING_HP,
                 MOM_STARTING_HP,
                 MOM_STARTING_BASIC_ABILITY_1,
                 MOM_STARTING_BASIC_ABILITY_2,
@@ -85,6 +96,7 @@ public class Homesteaders extends FightNode {
                 "Homesteader",
                 Character.CharacterType.HOMESTEADER_DAD,
                 DAD_STARTING_HP,
+                DAD_STARTING_HP,
                 DAD_STARTING_BASIC_ABILITY_1,
                 DAD_STARTING_BASIC_ABILITY_2,
                 DAD_STARTING_ULT_ABILITY,
@@ -96,31 +108,31 @@ public class Homesteaders extends FightNode {
 
     private Stats dogBaseStats(){
         return new Stats(
-          20,
-          20,
-          20,
-          20,
+          0,
+          0,
+          0,
+          0,
           20
         );
     }
 
     private Stats momBaseStats(){
         return new Stats(
-                20,
-                20,
-                20,
-                20,
-                20
+                0,
+                0,
+                0,
+                0,
+                14
         );
     }
 
     private Stats dadBaseStats(){
         return new Stats(
-                20,
-                20,
-                20,
-                20,
-                20
+                1,
+                0,
+                0,
+                0,
+                13
         );
     }
 

@@ -2,7 +2,7 @@ package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.Blacksmith;
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 
 public class BlacksmithFactory {
      public static GameNode generateRandomBlacksmithFor(OverthrowActs.ActType actType) {

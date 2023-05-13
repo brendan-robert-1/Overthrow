@@ -9,7 +9,11 @@ public interface Ability{
         BLOODLET,
         JOUST,
         ARMOR_UP,
-        CHALLENGE, HOMESTEADER_DOG_BITE, HOMESTEADER_NOURISH, HOMESTEADER_PITCHFORK_STAB, QUESTION_MARK
+        CHALLENGE, HOMESTEADER_DOG_BITE, HOMESTEADER_NOURISH, HOMESTEADER_PITCHFORK_STAB, HOMESTEADER_DOG_GROWL, QUESTION_MARK
+    }
+
+    public enum DamageType{
+        PHYSICAL, MAGICAL, TRUE, HEAL, NONE
     }
     String name();
     String description();
@@ -19,5 +23,6 @@ public interface Ability{
     void execute(CharacterPanel target, CharacterPanel source, FightNode fight);
 
     AbilityType abilityType();
+    DamageType damageType();
 }
 

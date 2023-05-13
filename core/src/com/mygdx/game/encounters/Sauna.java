@@ -1,10 +1,18 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.GameNode;
-
 public class Sauna extends GameNode {
+
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
     public Sauna(){
         super(NodeType.SAUNA, "Sauna");
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
     }
     @Override
     public String toString() {

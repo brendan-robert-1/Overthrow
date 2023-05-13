@@ -6,63 +6,70 @@ filter: Nearest, Nearest
 repeat: none
 ARMOR_UP
   rotate: false
-  xy: 1870, 1427
+  xy: 1606, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 BLOODLET
   rotate: false
-  xy: 1606, 149
+  xy: 1640, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CHALLENGE
   rotate: false
-  xy: 1606, 183
+  xy: 1870, 1393
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CRAB_MAGICIAN
   rotate: false
-  xy: 1983, 1637
+  xy: 1538, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HEALTH_POT-export
   rotate: false
-  xy: 1804, 1133
+  xy: 1870, 1495
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HEALTH_POT
   rotate: false
-  xy: 1804, 1133
+  xy: 1870, 1495
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HIDE_SHIELD
   rotate: false
-  xy: 1470, 149
+  xy: 1538, 149
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+HOMESTEADERS_SUNHAT
+  rotate: false
+  xy: 1572, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_DAD
   rotate: false
-  xy: 1504, 149
+  xy: 1572, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_DOG
   rotate: false
-  xy: 1674, 149
+  xy: 1708, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -94,13 +101,6 @@ KNIGHT
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
-KNIGHT
-  rotate: false
-  xy: 1870, 1563
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
   index: 1
 KNIGHT
   rotate: false
@@ -109,6 +109,13 @@ KNIGHT
   orig: 32, 32
   offset: 0, 0
   index: -1
+KNIGHT
+  rotate: false
+  xy: 1870, 1563
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 KNIGHT
   rotate: false
   xy: 1983, 1671
@@ -125,14 +132,14 @@ KNIGHT
   index: 9
 KNIGHT
   rotate: false
-  xy: 1870, 1495
+  xy: 1983, 1637
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 5
 KNIGHT
   rotate: false
-  xy: 1870, 1393
+  xy: 1640, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -153,21 +160,28 @@ KNIGHT
   index: 4
 KNIGHT
   rotate: false
-  xy: 1538, 149
+  xy: 1606, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 6
 KNIGHT
   rotate: false
-  xy: 1708, 149
+  xy: 1742, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 11
+LANTERN
+  rotate: false
+  xy: 1838, 1133
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 LEATHER_PANTS
   rotate: false
-  xy: 1870, 1359
+  xy: 1674, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -189,6 +203,13 @@ MINER_HAT
 PIERCE
   rotate: false
   xy: 1742, 183
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+PITCHFORK
+  rotate: false
+  xy: 1470, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -223,14 +244,35 @@ QUESTION_MARK
   index: -1
 RUSTY_DAGGER
   rotate: false
-  xy: 1640, 149
+  xy: 1674, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SNUG_SANDALS
   rotate: false
-  xy: 1538, 183
+  xy: 1870, 1461
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+SPOILED_MILK
+  rotate: false
+  xy: 1504, 149
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+STALE_BREAD
+  rotate: false
+  xy: 1504, 183
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TANKARD
+  rotate: false
+  xy: 1804, 1133
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -312,6 +354,20 @@ abandoned-farmhouse
   orig: 111, 140
   offset: 0, 0
   index: 5
+abandoned-farmhouse2
+  rotate: false
+  xy: 2, 669
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 7
+abandoned-farmhouse2
+  rotate: false
+  xy: 904, 217
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 4
 farms
   rotate: false
   xy: 2, 1121
@@ -328,13 +384,20 @@ splash
   index: -1
 farms-fire
   rotate: false
-  xy: 2, 217
+  xy: 904, 669
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 5
 farms6
   rotate: false
+  xy: 904, 669
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms5
+  rotate: false
   xy: 2, 217
   size: 900, 450
   orig: 900, 450
@@ -342,56 +405,21 @@ farms6
   index: -1
 farms-fire
   rotate: false
-  xy: 904, 217
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: 2
-farms3
-  rotate: false
-  xy: 904, 217
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms2
-  rotate: false
-  xy: 904, 669
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms-fire
-  rotate: false
-  xy: 904, 669
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: 1
-farms5
-  rotate: false
-  xy: 2, 669
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms-fire
-  rotate: false
-  xy: 2, 669
+  xy: 2, 217
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 4
 fence-key
   rotate: false
-  xy: 1572, 183
+  xy: 1870, 1427
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 FENCE_KEY
   rotate: false
-  xy: 1572, 183
+  xy: 1870, 1427
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -522,13 +550,6 @@ keymaster
   orig: 64, 64
   offset: 0, 0
   index: 7
-lantern
-  rotate: false
-  xy: 1504, 183
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
 messing-around
   rotate: false
   xy: 2, 2
@@ -541,27 +562,6 @@ messing-around2
   xy: 384, 2
   size: 380, 213
   orig: 380, 213
-  offset: 0, 0
-  index: -1
-pitchfork
-  rotate: false
-  xy: 1572, 149
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-stale-bread
-  rotate: false
-  xy: 1640, 183
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-sunhat
-  rotate: false
-  xy: 1674, 183
-  size: 32, 32
-  orig: 32, 32
   offset: 0, 0
   index: -1
 swamp-key
@@ -578,47 +578,82 @@ SWAMP_KEY
   orig: 32, 32
   offset: 0, 0
   index: -1
-tankard
-  rotate: false
-  xy: 1838, 1133
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
 turn-carousel-background
   rotate: false
-  xy: 1870, 1461
+  xy: 1870, 1359
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 
 overthrow2.png
-size: 2048, 1024
+size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-enemy-placeholder-medium
+abandoned-farmhouse2
   rotate: false
-  xy: 904, 196
-  size: 256, 256
-  orig: 256, 256
+  xy: 904, 1358
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 1
+abandoned-farmhouse2
+  rotate: false
+  xy: 2, 2
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 6
+abandoned-farmhouse2
+  rotate: false
+  xy: 904, 2
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 3
+farms-fire
+  rotate: false
+  xy: 2, 906
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 2
+farms3
+  rotate: false
+  xy: 2, 906
+  size: 900, 450
+  orig: 900, 450
   offset: 0, 0
   index: -1
 farms-fire
   rotate: false
-  xy: 2, 2
+  xy: 904, 906
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 7
 farms8
   rotate: false
-  xy: 2, 2
+  xy: 904, 906
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: -1
+farms2
+  rotate: false
+  xy: 2, 1358
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms-fire
+  rotate: false
+  xy: 2, 1358
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 1
 farms4
   rotate: false
   xy: 904, 454
@@ -647,3 +682,30 @@ farms-fire
   orig: 900, 450
   offset: 0, 0
   index: 6
+
+overthrow3.png
+size: 2048, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+abandoned-farmhouse2
+  rotate: false
+  xy: 2, 454
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 5
+abandoned-farmhouse2
+  rotate: false
+  xy: 2, 2
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 2
+enemy-placeholder-medium
+  rotate: false
+  xy: 904, 648
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

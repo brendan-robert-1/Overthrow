@@ -1,5 +1,7 @@
 package com.mygdx.game.state;
 
+import com.mygdx.game.encounters.GameNode;
+
 import java.util.UUID;
 
 public class GameState {

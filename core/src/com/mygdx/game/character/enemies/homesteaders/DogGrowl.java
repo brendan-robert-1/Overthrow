@@ -47,8 +47,8 @@ public class DogGrowl implements Ability {
 
     @Override
     public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
-        Sound sound = Assets.getInstance().getSoundAsset("man-growl.mp3");
-        sound.play(MASTER_VOLUME);
+//        Sound sound = Assets.getInstance().getSoundAsset("man-growl.mp3");
+//        sound.play(MASTER_VOLUME);
         target.getBuffsBar().addBuff(new ArmorUpBuff(3));
     }
 
@@ -56,6 +56,13 @@ public class DogGrowl implements Ability {
 
     @Override
     public AbilityType abilityType() {
-        return null;
+        return AbilityType.HOMESTEADER_DOG_GROWL;
+    }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.NONE;
     }
 }

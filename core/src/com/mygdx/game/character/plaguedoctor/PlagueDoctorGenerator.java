@@ -2,10 +2,7 @@ package com.mygdx.game.character.plaguedoctor;
 
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.state.Stats;
-import com.mygdx.game.state.gear.EquippedGear;
 import com.mygdx.game.state.Character;
-
-import java.util.ArrayList;
 
 public class PlagueDoctorGenerator {
     private static final int STARTING_HP = 100;
@@ -13,10 +10,11 @@ public class PlagueDoctorGenerator {
     private static final Ability STARTING_BASIC_ABILITY_2 = new Bloodlet();
     private static final Ability STARTING_ULT_ABILITY = new Miasma();
 
-    public static Character generateStartingPlagueDoctor(){
+    public static Character generate(){
         return new Character(
                 "Plague Doctor",
                 Character.CharacterType.PLAGUE_DOCTOR,
+                STARTING_HP,
                 STARTING_HP,
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
@@ -28,11 +26,11 @@ public class PlagueDoctorGenerator {
 
     private static Stats baseStats(){
         return new Stats(
-                50,
-                50,
-                50,
-                50,
-                50
+                0,
+                0,
+                0,
+                0,
+                17
         );
     }
 }

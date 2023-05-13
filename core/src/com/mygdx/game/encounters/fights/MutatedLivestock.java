@@ -19,12 +19,21 @@ public class MutatedLivestock extends FightNode {
     public MutatedLivestock(){
         super(NodeType.BOSS_FIGHT, "Boss");
     }
+
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
     @Override
     public List<OverthrowActs.ActType> actTypeEncounterable() {
         return Arrays.asList(OverthrowActs.ActType.FARMS);
     }
 
-
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
 
     private static final int MUTATED_COW_STARTING_HP = 20;
     private static final Ability MUTATED_COW_STARTING_BASIC_ABILITY_1 = new TossConcoction();
@@ -56,6 +65,7 @@ public class MutatedLivestock extends FightNode {
                 "Chicken",
                 Character.CharacterType.MUTATED_CHICKEN,
                 MUTATED_COW_STARTING_HP,
+                MUTATED_COW_STARTING_HP,
                 MUTATED_COW_STARTING_BASIC_ABILITY_1,
                 MUTATED_COW_STARTING_BASIC_ABILITY_2,
                 MUTATED_COW_STARTING_ULT_ABILITY,
@@ -68,6 +78,7 @@ public class MutatedLivestock extends FightNode {
                 "Pig",
                 Character.CharacterType.MUTATED_PIG,
                 MUTATED_CHICKEN_STARTING_HP,
+                MUTATED_CHICKEN_STARTING_HP,
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_1,
                 MUTATED_CHICKEN_STARTING_BASIC_ABILITY_2,
                 MUTATED_CHICKEN_STARTING_ULT_ABILITY,
@@ -79,6 +90,7 @@ public class MutatedLivestock extends FightNode {
         return new Character(
                 "Cow",
                 Character.CharacterType.MUTATED_COW,
+                MUTATED_PIG_STARTING_HP,
                 MUTATED_PIG_STARTING_HP,
                 MUTATED_PIG_STARTING_BASIC_ABILITY_1,
                 MUTATED_PIG_STARTING_BASIC_ABILITY_2,

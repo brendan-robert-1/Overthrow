@@ -1,11 +1,17 @@
 package com.mygdx.game.encounters;
 
-import com.mygdx.game.state.GameNode;
-
 import java.util.Random;
 
 public class WishingWell extends GameNode {
 
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
     private int percentChance = 50;
     public WishingWell(){
         super(NodeType.WISHING_WELL, "Wishing Well");

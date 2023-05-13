@@ -1,21 +1,17 @@
 package com.mygdx.game.state;
 
 import com.mygdx.game.character.abilities.Ability;
-import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.knight.KnightGenerator;
 import com.mygdx.game.character.plaguedoctor.PlagueDoctorGenerator;
 import com.mygdx.game.screens.widgets.Team;
-import com.mygdx.game.state.gear.EquippedGear;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Character {
 
     private String name;
     private CharacterType characterType;
+    private int maxHp;
     private int hp;
     private Ability firstBasicAbility;
     private Ability secondBasicAbility;
@@ -26,10 +22,11 @@ public class Character {
 
 
 
-    public Character(String name, CharacterType characterType, int hp, Ability firstBasicAbility, Ability secondBasicAbility,
+    public Character(String name, CharacterType characterType, int hp, int maxHp, Ability firstBasicAbility, Ability secondBasicAbility,
                      Ability ultimateAbility, Stats baseStats, int chargeTime) {
         this.name = name;
         this.characterType = characterType;
+        this.maxHp = maxHp;
         this.hp = hp;
         this.firstBasicAbility = firstBasicAbility;
         this.secondBasicAbility = secondBasicAbility;
@@ -42,6 +39,7 @@ public class Character {
         this.name = character.name;
         this.characterType = character.characterType;
         this.hp = character.hp;
+        this.maxHp = character.maxHp;
         this.firstBasicAbility = character.firstBasicAbility;
         this.secondBasicAbility = character.secondBasicAbility;
         this.ultimateAbility = character.ultimateAbility;
@@ -49,6 +47,18 @@ public class Character {
         this.chargeTime = character.chargeTime;
     }
 
+
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+
+
+    public Character setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+        return this;
+    }
 
 
 
@@ -89,10 +99,10 @@ public class Character {
 
     public static Character generateNewCharacter(Character.CharacterType characterType){
         switch(characterType){
-            case PLAGUE_DOCTOR -> { return PlagueDoctorGenerator.generateStartingPlagueDoctor(); }
-            case LEPER -> {return PlagueDoctorGenerator.generateStartingPlagueDoctor();}
-            case INVENTOR -> {return PlagueDoctorGenerator.generateStartingPlagueDoctor();}
-            case KNIGHT -> {return KnightGenerator.generateStartingPlagueDoctor();}
+            case PLAGUE_DOCTOR -> { return PlagueDoctorGenerator.generate(); }
+            case LEPER -> {return PlagueDoctorGenerator.generate();}
+            case INVENTOR -> {return PlagueDoctorGenerator.generate();}
+            case KNIGHT -> {return KnightGenerator.generate();}
             default -> throw new IllegalStateException("Unexpected value: " + characterType);
         }
     }

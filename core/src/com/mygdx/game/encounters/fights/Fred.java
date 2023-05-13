@@ -19,12 +19,20 @@ public class Fred extends FightNode {
     public Fred(){
         super(NodeType.BOSS_FIGHT, "Boss");
     }
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
     @Override
     public List<OverthrowActs.ActType> actTypeEncounterable() {
         return Arrays.asList(OverthrowActs.ActType.FARMS);
     }
 
-
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
 
 
     private static final int FRED_STARTING_HP = 20;
@@ -46,6 +54,7 @@ public class Fred extends FightNode {
         return new Character(
                 "Fred",
                 Character.CharacterType.FRED,
+                FRED_STARTING_HP,
                 FRED_STARTING_HP,
                 FRED_STARTING_BASIC_ABILITY_1,
                 FRED_STARTING_BASIC_ABILITY_2,

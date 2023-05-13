@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.encounters.OverthrowActs;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
 import com.mygdx.game.screens.widgets.nextencounter.PathSelectedObserver;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 
 import java.util.List;
 

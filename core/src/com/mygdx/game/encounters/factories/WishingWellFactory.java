@@ -2,7 +2,7 @@ package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.OverthrowActs;
 import com.mygdx.game.encounters.WishingWell;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 
 public class WishingWellFactory {
 

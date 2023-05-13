@@ -1,5 +1,6 @@
 package com.mygdx.game.state;
 
+import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.screens.widgets.Team;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;

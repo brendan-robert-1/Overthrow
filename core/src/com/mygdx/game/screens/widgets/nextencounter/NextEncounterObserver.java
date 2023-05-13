@@ -1,8 +1,6 @@
 package com.mygdx.game.screens.widgets.nextencounter;
 
-import com.mygdx.game.screens.widgets.inventory.InventoryItem;
-import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 
 public interface NextEncounterObserver {
     public static enum NextEncounterEvent {

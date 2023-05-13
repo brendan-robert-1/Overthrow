@@ -5,6 +5,7 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.character.buff.PoisonDebuff;
+import com.mygdx.game.screens.encounterscreens.combat.DamageCalculator;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 import com.mygdx.game.state.Character;
@@ -12,6 +13,8 @@ import com.mygdx.game.state.Character;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class TossConcoction implements Ability {
+
+    private static final int DAMAGE = 1;
 
     @Override
     public String name() {
@@ -51,7 +54,8 @@ public class TossConcoction implements Ability {
 
     @Override
     public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
-        target.decreaseHpBy(1);
+        int actualDamage = DamageCalculator.calculateDamage(damageType(), DAMAGE, source, target);
+        target.decreaseHpBy(actualDamage);
         Buff poison = new PoisonDebuff(3, 3);
         Sound sound = Assets.getInstance().getSoundAsset("axe.mp3");
         sound.play(MASTER_VOLUME);
@@ -63,5 +67,12 @@ public class TossConcoction implements Ability {
     @Override
     public AbilityType abilityType() {
         return AbilityType.TOSS_CONCOCTION;
+    }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.MAGICAL;
     }
 }

@@ -2,7 +2,7 @@ package com.mygdx.game.encounters.chancetables;
 
 import java.util.*;
 import java.util.stream.IntStream;
-import com.mygdx.game.state.GameNode.NodeType;
+import com.mygdx.game.encounters.GameNode.NodeType;
 //TODO import from json
 public class FarmsEncounterChanceTable {
     private Map<Integer, Map<Integer,NodeType>> floorNumberToSlots = new HashMap<>();
@@ -50,25 +50,25 @@ public class FarmsEncounterChanceTable {
 
     private void generateWeightsFloor1(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.KEYMASTER);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.ABANDONED_FARMHOUSE);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.ABANDONED_FARMHOUSE);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.ABANDONED_FARMHOUSE);
         floorNumberToSlots.put(1, weights);
     }
 
     private void generateWeightsFloor2(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.MARKET);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.MARKET);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.MARKET);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.KEYMASTER);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.KEYMASTER);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.KEYMASTER);
         floorNumberToSlots.put(2, weights);
     }
 
     private void generateWeightsFloor3(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 40).iterator(), NodeType.KEYMASTER);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 40).iterator(), NodeType.BASIC_FIGHT);
         floorNumberToSlots.put(3, weights);
     }
 

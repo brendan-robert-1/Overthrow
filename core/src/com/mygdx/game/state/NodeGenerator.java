@@ -36,6 +36,7 @@ public class NodeGenerator {
            case GEM_MERCHANT -> {return GemMerchantFactory.generateRandomGemMerchantFor(actType);}
            case QUESTION_MARK -> {return QuestionMarkFactory.generateRandomQuestionMarkFor(actType);}
            case CHEST ->  {return ChestFactory.generateMidActChestFor(actType);}
+           case ABANDONED_FARMHOUSE ->  {return new AbandonedFarmNode();}
            default -> throw new IllegalStateException("Unexpected value: " + nodeType);
        }
     }

@@ -3,6 +3,7 @@ package com.mygdx.game.state;
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.ImmutableGraph;
 import com.google.common.graph.MutableGraph;
+import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 
 

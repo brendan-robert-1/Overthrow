@@ -24,6 +24,15 @@ public class TaxMan extends FightNode {
         return Arrays.asList(OverthrowActs.ActType.FARMS);
     }
 
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
     private static final int TAX_MAN_STARTING_HP = 20;
     private static final Ability TAX_MAN_STARTING_BASIC_ABILITY_1 = new TossConcoction();
     private static final Ability TAX_MAN_STARTING_BASIC_ABILITY_2 = new Bloodlet();
@@ -49,6 +58,7 @@ public class TaxMan extends FightNode {
                 "Tax Man",
                 Character.CharacterType.TAX_MAN,
                 TAX_MAN_STARTING_HP,
+                TAX_COLLECTOR_STARTING_HP,
                 TAX_MAN_STARTING_BASIC_ABILITY_1,
                 TAX_MAN_STARTING_BASIC_ABILITY_2,
                 TAX_MAN_STARTING_ULT_ABILITY,
@@ -64,6 +74,7 @@ public class TaxMan extends FightNode {
         return new Character(
                 "Tax Collector",
                 Character.CharacterType.TAX_COLLECTOR,
+                TAX_COLLECTOR_STARTING_HP,
                 TAX_COLLECTOR_STARTING_HP,
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_1,
                 TAX_COLLECTOR_STARTING_BASIC_ABILITY_2,

@@ -62,5 +62,12 @@ public class Bloodlet implements Ability {
     public AbilityType abilityType() {
         return AbilityType.BLOODLET;
     }
+
+
+
+    @Override
+    public DamageType damageType() {
+        return DamageType.TRUE;
+    }
 }
 

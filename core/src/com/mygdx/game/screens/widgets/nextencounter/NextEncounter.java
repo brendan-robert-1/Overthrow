@@ -1,28 +1,30 @@
 package com.mygdx.game.screens.widgets.nextencounter;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Assets;
-import com.mygdx.game.screens.GameStateScreen;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
-import com.mygdx.game.screens.widgets.inventory.InventoryItem;
-import com.mygdx.game.screens.widgets.outfitter.OutfitterObserver;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.state.GameState;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.Set;
 
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class NextEncounter extends GameNode implements NextEncounterSubject, PathSelectedSubject{
+
+    @Override
+    public String ambientSounds() {
+        return null;
+    }
+    @Override
+    public String backgroundAsset() {
+        return "farms-fire";
+    }
     Array<NextEncounterObserver> observers;
     Array<PathSelectedObserver> pathSelectedObservers = new Array<>();
 
@@ -74,7 +76,9 @@ public class NextEncounter extends GameNode implements NextEncounterSubject, Pat
             case GEM_MERCHANT -> {return "Merchant";}
             case QUESTION_MARK -> {return "QUESTION_MARK";}
             case CHEST -> {return "CHEST";}
-            case PATH_SELECTION -> {return "Merchant";}
+            case PATH_SELECTION -> {return "";}
+            case ABANDONED_FARMHOUSE -> {return "Farmhouse";}
+
 
             default -> throw new IllegalStateException("Unexpected value: " + nodeType);
         }

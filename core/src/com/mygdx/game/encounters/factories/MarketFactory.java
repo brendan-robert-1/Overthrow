@@ -3,7 +3,7 @@ package com.mygdx.game.encounters.factories;
 import com.mygdx.game.encounters.MarketNode;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
-import com.mygdx.game.state.GameNode;
+import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.state.items.InventoryItemFactory;
 import com.mygdx.game.state.shops.MarketOffering;
 import com.mygdx.game.state.shops.MarketOfferingFactory;
