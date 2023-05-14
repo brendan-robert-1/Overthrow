@@ -5,7 +5,7 @@ import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 
 public class KnightGenerator {
-    private static final int STARTING_HP = 100;
+    private static final int STARTING_HP = 74;
     private static final Ability STARTING_BASIC_ABILITY_1 = new Joust();
     private static final Ability STARTING_BASIC_ABILITY_2 = new ArmorUp();
     private static final Ability STARTING_ULT_ABILITY = new Challenge();
@@ -15,7 +15,7 @@ public class KnightGenerator {
                 "Knight",
                 Character.CharacterType.KNIGHT,
                 STARTING_HP,
-                STARTING_HP,
+                100,
                 STARTING_BASIC_ABILITY_1,
                 STARTING_BASIC_ABILITY_2,
                 STARTING_ULT_ABILITY,

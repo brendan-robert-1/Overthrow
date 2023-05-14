@@ -35,6 +35,7 @@ public class Assets {
         loadSoundAsset("bottle.mp3");
         loadSoundAsset("keys.mp3");
         loadSoundAsset("fire.mp3");
+        loadSoundAsset("church.mp3");
         assetManager.finishLoading();
     }
 

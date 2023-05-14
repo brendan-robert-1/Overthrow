@@ -29,7 +29,7 @@ public class OutfitterNode extends GameNode implements OutfitterSubject {
     }
     @Override
     public String backgroundAsset() {
-        return "farms-fire";
+        return "town";
     }
 
     Array<OutfitterObserver> observers;

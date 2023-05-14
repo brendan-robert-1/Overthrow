@@ -101,7 +101,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
 
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions("farms-fire"), Animation.PlayMode.LOOP);
+        Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions("town"), Animation.PlayMode.LOOP);
         background = new AnimatedActor(farms);
         background.setScaling(Scaling.fit);
         background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -322,6 +322,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private void updateBackgroundForEncounter(String backgroundAsset) {
         if(background != null){
             background.remove();
+            if(backgroundAsset == null){backgroundAsset = "farms-fire";}
             TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
             Animation<TextureRegion> backgroundRegions = new Animation<TextureRegion>(0.1f, atlas.findRegions(backgroundAsset), Animation.PlayMode.LOOP);
             background = new AnimatedActor(backgroundRegions);

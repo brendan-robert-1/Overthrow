@@ -37,6 +37,7 @@ public class NodeGenerator {
            case QUESTION_MARK -> {return QuestionMarkFactory.generateRandomQuestionMarkFor(actType);}
            case CHEST ->  {return ChestFactory.generateMidActChestFor(actType);}
            case ABANDONED_FARMHOUSE ->  {return new AbandonedFarmNode();}
+           case TEMPLE_PRAYERS -> {return new TemplePrayers();}
            default -> throw new IllegalStateException("Unexpected value: " + nodeType);
        }
     }

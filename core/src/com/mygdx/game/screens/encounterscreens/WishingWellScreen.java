@@ -14,10 +14,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Assets;
 import com.mygdx.game.encounters.WishingWell;
 import com.mygdx.game.screens.widgets.EntireInGameScreenTable;
+import com.mygdx.game.screens.widgets.TopBar;
 import com.mygdx.game.state.GameState;
 
 public class WishingWellScreen extends ScreenAdapter {
-    private GameState gameState = GameState.getInstance();
     private WishingWell wishingWell;
     private Stage stage;
     private Viewport viewport;
@@ -54,9 +54,9 @@ public class WishingWellScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Threw 10 coins to increase luck!");
-                if(gameState.getCoin()>= 10 && wishingWell.getPercentChance() < 100){
+                if(TopBar.getInstance().getCoin() >= 10 && wishingWell.getPercentChance() < 100){
                     wishingWell.throwCoins();
-                    gameState.decreaseCoinBy(10);
+                    TopBar.getInstance().decreaseCoinBy(10);
                     displayChance(wishingWell.getPercentChance(), label);
                 }
             }

@@ -3,6 +3,7 @@ package com.mygdx.game.state;
 import com.mygdx.game.encounters.GameNode;
 import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.screens.widgets.Team;
+import com.mygdx.game.screens.widgets.TopBar;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 
@@ -17,7 +18,7 @@ public class NewGameGenerator {
         GameState state = GameState.getInstance();
         state.setRunSeed(seed);
         Team.getInstance().init( new CharacterPanel(Character.generateNewCharacter(characterType)), null, null, null);
-        state.setCoin(4);
+        TopBar.getInstance().setCoin(15);
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);
         state.setCurrentFloor(0);

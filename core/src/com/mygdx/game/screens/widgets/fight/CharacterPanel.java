@@ -148,6 +148,20 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         if(this.getCharacter().getHp() <= 0){
             this.remove();
         }
+        this.update();
+    }
+
+    //bounds percent to have it make sense
+    public void decreaseHpByPercent(int decreaseByPercent){
+        if(decreaseByPercent > 100){
+            decreaseByPercent = 100;
+        }
+        if(decreaseByPercent < 1){
+            decreaseByPercent = 0;
+        }
+        //Rounded down
+        int amountToDamage = this.getCharacter().getHp() / decreaseByPercent;
+       decreaseHpBy(amountToDamage);
     }
 
     public void increaseHpBy(int increaseBy){
@@ -159,5 +173,15 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         if(character.getHp() > character.getMaxHp()){
             character.setHp(character.getMaxHp());
         }
+        this.update();
+    }
+
+
+
+    public void increaseMaxHpBy(int partyMaxHpIncrease) {
+        Character character = this.getCharacter();
+        character.setMaxHp(character.getMaxHp() + partyMaxHpIncrease);
+        character.increaseHpBy(partyMaxHpIncrease);
+        this.update();
     }
 }

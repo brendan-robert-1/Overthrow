@@ -19,6 +19,7 @@ import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class TopBar extends Table {
     private static TopBar instance;
+    private int coin = 0;
 
     public static TopBar getInstance(){
         if(instance == null){
@@ -31,10 +32,12 @@ public class TopBar extends Table {
        update();
     }
 
+
+
     public void update(){
         this.clearChildren();
         Window window = new Window("", Assets.skin(), "top-bar");
-        PixelProTextButton coins = new PixelProTextButton("Coins: " + GameState.getInstance().getCoin(), Assets.skin(), "top-bar");
+        PixelProTextButton coins = new PixelProTextButton("Coins: " + coin, Assets.skin(), "top-bar");
         PixelProTextButton inventory = new PixelProTextButton("Inventory", Assets.skin(), "top-bar");
         inventory.addListener(new ClickListener() {
             @Override
@@ -89,6 +92,29 @@ public class TopBar extends Table {
             inventoryUi.setVisible(true);
             inventoryUi.pack();
         }
+    }
+
+    public void setCoin(int coin){
+        this.coin = coin;
+        this.update();
+    }
+
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public void increaseCoinBy(int increaseBy){
+        this.coin = coin + increaseBy;
+        this.update();
+    }
+
+    public void decreaseCoinBy(int decreaseCoinBy){
+        if(decreaseCoinBy > coin){
+            throw new IllegalArgumentException("cant have negative coin dummy");
+        }
+        this.coin = coin - decreaseCoinBy;
+        this.update();
     }
 
     public ClickListener optionClickListener(){

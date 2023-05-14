@@ -108,14 +108,14 @@ KNIGHT
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: -1
+  index: 2
 KNIGHT
   rotate: false
   xy: 1870, 1563
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: -1
 KNIGHT
   rotate: false
   xy: 1983, 1671
@@ -704,8 +704,15 @@ abandoned-farmhouse2
   index: 2
 enemy-placeholder-medium
   rotate: false
-  xy: 904, 648
+  xy: 904, 196
   size: 256, 256
   orig: 256, 256
+  offset: 0, 0
+  index: -1
+town
+  rotate: false
+  xy: 904, 454
+  size: 899, 450
+  orig: 899, 450
   offset: 0, 0
   index: -1

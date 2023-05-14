@@ -50,9 +50,9 @@ public class FarmsEncounterChanceTable {
 
     private void generateWeightsFloor1(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.ABANDONED_FARMHOUSE);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.ABANDONED_FARMHOUSE);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.ABANDONED_FARMHOUSE);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.TEMPLE_PRAYERS);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.TEMPLE_PRAYERS);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.TEMPLE_PRAYERS);
         floorNumberToSlots.put(1, weights);
     }
 

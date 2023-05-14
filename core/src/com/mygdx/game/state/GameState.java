@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public class GameState {
     private UUID runSeed;
-    private int coin;
     private MapGraph mapGraph;
     private GameNode currentNode;
     private int currentFloor;
@@ -34,26 +33,6 @@ public class GameState {
     }
 
 
-    public int getCoin() {
-        return coin;
-    }
-
-
-    public GameState setCoin(int coin) {
-        this.coin = coin;
-        return this;
-    }
-
-    public void increaseCoinBy(int increaseBy){
-        this.coin = coin + increaseBy;
-    }
-
-    public void decreaseCoinBy(int decreaseCoinBy){
-        if(decreaseCoinBy > coin){
-            throw new IllegalArgumentException("cant have negative coin dummy");
-        }
-        this.coin = coin - decreaseCoinBy;
-    }
 
 
     public MapGraph getMapGraph() {

@@ -15,11 +15,10 @@ import com.badlogic.gdx.utils.Scaling;
 import com.mygdx.game.Assets;
 import com.mygdx.game.render.AnimatedActor;
 import com.mygdx.game.screens.encounterscreens.MainGameScreen;
-import com.mygdx.game.screens.widgets.ProceedButton;
-import com.mygdx.game.screens.widgets.ProceedObserver;
-import com.mygdx.game.screens.widgets.ProceedSubject;
+import com.mygdx.game.screens.widgets.*;
 import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.screens.widgets.inventory.InventoryUi;
+import com.mygdx.game.state.GameState;
 import com.mygdx.game.state.items.InventoryItemFactory;
 
 import java.util.Random;
@@ -27,6 +26,9 @@ import java.util.Random;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class KeymasterNode extends GameNode implements ProceedSubject {
+
+    private static final int BLOOD_OFFER_PERCENT_DAMAGE = 6;
+    private static final int COIN_PURCHASE_PRICE = 9;
 
     private Table options;
     private Table explanation;
@@ -40,7 +42,7 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
 
     @Override
     public String ambientSounds() {
-        return "keys.mp3";
+        return "fire.mp3";
     }
 
     public KeymasterNode(){
@@ -65,11 +67,11 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
 
     private Table optionsTable(){
         Table table = new Table();
-        TextButton purchase = new TextButton("Purchase", Assets.skin());
+        TextButton purchase = new TextButton("Purchase (" + COIN_PURCHASE_PRICE + " coins)", Assets.skin());
         purchase.pad(20);
         purchase.addListener(purchaseKeyListener());
 
-        TextButton bloodOffer = new TextButton("Blood offer", Assets.skin());
+        TextButton bloodOffer = new TextButton("Blood offer (20% party damage)", Assets.skin());
         bloodOffer.addListener(bloodOfferKeyListener());
         bloodOffer.pad(20);
 
@@ -94,6 +96,7 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
                 explanation.remove();
                 options.clearChildren();
                 options.add(keyReward());
+                TopBar.getInstance().decreaseCoinBy(COIN_PURCHASE_PRICE);
                 final Sound sound1 = Assets.getInstance().getSoundAsset("keys.mp3");
                 sound1.play(MASTER_VOLUME);
                 super.clicked(event, x, y);
@@ -106,12 +109,21 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
             public void clicked(InputEvent event, float x, float y) {
                 explanation.remove();
                 options.clearChildren();
+                bloodOfferParty();
                 options.add(keyReward());
                 final Sound sound1 = Assets.getInstance().getSoundAsset("keys.mp3");
                 sound1.play(MASTER_VOLUME);
                 super.clicked(event, x, y);
             }
         };
+    }
+
+
+
+    private void bloodOfferParty() {
+        Team.getInstance().streamNonNull().forEach(c-> {
+            c.decreaseHpByPercent(BLOOD_OFFER_PERCENT_DAMAGE);
+        });
     }
 
 

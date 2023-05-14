@@ -18,7 +18,6 @@ import com.mygdx.game.state.shops.ShopOffering;
 import java.util.List;
 
 public class MarketScreen extends ScreenAdapter {
-    private GameState gameState = GameState.getInstance();
     private MarketNode marketNode;
     private Stage stage;
     private Viewport viewport;
@@ -77,7 +76,7 @@ public class MarketScreen extends ScreenAdapter {
         button.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(gameState.getCoin() >= offering.getPrice()){
+                if(TopBar.getInstance().getCoin() >= offering.getPrice()){
                     chargeAndAddToInventory(offering);
                 }else {
                     System.out.println("Too expensive!");
@@ -90,9 +89,9 @@ public class MarketScreen extends ScreenAdapter {
 
 
     private void chargeAndAddToInventory(ShopOffering offering) {
-        gameState.setCoin(gameState.getCoin() - offering.getPrice());
+        TopBar.getInstance().setCoin(TopBar.getInstance().getCoin() - offering.getPrice());
 
-        System.out.println("New coin amount after purchase: " + gameState.getCoin());
+        System.out.println("New coin amount after purchase: " + TopBar.getInstance().getCoin());
 
     }
     @Override

@@ -61,7 +61,7 @@ public class NextEncounter extends GameNode implements NextEncounterSubject, Pat
     
     private String nextEncounterDisplay(NodeType nodeType){
         switch(nodeType){
-            case KEYMASTER -> {return "Keymaster";}
+            case KEYMASTER -> {return "?";}
             case OUTFITTER -> {return "Outfitter";}
             case BASIC_FIGHT -> {return "Fight";}
             case ELITE_FIGHT -> {return "Elite Fight";}
@@ -70,15 +70,15 @@ public class NextEncounter extends GameNode implements NextEncounterSubject, Pat
             case ARMOR_MERCHANT -> {return "Merchant";}
             case WEAPON_MERCHANT -> {return "Merchant";}
             case BLACKSMITH -> {return "BLACKSMITH";}
-            case WISHING_WELL -> {return "WISHING_WELL";}
-            case SAUNA -> {return "SAUNA";}
+            case WISHING_WELL -> {return "?";}
+            case SAUNA -> {return "Sauna";}
             case ABILITY_TRAINER -> {return "ABILITY_TRAINER";}
             case GEM_MERCHANT -> {return "Merchant";}
-            case QUESTION_MARK -> {return "QUESTION_MARK";}
+            case QUESTION_MARK -> {return "?";}
             case CHEST -> {return "CHEST";}
             case PATH_SELECTION -> {return "";}
-            case ABANDONED_FARMHOUSE -> {return "Farmhouse";}
-
+            case ABANDONED_FARMHOUSE -> {return "?";}
+            case TEMPLE_PRAYERS -> {return "?";}
 
             default -> throw new IllegalStateException("Unexpected value: " + nodeType);
         }

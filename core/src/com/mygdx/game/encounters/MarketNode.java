@@ -95,11 +95,11 @@ public class MarketNode extends GameNode implements ProceedSubject {
         return new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(GameState.getInstance().getCoin() >= inventoryItem.getCoinValue()){
+                if(TopBar.getInstance().getCoin() >= inventoryItem.getCoinValue()){
                     Sound purchase = Assets.getInstance().getSoundAsset("purchase.mp3");
                     purchase.play(MASTER_VOLUME);
                     InventoryUi.getInstance().addToFirstOpenSlot(inventoryItem);
-                    GameState.getInstance().decreaseCoinBy(inventoryItem.getCoinValue());
+                    TopBar.getInstance().decreaseCoinBy(inventoryItem.getCoinValue());
                     event.getListenerActor().remove();
                     TopBar.getInstance().update();
                     super.clicked(event, x, y);

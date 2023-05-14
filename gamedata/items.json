@@ -119,6 +119,30 @@
       "displayName": "Lantern",
       "itemShortDescription": "Increases combat effectiveness against some enemies.",
       "coinValue": 2
+    },
+    "SHORT_SWORD": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "SHORT_SWORD",
+      "displayName": "Short Sword",
+      "itemShortDescription": "+2 Physical Damage.",
+      "coinValue": 2
+    },
+    "BRASS_CROZIER": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "BRASS_CROZIER",
+      "displayName": "Brass Crozier",
+      "itemShortDescription": "+1 Heal Power, +1 Magical Resistance",
+      "coinValue": 2
+    },
+    "FEZ": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_HEAD",
+      "itemTypeId": "FEZ",
+      "displayName": "Fez",
+      "itemShortDescription": "+2 Magical Resistance",
+      "coinValue": 2
     }
   }
 }
