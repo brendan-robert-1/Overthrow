@@ -50,7 +50,7 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
         options = optionsTable();
         explanation = new Table();
         explanation.setBackground(Assets.skin().getDrawable("button-up"));
-        explanation.add(new Label("The Keymaster offers you a key in exchange for a sacrifice.", Assets.skin())).pad(20);
+        explanation.add(new Label("The Keymaster offers you a key in exchange for a sacrifice.", Assets.skin())).pad(40);
         this.add(explanation).expand();
         //options.setPosition(Gdx.graphics.getWidth()/2 - options.getWidth()/2, Gdx.graphics.getHeight()/2 - options.getHeight()/2);
         this.add(options).expand().fill();
@@ -79,11 +79,11 @@ public class KeymasterNode extends GameNode implements ProceedSubject {
         dismiss.addListener(ignoreListener());
         dismiss.pad(20);
 
-        table.add(purchase).pad(20);
+        table.add(purchase).pad(7);
         table.row();
-        table.add(bloodOffer).pad(20);
+        table.add(bloodOffer).pad(7);
         table.row();
-        table.add(dismiss).pad(20);
+        table.add(dismiss).pad(7);
         return table;
     }
 

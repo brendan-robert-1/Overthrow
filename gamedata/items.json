@@ -14,7 +14,10 @@
       "itemTypeId": "RUSTY_DAGGER",
       "displayName": "Rusty Dagger",
       "itemShortDescription": "+2 Physical Damage",
-      "coinValue": 3
+      "coinValue": 3,
+      "statModifiers": {
+        "physicalDamage": 2
+      }
     },
     "HEALTH_POT": {
       "itemAttribute": "CONSUMABLE",

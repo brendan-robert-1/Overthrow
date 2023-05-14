@@ -3,6 +3,7 @@ package com.mygdx.game.screens.widgets.inventory;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
+import com.mygdx.game.screens.widgets.Team;
 
 public class InventorySlotTarget extends Target {
 
@@ -50,6 +51,7 @@ public class InventorySlotTarget extends Target {
                 InventorySlot.swapSlots(sourceSlot, targetSlot, sourceActor);
             }
         }
+        Team.getInstance().update();
 
     }
 }

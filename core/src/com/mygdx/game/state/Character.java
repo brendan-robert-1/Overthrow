@@ -17,7 +17,6 @@ public class Character {
     private Ability secondBasicAbility;
     private Ability ultimateAbility;
     private final Stats baseStats;
-    private Stats inCombatStatModifiers = new Stats();
     private int chargeTime;
 
 
@@ -192,11 +191,11 @@ public class Character {
 
     public Stats getStats(){
         return new Stats(
-                baseStats.getArmor() + inCombatStatModifiers.getArmor(),
-                baseStats.getMagicResistance() + inCombatStatModifiers.getMagicResistance(),
-                baseStats.getPhysicalDamage() + inCombatStatModifiers.getPhysicalDamage(),
-                baseStats.getMagicalDamage() + inCombatStatModifiers.getMagicalDamage(),
-                baseStats.getSpeed() + inCombatStatModifiers.getSpeed()
+                baseStats.getArmor() ,
+                baseStats.getMagicResistance() ,
+                baseStats.getPhysicalDamage() ,
+                baseStats.getMagicalDamage() ,
+                baseStats.getSpeed()
         );
     }
 
@@ -219,18 +218,12 @@ public class Character {
         return this;
     }
 
-    public Stats getInCombatStatModifiers() {
-        return inCombatStatModifiers;
-    }
 
     public void increaseHpBy(int increase){
         this.setHp(hp + increase);
     }
 
-    public Character setInCombatStatModifiers(Stats inCombatStatModifiers) {
-        this.inCombatStatModifiers = inCombatStatModifiers;
-        return this;
-    }
+
 
     public void increaseChargeTimeBy(int increaseBy){
         this.chargeTime+=increaseBy;

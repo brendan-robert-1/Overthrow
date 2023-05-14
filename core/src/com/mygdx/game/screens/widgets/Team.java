@@ -28,21 +28,32 @@ public class Team extends Table{
         return instance;
     }
 
+    public enum TeamSlotIndex {
+        FIRST,
+        SECOND,
+        THIRD,
+        FOURTH
+    }
+
     public void init(CharacterPanel firstCharacterPanel, CharacterPanel secondCharacterPanel, CharacterPanel thirdCharacterPanel, CharacterPanel fourthCharacterPanel){
 
         if(firstCharacterPanel != null && firstCharacterPanel.getCharacter() != null){
+            firstCharacterPanel.setTeamSlotIndex(TeamSlotIndex.FIRST);
             instance.firstCharacterPanel = firstCharacterPanel;
             instance.add(firstCharacterPanel).expand();
         }
         if(secondCharacterPanel != null && secondCharacterPanel.getCharacter() != null){
+            secondCharacterPanel.setTeamSlotIndex(TeamSlotIndex.SECOND);
             instance.secondCharacterPanel = secondCharacterPanel;
             instance.add(secondCharacterPanel).expand();
         }
         if(thirdCharacterPanel != null && thirdCharacterPanel.getCharacter() != null){
+            thirdCharacterPanel.setTeamSlotIndex(TeamSlotIndex.THIRD);
             instance.thirdCharacterPanel = thirdCharacterPanel;
             instance.add(thirdCharacterPanel).expand();
         }
         if(fourthCharacterPanel != null && fourthCharacterPanel.getCharacter() != null){
+            fourthCharacterPanel.setTeamSlotIndex(TeamSlotIndex.FOURTH);
             instance.fourthCharacterPanel = fourthCharacterPanel;
             instance.add(fourthCharacterPanel).expand();
         }

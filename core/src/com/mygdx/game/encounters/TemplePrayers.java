@@ -36,7 +36,7 @@ public class TemplePrayers extends GameNode implements ProceedSubject {
         explanation = new Table();
         explanation.setBackground(Assets.skin().getDrawable("button-up"));
         explanation.add(new Label("You arrive at the steps of the local temple.\n" +
-                "Pray at the shrine to demonstrate your piety to the local clergy.", Assets.skin())).pad(20);
+                "Pray at the shrine to demonstrate your piety to the local clergy.", Assets.skin())).pad(20).padBottom(50).padTop(50);
         this.add(explanation).expand();
          this.add(options).expand().fill();
     }
@@ -57,11 +57,11 @@ public class TemplePrayers extends GameNode implements ProceedSubject {
         randomItem.pad(20);
         randomItem.addListener(randomItemListener());
 
-        optionsTable.add(partyMaxHp).pad(20);
+        optionsTable.add(partyMaxHp).pad(7);
         optionsTable.row();
-        optionsTable.add(partyHeal).pad(20);
+        optionsTable.add(partyHeal).pad(7);
         optionsTable.row();
-        optionsTable.add(randomItem).pad(20);
+        optionsTable.add(randomItem).pad(7);
         return optionsTable;
     }
 

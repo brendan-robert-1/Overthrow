@@ -3,6 +3,7 @@ package com.mygdx.game.screens.widgets.inventory;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.mygdx.game.state.Stats;
 
 public class InventoryItem extends Image {
 
@@ -14,13 +15,15 @@ public class InventoryItem extends Image {
     private String itemShortDescription;
     private String combatRewardsDisplayText;
     private int coinValue;
+    private Stats statModifiers;
 
-    public InventoryItem(TextureRegion textureRegion, ItemAttribute itemAttribute, ItemTypeId itemTypeId, ItemUseType itemUseType, int coinValue){
+    public InventoryItem(TextureRegion textureRegion, ItemAttribute itemAttribute, ItemTypeId itemTypeId, ItemUseType itemUseType, int coinValue, Stats statModifiers){
         super(textureRegion);
         this.itemTypeId = itemTypeId;
         this.itemAttribute = itemAttribute;
         this.itemUseType = itemUseType;
         this.coinValue = coinValue;
+        this.statModifiers = statModifiers;
     }
 
     public InventoryItem(){
@@ -34,6 +37,7 @@ public class InventoryItem extends Image {
         this.itemUseType = inventoryItem.getItemUseType();
         this.itemShortDescription = inventoryItem.getItemShortDescription();
         this.combatRewardsDisplayText = inventoryItem.getItemShortDescription();
+        this.statModifiers = inventoryItem.getStatModifiers();
         this.combatRewardsDisplayName = inventoryItem.getDisplayName();
         this.coinValue = inventoryItem.getCoinValue();
         this.displayName = inventoryItem.getDisplayName();
@@ -61,6 +65,19 @@ public class InventoryItem extends Image {
 
     public String getCombatRewardsDisplayName() {
         return combatRewardsDisplayName;
+    }
+
+
+
+    public Stats getStatModifiers() {
+        return statModifiers;
+    }
+
+
+
+    public InventoryItem setStatModifiers(Stats statModifiers) {
+        this.statModifiers = statModifiers;
+        return this;
     }
 
 

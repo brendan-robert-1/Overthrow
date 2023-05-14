@@ -3,6 +3,7 @@ package com.mygdx.game.screens.widgets.fight;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.Assets;
+import com.mygdx.game.screens.widgets.Team;
 import com.mygdx.game.state.Character;
 
 import java.util.Arrays;
@@ -33,18 +34,22 @@ public class EnemyTeam extends Table {
 
         if(firstCharacterPanel != null && firstCharacterPanel.getCharacter() != null){
             this.firstCharacterPanel = new CharacterPanel(firstCharacterPanel.getCharacter());
+            firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.FIRST);
             this.add(firstCharacterPanel).expand();
         }
         if(secondCharacterPanel != null && secondCharacterPanel.getCharacter() != null){
             this.secondCharacterPanel = new CharacterPanel(secondCharacterPanel.getCharacter());
+            firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.SECOND);
             this.add(secondCharacterPanel).expand();
         }
         if(thirdCharacterPanel != null && thirdCharacterPanel.getCharacter() != null){
             this.thirdCharacterPanel = new CharacterPanel(thirdCharacterPanel.getCharacter());
+            firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.THIRD);
             this.add(thirdCharacterPanel).expand();
         }
         if(fourthCharacterPanel != null && fourthCharacterPanel.getCharacter() != null){
             this.fourthCharacterPanel = new CharacterPanel(fourthCharacterPanel.getCharacter());
+            firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.FOURTH);
             this.add(fourthCharacterPanel).expand();
         }
 

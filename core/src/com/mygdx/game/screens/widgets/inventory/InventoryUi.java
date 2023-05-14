@@ -24,10 +24,10 @@ public class InventoryUi extends Window{
 
 
     private Table inventorySlotTable;
-    private Table character1EquipSlots = new Table();
-    private Table character2EquipSlots = new Table();
-    private Table character3EquipSlots = new Table();
-    private Table character4EquipSlots = new Table();
+    private EquipSlots character1EquipSlots;
+    private EquipSlots character2EquipSlots;
+    private EquipSlots character3EquipSlots;
+    private EquipSlots character4EquipSlots;
     private InventorySlotTooltip inventorySlotTooltip;
     private Array<Actor> inventoryActors;
     private DragAndDrop dragAndDrop;
@@ -86,99 +86,22 @@ public class InventoryUi extends Window{
 
     private void populate(){
         buildInventoryPanel();
-
         buildGearPanels();
-        populateGearPanels();
     }
 
     private void buildGearPanels(){
         if(team.getFirstCharacterPanel() != null){
-            character1EquipSlots = buildGearPanel(team.getFirstCharacterPanel().getCharacter());
+            character1EquipSlots = new EquipSlots(team.getFirstCharacterPanel().getCharacter(), inventorySlotTooltip, dragAndDrop);
         }
         if(team.getSecondCharacterPanel() != null){
-            character2EquipSlots = buildGearPanel(team.getSecondCharacterPanel().getCharacter());
+            character2EquipSlots =new EquipSlots(team.getSecondCharacterPanel().getCharacter(), inventorySlotTooltip, dragAndDrop);
         }
         if(team.getThirdCharacterPanel() != null){
-            character3EquipSlots = buildGearPanel(team.getThirdCharacterPanel().getCharacter());
+            character3EquipSlots = new EquipSlots(team.getThirdCharacterPanel().getCharacter(), inventorySlotTooltip, dragAndDrop);
         }
         if(team.getFourthCharacterPanel() != null){
-            character4EquipSlots = buildGearPanel(team.getFourthCharacterPanel().getCharacter());
+            character4EquipSlots = new EquipSlots(team.getFourthCharacterPanel().getCharacter(), inventorySlotTooltip, dragAndDrop);
         }
-    }
-
-    private void populateGearPanels(){}
-
-    private Table buildGearPanel(Character character){
-        Table table = new Table();
-        Image image = new Image(Assets.skin().getPatch("opaque-background"));
-        Image characterSprite = new CharacterSprite(character.getCharacterType());
-        table.setBackground(image.getDrawable());
-        table.pad(30);
-        Label label = new Label(character.getName(), Assets.skin());
-        InventorySlot headSlot = new InventorySlot(ItemUseType.ARMOR_HEAD, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot capeSlot = new InventorySlot(ItemUseType.ARMOR_CAPE,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot earringSlot = new InventorySlot(ItemUseType.ARMOR_EARRING, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot weapon1Slot = new InventorySlot(ItemUseType.WEAPON_ONEHAND, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot chestSlot = new InventorySlot(ItemUseType.ARMOR_CHEST,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot weapon2Slot = new InventorySlot(ItemUseType.WEAPON_TWOHAND, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot necklaceSlot = new InventorySlot(ItemUseType.ARMOR_NECKLACE, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot gloveSlot = new InventorySlot(ItemUseType.ARMOR_GLOVES, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot feetSlot = new InventorySlot(ItemUseType.ARMOR_FEET, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot ringSlot = new InventorySlot(ItemUseType.ARMOR_RING, new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-        InventorySlot legSlot = new InventorySlot(ItemUseType.ARMOR_LEGS,new InventorySplash(ItemUseType.WEAPON_ONEHAND));
-
-        headSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        capeSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        earringSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        weapon1Slot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        chestSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        weapon2Slot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        necklaceSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        gloveSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        feetSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        ringSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-        legSlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
-
-        dragAndDrop.addTarget(new InventorySlotTarget(headSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(capeSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(earringSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(weapon1Slot));
-        dragAndDrop.addTarget(new InventorySlotTarget(weapon1Slot));
-        dragAndDrop.addTarget(new InventorySlotTarget(weapon2Slot));
-        dragAndDrop.addTarget(new InventorySlotTarget(necklaceSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(gloveSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(feetSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(ringSlot));
-        dragAndDrop.addTarget(new InventorySlotTarget(legSlot));
-
-
-        table.add(label).colspan(2);
-        table.add(characterSprite);
-        table.row();
-        table.add();
-        table.add(headSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add();
-        table.row();
-
-        table.add(capeSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(necklaceSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(earringSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.row();
-
-        table.add(weapon1Slot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(chestSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(weapon2Slot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.row();
-        table.add();
-        table.add(legSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add();
-        table.row();
-
-        table.add(gloveSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(feetSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-        table.add(ringSlot).size(SLOT_WIDTH, SLOT_HEIGHT);
-
-        return table;
     }
 
 
@@ -257,6 +180,31 @@ public class InventoryUi extends Window{
     public Table getInventorySlotTable() {
         return inventorySlotTable;
     }
+
+
+
+    public EquipSlots getCharacter1EquipSlots() {
+        return character1EquipSlots;
+    }
+
+
+
+    public EquipSlots getCharacter2EquipSlots() {
+        return character2EquipSlots;
+    }
+
+
+
+    public EquipSlots getCharacter3EquipSlots() {
+        return character3EquipSlots;
+    }
+
+
+
+    public EquipSlots getCharacter4EquipSlots() {
+        return character4EquipSlots;
+    }
+
 
 
 
