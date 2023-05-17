@@ -62,6 +62,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     private AnimatedActor background;
     private ScreenTransitionActor transitionActor;
     private Sound encounterBackgroundSound;
+    private AbilitySelectPanel abilitySelectPanel;
 
 
     private static MainGameScreen instance;
@@ -81,7 +82,7 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         viewport = new ScreenViewport();
         InventoryUi.getInstance().setKeepWithinStage(false);
         entireInGameScreenTable = new EntireInGameScreenTable();
-
+        abilitySelectPanel = new AbilitySelectPanel(HudTooltip.getInstance());
         pathSelectWindow = new NextEncounter();
         pathSelectContainer = new Table();
         pathSelectContainer.setFillParent(true);
@@ -101,12 +102,13 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
 
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        Animation<TextureRegion> farms = new Animation<TextureRegion>(0.1f, atlas.findRegions("town"), Animation.PlayMode.LOOP);
+        Animation<TextureRegion> farms = new Animation(0.1f, atlas.findRegions("town"), Animation.PlayMode.LOOP);
         background = new AnimatedActor(farms);
         background.setScaling(Scaling.fit);
         background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         stage.addActor(background);
+        stage.addActor(abilitySelectPanel);
         stage.addActor(transitionActor);
         stage.addActor(entireInGameScreenTable);
         stage.addActor(pathSelectContainer);
@@ -248,12 +250,20 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
         logger.info(activeCharacter.getName() + "'s turn. They have " + activeCharacter.getChargeTime() + " charge time.");
         if(activeCharacter.getCharacter().isFriendly()){
             abilitySelectDragAndDrop = new DragAndDrop();
-            entireInGameScreenTable.populateAbilities(activeCharacter, abilitySelectDragAndDrop, fight.getEnemyTeam());
+            populateAbilities(activeCharacter, abilitySelectDragAndDrop);
             ActionState.playerStateValue = ActionState.StateValue.ALLOWED_TO_ACT;
             logger.info("Waiting for user input.");
         } else {
             combatProcessor.processFoeTurn(activeCharacter);
         }
+    }
+
+    private void populateAbilities(CharacterPanel activeCharacter, DragAndDrop dragAndDrop) {
+        abilitySelectPanel.populateAbilities(activeCharacter, dragAndDrop, fight.getEnemyTeam());
+        abilitySelectPanel.setVisible(true);
+        abilitySelectPanel.setPosition(Gdx.graphics.getWidth()/2 - abilitySelectPanel.getWidth()/2, Gdx.graphics.getHeight()/2 - abilitySelectPanel.getHeight()/2);
+        abilitySelectPanel.toFront();
+
     }
 
     private void displayTurnCarousel(){
@@ -276,9 +286,10 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
     private void displayCombatRewards() {
         logger.info("you won the fight here are the rewards");
+        abilitySelectPanel.setVisible(false);
         encounterContainer.setVisible(false);
         entireInGameScreenTable.hideAbilitySelectPanel();
-        combatRewardsWindow = new CombatRewardsWindow();
+        combatRewardsWindow = new CombatRewardsWindow(fight.getEnemyTeam().getCombatRewards());
         Sound combatRewardSound = Assets.getInstance().getSoundAsset("coin-reward.mp3");
         combatRewardSound.play(MASTER_VOLUME);
         stage.addActor(combatRewardsWindow);

@@ -72,7 +72,8 @@ public class Character {
         MUTATED_CHICKEN,
         MUTATED_COW,
         MUTATED_PIG,
-        FRED, KEYMASTER;
+        FRED, KEYMASTER, QUANT, DEBT_COLLECTOR,
+        FAT_DRUNK_MOBSTER, TALL_DRUNK_MOBSTER, WOMAN_DRUNK_MOBSTER, SHORT_DRUNK_MOBSTER, SEWER_RAT;
 //        public static String toDisplayName(CharacterType characterType){
 //            switch(characterType){
 //                case PLAGUE_DOCTOR -> {return "Plague Doctor";}

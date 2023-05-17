@@ -32,7 +32,7 @@ public class MainMenuScreen extends ScreenAdapter {
         viewport = new ScreenViewport();
         Table table = new Table();
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegion trd = new TextureRegion(atlas.findRegion("town"));
+        TextureRegion trd = new TextureRegion(atlas.findRegion("BOSS_FIGHT"));
         table.setBackground(new TextureRegionDrawable(trd));
         stage.addActor(table);
         table.setFillParent(true);

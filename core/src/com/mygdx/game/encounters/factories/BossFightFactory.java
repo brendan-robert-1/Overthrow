@@ -1,7 +1,10 @@
 package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.fights.*;
+import com.mygdx.game.encounters.fights.farms.boss.DebtCollector;
+import com.mygdx.game.encounters.fights.farms.boss.Fred;
+import com.mygdx.game.encounters.fights.farms.basic.Homesteaders;
+import com.mygdx.game.encounters.fights.farms.advanceed.MutatedLivestock;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 
 import java.util.Random;
@@ -19,8 +22,8 @@ public class BossFightFactory {
     }
 
     private static FightNode generateFarmFight(){
-        switch(new Random().nextInt(3)){
-            case 0 -> {return new TaxMan();}
+        switch(new Random().nextInt(1)){
+            case 0 -> {return new DebtCollector();}
             case 1 -> {return new Fred();}
             case 2 -> {return new MutatedLivestock();}
             default -> throw new IllegalStateException("Unexpected value");

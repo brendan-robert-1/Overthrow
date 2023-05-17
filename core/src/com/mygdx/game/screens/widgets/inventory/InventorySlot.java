@@ -39,10 +39,10 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         this.add(numItemsLabel);
     }
 
-    public InventorySlot(ItemUseType filterItemType, Image decal){
+    public InventorySlot(ItemUseType filterItemType, Image backgroundDecal){
         this();
         this.filterItemType = filterItemType;
-        this.decal = decal;
+        this.decal = backgroundDecal;
         decal.setSize(52,52);
         decal.setScaling(Scaling.fit);
         defaultBackground.add(decal);

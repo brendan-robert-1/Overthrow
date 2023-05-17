@@ -5,7 +5,6 @@ import com.mygdx.game.encounters.OverthrowActs.ActType;
 import com.mygdx.game.screens.widgets.Team;
 import com.mygdx.game.screens.widgets.TopBar;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
-import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 
 import java.util.UUID;
 
@@ -22,9 +21,6 @@ public class NewGameGenerator {
         state.setMapGraph(graph);
         state.setCurrentNode(currentNode);
         state.setCurrentFloor(0);
-    }
-    private static EnemyTeam newEmptyEnemySlots(){
-        return new EnemyTeam(null, null, null, null);
     }
 }
 

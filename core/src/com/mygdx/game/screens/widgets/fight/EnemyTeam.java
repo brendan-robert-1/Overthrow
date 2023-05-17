@@ -3,10 +3,15 @@ package com.mygdx.game.screens.widgets.fight;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.Assets;
+import com.mygdx.game.screens.encounterscreens.combat.CombatRewards;
 import com.mygdx.game.screens.widgets.Team;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Character;
+import com.mygdx.game.state.items.InventoryItemFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -16,13 +21,15 @@ public class EnemyTeam extends Table {
     private CharacterPanel secondCharacterPanel;
     private CharacterPanel thirdCharacterPanel;
     private CharacterPanel fourthCharacterPanel;
+    private CombatRewards combatRewards;
 
-    public EnemyTeam(CharacterPanel firstCharacterPanel, CharacterPanel secondCharacterPanel, CharacterPanel thirdCharacterPanel, CharacterPanel fourthCharacterPanel){
+    public EnemyTeam(CharacterPanel firstCharacterPanel, CharacterPanel secondCharacterPanel, CharacterPanel thirdCharacterPanel, CharacterPanel fourthCharacterPanel, CombatRewards combatRewards){
       super(Assets.skin());
         this.firstCharacterPanel = firstCharacterPanel;
         this.secondCharacterPanel = secondCharacterPanel;
         this.thirdCharacterPanel = thirdCharacterPanel;
         this.fourthCharacterPanel  = fourthCharacterPanel;
+        this.combatRewards = combatRewards;
         init();
         this.pack();
     }
@@ -93,5 +100,11 @@ public class EnemyTeam extends Table {
             fourthCharacterPanel = null;
         }
         this.pack();
+    }
+
+
+
+    public CombatRewards getCombatRewards() {
+        return combatRewards;
     }
 }

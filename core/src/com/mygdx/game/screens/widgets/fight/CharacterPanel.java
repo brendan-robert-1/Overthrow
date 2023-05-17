@@ -42,10 +42,12 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         buffsBar.update();
         label.setText("hp: " + character.getHp() + "/" + character.getMaxHp());
         hudToolTipDesc = buildCharacterTooltipDesc();
-        animatedActor.removeListener(hudToolTipListener);
-        hudToolTipListener = new HudTooltipListener(hudToolTipDesc);
-        animatedActor.addListener(hudToolTipListener);
-        this.pack();
+        if(animatedActor != null){
+            animatedActor.removeListener(hudToolTipListener);
+            hudToolTipListener = new HudTooltipListener(hudToolTipDesc);
+            animatedActor.addListener(hudToolTipListener);
+            this.pack();
+        }
     }
 
     public CharacterPanel(Character character){

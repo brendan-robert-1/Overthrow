@@ -6,7 +6,10 @@
       "itemTypeId": "HIDE_SHIELD",
       "displayName": "Hide Shield",
       "itemShortDescription": "+1 Armor",
-      "coinValue": 3
+      "coinValue": 3,
+      "statModifiers": {
+        "armor": 1
+      }
     },
     "RUSTY_DAGGER": {
       "itemAttribute": "EQUIPPABLE",
@@ -33,7 +36,10 @@
       "itemTypeId": "SNUG_SANDALS",
       "displayName": "Snug Sandals",
       "itemShortDescription": "+1 Speed",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "speed": 1
+      }
     },
     "MINER_HAT": {
       "itemAttribute": "EQUIPPABLE",
@@ -41,7 +47,11 @@
       "itemTypeId": "MINER_HAT",
       "displayName": "Miner Hat",
       "itemShortDescription": "+2 Armor -1 Speed",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "armor": 2,
+        "speed": -1
+      }
     } ,
     "SWAMP_KEY": {
       "itemAttribute": "QUEST",
@@ -73,7 +83,10 @@
       "itemTypeId": "LEATHER_PANTS",
       "displayName": "Leather Pants",
       "itemShortDescription": "+1 magic resistance",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "magicResistance": 1
+      }
     },
     "SPOILED_MILK": {
       "itemAttribute": "CONSUMABLE",
@@ -89,7 +102,12 @@
       "itemTypeId": "HOMESTEADERS_SUNHAT",
       "displayName": "Homesteaders Sunhat",
       "itemShortDescription": "+1 speed +1 armor +1 Magic Resistance",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "speed": 1,
+        "armor": 1,
+        "magicResistance": 1
+      }
     },
     "PITCHFORK": {
       "itemAttribute": "EQUIPPABLE",
@@ -97,7 +115,11 @@
       "itemTypeId": "PITCHFORK",
       "displayName": "Pitchfork",
       "itemShortDescription": "+2 physical damage +1 armor",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "physicalDamage": 2,
+        "armor": 1
+      }
     },
     "STALE_BREAD": {
       "itemAttribute": "CONSUMABLE",
@@ -128,8 +150,11 @@
       "itemUseType": "WEAPON_ONEHAND",
       "itemTypeId": "SHORT_SWORD",
       "displayName": "Short Sword",
-      "itemShortDescription": "+2 Physical Damage.",
-      "coinValue": 2
+      "itemShortDescription": "+3 Physical Damage.",
+      "coinValue": 2,
+      "statModifiers": {
+        "physicalDamage": 3
+      }
     },
     "BRASS_CROZIER": {
       "itemAttribute": "EQUIPPABLE",
@@ -137,7 +162,10 @@
       "itemTypeId": "BRASS_CROZIER",
       "displayName": "Brass Crozier",
       "itemShortDescription": "+1 Heal Power, +1 Magical Resistance",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "magicResistance": 1
+      }
     },
     "FEZ": {
       "itemAttribute": "EQUIPPABLE",
@@ -145,7 +173,54 @@
       "itemTypeId": "FEZ",
       "displayName": "Fez",
       "itemShortDescription": "+2 Magical Resistance",
-      "coinValue": 2
+      "coinValue": 2,
+      "statModifiers": {
+        "magicResistance": 2
+      }
+    },
+    "RED_DRESS": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "ARMOR_CHEST",
+      "itemTypeId": "RED_DRESS",
+      "displayName": "Red Dress",
+      "itemShortDescription": "+1 Magical Resistance, +1 Defensive Consumable Power",
+      "coinValue": 2,
+      "statModifiers": {
+        "magicResistance": 1
+      }
+    },
+    "BROKEN_BOTTLE": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "BROKEN_BOTTLE",
+      "displayName": "Broken Bottle",
+      "itemShortDescription": "+3 Physical Damage",
+      "coinValue": 2,
+      "statModifiers": {
+        "physicalDamage": 3
+      }
+    },
+    "FRESHMAN_SPELLCRAFT_NOTEBOOK": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "FRESHMAN_SPELLCRAFT_NOTEBOOK",
+      "displayName": "Freshman Spellcraft Notebook",
+      "itemShortDescription": "+4 Magical Damage",
+      "coinValue": 2,
+      "statModifiers": {
+        "magicalDamage": 4
+      }
+    },
+    "RAT_TAIL": {
+      "itemAttribute": "EQUIPPABLE",
+      "itemUseType": "WEAPON_ONEHAND",
+      "itemTypeId": "RAT_TAIL",
+      "displayName": "Rat Tail",
+      "itemShortDescription": "+5 speed",
+      "coinValue": 2,
+      "statModifiers": {
+        "speed": 5
+      }
     }
   }
 }

@@ -14,7 +14,7 @@ import com.mygdx.game.state.Character;
 import static com.mygdx.game.Assets.MASTER_VOLUME;
 
 public class Challenge implements Ability {
-    public static final int DAMAGE = 14;
+    public static final int DAMAGE = 100;
     @Override
     public String name() {
         return "Challenge";

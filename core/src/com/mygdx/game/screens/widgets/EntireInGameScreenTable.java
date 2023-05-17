@@ -37,7 +37,7 @@ public class EntireInGameScreenTable extends Table {
         this.row();
         this.add(Team.getInstance()).expand().bottom().left().pad(40);
         this.row();
-        this.add(abilitySelectPanel);
+       // this.add(abilitySelectPanel);
         this.pack();
     }
 

@@ -1,8 +1,12 @@
 package com.mygdx.game.encounters.factories;
 
 import com.mygdx.game.encounters.OverthrowActs;
-import com.mygdx.game.encounters.fights.Homesteaders;
+import com.mygdx.game.encounters.fights.farms.basic.DrunkMob;
+import com.mygdx.game.encounters.fights.farms.basic.Homesteaders;
+import com.mygdx.game.encounters.fights.farms.basic.SewerRats;
 import com.mygdx.game.screens.widgets.fight.FightNode;
+
+import java.util.Random;
 
 public class FightFactory {
     public static FightNode generateRandomFightFor(OverthrowActs.ActType actType){
@@ -28,7 +32,12 @@ public class FightFactory {
     }
 
     private static FightNode generateFarmFight(){
-        return new Homesteaders();
+        switch(new Random().nextInt(0,3)){
+            case 0 -> { return new SewerRats();}
+            case 1 -> {return new SewerRats();}
+            case 2 -> {return new SewerRats();}
+            default -> throw new IllegalStateException("Unexpected value: " + new Random().nextInt(0, 3));
+        }
     }
     private static FightNode generateBattlefieldFight(){
         return new Homesteaders();

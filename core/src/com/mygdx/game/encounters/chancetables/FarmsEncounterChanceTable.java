@@ -50,17 +50,17 @@ public class FarmsEncounterChanceTable {
 
     private void generateWeightsFloor1(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.TEMPLE_PRAYERS);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.TEMPLE_PRAYERS);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.TEMPLE_PRAYERS);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 35).iterator(), NodeType.BASIC_FIGHT);
         floorNumberToSlots.put(1, weights);
     }
 
     private void generateWeightsFloor2(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.KEYMASTER);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.KEYMASTER);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.BASIC_FIGHT);
         floorNumberToSlots.put(2, weights);
     }
 
@@ -75,16 +75,16 @@ public class FarmsEncounterChanceTable {
     private void generateWeightsFloor4(){
         Map<Integer,NodeType> weights = new HashMap<>();
         putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.QUESTION_MARK);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.MARKET);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.BASIC_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 37).iterator(), NodeType.BASIC_FIGHT);
         floorNumberToSlots.put(4, weights);
     }
 
     private void generateWeightsFloor5(){
         Map<Integer,NodeType> weights = new HashMap<>();
-        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.BASIC_FIGHT);
-        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.QUESTION_MARK);
-        putIntoWeights(weights, IntStream.rangeClosed(31, 50).iterator(), NodeType.ELITE_FIGHT);
+        putIntoWeights(weights, IntStream.rangeClosed(1, 20).iterator(), NodeType.TEMPLE_PRAYERS);
+        putIntoWeights(weights, IntStream.rangeClosed(21, 30).iterator(), NodeType.TEMPLE_PRAYERS);
+        putIntoWeights(weights, IntStream.rangeClosed(31, 50).iterator(), NodeType.TEMPLE_PRAYERS);
         floorNumberToSlots.put(5, weights);
     }
 

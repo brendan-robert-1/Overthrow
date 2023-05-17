@@ -50,7 +50,7 @@ public class NewRunScreen extends ScreenAdapter {
         transitionActor.setVisible(false);
         stage.addActor(transitionActor);
         TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
-        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("messing-around2"));
+        TextureRegionDrawable trd = new TextureRegionDrawable(atlas.findRegion("BOSS_FIGHT"));
         Table table = new Table();
         table.setBackground(trd);
         table.bottom().left();

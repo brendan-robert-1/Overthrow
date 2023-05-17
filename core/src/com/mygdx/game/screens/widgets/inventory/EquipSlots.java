@@ -11,17 +11,17 @@ import static com.mygdx.game.screens.widgets.inventory.InventoryUi.SLOT_HEIGHT;
 import static com.mygdx.game.screens.widgets.inventory.InventoryUi.SLOT_WIDTH;
 
 public class EquipSlots extends Table {
-    private InventorySlot headSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_HEAD, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot capeSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_CAPE,new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot earringSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_EARRING, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
+    private InventorySlot headSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_HEAD, new InventorySplash(InventoryItem.ItemUseType.ARMOR_HEAD));
+    private InventorySlot capeSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_CAPE,new InventorySplash(InventoryItem.ItemUseType.ARMOR_CAPE));
+    private InventorySlot earringSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_EARRING, new InventorySplash(InventoryItem.ItemUseType.ARMOR_EARRING));
     private InventorySlot weapon1Slot = new InventorySlot(InventoryItem.ItemUseType.WEAPON_ONEHAND, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot chestSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_CHEST,new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot weapon2Slot = new InventorySlot(InventoryItem.ItemUseType.WEAPON_TWOHAND, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot necklaceSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_NECKLACE, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot gloveSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_GLOVES, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot feetSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_FEET, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot ringSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_RING, new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
-    private InventorySlot legSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_LEGS,new InventorySplash(InventoryItem.ItemUseType.WEAPON_ONEHAND));
+    private InventorySlot chestSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_CHEST,new InventorySplash(InventoryItem.ItemUseType.ARMOR_CHEST));
+    private InventorySlot weapon2Slot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_SHIELD, new InventorySplash(InventoryItem.ItemUseType.ARMOR_SHIELD));
+    private InventorySlot necklaceSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_NECKLACE, new InventorySplash(InventoryItem.ItemUseType.ARMOR_NECKLACE));
+    private InventorySlot gloveSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_GLOVES, new InventorySplash(InventoryItem.ItemUseType.ARMOR_GLOVES));
+    private InventorySlot feetSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_FEET, new InventorySplash(InventoryItem.ItemUseType.ARMOR_FEET));
+    private InventorySlot ringSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_RING, new InventorySplash(InventoryItem.ItemUseType.ARMOR_RING));
+    private InventorySlot legSlot = new InventorySlot(InventoryItem.ItemUseType.ARMOR_LEGS,new InventorySplash(InventoryItem.ItemUseType.ARMOR_LEGS));
 
 
     public EquipSlots(Character character, InventorySlotTooltip inventorySlotTooltip, DragAndDrop dragAndDrop){
@@ -45,6 +45,7 @@ public class EquipSlots extends Table {
         dragAndDrop.addTarget(new InventorySlotTarget(weapon1Slot));
         dragAndDrop.addTarget(new InventorySlotTarget(weapon2Slot));
         dragAndDrop.addTarget(new InventorySlotTarget(necklaceSlot));
+        dragAndDrop.addTarget(new InventorySlotTarget(chestSlot));
         dragAndDrop.addTarget(new InventorySlotTarget(gloveSlot));
         dragAndDrop.addTarget(new InventorySlotTarget(feetSlot));
         dragAndDrop.addTarget(new InventorySlotTarget(ringSlot));

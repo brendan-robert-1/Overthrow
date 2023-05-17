@@ -4,305 +4,487 @@ size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+ARMOR_CAPE
+  rotate: false
+  xy: 1804, 1433
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_CHEST
+  rotate: false
+  xy: 1917, 1657
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_EARRING
+  rotate: false
+  xy: 1804, 1269
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_FEET
+  rotate: false
+  xy: 1804, 1515
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_GLOVES
+  rotate: false
+  xy: 1402, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_HEAD
+  rotate: false
+  xy: 1074, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_LEGS
+  rotate: false
+  xy: 1804, 1187
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_NECKLACE
+  rotate: false
+  xy: 1238, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_RING
+  rotate: false
+  xy: 1156, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ARMOR_SHIELD
+  rotate: false
+  xy: 992, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
 ARMOR_UP
   rotate: false
-  xy: 1606, 183
+  xy: 1386, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 BLOODLET
   rotate: false
-  xy: 1640, 149
+  xy: 1886, 1208
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+BOSS_FIGHT
+  rotate: false
+  xy: 904, 217
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+BRASS_CROZIER
+  rotate: false
+  xy: 1782, 149
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+BROKEN_BOTTLE
+  rotate: false
+  xy: 1806, 257
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CHALLENGE
   rotate: false
-  xy: 1870, 1393
+  xy: 1420, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CRAB_MAGICIAN
   rotate: false
-  xy: 1538, 183
+  xy: 1250, 101
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+DEBT_COLLECTOR
+  rotate: false
+  xy: 1748, 183
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+FAT_DRUNK_MOBSTER
+  rotate: false
+  xy: 1886, 1548
+  size: 26, 47
+  orig: 26, 47
+  offset: 0, 0
+  index: -1
+FEZ
+  rotate: false
+  xy: 1886, 1446
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+FRESHMAN_SPELLCRAFT_NOTEBOOK
+  rotate: false
+  xy: 1886, 1480
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HEALTH_POT-export
   rotate: false
-  xy: 1870, 1495
+  xy: 1806, 291
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HEALTH_POT
   rotate: false
-  xy: 1870, 1495
+  xy: 1806, 291
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HIDE_SHIELD
   rotate: false
-  xy: 1538, 149
+  xy: 1886, 1310
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADERS_SUNHAT
   rotate: false
-  xy: 1572, 183
+  xy: 1318, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_DAD
   rotate: false
-  xy: 1572, 149
+  xy: 1886, 1242
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_DOG
   rotate: false
-  xy: 1708, 149
+  xy: 1886, 1174
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HOMESTEADER_MOM
   rotate: false
-  xy: 1804, 1167
+  xy: 1941, 1623
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 JOUST
   rotate: false
-  xy: 1870, 1257
+  xy: 964, 41
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 KNIGHT
   rotate: false
-  xy: 1870, 1563
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 3
-KNIGHT
-  rotate: false
-  xy: 1870, 1563
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-KNIGHT
-  rotate: false
-  xy: 1870, 1563
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 1
-KNIGHT
-  rotate: false
-  xy: 1870, 1563
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 2
-KNIGHT
-  rotate: false
-  xy: 1983, 1671
+  xy: 1114, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 8
 KNIGHT
   rotate: false
-  xy: 1983, 1671
+  xy: 1114, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 9
 KNIGHT
   rotate: false
-  xy: 1983, 1637
+  xy: 1216, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 5
 KNIGHT
   rotate: false
-  xy: 1640, 183
+  xy: 1748, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 10
 KNIGHT
   rotate: false
-  xy: 1870, 1325
+  xy: 1841, 427
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+KNIGHT
+  rotate: false
+  xy: 1841, 427
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+KNIGHT
+  rotate: false
+  xy: 1841, 427
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+KNIGHT
+  rotate: false
+  xy: 1841, 427
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+KNIGHT
+  rotate: false
+  xy: 1840, 325
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 7
 KNIGHT
   rotate: false
-  xy: 1838, 1167
+  xy: 964, 7
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 4
 KNIGHT
   rotate: false
-  xy: 1606, 149
+  xy: 1886, 1276
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 6
 KNIGHT
   rotate: false
-  xy: 1742, 149
+  xy: 1786, 183
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 11
 LANTERN
   rotate: false
-  xy: 1838, 1133
+  xy: 1886, 1514
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 LEATHER_PANTS
   rotate: false
-  xy: 1674, 183
+  xy: 1840, 359
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 MIASMA
   rotate: false
-  xy: 1870, 1529
+  xy: 1806, 359
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 MINER_HAT
   rotate: false
-  xy: 1870, 1223
+  xy: 1454, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PIERCE
   rotate: false
-  xy: 1742, 183
+  xy: 1840, 223
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PITCHFORK
   rotate: false
-  xy: 1470, 149
+  xy: 1886, 1378
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR-export
   rotate: false
-  xy: 1870, 1291
+  xy: 1840, 257
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 PLAGUE_DOCTOR
   rotate: false
-  xy: 1870, 1291
+  xy: 1840, 257
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 POISON
   rotate: false
-  xy: 992, 101
+  xy: 1806, 427
   size: 33, 32
   orig: 33, 32
   offset: 0, 0
   index: -1
+QUANT
+  rotate: false
+  xy: 992, 91
+  size: 52, 42
+  orig: 52, 42
+  offset: 0, 0
+  index: -1
 QUESTION_MARK
   rotate: false
-  xy: 1983, 1705
+  xy: 1046, 101
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+RAT_TAIL
+  rotate: false
+  xy: 1840, 393
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+RED_DRESS
+  rotate: false
+  xy: 1886, 1412
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 RUSTY_DAGGER
   rotate: false
-  xy: 1674, 149
+  xy: 1975, 1623
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+SEWER_RAT
+  rotate: false
+  xy: 1806, 989
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+SHORT_DRUNK_MOBSTER
+  rotate: false
+  xy: 1999, 1661
+  size: 25, 32
+  orig: 25, 32
+  offset: 0, 0
+  index: -1
+SHORT_SWORD
+  rotate: false
+  xy: 1820, 189
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SNUG_SANDALS
   rotate: false
-  xy: 1870, 1461
+  xy: 1806, 223
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SPOILED_MILK
   rotate: false
-  xy: 1504, 149
+  xy: 1886, 1344
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 STALE_BREAD
   rotate: false
-  xy: 1504, 183
+  xy: 1148, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+TALL_DRUNK_MOBSTER
+  rotate: false
+  xy: 1999, 1695
+  size: 23, 42
+  orig: 23, 42
+  offset: 0, 0
+  index: -1
 TANKARD
   rotate: false
-  xy: 1804, 1133
+  xy: 1806, 325
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TOSS_CONCOCTION
   rotate: false
-  xy: 1470, 183
+  xy: 1806, 393
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 WAR_CHEST_KEY
   rotate: false
-  xy: 1027, 101
+  xy: 1080, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 war-chest-key
   rotate: false
-  xy: 1027, 101
+  xy: 1080, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 WEAPON_ONEHAND
   rotate: false
-  xy: 992, 135
+  xy: 1804, 1351
   size: 80, 80
   orig: 80, 80
+  offset: 0, 0
+  index: -1
+WEAPON_ONEHAND-export
+  rotate: false
+  xy: 1320, 135
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+WOMAN_DRUNK_MOBSTER
+  rotate: false
+  xy: 1917, 1607
+  size: 22, 48
+  orig: 22, 48
   offset: 0, 0
   index: -1
 abandoned-farmhouse
@@ -361,32 +543,18 @@ abandoned-farmhouse2
   orig: 900, 450
   offset: 0, 0
   index: 7
+coin
+  rotate: false
+  xy: 1182, 101
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 farms
   rotate: false
   xy: 2, 1121
   size: 1800, 900
   orig: 1800, 900
-  offset: 0, 0
-  index: -1
-splash
-  rotate: false
-  xy: 2, 1121
-  size: 1800, 900
-  orig: 1800, 900
-  offset: 0, 0
-  index: -1
-farms-fire
-  rotate: false
-  xy: 904, 217
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: 5
-farms6
-  rotate: false
-  xy: 904, 217
-  size: 900, 450
-  orig: 900, 450
   offset: 0, 0
   index: -1
 farms5
@@ -405,140 +573,140 @@ farms-fire
   index: 4
 fence-key
   rotate: false
-  xy: 1870, 1427
+  xy: 1284, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 FENCE_KEY
   rotate: false
-  xy: 1870, 1427
+  xy: 1284, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 fire
   rotate: false
-  xy: 1804, 1531
+  xy: 766, 9
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 fire
   rotate: false
-  xy: 1804, 1465
+  xy: 898, 9
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 fire
   rotate: false
-  xy: 1140, 151
+  xy: 1682, 151
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 fire
   rotate: false
-  xy: 1804, 1399
+  xy: 1806, 923
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 fire
   rotate: false
-  xy: 1804, 1333
+  xy: 1806, 791
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 fire
   rotate: false
-  xy: 1804, 1267
+  xy: 1806, 659
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 fire
   rotate: false
-  xy: 1338, 151
+  xy: 1806, 593
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 fire
   rotate: false
-  xy: 1404, 151
+  xy: 1806, 461
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 keymaster
   rotate: false
-  xy: 766, 9
+  xy: 1804, 1121
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 keymaster
   rotate: false
-  xy: 766, 9
+  xy: 1804, 1121
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 keymaster
   rotate: false
-  xy: 1917, 1673
+  xy: 1484, 151
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 keymaster
   rotate: false
-  xy: 1074, 151
+  xy: 832, 9
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
 keymaster
   rotate: false
-  xy: 832, 9
+  xy: 1550, 151
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 keymaster
   rotate: false
-  xy: 1917, 1607
+  xy: 1616, 151
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 keymaster
   rotate: false
-  xy: 898, 9
+  xy: 1806, 1055
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 keymaster
   rotate: false
-  xy: 1206, 151
+  xy: 1806, 857
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 keymaster
   rotate: false
-  xy: 1272, 151
+  xy: 1806, 725
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 keymaster
   rotate: false
-  xy: 1804, 1201
+  xy: 1806, 527
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -559,21 +727,21 @@ messing-around2
   index: -1
 swamp-key
   rotate: false
-  xy: 1708, 183
+  xy: 1840, 291
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SWAMP_KEY
   rotate: false
-  xy: 1708, 183
+  xy: 1840, 291
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 turn-carousel-background
   rotate: false
-  xy: 1870, 1359
+  xy: 1352, 101
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -593,34 +761,69 @@ filter: Nearest, Nearest
 repeat: none
 abandoned-farmhouse2
   rotate: false
-  xy: 2, 1358
+  xy: 2, 906
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 4
 abandoned-farmhouse2
   rotate: false
-  xy: 2, 454
+  xy: 2, 2
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 1
 abandoned-farmhouse2
   rotate: false
-  xy: 904, 454
+  xy: 904, 2
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 6
 farms-fire
   rotate: false
-  xy: 904, 1358
+  xy: 2, 1358
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 5
+farms6
+  rotate: false
+  xy: 2, 1358
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms-fire
+  rotate: false
+  xy: 904, 906
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 2
 farms3
   rotate: false
+  xy: 904, 906
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms-fire
+  rotate: false
+  xy: 904, 454
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 7
+farms8
+  rotate: false
+  xy: 904, 454
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms2
+  rotate: false
   xy: 904, 1358
   size: 900, 450
   orig: 900, 450
@@ -628,56 +831,21 @@ farms3
   index: -1
 farms-fire
   rotate: false
-  xy: 2, 2
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: 7
-farms8
-  rotate: false
-  xy: 2, 2
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms2
-  rotate: false
-  xy: 2, 906
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms-fire
-  rotate: false
-  xy: 2, 906
+  xy: 904, 1358
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 1
-farms4
-  rotate: false
-  xy: 904, 2
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: -1
-farms-fire
-  rotate: false
-  xy: 904, 2
-  size: 900, 450
-  orig: 900, 450
-  offset: 0, 0
-  index: 3
 farms7
   rotate: false
-  xy: 904, 906
+  xy: 2, 454
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: -1
 farms-fire
   rotate: false
-  xy: 904, 906
+  xy: 2, 454
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
@@ -690,35 +858,49 @@ filter: Nearest, Nearest
 repeat: none
 abandoned-farmhouse2
   rotate: false
-  xy: 2, 906
+  xy: 2, 712
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 3
 abandoned-farmhouse2
   rotate: false
-  xy: 2, 454
+  xy: 904, 1164
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 5
 abandoned-farmhouse2
   rotate: false
-  xy: 904, 906
+  xy: 2, 260
   size: 900, 450
   orig: 900, 450
   offset: 0, 0
   index: 2
 enemy-placeholder-medium
   rotate: false
-  xy: 904, 648
+  xy: 2, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
+farms4
+  rotate: false
+  xy: 2, 1164
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: -1
+farms-fire
+  rotate: false
+  xy: 2, 1164
+  size: 900, 450
+  orig: 900, 450
+  offset: 0, 0
+  index: 3
 town
   rotate: false
-  xy: 2, 2
+  xy: 904, 712
   size: 899, 450
   orig: 899, 450
   offset: 0, 0

@@ -1,9 +1,11 @@
-package com.mygdx.game.encounters.fights;
+package com.mygdx.game.encounters.fights.farms.advanceed;
 
 import com.mygdx.game.character.abilities.Ability;
+import com.mygdx.game.screens.encounterscreens.combat.CombatRewards;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
+import com.mygdx.game.screens.widgets.inventory.InventoryItem;
 import com.mygdx.game.state.Stats;
 import com.mygdx.game.state.Character;
 import com.mygdx.game.state.gear.EquippedGear;
@@ -11,7 +13,9 @@ import com.mygdx.game.character.plaguedoctor.Bloodlet;
 import com.mygdx.game.character.plaguedoctor.Miasma;
 import com.mygdx.game.character.plaguedoctor.TossConcoction;
 import com.mygdx.game.encounters.OverthrowActs;
+import com.mygdx.game.state.items.InventoryItemFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +60,8 @@ public class MutatedLivestock extends FightNode {
                 new CharacterPanel(generateChicken()),
                 new CharacterPanel(generatePig()),
                 new CharacterPanel(generateCow()),
-                null
+                null,
+                getCombatRewards()
         );
     }
 
@@ -72,6 +77,17 @@ public class MutatedLivestock extends FightNode {
                 chickenBaseStats(),
                 0
         );
+    }
+
+    public CombatRewards getCombatRewards() {
+        CombatRewards combatRewards = new CombatRewards();
+        combatRewards.setCoins(12);
+        List<InventoryItem> rewards = new ArrayList<>();
+        rewards.add(InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.SNUG_SANDALS));
+        rewards.add(InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.RUSTY_DAGGER));
+        rewards.add(InventoryItemFactory.getInstance().of(InventoryItem.ItemTypeId.HIDE_SHIELD));
+        combatRewards.setItemRewards(rewards);
+        return combatRewards;
     }
     private Character generatePig(){
         return new Character(
