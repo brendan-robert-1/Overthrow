@@ -1,10 +1,13 @@
 package com.mygdx.game.screens.widgets.inventory;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -19,9 +22,11 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
     private Label numItemsLabel;
     private ItemUseType filterItemType;
     private Array<InventorySlotObserver> observers;
+    private InventoryContextMenu contextMenu;
 
 
     public InventorySlot(){
+
         defaultBackground = new Stack();
         observers = new Array<>();
         decal = new Image();
@@ -30,11 +35,23 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         image.setScaling(Scaling.fit);
         defaultBackground.add(image);
         defaultBackground.setName("defaultBackground");
-
         numItemsLabel = new Label(String.valueOf(numItems), Assets.skin());
         numItemsLabel.setName("numItems");
         numItemsLabel.setAlignment(Align.bottomRight);
         numItemsLabel.setVisible(false);
+        this.addListener(new ClickListener(Input.Buttons.RIGHT){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(InventorySlot.this.hasItem()){
+                    InventoryItem item = InventorySlot.this.getTopInventoryItem();
+                    if(item.getItemAttribute() == InventoryItem.ItemAttribute.CONSUMABLE){
+                        contextMenu = new InventoryContextMenu(item, event.getStageX(), event.getStageY());
+                        item.getStage().addActor(contextMenu);
+                    }
+
+                }
+            }
+        });
         this.add(defaultBackground);
         this.add(numItemsLabel);
     }

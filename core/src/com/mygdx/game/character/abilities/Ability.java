@@ -12,12 +12,11 @@ public interface Ability{
         CHALLENGE, HOMESTEADER_DOG_BITE, HOMESTEADER_NOURISH, HOMESTEADER_PITCHFORK_STAB, HOMESTEADER_DOG_GROWL,
         STOOL_BASH,
         SMOOCH,
-        ROB,
-        BOTTLE_STAB
+        ROB, RUSTY_DAGGER_STAB, RUSTY_DAGGER, FISTS, BOTTLE_STAB
     }
 
     public enum DamageType{
-        PHYSICAL, MAGICAL, TRUE, HEAL, NONE
+        PHYSICAL(), MAGICAL, TRUE, HEAL, NONE
     }
     String name();
     String description();

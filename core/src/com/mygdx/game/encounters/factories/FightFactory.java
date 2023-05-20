@@ -33,8 +33,8 @@ public class FightFactory {
 
     private static FightNode generateFarmFight(){
         switch(new Random().nextInt(0,3)){
-            case 0 -> { return new SewerRats();}
-            case 1 -> {return new SewerRats();}
+            case 0 -> { return new DrunkMob();}
+            case 1 -> {return new Homesteaders();}
             case 2 -> {return new SewerRats();}
             default -> throw new IllegalStateException("Unexpected value: " + new Random().nextInt(0, 3));
         }

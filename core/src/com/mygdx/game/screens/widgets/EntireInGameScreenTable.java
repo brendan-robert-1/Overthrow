@@ -23,7 +23,7 @@ public class EntireInGameScreenTable extends Table {
     private HudTooltip hudTooltip = HudTooltip.getInstance();
 
     public EntireInGameScreenTable(){
-        abilitySelectPanel = new AbilitySelectPanel(hudTooltip);
+        abilitySelectPanel  = new AbilitySelectPanel(hudTooltip);
         abilitySelectPanel.setVisible(false);
         Team.getInstance().update();
 
@@ -48,12 +48,6 @@ public class EntireInGameScreenTable extends Table {
 
     public Array<Actor> getHudToolTipActors() {
         return hudToolTipActors;
-    }
-
-
-
-    public void populateAbilities(CharacterPanel activeCharacter, DragAndDrop abilitySelectDragAndDrop, EnemyTeam enemyTeam) {
-        abilitySelectPanel.populateAbilities(activeCharacter,abilitySelectDragAndDrop, enemyTeam);
     }
 
     public void displayAbilitySelectPanel(){

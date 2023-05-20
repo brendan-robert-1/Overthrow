@@ -89,7 +89,7 @@ public class OutfitterNode extends GameNode implements OutfitterSubject {
 
     public List<InventoryItem> buildOutfitterItems() {
         List<InventoryItem> outfitterList = new ArrayList<>();
-        outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.HIDE_SHIELD));
+        outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.FIRE_POT));
         outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.HEALTH_POT));
         outfitterList.add(InventoryItemFactory.getInstance().of(ItemTypeId.RUSTY_DAGGER));
         return outfitterList;

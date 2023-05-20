@@ -32,7 +32,7 @@ public class CombatProcessor {
                  ability.execute(target, activeCharacter, fight );
                 increaseChargeTimeExcept(activeCharacter);
                 activeCharacter.getCharacter().resetChargeTime();
-                MainGameScreen.getInstance().updateScreenMidCombat();
+                MainGameScreen.getInstance().updateScreenMidCombatFoeTurn();
                 processEndOfTurnEvents();
             }
         },1f);

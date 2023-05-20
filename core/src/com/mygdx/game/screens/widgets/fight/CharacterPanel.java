@@ -1,17 +1,23 @@
 package com.mygdx.game.screens.widgets.fight;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.StringBuilder;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Assets;
 import com.mygdx.game.character.buff.Buff;
 import com.mygdx.game.render.AnimatedActor;
@@ -161,7 +167,7 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
 
 
 
-    private EquipSlots getEquipSlots() {
+    public EquipSlots getEquipSlots() {
         if(teamSlotIndex == null){return null;}
         switch(teamSlotIndex){
             case FIRST -> {return InventoryUi.getInstance().getCharacter1EquipSlots();}
@@ -228,6 +234,7 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
 
     public void decreaseHpBy(int decreaseBy){
         this.getCharacter().setHp(this.character.getHp() - decreaseBy);
+        displayDamageHealNumbers("damage-number", decreaseBy);
         if(this.getCharacter().getHp() <= 0){
             this.remove();
         }
@@ -247,6 +254,39 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
        decreaseHpBy(amountToDamage);
     }
 
+
+
+
+    public void displaySelectable(int x) {
+
+        TextureAtlas atlas = Assets.getAssetManager().get("overthrow.atlas", TextureAtlas.class);
+        TextureRegion tr = atlas.findRegion("character-highlight");
+        Image image = new Image(tr);//(new TextureRegionDrawable(tr)));
+        image.setHeight(30);
+        image.setWidth(this.getWidth() - 30);
+        float offset = (this.getWidth() - image.getWidth())/2;
+        Vector2 position = this.localToStageCoordinates(new Vector2());
+        image.setPosition(position.x + offset, position.y);
+        this.getStage().addActor(image);
+    }
+
+    private void displayDamageHealNumbers(String labelStyle, int number){
+        Label damageNumber = new Label(number+ "", Assets.skin(), labelStyle);
+        Vector2 stageCords = CharacterPanel.this.localToStageCoordinates(new Vector2(0,0));
+        float heightOfPanel = CharacterPanel.this.getHeight();
+        float widthOfPanel = CharacterPanel.this.getWidth();
+        damageNumber.setPosition(stageCords.x + (widthOfPanel/2), stageCords.y + heightOfPanel + 20);
+        Stage stage = CharacterPanel.this.getStage();
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                stage.addActor(damageNumber);
+                damageNumber.toFront();
+                damageNumber.addAction(Actions.sequence(Actions.moveBy(0,90, 0.5f), Actions.fadeOut(1.4f)));
+            }
+        },0.1f);
+    }
+
     public void increaseHpBy(int increaseBy){
         Character character  = this.getCharacter();
         character.setHp(character.getHp() + increaseBy);
@@ -256,6 +296,7 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         if(character.getHp() > character.getMaxHp()){
             character.setHp(character.getMaxHp());
         }
+        displayDamageHealNumbers("heal-number", increaseBy);
         this.update();
     }
 
@@ -293,4 +334,5 @@ public class CharacterPanel extends Table implements Comparable<CharacterPanel> 
         this.combatStatModifiers = combatStatModifiers;
         return this;
     }
+
 }

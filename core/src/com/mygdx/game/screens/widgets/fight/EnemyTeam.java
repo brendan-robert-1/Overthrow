@@ -42,22 +42,22 @@ public class EnemyTeam extends Table {
         if(firstCharacterPanel != null && firstCharacterPanel.getCharacter() != null){
             this.firstCharacterPanel = new CharacterPanel(firstCharacterPanel.getCharacter());
             firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.FIRST);
-            this.add(firstCharacterPanel).expand();
+            this.add(firstCharacterPanel).expand().spaceLeft(20).spaceRight(20);
         }
         if(secondCharacterPanel != null && secondCharacterPanel.getCharacter() != null){
             this.secondCharacterPanel = new CharacterPanel(secondCharacterPanel.getCharacter());
             firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.SECOND);
-            this.add(secondCharacterPanel).expand();
+            this.add(secondCharacterPanel).expand().spaceLeft(20).spaceRight(20);
         }
         if(thirdCharacterPanel != null && thirdCharacterPanel.getCharacter() != null){
             this.thirdCharacterPanel = new CharacterPanel(thirdCharacterPanel.getCharacter());
             firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.THIRD);
-            this.add(thirdCharacterPanel).expand();
+            this.add(thirdCharacterPanel).expand().spaceLeft(20).spaceRight(20);
         }
         if(fourthCharacterPanel != null && fourthCharacterPanel.getCharacter() != null){
             this.fourthCharacterPanel = new CharacterPanel(fourthCharacterPanel.getCharacter());
             firstCharacterPanel.setTeamSlotIndex(Team.TeamSlotIndex.FOURTH);
-            this.add(fourthCharacterPanel).expand();
+            this.add(fourthCharacterPanel).expand().spaceLeft(20).spaceRight(20);
         }
 
 

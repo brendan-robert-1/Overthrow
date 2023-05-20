@@ -16,6 +16,7 @@ public class InventoryItem extends Image {
     private String combatRewardsDisplayText;
     private int coinValue;
     private Stats statModifiers;
+    private ConsumableDetails consumableDetails;
 
     public InventoryItem(TextureRegion textureRegion, ItemAttribute itemAttribute, ItemTypeId itemTypeId, ItemUseType itemUseType, int coinValue, Stats statModifiers){
         super(textureRegion);
@@ -41,6 +42,7 @@ public class InventoryItem extends Image {
         this.combatRewardsDisplayName = inventoryItem.getDisplayName();
         this.coinValue = inventoryItem.getCoinValue();
         this.displayName = inventoryItem.getDisplayName();
+        this.consumableDetails = inventoryItem.consumableDetails;
     }
 
     public String getDisplayName() {
@@ -106,7 +108,7 @@ public class InventoryItem extends Image {
         LEATHER_PANTS, MINER_HAT,
         SWAMP_KEY, FENCE_KEY, WAR_CHEST_KEY,
         TANKARD, SPOILED_MILK,HOMESTEADERS_SUNHAT, PITCHFORK, STALE_BREAD, LANTERN, SHORT_SWORD, BRASS_CROZIER, FEZ, RED_DRESS, BROKEN_BOTTLE,
-        FRESHMAN_SPELLCRAFT_NOTEBOOK, RAT_TAIL;
+        FRESHMAN_SPELLCRAFT_NOTEBOOK, RAT_TAIL, BAREFISTS, FIRE_POT;
     }
 
     public enum ItemUseType{
@@ -185,6 +187,11 @@ public class InventoryItem extends Image {
     public static boolean doesRestoreHP(int itemUseType){
         return ((itemUseType & ItemUseType.ITEM_RESTORE_HEALTH.getValue()) == ItemUseType.ITEM_RESTORE_HEALTH.getValue());
     }
+
+    public ConsumableDetails getConsumableDetails() {
+        return consumableDetails;
+    }
+
 
     public int getTradeValue(){
         //For now, we will set the trade in value of items at about one third their original value

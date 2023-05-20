@@ -6,7 +6,7 @@ import com.mygdx.game.screens.widgets.fight.CharacterPanel;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 
 public class SewerRatScratch implements Ability {
-    private static final int DAMAGE = 6;
+    private static final int DAMAGE = 3;
     @Override
     public String name() {
         return "Sewer Rate Scratch";

@@ -27,8 +27,32 @@
       "itemUseType": "ITEM_RESTORE_HEALTH",
       "itemTypeId": "HEALTH_POT",
       "displayName": "Health Potion",
-      "itemShortDescription": "+25 heal to 1 character",
-      "coinValue": 2
+      "itemShortDescription": "Heals a character",
+      "coinValue": 2,
+      "consumableDetails": {
+        "isFriendlyTargetable": true,
+        "isFoeTargetable": false,
+        "splashType": "NONE",
+        "potency": 25,
+        "potencyType": "HEAL",
+        "potencyValueType": "PERCENT"
+      }
+    },
+    "FIRE_POT": {
+      "itemAttribute": "CONSUMABLE",
+      "itemUseType": "ITEM_RESTORE_HEALTH",
+      "itemTypeId": "FIRE_POT",
+      "displayName": "Fire Potion",
+      "itemShortDescription": "Damages a character",
+      "coinValue": 2,
+      "consumableDetails": {
+        "isFriendlyTargetable": false,
+        "isFoeTargetable": true,
+        "splashType": "SURROUNDING",
+        "potency": 18,
+        "potencyType": "DAMAGE",
+        "potencyValueType": "FLAT"
+      }
     },
     "SNUG_SANDALS": {
       "itemAttribute": "EQUIPPABLE",

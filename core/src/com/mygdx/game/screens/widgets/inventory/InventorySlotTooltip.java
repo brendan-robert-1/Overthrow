@@ -36,20 +36,65 @@ public class InventorySlotTooltip extends Window {
 
     public void updateDescription(InventorySlot inventorySlot){
         if( inventorySlot.hasItem() ){
-            StringBuilder string = new StringBuilder();
             InventoryItem item = inventorySlot.getTopInventoryItem();
-            string.append(item.getDisplayName());
-            string.append(System.getProperty("line.separator"));
-            string.append(item.getItemShortDescription());
-            string.append(System.getProperty("line.separator"));
-            string.append(String.format("Sell value: %s GP", item.getTradeValue()));
-            description.setText(string.toString());
+            String desc = getDescription(item);
+            description.setText(desc);
             this.pack();
         }else{
             description.setText("");
             this.pack();
         }
+    }
 
+    private String getDescription(InventoryItem inventoryItem){
+        StringBuilder sb = new StringBuilder();
+        switch(inventoryItem.getItemAttribute()){
+            case CONSUMABLE -> {
+                ConsumableDetails cd = inventoryItem.getConsumableDetails();
+                sb.append(inventoryItem.getDisplayName());
+                sb.append(System.getProperty("line.separator"));
+                sb.append(inventoryItem.getItemShortDescription());
+                sb.append(System.getProperty("line.separator"));
+                sb.append(consumablePotencyTypeDesc(cd.getPotencyType())); //Damages/Heals
+                sb.append(" ").append(cd.getPotency())
+                    .append(consumablePotencyTypeValueDesc(cd.getPotencyValueType())) //25 percent
+                        .append(" hp");
+                sb.append(System.getProperty("line.separator"));
+                sb.append(splashDesc(cd.getSplashType()));
+                return sb.toString();
+            }
+            case EQUIPPABLE -> {
+                return inventoryItem.getDisplayName();
+            }
+            case QUEST -> {
+                return inventoryItem.getDisplayName();
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + inventoryItem.getItemAttribute());
+        }
+    }
+
+    private String consumablePotencyTypeDesc(ConsumableDetails.PotencyType potencyType){
+        switch(potencyType){
+            case DAMAGE -> {return "Damages";}
+            case HEAL -> {return "Heals";}
+            default -> throw new IllegalStateException("Unexpected value: " + potencyType);
+        }
+    }
+
+    private String consumablePotencyTypeValueDesc(ConsumableDetails.PotencyValueType potencyValueType){
+        switch(potencyValueType){
+            case PERCENT -> {return "%";}
+            case FLAT -> {return " flat";}
+            default -> throw new IllegalStateException("Unexpected value: " + potencyValueType);
+        }
+    }
+    private String splashDesc(ConsumableDetails.SplashType splashType){
+        switch(splashType){
+            case SURROUNDING -> {return "Splashes units surrounding target";}
+            case NONE -> {return "Single target";}
+            case ENTIRE -> {return "Splashes entire team";}
+            default -> throw new IllegalStateException("Unexpected value: " + splashType);
+        }
     }
 }
 

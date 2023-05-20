@@ -1,22 +1,25 @@
-package com.mygdx.game.character.enemies;
+package com.mygdx.game.character.abilities;
 
-import com.mygdx.game.character.abilities.Ability;
 import com.mygdx.game.screens.encounterscreens.combat.DamageCalculator;
 import com.mygdx.game.screens.widgets.fight.CharacterPanel;
+import com.mygdx.game.screens.widgets.fight.EnemyTeam;
 import com.mygdx.game.screens.widgets.fight.FightNode;
 
-public class SewerRatBite implements Ability {
-    private static final int DAMAGE = 3;
+public class RustyDaggerStab implements Ability{
+    private static final int DAMAGE = 4;
+
+
+
     @Override
     public String name() {
-        return "Sewer Rate Bite";
+        return "Stab";
     }
 
 
 
     @Override
     public String description() {
-        return "rat bite";
+        return DAMAGE + " physical damage to a single target.";
     }
 
 
@@ -44,7 +47,12 @@ public class SewerRatBite implements Ability {
 
     @Override
     public void execute(CharacterPanel target, CharacterPanel source, FightNode fight) {
-        int actualDamage = DamageCalculator.calculateDamage(damageType(), DAMAGE,source, target);
+        int actualDamage = DamageCalculator.calculateDamage(damageType(), DAMAGE, source, target);
+        if(target.getCharacter().isFriendly()){
+
+        }else {
+            EnemyTeam enemyTeam = fight.getEnemyTeam();
+        }
         target.decreaseHpBy(actualDamage);
     }
 
@@ -52,7 +60,7 @@ public class SewerRatBite implements Ability {
 
     @Override
     public AbilityType abilityType() {
-        return null;
+        return AbilityType.RUSTY_DAGGER;
     }
 
 

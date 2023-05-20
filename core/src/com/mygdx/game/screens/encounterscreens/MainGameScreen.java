@@ -212,7 +212,6 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
 
     @Override
     public void onNotify(CharacterPanel targetCharacter, Ability ability, CharacterPanel sourceCharacter) {
-        logger.info("DEBUG THIS target: " + targetCharacter.getName() + " "+ ability.name() + " "  + sourceCharacter.getName());
         ActionState.playerStateValue = ActionState.StateValue.NOT_ALLOWED_TO_ACT;
         ability.execute(targetCharacter, sourceCharacter, fight);
         updateScreenMidCombat();
@@ -279,7 +278,17 @@ public class MainGameScreen extends ScreenAdapter implements OutfitterObserver, 
     }
 
     public void updateScreenMidCombat(){
-        System.out.println("Updating screen");
+        abilitySelectPanel.update();
+        fight.update();
+        entireInGameScreenTable.update();
+    }
+
+    public void updateScreenInventoryChange(){
+        abilitySelectPanel.update();
+        entireInGameScreenTable.update();
+    }
+
+    public void updateScreenMidCombatFoeTurn(){
         fight.update();
         entireInGameScreenTable.update();
     }
